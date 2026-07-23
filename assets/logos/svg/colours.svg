@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_3" data-name="Layer 3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1930 1090">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #391e1a;
+      }
+
+      .cls-2 {
+        fill: url(#radial-gradient-2);
+      }
+
+      .cls-3 {
+        fill: url(#radial-gradient);
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-5 {
+        fill: #ff9d00;
+      }
+
+      .cls-6 {
+        fill: #7c3134;
+      }
+
+      .cls-7 {
+        fill: #efe9e0;
+      }
+
+      .cls-8 {
+        fill: #ff5122;
+      }
+
+      .cls-9 {
+        fill: #f8f3ea;
+      }
+
+      .cls-10 {
+        fill: #93cccd;
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="1088.55" cy="987.6" fx="1088.55" fy="987.6" r="883.25" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff5122"/>
+      <stop offset=".36" stop-color="#fc9576"/>
+      <stop offset=".67" stop-color="#f9c7b4"/>
+      <stop offset=".89" stop-color="#f8e7db"/>
+      <stop offset="1" stop-color="#f8f3ea"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-2" cx="1390.1" cy="995.51" fx="1390.1" fy="995.51" r="903.55" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff9d00"/>
+      <stop offset=".2" stop-color="#fdb33e"/>
+      <stop offset=".41" stop-color="#fbca7a"/>
+      <stop offset=".6" stop-color="#f9dbaa"/>
+      <stop offset=".77" stop-color="#f8e8cd"/>
+      <stop offset=".91" stop-color="#f8f0e2"/>
+      <stop offset="1" stop-color="#f8f3ea"/>
+    </radialGradient>
+    <linearGradient id="linear-gradient" x1="1709.02" y1="93.84" x2="1709.02" y2="981.57" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff7822"/>
+      <stop offset="1" stop-color="#ff5122"/>
+    </linearGradient>
+  </defs>
+  <rect class="cls-7" x="65.12" y="201.28" width="818.61" height="170.82" rx="28.35" ry="28.35"/>
+  <rect class="cls-9" x="65.12" y="93.84" width="818.61" height="91.8" rx="20.78" ry="20.78"/>
+  <rect class="cls-8" x="65.12" y="387.73" width="569.11" height="278.25" rx="24.77" ry="24.77"/>
+  <rect class="cls-1" x="65.12" y="681.61" width="569.11" height="314.54" rx="27.58" ry="27.58"/>
+  <rect class="cls-5" x="651.01" y="387.73" width="232.72" height="278.25" rx="24.77" ry="24.77"/>
+  <rect class="cls-6" x="651.01" y="681.61" width="114.9" height="314.54" rx="18.51" ry="18.51"/>
+  <rect class="cls-10" x="783.79" y="681.61" width="99.94" height="314.54" rx="17.26" ry="17.26"/>
+  <rect class="cls-3" x="905.19" y="93.84" width="311.71" height="902.32" rx="40.21" ry="40.21"/>
+  <rect class="cls-2" x="1229.18" y="93.84" width="311.71" height="902.32" rx="40.21" ry="40.21"/>
+  <rect class="cls-4" x="1553.17" y="93.84" width="311.71" height="902.32" rx="40.21" ry="40.21"/>
+</svg>

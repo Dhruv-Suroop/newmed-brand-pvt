@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NewMed Skills — Brand Guidelines</title>
+<meta name="description" content="The brand standards manual for NewMed Skills: logo, colour, typography, voice and applications.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+
+<!-- Reusable symbol definition -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="nm-mark" viewBox="0 0 205.56 205.63">
+    <path fill="currentColor" fill-rule="evenodd" d="M202.06,29.68c-4.41-12.14-14.04-21.7-26.18-26.12-10.95-3.56-21.17-3.56-41.94-3.56h-62.26c-20.7,0-30.93,0-42.01,3.43C17.47,7.85,7.91,17.48,3.49,29.61,0,40.76,0,51.05,0,71.69v62.19c0,20.77,0,30.93,3.36,42.14,4.42,12.07,14.05,21.7,26.18,26.11,11.15,3.5,21.44,3.5,42.01,3.5h62.32c20.64,0,30.93,0,42.01-3.5,12.14-4.41,21.77-13.98,26.18-26.11,3.5-11.21,3.5-21.44,3.5-42.14v-62.13c0-20.64,0-30.93-3.5-42.07ZM124.73,53c0-1.96,1.59-3.55,3.55-3.55h11.7c1.56,0,3.03.79,3.9,2.09l13.76,20.7c1.03,1.56,1.04,3.59.01,5.16l-13.53,20.67c-.86,1.32-2.34,2.11-3.92,2.11h-11.92c-1.96,0-3.55-1.58-3.55-3.54v-43.64ZM51.7,52.99c0-1.95,1.58-3.54,3.54-3.54h26.94c1.47,0,2.86.7,3.74,1.87l5.6,7.46c.95,1.26.95,2.99,0,4.25l-5.6,7.45c-.88,1.18-2.27,1.88-3.74,1.88h-26.94c-1.96,0-3.54-1.59-3.54-3.55v-15.82ZM51.7,80.82c0-1.95,1.58-3.54,3.54-3.54h47.87c1.48,0,2.87.69,3.75,1.87l5.6,7.45c.95,1.26.95,3,0,4.26l-5.6,7.45c-.88,1.18-2.27,1.87-3.75,1.87h-47.87c-1.96,0-3.54-1.58-3.54-3.54v-15.82ZM84.85,133.23l-13.83,21.11c-.75,1.15-2.02,1.84-3.39,1.84h-13.02c-1.61,0-2.91-1.31-2.91-2.92v-45.24c0-1.61,1.3-2.91,2.91-2.91h12.79c1.35,0,2.62.68,3.38,1.81l14.05,21.15c1.04,1.56,1.05,3.59.02,5.16ZM157.71,146.85l-5.6,7.46c-.89,1.17-2.27,1.87-3.75,1.87h-26.95c-1.95,0-3.54-1.59-3.54-3.54v-15.82c0-1.96,1.59-3.55,3.54-3.55h26.95c1.48,0,2.86.7,3.75,1.88l5.6,7.45c.95,1.26.95,2.99,0,4.25ZM157.71,118.68l-5.6,7.46c-.88,1.18-2.27,1.87-3.74,1.87h-47.88c-1.96,0-3.54-1.59-3.54-3.54v-15.82c0-1.96,1.58-3.54,3.54-3.54h47.88c1.47,0,2.86.69,3.74,1.87l5.6,7.45c.95,1.26.95,2.99,0,4.25Z"/>
+  </symbol>
+  <symbol id="ico-dl" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M8 1.5v8.5m0 0L4.8 6.8M8 10l3.2-3.2M2.2 13.2h11.6"/></symbol>
+  <symbol id="ico-copy" viewBox="0 0 16 16"><rect x="5.2" y="5.2" width="8.6" height="8.6" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M10.8 5.2V3.6A1.4 1.4 0 0 0 9.4 2.2H3.6A1.4 1.4 0 0 0 2.2 3.6v5.8A1.4 1.4 0 0 0 3.6 10.8H5"/></symbol>
+  <symbol id="ico-arw" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M2.5 8h10M9 4l3.8 4L9 12"/></symbol>
+</svg>
+
+<!-- Mobile top bar -->
+<div class="topbar">
+  <div class="tb-brand"><span class="mark"><svg class="mark"><use href="#nm-mark"/></svg></span> NewMed Skills</div>
+  <button class="hamb" id="hamb" aria-label="Menu"><span></span></button>
+</div>
+<div class="scrim" id="scrim"></div>
+
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <a class="sb-brand" href="#intro" data-nav>
+      <span class="mark"><svg class="mark"><use href="#nm-mark"/></svg></span>
+      <span class="wm">NewMed Skills<small>Brand Guidelines</small></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#intro"        data-nav><span class="num">01</span> Introduction</a>
+      <a href="#brand"        data-nav><span class="num">02</span> Brand</a>
+      <a href="#logo"         data-nav><span class="num">03</span> Logo</a>
+      <a href="#colour"       data-nav><span class="num">04</span> Colour</a>
+      <a href="#type"         data-nav><span class="num">05</span> Typography</a>
+      <a href="#voice"        data-nav><span class="num">06</span> Voice &amp; Tone</a>
+      <a href="#applications" data-nav><span class="num">07</span> Applications</a>
+      <a href="#downloads"    data-nav><span class="num">08</span> Downloads</a>
+    </nav>
+    <div class="sb-foot">
+      <b>Version 1.0</b> · 2026<br>
+      Single source of truth for the<br>NewMed Skills identity.
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main" id="main">
+
+    <!-- ========== 01 INTRODUCTION ========== -->
+    <section class="section is-active" id="intro">
+      <div class="wrap">
+        <div class="hero">
+          <div class="hero-top">
+            <span class="mark"><svg class="mark"><use href="#nm-mark"/></svg></span>
+            <span>NewMed Skills · Brand Guidelines</span>
+          </div>
+          <div class="hero-mid">
+            <h1 class="display">A calmer kind of healthcare hiring.</h1>
+            <p class="hero-sub">This is how NewMed Skills looks, sounds, and behaves — the standards that keep every touchpoint unmistakably ours.</p>
+          </div>
+          <div class="hero-foot">
+            <span>Version 1.0</span><span class="dot">/</span>
+            <span>2026</span><span class="dot">/</span>
+            <span>Logo · Colour · Type · Voice · Applications</span>
+          </div>
+        </div>
+
+        <div class="intro-grid">
+          <div class="intro-card">
+            <p class="kicker">What this is</p>
+            <p>The single source of truth for the NewMed Skills brand. Designers, writers, recruiters and partners use it to keep a licensing page, an app icon and a recruiter's email speaking with one voice.</p>
+          </div>
+          <div class="intro-card">
+            <p class="kicker">How to use it</p>
+            <p>Every section states a rule and shows the reason behind it. When two options feel equally correct, choose the calmer one — that instinct is the brand. Assets and colour values are ready to copy or download throughout.</p>
+          </div>
+        </div>
+
+        <div class="callout quote" style="margin-top:34px">
+          <p class="q-lead">Your career shouldn't stop at a border. We're here to get you across it.</p>
+          <p class="q-src">The central line of the brand — the promise everything else supports.</p>
+        </div>
+
+        <p class="kicker" style="margin-top:56px">Contents</p>
+        <nav class="toc">
+          <a href="#brand" data-nav><span class="t-num">02</span><span><span class="t-name">Brand</span><br><span class="t-desc">Who we are, where we stand, and the idea underneath the identity.</span></span><span class="t-arrow"><svg width="18" height="18"><use href="#ico-arw"/></svg></span></a>
+          <a href="#logo" data-nav><span class="t-num">03</span><span><span class="t-name">Logo</span><br><span class="t-desc">The mark, its lockups, clear space, colour and misuse.</span></span><span class="t-arrow"><svg width="18" height="18"><use href="#ico-arw"/></svg></span></a>
+          <a href="#colour" data-nav><span class="t-num">04</span><span><span class="t-name">Colour</span><br><span class="t-desc">The warm palette, its one cool note, and how to balance them.</span></span><span class="t-arrow"><svg width="18" height="18"><use href="#ico-arw"/></svg></span></a>
+          <a href="#type" data-nav><span class="t-num">05</span><span><span class="t-name">Typography</span><br><span class="t-desc">Mona Sans, the type scale, and how we set words.</span></span><span class="t-arrow"><svg width="18" height="18"><use href="#ico-arw"/></svg></span></a>
+          <a href="#voice" data-nav><span class="t-num">06</span><span><span class="t-name">Voice &amp; Tone</span><br><span class="t-desc">Clinical calm — five attributes, a register dial, and the rules.</span></span><span class="t-arrow"><svg width="18" height="18"><use href="#ico-arw"/></svg></span></a>
+          <a href="#applications" data-nav><span class="t-num">07</span><span><span class="t-name">Applications</span><br><span class="t-desc">The system in the world — app, print, apparel, product.</span></span><span class="t-arrow"><svg width="18" height="18"><use href="#ico-arw"/></svg></span></a>
+          <a href="#downloads" data-nav><span class="t-num">08</span><span><span class="t-name">Downloads</span><br><span class="t-desc">Every logo file, colour value and the typeface.</span></span><span class="t-arrow"><svg width="18" height="18"><use href="#ico-arw"/></svg></span></a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ========== 02 BRAND ========== -->
+    <section class="section" id="brand">
+      <div class="wrap">
+        <p class="eyebrow"><span class="n">02</span> — Brand</p>
+        <h1 class="sec-title">The idea underneath.</h1>
+        <p class="lead">NewMed Skills moves qualified clinicians across borders — and replaces an anxious, low-trust process with something calm, specific and sequential.</p>
+
+        <div class="block">
+          <p class="kicker">About</p>
+          <h2 class="blk">What we do</h2>
+          <p class="body">NewMed Skills sources, assesses, licenses and deploys workforce-ready healthcare professionals for hospitals across major geographies. One platform manages the entire journey — from first assessment to first shift — sourcing clinical talent from India, Asia and Africa and deploying licensed, verified professionals to the UK, GCC, Europe and North America.</p>
+          <p class="body">Two people rely on us. The <b>candidate</b> — a nurse or doctor ready to work abroad. And the <b>hospital</b> — a team that needs qualified people without six months of unscreened CVs. We name every credential and system plainly — Prometric, DataFlow, licensing exams — and we speak to both audiences without changing who we are.</p>
+        </div>
+
+        <div class="band block">
+          <div class="band-eyebrow">The promise</div>
+          <h2>One platform, from first assessment to first shift.</h2>
+          <p>One system manages the entire journey — sourcing, readiness, deployment and retention. Nothing handed off, nothing dropped.</p>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Positioning</p>
+          <h2 class="blk">Clinical calm</h2>
+          <p class="body">Healthcare staffing is a low-trust category. Competitors sound like either body-shop salesmen — hype, urgency, promises — or enterprise software — sterile, jargon, "solutions." Both try to manufacture trust, and both fail, because trust is demonstrated, not claimed.</p>
+          <div class="callout">
+            <p>The opening neither competitor can occupy is <b>clinical calm</b>: the voice that doesn't need to raise itself to be believed. We write and design like a senior clinician speaks — someone who has done this a thousand times, states facts plainly, never oversells, and is calm precisely because they are competent.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">The shape</p>
+          <h2 class="blk">Everything moves <span class="chev">from → to</span></h2>
+          <p class="body">The brand has one direction built into it. From exam to licence. From licence to placement. From one country to the next. Our symbol is an <b>N built entirely from chevrons</b> — a path, not a badge. Whenever you design or write for NewMed Skills, show the reader the next step rather than a pile of features to assemble themselves.</p>
+          <div class="symbol-feature" style="margin-top:26px">
+            <div class="sym-box"><span class="mark"><svg class="mark"><use href="#nm-mark"/></svg></span></div>
+            <div>
+              <h3 class="blk">A letter that points forward</h3>
+              <p class="body muted">The counters and terminals are cut as arrowheads. Read it once and it's an N; look again and it's motion — the visual form of the promise to get someone across.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">The journey</p>
+          <h2 class="blk">Six stages, one direction</h2>
+          <p class="body">The from → to, made literal. Every candidate — and every layout — moves through the same sequence, in order. Nothing skipped, no one rushed through.</p>
+          <div class="journey" style="margin-top:24px">
+            <div class="jstep"><div class="jn"><svg><use href="#ico-arw"/></svg> Stage 01</div><h4>Source</h4><span class="place">India · Asia · Africa</span><p>The largest pool of clinical talent in the world.</p></div>
+            <div class="jstep"><div class="jn"><svg><use href="#ico-arw"/></svg> Stage 02</div><h4>Assess</h4><p>Every candidate measured against clinical, professional and regulatory standards.</p></div>
+            <div class="jstep"><div class="jn"><svg><use href="#ico-arw"/></svg> Stage 03</div><h4>Develop</h4><p>A learning plan built around each candidate's specific gaps.</p></div>
+            <div class="jstep"><div class="jn"><svg><use href="#ico-arw"/></svg> Stage 04</div><h4>Certify</h4><p>Prometric, DataFlow and licensing exams — prepared for and passed before travel.</p></div>
+            <div class="jstep"><div class="jn"><svg><use href="#ico-arw"/></svg> Stage 05</div><h4>Deploy</h4><span class="place">UK · GCC · Europe · NA</span><p>Licensed, verified professionals, ready from day one.</p></div>
+            <div class="jstep"><div class="jn"><svg><use href="#ico-arw"/></svg> Stage 06</div><h4>Retain</h4><p>Support and development that continue long after placement.</p></div>
+          </div>
+          <p class="body muted" style="margin-top:20px;font-size:14px">Assessed in four areas: <b>Clinical Competency</b> · <b>Professional Skills</b> · <b>Regulatory Readiness</b> · <b>Country Readiness</b>.</p>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Personality</p>
+          <h2 class="blk">Five attributes, always on</h2>
+          <p class="body">All five are present in every sentence and every layout, at every level of the register. They are the fixed identity.</p>
+          <div class="grid g-3" style="margin-top:24px">
+            <div class="card attr"><div class="idx">01</div><h3>Certain</h3><p>Settled, factual, unhurried. Every claim carries a number or a mechanism. We inform someone competent enough to draw their own conclusion.</p></div>
+            <div class="card attr"><div class="idx">02</div><h3>Plain</h3><p>Clear, concrete, direct. Short sentences, one idea at a time. Written as if translating for a capable new colleague who doesn't know the acronyms yet.</p></div>
+            <div class="card attr"><div class="idx">03</div><h3>Warm</h3><p>Steady, human, on the reader's side. Warmth lives in naming the real stakes — fees, visas, arriving alone — not in soft words.</p></div>
+            <div class="card attr"><div class="idx">04</div><h3>Guiding</h3><p>Directional and sequential. From→to constructions, numbered steps, action verbs: assess, train, license, deploy, support.</p></div>
+            <div class="card attr"><div class="idx">05</div><h3>Credible</h3><p>Trusted, calm, unexaggerated — most of all when the stakes are high. Confidence comes from substance, never volume.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 03 LOGO ========== -->
+    <section class="section" id="logo">
+      <div class="wrap">
+        <p class="eyebrow"><span class="n">03</span> — Logo</p>
+        <h1 class="sec-title">The mark.</h1>
+        <p class="lead">An N constructed from chevrons — forward motion made from the letter itself. Give it room, keep it in its approved colours, and never redraw it.</p>
+
+        <div class="block">
+          <p class="kicker">A note on the name</p>
+          <div class="callout">
+            <p>In writing, the name is always <b>NewMed Skills</b> — two words. The logotype draws it as a single closed wordmark; that is the artwork, not the spelling. Never type the name as one word in body copy, and never set it in all caps outside a small eyebrow label.</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Lockups</p>
+          <h2 class="blk">One system, six configurations</h2>
+          <p class="body">Choose the lockup that fits the space, then hold it. The horizontal lockup is the default; reach for the others only when the format demands it.</p>
+
+          <div class="grid g-2" style="margin-top:24px">
+            <div class="lockup">
+              <div class="logo-stage on-cream"><span class="stage-tag">Primary</span><img src="assets/logos/svg/horizontal-colour.svg" alt="NewMed Skills horizontal logo"></div>
+              <div class="meta">
+                <div><h3>Horizontal</h3><p>The default. Use wherever width allows — headers, documents, email.</p></div>
+                <div class="dl-row">
+                  <a class="btn sm" href="assets/logos/svg/horizontal-colour.svg" download>SVG</a>
+                  <a class="btn sm" href="assets/logos/png/horizontal-colour.png" download>PNG</a>
+                  <a class="btn sm" href="assets/logos/pdf/horizontal-colour.pdf" download>PDF</a>
+                </div>
+              </div>
+            </div>
+            <div class="lockup">
+              <div class="logo-stage on-cream"><span class="stage-tag">Stacked</span><img src="assets/logos/svg/stack-colour.svg" alt="NewMed Skills stacked logo"></div>
+              <div class="meta">
+                <div><h3>Stack</h3><p>For square-ish spaces and centred layouts where height is available.</p></div>
+                <div class="dl-row">
+                  <a class="btn sm" href="assets/logos/svg/stack-colour.svg" download>SVG</a>
+                  <a class="btn sm" href="assets/logos/png/stack-colour.png" download>PNG</a>
+                  <a class="btn sm" href="assets/logos/pdf/stack-colour.pdf" download>PDF</a>
+                </div>
+              </div>
+            </div>
+            <div class="lockup">
+              <div class="logo-stage on-cream"><span class="stage-tag">Vertical</span><img src="assets/logos/svg/vertical-colour.svg" alt="NewMed Skills vertical logo"></div>
+              <div class="meta">
+                <div><h3>Vertical</h3><p>Symbol above the wordmark. Good for narrow columns and profile spaces.</p></div>
+                <div class="dl-row">
+                  <a class="btn sm" href="assets/logos/svg/vertical-colour.svg" download>SVG</a>
+                  <a class="btn sm" href="assets/logos/png/vertical-colour.png" download>PNG</a>
+                  <a class="btn sm" href="assets/logos/pdf/vertical-colour.pdf" download>PDF</a>
+                </div>
+              </div>
+            </div>
+            <div class="lockup">
+              <div class="logo-stage on-cream"><span class="stage-tag">Badge</span><img src="assets/logos/svg/badge-colour.svg" alt="NewMed Skills badge logo"></div>
+              <div class="meta">
+                <div><h3>Badge</h3><p>Contained lockup for stamps, seals and small circular placements.</p></div>
+                <div class="dl-row">
+                  <a class="btn sm" href="assets/logos/svg/badge-colour.svg" download>SVG</a>
+                  <a class="btn sm" href="assets/logos/png/badge-colour.png" download>PNG</a>
+                  <a class="btn sm" href="assets/logos/pdf/badge-colour.pdf" download>PDF</a>
+                </div>
+              </div>
+            </div>
+            <div class="lockup">
+              <div class="logo-stage on-cream"><span class="stage-tag">Short</span><img src="assets/logos/svg/short-colour.svg" alt="NewMed Skills short logo"></div>
+              <div class="meta">
+                <div><h3>Short</h3><p>Compact lockup for tight horizontal spaces where the full name won't fit.</p></div>
+                <div class="dl-row">
+                  <a class="btn sm" href="assets/logos/svg/short-colour.svg" download>SVG</a>
+                  <a class="btn sm" href="assets/logos/png/short-colour.png" download>PNG</a>
+                  <a class="btn sm" href="assets/logos/pdf/short-colour.pdf" download>PDF</a>
+                </div>
+              </div>
+            </div>
+            <div class="lockup">
+              <div class="logo-stage on-cream"><span class="stage-tag">Symbol</span><img src="assets/logos/svg/symbol-colour.svg" alt="NewMed Skills symbol" style="max-height:96px"></div>
+              <div class="meta">
+                <div><h3>Symbol</h3><p>The chevron N alone. Use as app icon, avatar or favicon — never as a replacement for the name in copy.</p></div>
+                <div class="dl-row">
+                  <a class="btn sm" href="assets/logos/svg/symbol-colour.svg" download>SVG</a>
+                  <a class="btn sm" href="assets/logos/png/symbol-colour.png" download>PNG</a>
+                  <a class="btn sm" href="assets/logos/pdf/symbol-colour.pdf" download>PDF</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Clear space &amp; minimum size</p>
+          <h2 class="blk">Give it room to breathe</h2>
+          <div class="spec-grid" style="margin-top:22px">
+            <div class="spec">
+              <div class="diagram"><span class="mark"><svg class="mark"><use href="#nm-mark"/></svg></span></div>
+              <h3 class="blk" style="font-size:16px">Clear space</h3>
+              <p class="measure">Keep clear space on all sides equal to the height of one chevron unit within the mark (x). Nothing — type, image edge or another logo — enters this zone. <em>Recommended default; confirm against final artwork.</em></p>
+            </div>
+            <div class="spec">
+              <div class="diagram"><div class="msz"><span class="mk" style="width:24px"><svg class="mark"><use href="#nm-mark"/></svg></span><span class="mk" style="width:56px"><svg class="mark"><use href="#nm-mark"/></svg></span><span class="mk" style="width:96px"><svg class="mark"><use href="#nm-mark"/></svg></span></div></div>
+              <h3 class="blk" style="font-size:16px">Minimum size</h3>
+              <p class="measure">Symbol: <b>24&nbsp;px</b> on screen, <b>8&nbsp;mm</b> in print. Horizontal lockup: <b>120&nbsp;px</b> / <b>24&nbsp;mm</b> by width. Below this, legibility and the chevron detail break down. <em>Recommended defaults.</em></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Colour on backgrounds</p>
+          <h2 class="blk">Where each version goes</h2>
+          <div class="grid g-3" style="margin-top:22px">
+            <div class="lockup">
+              <div class="logo-stage on-cream" style="padding:44px"><img src="assets/logos/svg/horizontal-colour.svg" alt="Colour logo on cream" style="max-height:56px"></div>
+              <div class="meta"><div><h3>On light</h3><p>Full-colour lockup on cream, bone or white. The primary presentation.</p></div></div>
+            </div>
+            <div class="lockup">
+              <div class="logo-stage on-ink" style="padding:44px"><img src="assets/logos/png/horizontal-black.png" alt="Reversed logo on ink" style="max-height:56px;filter:invert(1) brightness(1.6)"></div>
+              <div class="meta"><div><h3>On dark</h3><p>Reverse to cream on Clinical Ink or dark photography. Keep contrast high.</p></div></div>
+            </div>
+            <div class="lockup">
+              <div class="logo-stage on-orange" style="padding:44px"><img src="assets/logos/png/horizontal-black.png" alt="Logo on orange" style="max-height:56px;filter:invert(1) brightness(2)"></div>
+              <div class="meta"><div><h3>On colour</h3><p>On Signal Orange, use the single-colour cream mark only — never the full-colour version.</p></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Misuse</p>
+          <h2 class="blk">Six things never to do</h2>
+          <p class="body">The mark is fixed. If a situation seems to need one of these, it needs a different lockup instead.</p>
+          <div class="dd" style="margin-top:22px">
+            <div class="dont"><div class="frame"><span class="badge">✕</span><span class="mark" style="color:var(--teal)"><svg class="mark"><use href="#nm-mark"/></svg></span></div><div class="cap"><b>Don't recolour</b>Only approved brand colours.</div></div>
+            <div class="dont"><div class="frame"><span class="badge">✕</span><span class="mark" style="transform:rotate(18deg)"><svg class="mark"><use href="#nm-mark"/></svg></span></div><div class="cap"><b>Don't rotate</b>Keep it upright, always.</div></div>
+            <div class="dont"><div class="frame"><span class="badge">✕</span><span class="mark" style="transform:scaleX(1.6)"><svg class="mark"><use href="#nm-mark"/></svg></span></div><div class="cap"><b>Don't stretch</b>Scale proportionally only.</div></div>
+            <div class="dont"><div class="frame"><span class="badge">✕</span><span class="mark" style="filter:drop-shadow(3px 5px 3px rgba(0,0,0,.5))"><svg class="mark"><use href="#nm-mark"/></svg></span></div><div class="cap"><b>Don't add effects</b>No shadows, glows or gradients.</div></div>
+            <div class="dont"><div class="frame" style="background:linear-gradient(45deg,#93cccd,#ff9d00)"><span class="badge">✕</span><span class="mark" style="color:#fff"><svg class="mark"><use href="#nm-mark"/></svg></span></div><div class="cap"><b>Don't place on clutter</b>Ensure clean, high-contrast ground.</div></div>
+            <div class="dont"><div class="frame"><span class="badge">✕</span><span class="mark" style="color:transparent;-webkit-text-stroke:0;outline:2px solid var(--orange);width:70px;height:70px;border-radius:16px"><svg class="mark" style="opacity:.25"><use href="#nm-mark"/></svg></span></div><div class="cap"><b>Don't outline or box</b>No added strokes or containers.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 04 COLOUR ========== -->
+    <section class="section" id="colour">
+      <div class="wrap">
+        <p class="eyebrow"><span class="n">04</span> — Colour</p>
+        <h1 class="sec-title">Warm, with one cool note.</h1>
+        <p class="lead">A grounded, warm palette does the everyday work. Signal Orange is used as a signal — a moment, not a wash. Click any swatch to copy its hex.</p>
+
+        <div class="block">
+          <p class="kicker">Core</p>
+          <div class="sw-grid" data-swatches>
+            <div class="swatch" data-hex="#FF5122"><div class="chip" style="background:#FF5122"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Signal Orange</div><div class="role">Primary. The mark, the moment, the call to move.</div><div class="val"><span>#FF5122</span><span>255 · 81 · 34</span></div></div></div>
+            <div class="swatch dark" data-hex="#391E1A"><div class="chip" style="background:#391E1A"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Clinical Ink</div><div class="role">Primary text and dark surfaces. A warm near-black.</div><div class="val"><span>#391E1A</span><span>57 · 30 · 26</span></div></div></div>
+            <div class="swatch dark" data-hex="#7C3134"><div class="chip" style="background:#7C3134"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Clay</div><div class="role">A primary surface — used as widely as orange across decks and deep panels.</div><div class="val"><span>#7C3134</span><span>124 · 49 · 52</span></div></div></div>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Secondary &amp; deep</p>
+          <div class="sw-grid" data-swatches>
+            <div class="swatch" data-hex="#FF9D00"><div class="chip" style="background:#FF9D00"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Amber</div><div class="role">Warm highlight and secondary energy. Pairs beside orange.</div><div class="val"><span>#FF9D00</span><span>255 · 157 · 0</span></div></div></div>
+            <div class="swatch" data-hex="#93CCCD"><div class="chip" style="background:#93CCCD"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Vitals Teal</div><div class="role">The one cool note — calm, clinical, trustworthy. Use sparingly.</div><div class="val"><span>#93CCCD</span><span>147 · 204 · 205</span></div></div></div>
+            <div class="swatch dark" data-hex="#33000F"><div class="chip" style="background:#33000F"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Plum</div><div class="role">The deepest note. Rich near-black backgrounds where ink isn't dark enough.</div><div class="val"><span>#33000F</span><span>51 · 0 · 15</span></div></div></div>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Neutrals</p>
+          <div class="sw-grid" data-swatches>
+            <div class="swatch" data-hex="#F8F3EA"><div class="chip" style="background:#F8F3EA;border-bottom:1px solid var(--line-soft)"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Bone</div><div class="role">The default page background. Warm, quiet, easy on the eye.</div><div class="val"><span>#F8F3EA</span><span>248 · 243 · 234</span></div></div></div>
+            <div class="swatch" data-hex="#EFE9E0"><div class="chip" style="background:#EFE9E0;border-bottom:1px solid var(--line-soft)"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Linen</div><div class="role">Cards, panels and secondary surfaces against Bone.</div><div class="val"><span>#EFE9E0</span><span>239 · 233 · 224</span></div></div></div>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Gradients</p>
+          <div class="sw-grid" data-swatches>
+            <div class="swatch dark" data-hex="linear-gradient · #FF7822 → #FF5122"><div class="chip" style="background:linear-gradient(180deg,#FF7822,#FF5122)"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Signal</div><div class="role">The workhorse gradient — for the mark's warm field and hero panels.</div><div class="val"><span>#FF7822</span><span>→ #FF5122</span></div></div></div>
+            <div class="swatch dark" data-hex="radial · #FF5122 → #F8F3EA"><div class="chip" style="background:radial-gradient(120% 120% at 70% 110%,#FF5122,#FC9576 45%,#F8F3EA)"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Sunrise</div><div class="role">Orange rising into cream. Backgrounds and large fields.</div><div class="val"><span>#FF5122</span><span>→ #F8F3EA</span></div></div></div>
+            <div class="swatch dark" data-hex="radial · #FF9D00 → #F8F3EA"><div class="chip" style="background:radial-gradient(120% 120% at 70% 110%,#FF9D00,#FBCA7A 50%,#F8F3EA)"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Amber Rise</div><div class="role">A softer, gold variant for calmer surfaces.</div><div class="val"><span>#FF9D00</span><span>→ #F8F3EA</span></div></div></div>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Balance</p>
+          <h2 class="blk">Roughly 70 / 20 / 10</h2>
+          <p class="body">Let neutrals carry most of the surface, ink carry the words, and orange appear where it means something — a link, a state, a single call to move. When orange starts to feel like decoration, pull it back.</p>
+          <div class="ratio" style="margin-top:10px">
+            <div style="flex:70;background:#F8F3EA;color:var(--ink-60)">70% Neutral</div>
+            <div style="flex:20;background:#391E1A;color:var(--cream)">20% Ink</div>
+            <div style="flex:10;background:#FF5122;color:#fff">10%</div>
+          </div>
+          <p class="body muted" style="font-size:14px">Accessibility: Clinical Ink on Bone clears WCAG AA for body text. Use Signal Orange for large text, icons and accents — pair it with ink or cream for small text rather than relying on the orange alone.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 05 TYPOGRAPHY ========== -->
+    <section class="section" id="type">
+      <div class="wrap">
+        <p class="eyebrow"><span class="n">05</span> — Typography</p>
+        <h1 class="sec-title">One typeface, used with discipline.</h1>
+        <p class="lead">Mona Sans is a humanist grotesk — modern, plainly legible, and calm. It reads clearly for an audience that often reads English as a second language. Headings are set in <b>SemiBold</b>, body in <b>Regular</b>, with <b>Medium</b> for emphasis — never a heavier weight, never a second face.</p>
+
+        <div class="specimen block">
+          <div class="big">
+            <div class="aa">Aa</div>
+            <div class="set">ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz · 0123456789 · &amp;?!</div>
+          </div>
+          <div class="weights">
+            <div class="w"><div class="lbl">Regular · 400</div><div class="ex" style="font-weight:400">Assess</div></div>
+            <div class="w"><div class="lbl">Medium · 500</div><div class="ex" style="font-weight:500">Train</div></div>
+            <div class="w"><div class="lbl">SemiBold · 600</div><div class="ex" style="font-weight:600">License</div></div>
+            <div class="w"><div class="lbl">Bold · 700</div><div class="ex" style="font-weight:700">Deploy</div></div>
+            <div class="w"><div class="lbl">ExtraBold · 800</div><div class="ex" style="font-weight:800">Support</div></div>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Type scale</p>
+          <h2 class="blk">A clear hierarchy</h2>
+          <div style="margin-top:14px">
+            <div class="scale-row"><span class="tag">Display · 600</span><span class="demo" style="font-size:48px;font-weight:600">Get them across</span></div>
+            <div class="scale-row"><span class="tag">Heading · 600</span><span class="demo" style="font-size:32px;font-weight:600">Already licensed</span></div>
+            <div class="scale-row"><span class="tag">Subhead · 500</span><span class="demo" style="font-size:23px;font-weight:500">Every stage tracked</span></div>
+            <div class="scale-row"><span class="tag">Body · 400</span><span class="demo" style="font-size:17px;font-weight:400;white-space:normal">We handle everything between a passed exam and a first shift.</span></div>
+            <div class="scale-row"><span class="tag">Eyebrow · 600</span><span class="demo" style="font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)">Licensing &amp; placement</span></div>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Setting words</p>
+          <h2 class="blk">How we type</h2>
+          <div class="rules" style="margin-top:22px">
+            <div class="rule"><h4><span class="rn">01</span> Sentence case</h4><p>Headings and buttons use sentence case. All-caps is reserved for small eyebrow labels only.</p></div>
+            <div class="rule"><h4><span class="rn">02</span> Short lines</h4><p>Headlines under 8 words. Body sentences under 20. One idea per sentence.</p></div>
+            <div class="rule"><h4><span class="rn">03</span> Numerals that work</h4><p>Use figures when a number is doing work — <code>a 1:3 ratio</code>, <code>4 steps</code>. The specificity is the point.</p></div>
+            <div class="rule"><h4><span class="rn">04</span> Generous measure</h4><p>Keep body text around 60–70 characters per line and leading relaxed. Calm reads unhurried.</p></div>
+          </div>
+          <p class="body muted" style="margin-top:20px;font-size:14px">Fallback stack for systems without Mona Sans: <code>system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif</code>. Mona Sans is open-source under the SIL Open Font License.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 06 VOICE ========== -->
+    <section class="section" id="voice">
+      <div class="wrap">
+        <p class="eyebrow"><span class="n">06</span> — Voice &amp; Tone</p>
+        <h1 class="sec-title">Write as a senior clinician speaks.</h1>
+        <p class="lead">Someone who has done this a thousand times, states facts plainly, never oversells, and is calm precisely because they are competent. Every rule below serves that one idea.</p>
+
+        <div class="callout quote block">
+          <p class="q-lead">You are not persuading. You are informing someone competent enough to draw their own conclusion.</p>
+        </div>
+
+        <div class="block">
+          <p class="kicker">The register dial</p>
+          <h2 class="blk">One voice. It never gets louder — it gets nearer.</h2>
+          <p class="body">Register is how close the voice stands to the reader. Pick one level per piece, based on how much the reader already trusts you and how much is emotionally at stake.</p>
+          <div class="reg" style="margin-top:24px">
+            <div class="reg-row"><div class="lv">L1<span class="bar" style="width:24%"></span></div><div class="nm">Clinical note<small>Compliance, licensing pages, detailed FAQs</small></div><div class="ex">DataFlow verification takes 4–6 weeks. You'll need your degree certificate, transcripts, and a valid licence from your home country. We submit on your behalf and track every stage.</div></div>
+            <div class="reg-row"><div class="lv">L2<span class="bar" style="width:42%"></span></div><div class="nm">Briefing<small>Explainers, how-it-works, comparisons</small></div><div class="ex">You've passed your exams. We handle everything between that and your first shift — licensing, visa, placement. You'll always know which stage you're at.</div></div>
+            <div class="reg-row"><div class="lv">L3<span class="bar" style="width:60%"></span></div><div class="nm">Standard <small>Default — homepage, most pages, emails</small></div><div class="ex">Hiring nurses shouldn't take six months and a stack of unscreened CVs. We send you candidates who are already screened, licensed, and ready to start.</div></div>
+            <div class="reg-row"><div class="lv">L4<span class="bar" style="width:80%"></span></div><div class="nm">Direct<small>Candidate landing pages, social, campaigns</small></div><div class="ex">You trained for years. You passed the exams. Don't let paperwork be the reason you don't go. We handle that part.</div></div>
+            <div class="reg-row"><div class="lv">L5<span class="bar" style="width:100%"></span></div><div class="nm">Bedside<small>The single most important line on a page — rare</small></div><div class="ex">Your career shouldn't stop at a border. We're here to get you across it.</div></div>
+          </div>
+          <p class="body muted" style="margin-top:18px;font-size:14px">A sentence at Level 5 and one at Level 1 should read as the same calm, competent person — one filing a note, the other looking you in the eye.</p>
+        </div>
+
+        <div class="block">
+          <p class="kicker">The rules</p>
+          <h2 class="blk">Mechanical and non-negotiable</h2>
+          <div class="rules" style="margin-top:22px">
+            <div class="rule"><h4><span class="rn">Naming</span></h4><p>Always <b>NewMed Skills</b> — two words, capital N, M, S. Never one word, never all-caps in body, never "NMS" unless truly needed and only after the full name has appeared once. Name real systems — <code>DHA</code>, <code>SCFHS</code>, <code>Prometric</code>, <code>DataFlow</code> — never "the relevant authorities."</p></div>
+            <div class="rule"><h4><span class="rn">Pronouns</span></h4><p>Candidates are <b>you</b>. Hospitals are <b>your team</b> / <b>your hospital</b>. NewMed Skills is always <b>we</b> — never "the company," never "NewMed Skills believes."</p></div>
+            <div class="rule"><h4><span class="rn">Acronyms</span></h4><p>Spell out on first use, then abbreviate: Dubai Health Authority (DHA), thereafter DHA. Don't assume the reader knows it — a nurse abroad may not.</p></div>
+            <div class="rule"><h4><span class="rn">Structure</span></h4><p>Every benefit answers "how?" in the same breath: "Faster hiring — because screening is already done," not "Faster hiring." Split marketing sentences into separate ones.</p></div>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Banned words</p>
+          <h2 class="blk">If it's on a corporate bingo card, it's out</h2>
+          <p class="body">Reaching for one of these is a signal the sentence has gone abstract. Replace the word and the vagueness beneath it.</p>
+          <div class="pills" style="margin-top:20px">
+            <span class="pill banned">transformation</span>
+            <span class="pill banned">orchestration</span>
+            <span class="pill banned">lifecycle</span>
+            <span class="pill banned">leverage</span>
+            <span class="pill banned">solutions</span>
+            <span class="pill banned">seamless</span>
+            <span class="pill banned">empower</span>
+            <span class="pill banned">ecosystem</span>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Before anything ships</p>
+          <h2 class="blk">The 10-second check</h2>
+          <ul class="check" style="margin-top:18px">
+            <li><span class="tick">1</span><span>Does every claim carry a number or a mechanism?</span></li>
+            <li><span class="tick">2</span><span>Could this sentence appear on any other B2B site? If yes, rewrite.</span></li>
+            <li><span class="tick">3</span><span>Is the warmth in the specifics, or just in adjectives? Move it to the specifics.</span></li>
+            <li><span class="tick">4</span><span>Have I shown the path, or only listed features?</span></li>
+            <li><span class="tick">5</span><span>Any banned words hiding in there?</span></li>
+          </ul>
+          <p class="body muted" style="margin-top:16px;font-size:14px">Pass all five and it sounds like NewMed Skills.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 07 APPLICATIONS ========== -->
+    <section class="section" id="applications">
+      <div class="wrap">
+        <p class="eyebrow"><span class="n">07</span> — Applications</p>
+        <h1 class="sec-title">The system in the world.</h1>
+        <p class="lead">The identity is built to travel — from a phone screen to a set of scrubs. A few reference applications showing the mark, palette and type working together.</p>
+
+        <div class="block">
+          <div class="gallery">
+            <div class="shot"><img src="assets/mockups/app-icon-iphone.jpg" alt="App icon on iPhone" loading="lazy"><div class="cap"><b>App icon</b><p>The chevron symbol alone on Signal Orange — no wordmark at this size.</p></div></div>
+            <div class="shot"><img src="assets/mockups/doctor-iphone.jpg" alt="App in hand" loading="lazy"><div class="cap"><b>In hand</b><p>Where most candidates first meet the brand — calm, clear, one step at a time.</p></div></div>
+            <div class="shot"><img src="assets/mockups/app-iphone-gradient.jpg" alt="iOS app on gradient" loading="lazy"><div class="cap"><b>iOS app</b><p>The Sunrise gradient carrying the icon on a launch surface.</p></div></div>
+            <div class="shot"><img src="assets/mockups/stationery-paper.jpg" alt="Stationery" loading="lazy"><div class="cap"><b>Stationery</b><p>The full-colour lockup on warm neutral paper stock.</p></div></div>
+            <div class="shot"><img src="assets/mockups/medical-uniform.jpg" alt="Scrubs and uniform" loading="lazy"><div class="cap"><b>Scrubs &amp; uniform</b><p>The symbol embroidered where clinicians actually wear the brand.</p></div></div>
+            <div class="shot"><img src="assets/mockups/app-icons-dock.jpg" alt="App icon among peers" loading="lazy"><div class="cap"><b>Among peers</b><p>The mark holding its own beside the software clinicians use daily.</p></div></div>
+            <div class="shot"><img src="assets/mockups/tote-bag.jpg" alt="Tote bag" loading="lazy"><div class="cap"><b>Merchandise</b><p>Symbol and wordmark on everyday carry — restrained, single-colour.</p></div></div>
+            <div class="shot"><img src="assets/mockups/meiji-template.jpg" alt="Presentation template" loading="lazy"><div class="cap"><b>Presentation</b><p>Decks that stay plain and specific — substance over noise.</p></div></div>
+            <div class="shot"><img src="assets/mockups/screens.jpg" alt="Product screens" loading="lazy"><div class="cap"><b>Product screens</b><p>Interface where every stage of the journey is named and visible.</p></div></div>
+            <div class="shot"><img src="assets/mockups/bottle-lid.jpg" alt="Bottle" loading="lazy"><div class="cap"><b>Product</b><p>The symbol reads at small scale on a moulded lid.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 08 DOWNLOADS ========== -->
+    <section class="section" id="downloads">
+      <div class="wrap">
+        <p class="eyebrow"><span class="n">08</span> — Downloads</p>
+        <h1 class="sec-title">Take what you need.</h1>
+        <p class="lead">Every logo in three formats, the colour values, and the typeface. SVG for screen and scaling, PNG for quick placement, PDF for print.</p>
+
+        <div class="block">
+          <p class="kicker">Logo files</p>
+          <div class="dl-list">
+            <div class="dl-item"><div><div class="di-name">Horizontal — colour</div><div class="di-desc">Primary lockup</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/horizontal-colour.svg" download>SVG</a><a class="btn sm" href="assets/logos/png/horizontal-colour.png" download>PNG</a><a class="btn sm" href="assets/logos/pdf/horizontal-colour.pdf" download>PDF</a></div></div>
+            <div class="dl-item"><div><div class="di-name">Horizontal — black</div><div class="di-desc">Single-colour / reverse</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/horizontal-black.svg" download>SVG</a><a class="btn sm" href="assets/logos/png/horizontal-black.png" download>PNG</a><a class="btn sm" href="assets/logos/pdf/horizontal-black.pdf" download>PDF</a></div></div>
+            <div class="dl-item"><div><div class="di-name">Stack — colour</div><div class="di-desc">Centred / square spaces</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/stack-colour.svg" download>SVG</a><a class="btn sm" href="assets/logos/png/stack-colour.png" download>PNG</a><a class="btn sm" href="assets/logos/pdf/stack-colour.pdf" download>PDF</a></div></div>
+            <div class="dl-item"><div><div class="di-name">Vertical — colour</div><div class="di-desc">Narrow columns</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/vertical-colour.svg" download>SVG</a><a class="btn sm" href="assets/logos/png/vertical-colour.png" download>PNG</a><a class="btn sm" href="assets/logos/pdf/vertical-colour.pdf" download>PDF</a></div></div>
+            <div class="dl-item"><div><div class="di-name">Badge — colour</div><div class="di-desc">Seals &amp; stamps</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/badge-colour.svg" download>SVG</a><a class="btn sm" href="assets/logos/png/badge-colour.png" download>PNG</a><a class="btn sm" href="assets/logos/pdf/badge-colour.pdf" download>PDF</a></div></div>
+            <div class="dl-item"><div><div class="di-name">Short — colour</div><div class="di-desc">Tight horizontal spaces</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/short-colour.svg" download>SVG</a><a class="btn sm" href="assets/logos/png/short-colour.png" download>PNG</a><a class="btn sm" href="assets/logos/pdf/short-colour.pdf" download>PDF</a></div></div>
+            <div class="dl-item"><div><div class="di-name">Symbol — colour</div><div class="di-desc">App icon · avatar · favicon</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/symbol-colour.svg" download>SVG</a><a class="btn sm" href="assets/logos/png/symbol-colour.png" download>PNG</a><a class="btn sm" href="assets/logos/pdf/symbol-colour.pdf" download>PDF</a></div></div>
+            <div class="dl-item"><div><div class="di-name">App icon — 1024px</div><div class="di-desc">iOS / store-ready square</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/png/app-icon-1024.png" download>PNG</a></div></div>
+          </div>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Colour &amp; type</p>
+          <div class="dl-list">
+            <div class="dl-item"><div><div class="di-name">Colour palette</div><div class="di-desc">Master swatch artwork with every value</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/colours.svg" download>SVG</a></div></div>
+            <div class="dl-item"><div><div class="di-name">Mona Sans</div><div class="di-desc">Primary typeface · open-source (SIL OFL)</div></div><div class="dl-row"><a class="btn sm" href="https://github.com/github/mona-sans" target="_blank" rel="noopener">Get font <svg width="13" height="13" style="margin-left:2px"><use href="#ico-arw"/></svg></a></div></div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="callout">
+            <p><b>Something missing?</b> Co-branding rules, motion, iconography and photography direction are the natural next sections. This manual is built to grow — new sections drop straight into the sidebar.</p>
+          </div>
+        </div>
+
+        <p class="body muted" style="margin-top:40px;font-size:13.5px;border-top:1px solid var(--line);padding-top:20px">NewMed Skills — Brand Guidelines · Version 1.0 · 2026 · Confidential. For internal and partner use.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="toast" id="toast"><span class="tk">✓</span> <span id="toast-msg">Copied</span></div>
+
+<script src="app.js?v=2"></script>
+</body>
+</html>
