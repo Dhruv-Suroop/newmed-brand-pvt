@@ -122,29 +122,36 @@ h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.03em;line-height:1.05;colo
 .lead{font-size:clamp(17px,1.5vw,20px);line-height:1.45;color:var(--ink-80);font-weight:450;max-width:42ch;margin:0;}
 .lead.tight{max-width:38ch;}
 
-/* ---- Two-column layout (Cash App style): heading left, prose right ---- */
-.sec-head{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(28px,4vw,72px);
-  align-items:start;margin-bottom:clamp(40px,6vw,76px);}
-.sec-head .lead{padding-top:.5em;}
+/* ---- Section header: full-bleed orange band (title left / intro right) ---- */
+.section:not(.home){padding-top:0;}
+.sec-head{
+  margin:0 calc(-1 * clamp(24px,6vw,88px)) clamp(46px,6vw,84px);
+  padding:clamp(46px,6vw,84px) clamp(24px,6vw,88px);
+  background:var(--orange);
+  display:grid;grid-template-columns:1.15fr 1fr;column-gap:clamp(28px,4vw,72px);align-items:start;
+}
+.sec-head .sec-title{color:var(--cream);}
+.sec-head .lead{color:var(--ink);font-weight:500;padding-top:.4em;max-width:44ch;}
 
-/* One level down: block text sits in the right column; visuals span full width */
+/* ---- Blocks: heading sticky-left in maroon, prose right, visuals full width ---- */
 .section:not(.home) .block{display:grid;grid-template-columns:1fr 1fr;
   column-gap:clamp(28px,4vw,72px);align-items:start;}
-.section:not(.home) .block > h2,
-.section:not(.home) .block > h3,
+.section:not(.home) .block > h2{grid-column:1;color:var(--clay);
+  position:sticky;top:82px;align-self:start;}
+.section:not(.home) .block > h3{grid-column:2;color:var(--clay);}
 .section:not(.home) .block > p{grid-column:2;}
 .section:not(.home) .block > :not(h2):not(h3):not(p){grid-column:1 / -1;}
 .section:not(.home) .block.band,
 .section:not(.home) .block.specimen,
 .section:not(.home) .block.callout{display:block;}
 .section:not(.home) .block > p.body{max-width:none;}
-h2.blk.group{font-size:clamp(21px,2.4vw,27px);}
+h2.blk.group{font-size:clamp(21px,2.6vw,30px);}
 
 /* ---- Rhythm / blocks ---- */
 .block{margin-top:64px;}
 .block-head{margin-bottom:26px;}
 .kicker{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-45);margin:0 0 14px;}
-h2.blk{font-size:clamp(24px,3vw,32px);margin-bottom:14px;letter-spacing:-.02em;}
+h2.blk{font-size:clamp(26px,3.4vw,40px);margin-bottom:14px;letter-spacing:-.02em;}
 h3.blk{font-size:20px;margin-bottom:10px;letter-spacing:-.01em;}
 p{margin:0 0 16px;}
 p.body{color:var(--ink-80);max-width:66ch;}
@@ -502,8 +509,10 @@ p.body{color:var(--ink-80);max-width:66ch;}
   .sidebar.open{transform:none;box-shadow:0 0 60px rgba(0,0,0,.25);}
   body.at-home .sidebar{display:flex;}
   .section{padding:40px 22px 90px;}
-  .sec-head{grid-template-columns:1fr;gap:14px;}
+  .sec-head{grid-template-columns:1fr;gap:12px;
+    margin-left:-22px;margin-right:-22px;padding:34px 22px;}
   .section:not(.home) .block{grid-template-columns:1fr;}
+  .section:not(.home) .block > h2{position:static;margin-bottom:10px;}
   .section:not(.home) .block > h2,
   .section:not(.home) .block > h3,
   .section:not(.home) .block > p{grid-column:auto;}
