@@ -316,6 +316,68 @@ p.body{color:var(--ink-80);max-width:66ch;}
 .cmodes td:first-child{font-weight:600;color:var(--ink);width:130px;}
 .cmodes td:nth-child(2){width:120px;color:var(--ink-60);}
 
+/* Generic feature panel (page hero block) */
+.feature-panel{border-radius:20px;min-height:clamp(220px,28vw,360px);display:grid;place-items:center;
+  padding:clamp(28px,4vw,56px);background:var(--linen);border:1px solid rgba(57,30,26,.08);overflow:hidden;}
+.feature-panel.on-orange{background:var(--orange);border-color:transparent;}
+.feature-panel.on-ink{background:var(--ink);border-color:transparent;}
+.feature-panel img{max-width:min(560px,74%);height:auto;}
+.feature-panel .mark{width:clamp(90px,13vw,150px);height:clamp(90px,13vw,150px);color:var(--cream);}
+.feature-panel .mark svg{width:100%;height:100%;display:block;}
+.feature-panel .type-hero{font-size:clamp(56px,11vw,150px);font-weight:600;letter-spacing:-.04em;line-height:.92;color:var(--cream);text-align:center;}
+
+/* Variant tiles (logo on different grounds) */
+.variants{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.vtile{border-radius:16px;min-height:190px;display:grid;place-items:center;padding:30px;border:1px solid rgba(57,30,26,.1);}
+.vtile img{max-width:74%;height:auto;}
+.vtile .cap{grid-column:1/-1;}
+.vcap{margin-top:12px;font-size:12.5px;color:var(--ink-60);}
+.vcap b{display:block;color:var(--ink);font-weight:600;font-size:13.5px;margin-bottom:2px;}
+
+/* Word lists (should be / should not be) */
+.wordlists{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,4vw,56px);max-width:620px;}
+.wordlist h4{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-45);margin:0 0 14px;}
+.wordlist ul{list-style:none;margin:0;padding:0;}
+.wordlist li{font-size:clamp(17px,2vw,21px);font-weight:500;letter-spacing:-.01em;line-height:1.75;color:var(--ink);}
+.wordlist.neg li{color:var(--ink-30);}
+
+/* Tactic cards */
+.tactics{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line);}
+.tactic{background:var(--cream);padding:26px 24px 30px;}
+.tactic h4{font-size:17px;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;color:var(--clay);}
+.tactic p{margin:0;font-size:14px;line-height:1.55;color:var(--ink-60);}
+
+/* Tone cards with meters */
+.tone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.tone{background:var(--bone);border:1px solid var(--line-soft);border-radius:16px;padding:24px;display:flex;flex-direction:column;}
+.tone h4{font-size:18px;font-weight:600;letter-spacing:-.015em;margin:0 0 10px;}
+.tone > p{font-size:13.5px;line-height:1.5;color:var(--ink-60);margin:0 0 20px;}
+.meters{margin-top:auto;display:grid;gap:9px;}
+.meter{display:grid;grid-template-columns:96px 1fr;align-items:center;gap:10px;font-size:11.5px;color:var(--ink-60);}
+.meter i{display:block;height:9px;border-radius:5px;background:var(--orange);}
+.tone .chans{margin-top:18px;padding-top:14px;border-top:1px solid var(--line-soft);font-size:12px;color:var(--ink-45);line-height:1.65;}
+.tone .chans b{display:block;color:var(--ink-60);font-weight:600;margin-bottom:4px;}
+
+/* Dark full-bleed band */
+.darkband{background:var(--ink);color:var(--cream);
+  margin:clamp(60px,8vw,104px) calc(-1 * clamp(24px,6vw,88px)) 0;
+  padding:clamp(46px,6vw,88px) clamp(24px,6vw,88px);}
+.darkband .cash-h{color:var(--cream);}
+.darkband .cash-lead{color:rgba(248,243,234,.7);}
+.darkband .wordlist li{color:var(--cream);}
+.darkband .wordlist.neg li{color:rgba(248,243,234,.35);}
+.darkband .wordlist h4{color:rgba(248,243,234,.5);}
+.darkband .tactics{background:rgba(248,243,234,.16);border-top-color:rgba(248,243,234,.16);}
+.darkband .tactic{background:var(--ink);}
+.darkband .tactic h4{color:var(--amber);}
+.darkband .tactic p{color:rgba(248,243,234,.68);}
+
+/* Resource rows */
+.res-list{border-top:1px solid var(--line);}
+.res{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 2px;border-bottom:1px solid var(--line-soft);}
+.res .rn{font-size:15.5px;font-weight:500;}
+.res .rd{font-size:13px;color:var(--ink-45);}
+
 /* Accessibility tiles */
 .a11y-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 .a11y{border-radius:16px;padding:26px;min-height:160px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(57,30,26,.08);}
@@ -568,6 +630,10 @@ p.body{color:var(--ink-80);max-width:66ch;}
   .scroller{margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px;}
   .cash-sec{grid-template-columns:1fr;}
   .cash-h,.cash-lead{grid-column:auto;}
+  .variants,.tone-grid,.tactics{grid-template-columns:1fr;}
+  .variants[style]{grid-template-columns:1fr 1fr!important;}
+  .wordlists{gap:20px;}
+  .darkband{margin-left:-22px;margin-right:-22px;padding:36px 22px;}
 }
 @media(max-width:520px){
   body{font-size:16px;}
@@ -652,10 +718,12 @@ p.body{color:var(--ink-80);max-width:66ch;}
         <div class="nav-sec" data-sec="logo">
           <a class="ns-link" href="logo.html" data-nav>Logo</a>
           <div class="ns-subs">
-            <a href="#l-lockups" data-parent="logo">Lockups</a>
-            <a href="#l-space" data-parent="logo">Clear space &amp; size</a>
-            <a href="#l-onbg" data-parent="logo">On backgrounds</a>
-            <a href="#l-misuse" data-parent="logo">Misuse</a>
+            <a href="#l-primary" data-parent="logo">Primary logo</a>
+            <a href="#l-lockups" data-parent="logo">Symbol and lockups</a>
+            <a href="#l-space" data-parent="logo">Clear space and size</a>
+            <a href="#l-inuse" data-parent="logo">In use</a>
+            <a href="#l-misuse" data-parent="logo">Incorrect usage</a>
+            <a href="#l-res" data-parent="logo">Resources</a>
           </div>
         </div>
         <div class="nav-sec" data-sec="colour">
@@ -672,18 +740,21 @@ p.body{color:var(--ink-80);max-width:66ch;}
         <div class="nav-sec is-active" data-sec="type">
           <a class="ns-link is-active" href="type.html" data-nav>Typography</a>
           <div class="ns-subs">
-            <a href="#t-specimen" data-parent="type">Specimen</a>
+            <a href="#t-specimen" data-parent="type">Mona Sans</a>
             <a href="#t-scale" data-parent="type">Type scale</a>
-            <a href="#t-setting" data-parent="type">Setting words</a>
+            <a href="#t-everyday" data-parent="type">Everyday usage</a>
+            <a href="#t-setting" data-parent="type">Typesetting</a>
+            <a href="#t-misuse" data-parent="type">Incorrect usage</a>
           </div>
         </div>
         <div class="nav-sec" data-sec="voice">
           <a class="ns-link" href="voice.html" data-nav>Voice &amp; Tone</a>
           <div class="ns-subs">
-            <a href="#v-register" data-parent="voice">The register dial</a>
-            <a href="#v-rules" data-parent="voice">The rules</a>
-            <a href="#v-banned" data-parent="voice">Banned words</a>
-            <a href="#v-check" data-parent="voice">10-second check</a>
+            <a href="#v-voice" data-parent="voice">Our voice</a>
+            <a href="#v-tone" data-parent="voice">Our tone</a>
+            <a href="#v-rules" data-parent="voice">Writing rules</a>
+            <a href="#v-banned" data-parent="voice">Words we avoid</a>
+            <a href="#v-check" data-parent="voice">10 second check</a>
           </div>
         </div>
       </div>
@@ -691,12 +762,22 @@ p.body{color:var(--ink-80);max-width:66ch;}
         <p class="ng-title">Expressions</p>
         <div class="nav-sec" data-sec="applications">
           <a class="ns-link" href="applications.html" data-nav>Applications</a>
+        <div class="ns-subs">
+            <a href="#a-digital" data-parent="applications">Digital</a>
+            <a href="#a-print" data-parent="applications">Print and environment</a>
+            <a href="#a-next" data-parent="applications">Coming next</a>
+          </div>
         </div>
       </div>
       <div class="nav-group">
         <p class="ng-title">Resources</p>
         <div class="nav-sec" data-sec="downloads">
           <a class="ns-link" href="downloads.html" data-nav>Downloads</a>
+        <div class="ns-subs">
+            <a href="#d-logos" data-parent="downloads">Logo files</a>
+            <a href="#d-colour" data-parent="downloads">Colour and type</a>
+            <a href="#d-contact" data-parent="downloads">Still to come</a>
+          </div>
         </div>
       </div>
     </nav>
@@ -718,43 +799,60 @@ p.body{color:var(--ink-80);max-width:66ch;}
       <div class="wrap">
         <div class="sec-head">
           <h1 class="sec-title">One typeface, used with discipline.</h1>
-          <p class="lead">Mona Sans is a humanist grotesk — modern, plainly legible, and calm. It reads clearly for an audience that often reads English as a second language. Headings are set in <b>SemiBold</b>, body in <b>Regular</b>, with <b>Medium</b> for emphasis — never a heavier weight, never a second face.</p>
+          <p class="lead">Mona Sans is a humanist grotesk. Modern, plainly legible, calm. It reads clearly for an audience that often reads English as a second language.</p>
         </div>
 
-        <div class="specimen block" id="t-specimen">
-          <div class="big">
-            <div class="aa">Aa</div>
-            <div class="set">ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz · 0123456789 · &amp;?!</div>
-          </div>
-          <div class="weights">
-            <div class="w"><div class="lbl">Regular · 400</div><div class="ex" style="font-weight:400">Assess</div></div>
-            <div class="w"><div class="lbl">Medium · 500</div><div class="ex" style="font-weight:500">Train</div></div>
-            <div class="w"><div class="lbl">SemiBold · 600</div><div class="ex" style="font-weight:600">License</div></div>
-            <div class="w"><div class="lbl">Bold · 700</div><div class="ex" style="font-weight:700">Deploy</div></div>
-            <div class="w"><div class="lbl">ExtraBold · 800</div><div class="ex" style="font-weight:800">Support</div></div>
-          </div>
-        </div>
-
-        <div class="block">
-          <h2 class="blk" id="t-scale">A clear hierarchy</h2>
-          <div style="margin-top:14px">
-            <div class="scale-row"><span class="tag">Display · 600</span><span class="demo" style="font-size:48px;font-weight:600">Get them across</span></div>
-            <div class="scale-row"><span class="tag">Heading · 600</span><span class="demo" style="font-size:32px;font-weight:600">Already licensed</span></div>
-            <div class="scale-row"><span class="tag">Subhead · 500</span><span class="demo" style="font-size:23px;font-weight:500">Every stage tracked</span></div>
-            <div class="scale-row"><span class="tag">Body · 400</span><span class="demo" style="font-size:17px;font-weight:400;white-space:normal">We handle everything between a passed exam and a first shift.</span></div>
-            <div class="scale-row"><span class="tag">Eyebrow · 600</span><span class="demo" style="font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)">Licensing &amp; placement</span></div>
+        <div class="cash-sec" id="t-specimen">
+          <h2 class="cash-h">Mona Sans</h2>
+          <p class="cash-lead">Headings are set in SemiBold, body in Regular, with Medium for emphasis. Never a heavier weight, never a second face.</p>
+          <div class="feature-panel on-orange"><div class="type-hero">Aa</div></div>
+          <div class="weights" style="margin-top:20px">
+            <div class="w"><div class="lbl">Regular 400</div><div class="ex" style="font-weight:400">Assess</div></div>
+            <div class="w"><div class="lbl">Medium 500</div><div class="ex" style="font-weight:500">Train</div></div>
+            <div class="w"><div class="lbl">SemiBold 600</div><div class="ex" style="font-weight:600">License</div></div>
+            <div class="w"><div class="lbl">Bold 700</div><div class="ex" style="font-weight:700">Deploy</div></div>
           </div>
         </div>
 
-        <div class="block">
-          <h2 class="blk" id="t-setting">How we type</h2>
-          <div class="rules" style="margin-top:22px">
-            <div class="rule"><h4><span class="rn">01</span> Sentence case</h4><p>Headings and buttons use sentence case. All-caps is reserved for small eyebrow labels only.</p></div>
-            <div class="rule"><h4><span class="rn">02</span> Short lines</h4><p>Headlines under 8 words. Body sentences under 20. One idea per sentence.</p></div>
-            <div class="rule"><h4><span class="rn">03</span> Numerals that work</h4><p>Use figures when a number is doing work — <code>a 1:3 ratio</code>, <code>4 steps</code>. The specificity is the point.</p></div>
-            <div class="rule"><h4><span class="rn">04</span> Generous measure</h4><p>Keep body text around 60–70 characters per line and leading relaxed. Calm reads unhurried.</p></div>
+        <div class="cash-sec" id="t-scale">
+          <h2 class="cash-h">Type scale</h2>
+          <p class="cash-lead">Four steps carry almost everything. Display for the single most important line, heading for sections, subhead for structure, body for the work.</p>
+          <div>
+            <div class="scale-row"><span class="tag">Display 600</span><span class="demo" style="font-size:48px;font-weight:600">Get them across</span></div>
+            <div class="scale-row"><span class="tag">Heading 600</span><span class="demo" style="font-size:32px;font-weight:600">Already licensed</span></div>
+            <div class="scale-row"><span class="tag">Subhead 500</span><span class="demo" style="font-size:23px;font-weight:500">Every stage tracked</span></div>
+            <div class="scale-row"><span class="tag">Body 400</span><span class="demo" style="font-size:17px;font-weight:400;white-space:normal">We handle everything between a passed exam and a first shift.</span></div>
           </div>
-          <p class="body muted" style="margin-top:20px;font-size:14px">Fallback stack for systems without Mona Sans: <code>system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif</code>. Mona Sans is open-source under the SIL Open Font License.</p>
+        </div>
+
+        <div class="cash-sec" id="t-everyday">
+          <h2 class="cash-h">Everyday usage</h2>
+          <p class="cash-lead">Most of the time type does its job quietly. Sentence case, short lines, generous leading, one idea per sentence.</p>
+          <div class="scroller"><div class="mock">Replace with image</div><div class="mock">Replace with image</div><div class="mock">Replace with image</div><div class="mock">Replace with image</div></div>
+        </div>
+
+        <div class="cash-sec" id="t-setting">
+          <h2 class="cash-h">Typesetting</h2>
+          <p class="cash-lead">How we set words, every time.</p>
+          <div class="rules">
+            <div class="rule"><h4>Sentence case</h4><p>Headings and buttons use sentence case. All caps is reserved for small labels only.</p></div>
+            <div class="rule"><h4>Short lines</h4><p>Headlines under 8 words. Body sentences under 20. One idea per sentence.</p></div>
+            <div class="rule"><h4>Numerals that work</h4><p>Use figures when a number is doing work, like a 1:3 ratio or four steps. The specificity is the point.</p></div>
+            <div class="rule"><h4>Generous measure</h4><p>Keep body text around 60 to 70 characters per line. Calm reads unhurried.</p></div>
+          </div>
+        </div>
+
+        <div class="cash-sec" id="t-misuse">
+          <h2 class="cash-h">Incorrect usage</h2>
+          <p class="cash-lead">The typeface carries the brand. Keep it plain and let the words do the work.</p>
+          <div class="dd">
+            <div class="dont"><div class="frame" style="background:var(--bone)"><span class="badge">&#10007;</span><span style="font-family:Georgia,serif;font-size:22px">Headline</span></div><div class="cap"><b>Don't substitute the typeface</b>Mona Sans only.</div></div>
+            <div class="dont"><div class="frame" style="background:var(--bone)"><span class="badge">&#10007;</span><span style="font-size:22px;font-weight:800;letter-spacing:.22em">HEADLINE</span></div><div class="cap"><b>Don't track out caps</b>Sentence case, normal tracking.</div></div>
+            <div class="dont"><div class="frame" style="background:var(--bone)"><span class="badge">&#10007;</span><span style="font-size:22px;font-weight:600;font-style:italic">Headline</span></div><div class="cap"><b>Don't slant or distort</b>Use the drawn weights only.</div></div>
+            <div class="dont"><div class="frame" style="background:var(--bone)"><span class="badge">&#10007;</span><span style="font-size:13px;line-height:2.4;max-width:70%;text-align:center;color:var(--ink-45)">Body copy set too small and too loose to read comfortably</span></div><div class="cap"><b>Don't set body below 14 px</b>Legibility first.</div></div>
+            <div class="dont"><div class="frame" style="background:var(--orange)"><span class="badge">&#10007;</span><span style="font-size:20px;font-weight:600;color:#ff8a63">Headline</span></div><div class="cap"><b>Don't set low contrast type</b>Ink or cream on colour.</div></div>
+            <div class="dont"><div class="frame" style="background:var(--bone)"><span class="badge">&#10007;</span><span style="font-size:20px;font-weight:600;text-align:center;line-height:1.1">Six word headline<br>that keeps going on</span></div><div class="cap"><b>Don't run long headlines</b>Under 8 words.</div></div>
+          </div>
         </div>
       </div>
     </section>

@@ -316,6 +316,68 @@ p.body{color:var(--ink-80);max-width:66ch;}
 .cmodes td:first-child{font-weight:600;color:var(--ink);width:130px;}
 .cmodes td:nth-child(2){width:120px;color:var(--ink-60);}
 
+/* Generic feature panel (page hero block) */
+.feature-panel{border-radius:20px;min-height:clamp(220px,28vw,360px);display:grid;place-items:center;
+  padding:clamp(28px,4vw,56px);background:var(--linen);border:1px solid rgba(57,30,26,.08);overflow:hidden;}
+.feature-panel.on-orange{background:var(--orange);border-color:transparent;}
+.feature-panel.on-ink{background:var(--ink);border-color:transparent;}
+.feature-panel img{max-width:min(560px,74%);height:auto;}
+.feature-panel .mark{width:clamp(90px,13vw,150px);height:clamp(90px,13vw,150px);color:var(--cream);}
+.feature-panel .mark svg{width:100%;height:100%;display:block;}
+.feature-panel .type-hero{font-size:clamp(56px,11vw,150px);font-weight:600;letter-spacing:-.04em;line-height:.92;color:var(--cream);text-align:center;}
+
+/* Variant tiles (logo on different grounds) */
+.variants{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.vtile{border-radius:16px;min-height:190px;display:grid;place-items:center;padding:30px;border:1px solid rgba(57,30,26,.1);}
+.vtile img{max-width:74%;height:auto;}
+.vtile .cap{grid-column:1/-1;}
+.vcap{margin-top:12px;font-size:12.5px;color:var(--ink-60);}
+.vcap b{display:block;color:var(--ink);font-weight:600;font-size:13.5px;margin-bottom:2px;}
+
+/* Word lists (should be / should not be) */
+.wordlists{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,4vw,56px);max-width:620px;}
+.wordlist h4{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-45);margin:0 0 14px;}
+.wordlist ul{list-style:none;margin:0;padding:0;}
+.wordlist li{font-size:clamp(17px,2vw,21px);font-weight:500;letter-spacing:-.01em;line-height:1.75;color:var(--ink);}
+.wordlist.neg li{color:var(--ink-30);}
+
+/* Tactic cards */
+.tactics{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line);}
+.tactic{background:var(--cream);padding:26px 24px 30px;}
+.tactic h4{font-size:17px;font-weight:600;letter-spacing:-.01em;margin:0 0 8px;color:var(--clay);}
+.tactic p{margin:0;font-size:14px;line-height:1.55;color:var(--ink-60);}
+
+/* Tone cards with meters */
+.tone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.tone{background:var(--bone);border:1px solid var(--line-soft);border-radius:16px;padding:24px;display:flex;flex-direction:column;}
+.tone h4{font-size:18px;font-weight:600;letter-spacing:-.015em;margin:0 0 10px;}
+.tone > p{font-size:13.5px;line-height:1.5;color:var(--ink-60);margin:0 0 20px;}
+.meters{margin-top:auto;display:grid;gap:9px;}
+.meter{display:grid;grid-template-columns:96px 1fr;align-items:center;gap:10px;font-size:11.5px;color:var(--ink-60);}
+.meter i{display:block;height:9px;border-radius:5px;background:var(--orange);}
+.tone .chans{margin-top:18px;padding-top:14px;border-top:1px solid var(--line-soft);font-size:12px;color:var(--ink-45);line-height:1.65;}
+.tone .chans b{display:block;color:var(--ink-60);font-weight:600;margin-bottom:4px;}
+
+/* Dark full-bleed band */
+.darkband{background:var(--ink);color:var(--cream);
+  margin:clamp(60px,8vw,104px) calc(-1 * clamp(24px,6vw,88px)) 0;
+  padding:clamp(46px,6vw,88px) clamp(24px,6vw,88px);}
+.darkband .cash-h{color:var(--cream);}
+.darkband .cash-lead{color:rgba(248,243,234,.7);}
+.darkband .wordlist li{color:var(--cream);}
+.darkband .wordlist.neg li{color:rgba(248,243,234,.35);}
+.darkband .wordlist h4{color:rgba(248,243,234,.5);}
+.darkband .tactics{background:rgba(248,243,234,.16);border-top-color:rgba(248,243,234,.16);}
+.darkband .tactic{background:var(--ink);}
+.darkband .tactic h4{color:var(--amber);}
+.darkband .tactic p{color:rgba(248,243,234,.68);}
+
+/* Resource rows */
+.res-list{border-top:1px solid var(--line);}
+.res{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 2px;border-bottom:1px solid var(--line-soft);}
+.res .rn{font-size:15.5px;font-weight:500;}
+.res .rd{font-size:13px;color:var(--ink-45);}
+
 /* Accessibility tiles */
 .a11y-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 .a11y{border-radius:16px;padding:26px;min-height:160px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(57,30,26,.08);}
@@ -568,6 +630,10 @@ p.body{color:var(--ink-80);max-width:66ch;}
   .scroller{margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px;}
   .cash-sec{grid-template-columns:1fr;}
   .cash-h,.cash-lead{grid-column:auto;}
+  .variants,.tone-grid,.tactics{grid-template-columns:1fr;}
+  .variants[style]{grid-template-columns:1fr 1fr!important;}
+  .wordlists{gap:20px;}
+  .darkband{margin-left:-22px;margin-right:-22px;padding:36px 22px;}
 }
 @media(max-width:520px){
   body{font-size:16px;}
@@ -652,10 +718,12 @@ p.body{color:var(--ink-80);max-width:66ch;}
         <div class="nav-sec" data-sec="logo">
           <a class="ns-link" href="logo.html" data-nav>Logo</a>
           <div class="ns-subs">
-            <a href="#l-lockups" data-parent="logo">Lockups</a>
-            <a href="#l-space" data-parent="logo">Clear space &amp; size</a>
-            <a href="#l-onbg" data-parent="logo">On backgrounds</a>
-            <a href="#l-misuse" data-parent="logo">Misuse</a>
+            <a href="#l-primary" data-parent="logo">Primary logo</a>
+            <a href="#l-lockups" data-parent="logo">Symbol and lockups</a>
+            <a href="#l-space" data-parent="logo">Clear space and size</a>
+            <a href="#l-inuse" data-parent="logo">In use</a>
+            <a href="#l-misuse" data-parent="logo">Incorrect usage</a>
+            <a href="#l-res" data-parent="logo">Resources</a>
           </div>
         </div>
         <div class="nav-sec" data-sec="colour">
@@ -672,18 +740,21 @@ p.body{color:var(--ink-80);max-width:66ch;}
         <div class="nav-sec" data-sec="type">
           <a class="ns-link" href="type.html" data-nav>Typography</a>
           <div class="ns-subs">
-            <a href="#t-specimen" data-parent="type">Specimen</a>
+            <a href="#t-specimen" data-parent="type">Mona Sans</a>
             <a href="#t-scale" data-parent="type">Type scale</a>
-            <a href="#t-setting" data-parent="type">Setting words</a>
+            <a href="#t-everyday" data-parent="type">Everyday usage</a>
+            <a href="#t-setting" data-parent="type">Typesetting</a>
+            <a href="#t-misuse" data-parent="type">Incorrect usage</a>
           </div>
         </div>
         <div class="nav-sec is-active" data-sec="voice">
           <a class="ns-link is-active" href="voice.html" data-nav>Voice &amp; Tone</a>
           <div class="ns-subs">
-            <a href="#v-register" data-parent="voice">The register dial</a>
-            <a href="#v-rules" data-parent="voice">The rules</a>
-            <a href="#v-banned" data-parent="voice">Banned words</a>
-            <a href="#v-check" data-parent="voice">10-second check</a>
+            <a href="#v-voice" data-parent="voice">Our voice</a>
+            <a href="#v-tone" data-parent="voice">Our tone</a>
+            <a href="#v-rules" data-parent="voice">Writing rules</a>
+            <a href="#v-banned" data-parent="voice">Words we avoid</a>
+            <a href="#v-check" data-parent="voice">10 second check</a>
           </div>
         </div>
       </div>
@@ -691,12 +762,22 @@ p.body{color:var(--ink-80);max-width:66ch;}
         <p class="ng-title">Expressions</p>
         <div class="nav-sec" data-sec="applications">
           <a class="ns-link" href="applications.html" data-nav>Applications</a>
+        <div class="ns-subs">
+            <a href="#a-digital" data-parent="applications">Digital</a>
+            <a href="#a-print" data-parent="applications">Print and environment</a>
+            <a href="#a-next" data-parent="applications">Coming next</a>
+          </div>
         </div>
       </div>
       <div class="nav-group">
         <p class="ng-title">Resources</p>
         <div class="nav-sec" data-sec="downloads">
           <a class="ns-link" href="downloads.html" data-nav>Downloads</a>
+        <div class="ns-subs">
+            <a href="#d-logos" data-parent="downloads">Logo files</a>
+            <a href="#d-colour" data-parent="downloads">Colour and type</a>
+            <a href="#d-contact" data-parent="downloads">Still to come</a>
+          </div>
         </div>
       </div>
     </nav>
@@ -718,62 +799,98 @@ p.body{color:var(--ink-80);max-width:66ch;}
     <section class="section is-active" id="voice">
       <div class="wrap">
         <div class="sec-head">
-          <h1 class="sec-title">Write as a senior clinician speaks.</h1>
-          <p class="lead">Someone who has done this a thousand times, states facts plainly, never oversells, and is calm precisely because they are competent. Every rule below serves that one idea.</p>
+          <h1 class="sec-title">Voice &amp; Tone</h1>
+          <p class="lead">We write as a senior clinician speaks. Someone who has done this a thousand times, states facts plainly, never oversells, and is calm precisely because they are competent.</p>
         </div>
 
-        <div class="callout quote block">
-          <p class="q-lead">You are not persuading. You are informing someone competent enough to draw their own conclusion.</p>
-        </div>
-
-        <div class="block">
-          <h2 class="blk" id="v-register">One voice. It never gets louder — it gets nearer.</h2>
-          <p class="body">Register is how close the voice stands to the reader. Pick one level per piece, based on how much the reader already trusts you and how much is emotionally at stake.</p>
-          <div class="reg" style="margin-top:24px">
-            <div class="reg-row"><div class="lv">L1<span class="bar" style="width:24%"></span></div><div class="nm">Clinical note<small>Compliance, licensing pages, detailed FAQs</small></div><div class="ex">DataFlow verification takes 4–6 weeks. You'll need your degree certificate, transcripts, and a valid licence from your home country. We submit on your behalf and track every stage.</div></div>
-            <div class="reg-row"><div class="lv">L2<span class="bar" style="width:42%"></span></div><div class="nm">Briefing<small>Explainers, how-it-works, comparisons</small></div><div class="ex">You've passed your exams. We handle everything between that and your first shift — licensing, visa, placement. You'll always know which stage you're at.</div></div>
-            <div class="reg-row"><div class="lv">L3<span class="bar" style="width:60%"></span></div><div class="nm">Standard <small>Default — homepage, most pages, emails</small></div><div class="ex">Hiring nurses shouldn't take six months and a stack of unscreened CVs. We send you candidates who are already screened, licensed, and ready to start.</div></div>
-            <div class="reg-row"><div class="lv">L4<span class="bar" style="width:80%"></span></div><div class="nm">Direct<small>Candidate landing pages, social, campaigns</small></div><div class="ex">You trained for years. You passed the exams. Don't let paperwork be the reason you don't go. We handle that part.</div></div>
-            <div class="reg-row"><div class="lv">L5<span class="bar" style="width:100%"></span></div><div class="nm">Bedside<small>The single most important line on a page — rare</small></div><div class="ex">Your career shouldn't stop at a border. We're here to get you across it.</div></div>
+        <div class="darkband">
+          <div class="cash-sec" id="v-voice" style="margin-top:0">
+            <h2 class="cash-h">Our voice</h2>
+            <p class="cash-lead">Five attributes that never change, no matter what we are writing or who we are writing for. All five are active in every sentence.</p>
           </div>
-          <p class="body muted" style="margin-top:18px;font-size:14px">A sentence at Level 5 and one at Level 1 should read as the same calm, competent person — one filing a note, the other looking you in the eye.</p>
-        </div>
-
-        <div class="block">
-          <h2 class="blk" id="v-rules">Mechanical and non-negotiable</h2>
-          <div class="rules" style="margin-top:22px">
-            <div class="rule"><h4><span class="rn">Naming</span></h4><p>Always <b>NewMed Skills</b> — two words, capital N, M, S. Never one word, never all-caps in body, never "NMS" unless truly needed and only after the full name has appeared once. Name real systems — <code>DHA</code>, <code>SCFHS</code>, <code>Prometric</code>, <code>DataFlow</code> — never "the relevant authorities."</p></div>
-            <div class="rule"><h4><span class="rn">Pronouns</span></h4><p>Candidates are <b>you</b>. Hospitals are <b>your team</b> / <b>your hospital</b>. NewMed Skills is always <b>we</b> — never "the company," never "NewMed Skills believes."</p></div>
-            <div class="rule"><h4><span class="rn">Acronyms</span></h4><p>Spell out on first use, then abbreviate: Dubai Health Authority (DHA), thereafter DHA. Don't assume the reader knows it — a nurse abroad may not.</p></div>
-            <div class="rule"><h4><span class="rn">Structure</span></h4><p>Every benefit answers "how?" in the same breath: "Faster hiring — because screening is already done," not "Faster hiring." Split marketing sentences into separate ones.</p></div>
+          <div class="cash-sec">
+            <h2 class="cash-h">Certain and plain</h2>
+            <p class="cash-lead">We state what we do as fact, not aspiration. Every claim carries a number or a mechanism. Much of our audience reads English as a second language, so we write short sentences and name the real systems.</p>
+            <div class="wordlists">
+              <div class="wordlist"><h4>We should be</h4><ul><li>Certain</li><li>Plain</li><li>Specific</li><li>Unhurried</li><li>Factual</li></ul></div>
+              <div class="wordlist neg"><h4>We should not be</h4><ul><li>Hyped</li><li>Vague</li><li>Corporate</li><li>Urgent</li><li>Boastful</li></ul></div>
+            </div>
+            <div class="tactics">
+              <div class="tactic"><h4>Back every claim</h4><p>If a sentence cannot carry a number or a mechanism, cut it. Specificity is the credibility.</p></div>
+              <div class="tactic"><h4>Name the real systems</h4><p>Prometric, DataFlow, licensing exams. Never "the relevant authorities" or "compliance systems".</p></div>
+              <div class="tactic"><h4>One idea per sentence</h4><p>Short sentences, concrete verbs. Write as if translating for a capable new colleague.</p></div>
+              <div class="tactic"><h4>Cut the bingo card</h4><p>No transformation, orchestration, lifecycle, leverage, solutions, seamless, empower, ecosystem.</p></div>
+            </div>
           </div>
-        </div>
-
-        <div class="block">
-          <h2 class="blk" id="v-banned">If it's on a corporate bingo card, it's out</h2>
-          <p class="body">Reaching for one of these is a signal the sentence has gone abstract. Replace the word and the vagueness beneath it.</p>
-          <div class="pills" style="margin-top:20px">
-            <span class="pill banned">transformation</span>
-            <span class="pill banned">orchestration</span>
-            <span class="pill banned">lifecycle</span>
-            <span class="pill banned">leverage</span>
-            <span class="pill banned">solutions</span>
-            <span class="pill banned">seamless</span>
-            <span class="pill banned">empower</span>
-            <span class="pill banned">ecosystem</span>
+          <div class="cash-sec">
+            <h2 class="cash-h">Warm and guiding</h2>
+            <p class="cash-lead">Warmth comes from naming the human stakes plainly, not from soft words. Moving a career across the world is a big decision, so we say so and then show the path.</p>
+            <div class="wordlists">
+              <div class="wordlist"><h4>We should be</h4><ul><li>Steady</li><li>Human</li><li>Directional</li><li>Sequential</li><li>On your side</li></ul></div>
+              <div class="wordlist neg"><h4>We should not be</h4><ul><li>Pitying</li><li>Cheerleading</li><li>Abstract</li><li>Sentimental</li><li>Cold</li></ul></div>
+            </div>
+            <div class="tactics">
+              <div class="tactic"><h4>Address the real fears</h4><p>Fees, visas, arriving alone. Name them directly rather than papering over them.</p></div>
+              <div class="tactic"><h4>Show the path</h4><p>Use from and to constructions, numbered steps, action verbs: assess, train, license, deploy, support.</p></div>
+              <div class="tactic"><h4>Answer how in the same breath</h4><p>"Faster hiring, because screening is already done" beats "Faster hiring".</p></div>
+              <div class="tactic"><h4>Keep the pronouns straight</h4><p>Candidates are you. Hospitals are your team. NewMed Skills is always we.</p></div>
+            </div>
           </div>
         </div>
 
-        <div class="block">
-          <h2 class="blk" id="v-check">The 10-second check</h2>
-          <ul class="check" style="margin-top:18px">
+        <div class="cash-sec" id="v-tone">
+          <h2 class="cash-h">Our tone</h2>
+          <p class="cash-lead">The voice is always the same. Tone is how near it stands to the reader. It never gets louder, it gets nearer. Choose one level per piece based on what is at stake.</p>
+          <div class="tone-grid">
+            <div class="tone"><h4>Clinical note</h4><p>The most precise, least decorated register. The reader is committed and wants the facts in full.</p>
+              <div class="meters"><div class="meter"><span>To the point</span><i style="width:96%"></i></div><div class="meter"><span>Approachable</span><i style="width:28%"></i></div><div class="meter"><span>Upfront</span><i style="width:88%"></i></div></div>
+              <div class="chans"><b>Touchpoints</b>Compliance docs &middot; Licensing pages &middot; Detailed FAQs &middot; Terms</div></div>
+            <div class="tone"><h4>Briefing</h4><p>Still precise, slightly nearer. A senior clinician briefing a peer. Efficient, but unmistakably written by a person.</p>
+              <div class="meters"><div class="meter"><span>To the point</span><i style="width:82%"></i></div><div class="meter"><span>Approachable</span><i style="width:48%"></i></div><div class="meter"><span>Upfront</span><i style="width:78%"></i></div></div>
+              <div class="chans"><b>Touchpoints</b>Product explainers &middot; Service walkthroughs &middot; How it works</div></div>
+            <div class="tone"><h4>Standard</h4><p>The default for most of the site. Clear, plain, substantial. Stands out by being plainer, not louder.</p>
+              <div class="meters"><div class="meter"><span>To the point</span><i style="width:70%"></i></div><div class="meter"><span>Approachable</span><i style="width:66%"></i></div><div class="meter"><span>Upfront</span><i style="width:72%"></i></div></div>
+              <div class="chans"><b>Touchpoints</b>Homepage &middot; Core marketing pages &middot; Standard emails</div></div>
+            <div class="tone"><h4>Direct</h4><p>Nearer still. Connects to the real emotion behind the decision without becoming hype.</p>
+              <div class="meters"><div class="meter"><span>To the point</span><i style="width:62%"></i></div><div class="meter"><span>Approachable</span><i style="width:84%"></i></div><div class="meter"><span>Upfront</span><i style="width:70%"></i></div></div>
+              <div class="chans"><b>Touchpoints</b>Candidate landing pages &middot; Social &middot; Recruitment campaigns</div></div>
+            <div class="tone"><h4>Bedside</h4><p>The nearest register, reserved and rare. One to one, for the highest stakes moment on a page.</p>
+              <div class="meters"><div class="meter"><span>To the point</span><i style="width:56%"></i></div><div class="meter"><span>Approachable</span><i style="width:96%"></i></div><div class="meter"><span>Upfront</span><i style="width:64%"></i></div></div>
+              <div class="chans"><b>Touchpoints</b>Hero statements &middot; Campaign lines &middot; The single most important line</div></div>
+            <div class="tone" style="background:var(--clay);border-color:transparent;color:var(--cream)"><h4 style="color:var(--cream)">The principle</h4><p style="color:rgba(248,243,234,.75)">A sentence at Bedside and one at Clinical note should read as the same calm, competent person. One filing a note, the other looking you in the eye.</p>
+              <div class="chans" style="border-top-color:rgba(248,243,234,.2);color:rgba(248,243,234,.6)"><b style="color:rgba(248,243,234,.8)">Never</b>Louder. Register changes distance, not volume.</div></div>
+          </div>
+        </div>
+
+        <div class="cash-sec" id="v-rules">
+          <h2 class="cash-h">Writing rules</h2>
+          <p class="cash-lead">Mechanical and non negotiable. Validate every piece of copy against these before it ships.</p>
+          <div class="rules">
+            <div class="rule"><h4>Naming</h4><p>Always NewMed Skills. Two words, capital N, M and S. Never one word, never all caps in body copy.</p></div>
+            <div class="rule"><h4>Acronyms</h4><p>Spell out on first use, then abbreviate. A nurse abroad may not know the acronym.</p></div>
+            <div class="rule"><h4>Mechanics</h4><p>Sentence case for headings and buttons. All caps only for small labels. Numerals when a number is doing work.</p></div>
+            <div class="rule"><h4>Structure</h4><p>Headlines under 8 words. Body sentences under 20. Split any sentence cramming two ideas.</p></div>
+          </div>
+        </div>
+
+        <div class="cash-sec" id="v-banned">
+          <h2 class="cash-h">Words we do not use</h2>
+          <p class="cash-lead">Reaching for one of these is a signal the sentence has gone abstract. Replace the word and the vagueness beneath it.</p>
+          <div class="pills">
+            <span class="pill banned">transformation</span><span class="pill banned">orchestration</span><span class="pill banned">lifecycle</span><span class="pill banned">leverage</span><span class="pill banned">solutions</span><span class="pill banned">seamless</span><span class="pill banned">empower</span><span class="pill banned">ecosystem</span>
+          </div>
+        </div>
+
+        <div class="cash-sec" id="v-check">
+          <h2 class="cash-h">The 10 second check</h2>
+          <p class="cash-lead">Before anything ships, validate against these five. Any no is a required rewrite.</p>
+          <ul class="check">
             <li><span class="tick">1</span><span>Does every claim carry a number or a mechanism?</span></li>
             <li><span class="tick">2</span><span>Could this sentence appear on any other B2B site? If yes, rewrite.</span></li>
-            <li><span class="tick">3</span><span>Is the warmth in the specifics, or just in adjectives? Move it to the specifics.</span></li>
+            <li><span class="tick">3</span><span>Is the warmth in the specifics, or just in adjectives?</span></li>
             <li><span class="tick">4</span><span>Have I shown the path, or only listed features?</span></li>
             <li><span class="tick">5</span><span>Any banned words hiding in there?</span></li>
           </ul>
-          <p class="body muted" style="margin-top:16px;font-size:14px">Pass all five and it sounds like NewMed Skills.</p>
         </div>
       </div>
     </section>
