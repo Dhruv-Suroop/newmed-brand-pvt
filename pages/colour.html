@@ -268,18 +268,62 @@ p.body{color:var(--ink-80);max-width:66ch;}
 .dont .cap b{color:var(--ink);font-weight:600;display:block;margin-bottom:2px;}
 
 /* ---- Color swatches ---- */
-.sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px;}
-.swatch{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line-soft);background:var(--bone);cursor:pointer;transition:transform .18s var(--ease),box-shadow .18s;}
-.swatch:hover{transform:translateY(-3px);box-shadow:0 16px 30px -18px rgba(57,30,26,.4);}
-.swatch .chip{height:128px;position:relative;}
-.swatch .chip .copyhint{position:absolute;inset:auto 12px 12px auto;bottom:12px;right:12px;font-size:11px;font-weight:600;letter-spacing:.04em;padding:4px 9px;border-radius:20px;background:rgba(255,255,255,.85);color:var(--ink);opacity:0;transition:opacity .18s;}
-.swatch:hover .chip .copyhint{opacity:1;}
-.swatch.dark .chip .copyhint{background:rgba(0,0,0,.35);color:#fff;}
-.swatch .info{padding:15px 16px 17px;}
-.swatch .info .nm{font-size:14.5px;font-weight:600;letter-spacing:-.01em;}
-.swatch .info .role{font-size:12px;color:var(--ink-45);margin:2px 0 11px;line-height:1.4;min-height:2.6em;}
-.swatch .info .val{display:flex;justify-content:space-between;font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink-60);border-top:1px solid var(--line-soft);padding-top:9px;}
-.swatch .info .val span:first-child{font-weight:600;color:var(--ink);}
+.sw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.sw-grid.two{grid-template-columns:repeat(2,1fr);}
+.swatch{position:relative;background:var(--sw,var(--bone));border-radius:16px;border:1px solid rgba(57,30,26,.08);
+  min-height:210px;padding:22px;cursor:pointer;overflow:hidden;display:flex;align-items:flex-end;color:var(--ink);
+  transition:transform .16s var(--ease),box-shadow .16s var(--ease);}
+.swatch:hover{transform:translateY(-3px);box-shadow:0 18px 36px -20px rgba(57,30,26,.55);}
+.swatch.dark{color:var(--cream);border-color:transparent;}
+.swatch .meta{position:relative;z-index:1;}
+.swatch .nm{display:block;font-size:17px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px;}
+.swatch .vals{font-size:11.5px;line-height:1.85;font-variant-numeric:tabular-nums;letter-spacing:.02em;opacity:.85;}
+.swatch .vals b{display:inline-block;width:36px;font-weight:600;opacity:.6;}
+.swatch .copyhint{position:absolute;top:16px;right:18px;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:0;transition:opacity .16s;}
+.swatch:hover .copyhint{opacity:.55;}
+
+/* ---- Cash-App-style page sections (centred heading + full-width content) ---- */
+.cash-sec{margin-top:clamp(60px,8vw,104px);}
+.cash-sec:first-of-type{margin-top:clamp(38px,5vw,60px);}
+.cash-h{text-align:center;font-size:clamp(26px,3.4vw,40px);color:var(--clay);font-weight:600;letter-spacing:-.025em;margin:0;}
+.cash-lead{text-align:center;max-width:60ch;margin:14px auto 0;color:var(--ink-60);font-size:16px;line-height:1.55;}
+.cash-sec > .feature-colour,.cash-sec > .scroller,.cash-sec > .sw-grid,
+.cash-sec > .cmodes-wrap,.cash-sec > .a11y-grid,.cash-sec > .dd{margin-top:clamp(28px,4vw,48px);}
+
+/* Featured (hero) colour */
+.feature-colour{position:relative;background:var(--sw);border-radius:20px;min-height:clamp(210px,26vw,320px);
+  padding:clamp(24px,3vw,34px);display:flex;align-items:flex-end;color:var(--ink);cursor:pointer;overflow:hidden;border:1px solid rgba(57,30,26,.08);}
+.feature-colour.dark{color:var(--cream);border-color:transparent;}
+.feature-colour .nm{display:block;font-size:clamp(20px,2.4vw,26px);font-weight:600;letter-spacing:-.02em;margin-bottom:8px;}
+.feature-colour .vals{font-size:12.5px;font-variant-numeric:tabular-nums;letter-spacing:.02em;opacity:.85;}
+.feature-colour .vals b{font-weight:600;opacity:.6;margin-right:4px;}
+.feature-colour .copyhint{position:absolute;top:20px;right:22px;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:0;transition:opacity .16s;}
+.feature-colour:hover .copyhint{opacity:.55;}
+
+/* Horizontal in-use mockup scroller (grey placeholders) */
+.scroller{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:12px;
+  margin-left:calc(-1 * clamp(24px,6vw,88px));margin-right:calc(-1 * clamp(24px,6vw,88px));
+  padding-left:clamp(24px,6vw,88px);padding-right:clamp(24px,6vw,88px);}
+.scroller::-webkit-scrollbar{height:8px;}
+.scroller::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px;}
+.scroller::-webkit-scrollbar-track{background:transparent;}
+.mock{flex:0 0 auto;width:clamp(260px,34vw,380px);aspect-ratio:4/3;background:var(--linen);border:1px dashed rgba(57,30,26,.22);
+  border-radius:16px;scroll-snap-align:start;display:grid;place-items:center;color:var(--ink-30);
+  font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+
+/* Colour-modes table */
+.cmodes-wrap{overflow-x:auto;}
+.cmodes{width:100%;border-collapse:collapse;font-size:15px;text-align:left;min-width:520px;}
+.cmodes th{font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-45);font-weight:600;padding:0 16px 12px;border-bottom:1px solid var(--line);}
+.cmodes td{padding:16px;border-bottom:1px solid var(--line-soft);color:var(--ink-80);vertical-align:top;line-height:1.5;}
+.cmodes td:first-child{font-weight:600;color:var(--ink);width:130px;}
+.cmodes td:nth-child(2){width:120px;color:var(--ink-60);}
+
+/* Accessibility tiles */
+.a11y-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.a11y{border-radius:16px;padding:26px;min-height:160px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(57,30,26,.08);}
+.a11y .big{font-size:30px;font-weight:600;letter-spacing:-.02em;}
+.a11y .tag{font-size:12px;font-weight:600;letter-spacing:.02em;opacity:.85;}
 
 /* usage ratio bar */
 .ratio{display:flex;height:56px;border-radius:12px;overflow:hidden;border:1px solid var(--line-soft);margin:8px 0 14px;}
@@ -447,7 +491,7 @@ p.body{color:var(--ink-80);max-width:66ch;}
 .ns-subs a.is-current{color:var(--orange);font-weight:600;}
 
 /* anchor offset for sticky top bar */
-.blk[id],.specimen[id]{scroll-margin-top:90px;}
+.blk[id],.specimen[id],.cash-sec[id]{scroll-margin-top:90px;}
 
 /* ---- Home / big-type index ---- */
 .section.home{padding-top:clamp(30px,4vw,48px);}
@@ -522,6 +566,9 @@ p.body{color:var(--ink-80);max-width:66ch;}
   .reg-row{grid-template-columns:1fr;gap:8px;}
   .gallery{columns:1;}
   .scale-row{grid-template-columns:70px 1fr;}
+  .a11y-grid{grid-template-columns:1fr;}
+  .sw-grid,.sw-grid.two{grid-template-columns:1fr 1fr;}
+  .scroller{margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px;}
 }
 @media(max-width:520px){
   body{font-size:16px;}
@@ -615,11 +662,12 @@ p.body{color:var(--ink-80);max-width:66ch;}
         <div class="nav-sec is-active" data-sec="colour">
           <a class="ns-link is-active" href="colour.html" data-nav>Colour</a>
           <div class="ns-subs">
-            <a href="#c-core" data-parent="colour">Core</a>
-            <a href="#c-secondary" data-parent="colour">Secondary &amp; deep</a>
-            <a href="#c-neutrals" data-parent="colour">Neutrals</a>
+            <a href="#c-primary" data-parent="colour">Signal Orange</a>
+            <a href="#c-supporting" data-parent="colour">Supporting colours</a>
             <a href="#c-gradients" data-parent="colour">Gradients</a>
-            <a href="#c-balance" data-parent="colour">Balance</a>
+            <a href="#c-modes" data-parent="colour">Colour modes</a>
+            <a href="#c-a11y" data-parent="colour">Accessibility</a>
+            <a href="#c-misuse" data-parent="colour">Incorrect usage</a>
           </div>
         </div>
         <div class="nav-sec" data-sec="type">
@@ -670,53 +718,85 @@ p.body{color:var(--ink-80);max-width:66ch;}
       <div class="wrap">
         <div class="sec-head">
           <h1 class="sec-title">Warm, with one cool note.</h1>
-          <p class="lead">A grounded, warm palette does the everyday work. Signal Orange is used as a signal — a moment, not a wash. Click any swatch to copy its hex.</p>
+          <p class="lead">A grounded, warm palette does the everyday work. Signal Orange is used as a signal, a moment, not a wash. Click any swatch to copy its hex.</p>
         </div>
 
-        <div class="block">
-          <h2 class="blk group" id="c-core">Core</h2>
-          <div class="sw-grid" data-swatches>
-            <div class="swatch" data-hex="#FF5122"><div class="chip" style="background:#FF5122"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Signal Orange</div><div class="role">Primary. The mark, the moment, the call to move.</div><div class="val"><span>#FF5122</span><span>255 · 81 · 34</span></div></div></div>
-            <div class="swatch dark" data-hex="#391E1A"><div class="chip" style="background:#391E1A"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Clinical Ink</div><div class="role">Primary text and dark surfaces. A warm near-black.</div><div class="val"><span>#391E1A</span><span>57 · 30 · 26</span></div></div></div>
-            <div class="swatch dark" data-hex="#7C3134"><div class="chip" style="background:#7C3134"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Clay</div><div class="role">A primary surface — used as widely as orange across decks and deep panels.</div><div class="val"><span>#7C3134</span><span>124 · 49 · 52</span></div></div></div>
+        <div class="cash-sec" id="c-primary">
+          <h2 class="cash-h">Signal Orange</h2>
+          <p class="cash-lead">Signal Orange is the hero. It appears where it means something: a link, a state, a single call to move. Used with restraint it carries the most weight, so it is never washed across a whole surface.</p>
+          <div class="feature-colour" data-hex="#FF5122" style="--sw:#FF5122">
+            <span class="copyhint">Copy</span>
+            <div class="meta"><span class="nm">Signal Orange</span><span class="vals"><b>HEX</b> #FF5122 &nbsp;&nbsp; <b>RGB</b> 255 81 34</span></div>
+          </div>
+          <div class="scroller">
+            <div class="mock">Replace with image</div>
+            <div class="mock">Replace with image</div>
+            <div class="mock">Replace with image</div>
+            <div class="mock">Replace with image</div>
+            <div class="mock">Replace with image</div>
           </div>
         </div>
 
-        <div class="block">
-          <h2 class="blk group" id="c-secondary">Secondary &amp; deep</h2>
-          <div class="sw-grid" data-swatches>
-            <div class="swatch" data-hex="#FF9D00"><div class="chip" style="background:#FF9D00"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Amber</div><div class="role">Warm highlight and secondary energy. Pairs beside orange.</div><div class="val"><span>#FF9D00</span><span>255 · 157 · 0</span></div></div></div>
-            <div class="swatch" data-hex="#93CCCD"><div class="chip" style="background:#93CCCD"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Vitals Teal</div><div class="role">The one cool note — calm, clinical, trustworthy. Use sparingly.</div><div class="val"><span>#93CCCD</span><span>147 · 204 · 205</span></div></div></div>
-            <div class="swatch dark" data-hex="#33000F"><div class="chip" style="background:#33000F"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Plum</div><div class="role">The deepest note. Rich near-black backgrounds where ink isn't dark enough.</div><div class="val"><span>#33000F</span><span>51 · 0 · 15</span></div></div></div>
+        <div class="cash-sec" id="c-supporting">
+          <h2 class="cash-h">Supporting colours</h2>
+          <p class="cash-lead">Clinical Ink and the neutrals carry text and structure. Clay, Amber, Teal and Plum add depth, used sparingly and never as a full background where Signal Orange should lead.</p>
+          <div class="sw-grid">
+            <div class="swatch dark" data-hex="#391E1A" style="--sw:#391E1A"><span class="copyhint">Copy</span><div class="meta"><span class="nm">Clinical Ink</span><span class="vals"><b>HEX</b> #391E1A<br><b>RGB</b> 57 30 26</span></div></div>
+            <div class="swatch dark" data-hex="#7C3134" style="--sw:#7C3134"><span class="copyhint">Copy</span><div class="meta"><span class="nm">Clay</span><span class="vals"><b>HEX</b> #7C3134<br><b>RGB</b> 124 49 52</span></div></div>
+            <div class="swatch" data-hex="#FF9D00" style="--sw:#FF9D00"><span class="copyhint">Copy</span><div class="meta"><span class="nm">Amber</span><span class="vals"><b>HEX</b> #FF9D00<br><b>RGB</b> 255 157 0</span></div></div>
+            <div class="swatch" data-hex="#93CCCD" style="--sw:#93CCCD"><span class="copyhint">Copy</span><div class="meta"><span class="nm">Vitals Teal</span><span class="vals"><b>HEX</b> #93CCCD<br><b>RGB</b> 147 204 205</span></div></div>
+            <div class="swatch dark" data-hex="#33000F" style="--sw:#33000F"><span class="copyhint">Copy</span><div class="meta"><span class="nm">Plum</span><span class="vals"><b>HEX</b> #33000F<br><b>RGB</b> 51 0 15</span></div></div>
+            <div class="swatch" data-hex="#F8F3EA" style="--sw:#F8F3EA"><span class="copyhint">Copy</span><div class="meta"><span class="nm">Bone</span><span class="vals"><b>HEX</b> #F8F3EA<br><b>RGB</b> 248 243 234</span></div></div>
+            <div class="swatch" data-hex="#EFE9E0" style="--sw:#EFE9E0"><span class="copyhint">Copy</span><div class="meta"><span class="nm">Linen</span><span class="vals"><b>HEX</b> #EFE9E0<br><b>RGB</b> 239 233 224</span></div></div>
           </div>
         </div>
 
-        <div class="block">
-          <h2 class="blk group" id="c-neutrals">Neutrals</h2>
-          <div class="sw-grid" data-swatches>
-            <div class="swatch" data-hex="#F8F3EA"><div class="chip" style="background:#F8F3EA;border-bottom:1px solid var(--line-soft)"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Bone</div><div class="role">The default page background. Warm, quiet, easy on the eye.</div><div class="val"><span>#F8F3EA</span><span>248 · 243 · 234</span></div></div></div>
-            <div class="swatch" data-hex="#EFE9E0"><div class="chip" style="background:#EFE9E0;border-bottom:1px solid var(--line-soft)"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Linen</div><div class="role">Cards, panels and secondary surfaces against Bone.</div><div class="val"><span>#EFE9E0</span><span>239 · 233 · 224</span></div></div></div>
+        <div class="cash-sec" id="c-gradients">
+          <h2 class="cash-h">Gradients</h2>
+          <p class="cash-lead">Warm fields for the mark and large surfaces, built from orange and amber resolving into cream.</p>
+          <div class="sw-grid">
+            <div class="swatch" data-hex="linear-gradient(180deg,#FF7822,#FF5122)" style="--sw:linear-gradient(180deg,#FF7822,#FF5122)"><span class="copyhint">Copy</span><div class="meta"><span class="nm">Signal</span><span class="vals">#FF7822 &rarr; #FF5122</span></div></div>
+            <div class="swatch" data-hex="radial-gradient(120% 120% at 70% 110%,#FF5122,#FC9576 45%,#F8F3EA)" style="--sw:radial-gradient(120% 120% at 70% 110%,#FF5122,#FC9576 45%,#F8F3EA)"><span class="copyhint">Copy</span><div class="meta"><span class="nm">Sunrise</span><span class="vals">#FF5122 &rarr; #F8F3EA</span></div></div>
+            <div class="swatch" data-hex="radial-gradient(120% 120% at 70% 110%,#FF9D00,#FBCA7A 50%,#F8F3EA)" style="--sw:radial-gradient(120% 120% at 70% 110%,#FF9D00,#FBCA7A 50%,#F8F3EA)"><span class="copyhint">Copy</span><div class="meta"><span class="nm">Amber Rise</span><span class="vals">#FF9D00 &rarr; #F8F3EA</span></div></div>
           </div>
         </div>
 
-        <div class="block">
-          <h2 class="blk group" id="c-gradients">Gradients</h2>
-          <div class="sw-grid" data-swatches>
-            <div class="swatch dark" data-hex="linear-gradient · #FF7822 → #FF5122"><div class="chip" style="background:linear-gradient(180deg,#FF7822,#FF5122)"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Signal</div><div class="role">The workhorse gradient — for the mark's warm field and hero panels.</div><div class="val"><span>#FF7822</span><span>→ #FF5122</span></div></div></div>
-            <div class="swatch dark" data-hex="radial · #FF5122 → #F8F3EA"><div class="chip" style="background:radial-gradient(120% 120% at 70% 110%,#FF5122,#FC9576 45%,#F8F3EA)"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Sunrise</div><div class="role">Orange rising into cream. Backgrounds and large fields.</div><div class="val"><span>#FF5122</span><span>→ #F8F3EA</span></div></div></div>
-            <div class="swatch dark" data-hex="radial · #FF9D00 → #F8F3EA"><div class="chip" style="background:radial-gradient(120% 120% at 70% 110%,#FF9D00,#FBCA7A 50%,#F8F3EA)"><span class="copyhint">Click to copy</span></div><div class="info"><div class="nm">Amber Rise</div><div class="role">A softer, gold variant for calmer surfaces.</div><div class="val"><span>#FF9D00</span><span>→ #F8F3EA</span></div></div></div>
+        <div class="cash-sec" id="c-modes">
+          <h2 class="cash-h">Colour modes</h2>
+          <p class="cash-lead">No single mode carries the full palette. Each medium has a preferred mode, so match the values to where the work will live.</p>
+          <div class="cmodes-wrap">
+            <table class="cmodes">
+              <thead><tr><th>Mode</th><th>Application</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>HEX / RGB</td><td>Screen</td><td>The truest, most vibrant depiction of the palette. Use for every digital surface.</td></tr>
+                <tr><td>Pantone</td><td>Print</td><td>Preferred for print. Matches the brand colours most reliably across stocks. Official values to be added.</td></tr>
+                <tr><td>CMYK</td><td>Print</td><td>Use only when Pantone is unavailable, matching to Pantone where possible. Official values to be added.</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <div class="block">
-          <h2 class="blk" id="c-balance">Roughly 70 / 20 / 10</h2>
-          <p class="body">Let neutrals carry most of the surface, ink carry the words, and orange appear where it means something — a link, a state, a single call to move. When orange starts to feel like decoration, pull it back.</p>
-          <div class="ratio" style="margin-top:10px">
-            <div style="flex:70;background:#F8F3EA;color:var(--ink-60)">70% Neutral</div>
-            <div style="flex:20;background:#391E1A;color:var(--cream)">20% Ink</div>
-            <div style="flex:10;background:#FF5122;color:#fff">10%</div>
+        <div class="cash-sec" id="c-a11y">
+          <h2 class="cash-h">Accessibility</h2>
+          <p class="cash-lead">Clinical Ink on Bone clears WCAG AA for body text. Signal Orange is for large text, icons and accents. Pair small text with ink or cream, never orange on orange.</p>
+          <div class="a11y-grid">
+            <div class="a11y" style="background:#391E1A"><span class="big" style="color:#F8F3EA">Text</span><span class="tag" style="color:rgba(248,243,234,.7)">Cream on Ink &middot; Pass AAA</span></div>
+            <div class="a11y" style="background:#F8F3EA;border-color:var(--line)"><span class="big" style="color:#391E1A">Text</span><span class="tag" style="color:var(--ink-45)">Ink on Bone &middot; Pass AAA</span></div>
+            <div class="a11y" style="background:#FF5122"><span class="big" style="color:#391E1A">Text</span><span class="tag" style="color:rgba(57,30,26,.72)">Ink on Orange &middot; Large only</span></div>
           </div>
-          <p class="body muted" style="font-size:14px">Accessibility: Clinical Ink on Bone clears WCAG AA for body text. Use Signal Orange for large text, icons and accents — pair it with ink or cream for small text rather than relying on the orange alone.</p>
+        </div>
+
+        <div class="cash-sec" id="c-misuse">
+          <h2 class="cash-h">Incorrect usage</h2>
+          <p class="cash-lead">The palette is fixed. Keep colours pure, keep contrast high, and let Signal Orange stay the accent.</p>
+          <div class="dd">
+            <div class="dont"><div class="frame" style="background:#3f6fb0"><span class="badge">&#10007;</span></div><div class="cap"><b>Don't add off-brand colour</b>Only the approved palette.</div></div>
+            <div class="dont"><div class="frame" style="background:#ffb08a"><span class="badge">&#10007;</span></div><div class="cap"><b>Don't tint or screen orange</b>Use Signal Orange at full strength.</div></div>
+            <div class="dont"><div class="frame" style="background:#FF5122"><span class="badge">&#10007;</span><span style="color:#ff7a54;font-weight:600;font-size:15px">Text</span></div><div class="cap"><b>Don't set orange on orange</b>Small text needs ink or cream.</div></div>
+            <div class="dont"><div class="frame" style="background:#FF5122"><span class="badge">&#10007;</span></div><div class="cap"><b>Don't wash whole surfaces</b>Orange is a signal, not a field.</div></div>
+            <div class="dont"><div class="frame" style="background:linear-gradient(45deg,#93cccd,#7c3134,#ff9d00)"><span class="badge">&#10007;</span></div><div class="cap"><b>Don't build muddy gradients</b>Only the approved blends.</div></div>
+            <div class="dont"><div class="frame" style="background:#7d9a5b"><span class="badge">&#10007;</span></div><div class="cap"><b>Don't recolour the neutrals</b>Keep Bone and Linen warm.</div></div>
+          </div>
         </div>
       </div>
     </section>
