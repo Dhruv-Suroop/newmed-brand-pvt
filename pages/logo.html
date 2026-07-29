@@ -446,13 +446,44 @@ p.body{color:var(--ink-80);max-width:66ch;}
 .spec-hero .line .ch{color:var(--orange);}
 .spec-hero .line .box{background:var(--ink);color:var(--cream);padding:0 .16em;border-radius:.08em;}
 
-/* Weight list, two columns, each line in its weight */
-.weights-table{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(24px,4vw,64px);
-  border:1px solid var(--line);border-radius:14px;padding:clamp(22px,3vw,38px);background:var(--bone);}
-.weights-table div{font-size:clamp(17px,2vw,25px);line-height:1.68;letter-spacing:-.015em;color:var(--ink);}
-.wt-mono{background:var(--ink);color:var(--cream);border-radius:14px;padding:clamp(22px,3vw,38px);margin-top:16px;
+/* Weight list — big, dark, ruled. Each row sits on a coral baseline. */
+.weights-table{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(26px,4vw,70px);
+  border-radius:14px;padding:clamp(26px,3.4vw,48px) clamp(24px,3vw,44px);background:var(--ink);}
+.weights-table .wcol{display:flex;flex-direction:column;}
+.weights-table .wrow{position:relative;font-size:clamp(22px,3.4vw,46px);line-height:1.42;
+  letter-spacing:-.02em;color:var(--cream);white-space:nowrap;}
+.weights-table .wrow::after{content:"";position:absolute;left:0;right:0;bottom:.18em;height:1px;background:var(--orange);opacity:.9;}
+.wt-mono{background:var(--linen);color:var(--ink);border-radius:14px;padding:clamp(22px,3vw,38px);margin-top:16px;
   font-variant-numeric:tabular-nums;letter-spacing:.01em;}
 .wt-mono div{font-size:clamp(16px,1.9vw,23px);line-height:1.7;}
+
+/* ---- Typesetting specimens with specs + measurement guides ---- */
+.tset{border-top:1px solid var(--line);padding-top:18px;margin-top:30px;}
+.tset-meta{display:flex;flex-wrap:wrap;gap:6px 46px;font-size:12.5px;color:var(--ink-45);margin-bottom:22px;line-height:1.5;}
+.tset-meta b{display:block;color:var(--ink);font-weight:500;}
+.tset-meta .pair{display:flex;gap:10px;}
+.tset-meta .pair span:first-child{min-width:66px;}
+.tset-spec{position:relative;}
+.tset-spec .rule{position:absolute;left:0;right:0;height:1px;background:var(--orange);opacity:.55;}
+.tset-spec .hl{font-size:clamp(34px,7vw,86px);font-weight:600;letter-spacing:-.03em;line-height:.92;margin:0;}
+.tset-spec .bd{font-size:clamp(16px,1.7vw,21px);font-weight:400;line-height:1.5;margin:0;max-width:52ch;}
+.tset-spec .eb{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;line-height:1.6;margin:0;color:var(--ink-60);}
+
+/* four annotated concept panels */
+.tset-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 16px;}
+.tset-panel{position:relative;background:var(--ink);color:var(--cream);border-radius:14px;
+  padding:clamp(24px,3vw,40px);min-height:clamp(200px,23vw,300px);display:flex;align-items:center;overflow:hidden;}
+.tset-panel p{margin:0;font-size:clamp(24px,3.6vw,50px);font-weight:600;letter-spacing:-.028em;line-height:1.02;position:relative;z-index:1;}
+.tset-panel .guides{position:absolute;inset:0;pointer-events:none;z-index:2;}
+/* leading: horizontal rules on each baseline */
+.g-lead{background:repeating-linear-gradient(to bottom, transparent 0, transparent calc(1.02em - 1px), rgba(255,81,34,.95) calc(1.02em - 1px), rgba(255,81,34,.95) 1.02em);
+  font-size:clamp(24px,3.6vw,50px);}
+/* tracking: vertical rules between glyph columns */
+.g-track{background:repeating-linear-gradient(to right, transparent 0, transparent 27px, rgba(255,81,34,.8) 27px, rgba(255,81,34,.8) 28px);}
+/* kerning: two isolated vertical rules */
+.g-kern i{position:absolute;top:14%;bottom:14%;width:1px;background:rgba(255,81,34,.95);}
+/* hierarchy: left brackets */
+.g-hier i{position:absolute;left:clamp(18px,2.4vw,30px);width:2px;background:rgba(255,81,34,.95);}
 
 /* Display panels (two-up) */
 .panel-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}

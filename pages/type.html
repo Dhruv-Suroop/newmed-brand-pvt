@@ -446,13 +446,44 @@ p.body{color:var(--ink-80);max-width:66ch;}
 .spec-hero .line .ch{color:var(--orange);}
 .spec-hero .line .box{background:var(--ink);color:var(--cream);padding:0 .16em;border-radius:.08em;}
 
-/* Weight list, two columns, each line in its weight */
-.weights-table{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(24px,4vw,64px);
-  border:1px solid var(--line);border-radius:14px;padding:clamp(22px,3vw,38px);background:var(--bone);}
-.weights-table div{font-size:clamp(17px,2vw,25px);line-height:1.68;letter-spacing:-.015em;color:var(--ink);}
-.wt-mono{background:var(--ink);color:var(--cream);border-radius:14px;padding:clamp(22px,3vw,38px);margin-top:16px;
+/* Weight list — big, dark, ruled. Each row sits on a coral baseline. */
+.weights-table{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(26px,4vw,70px);
+  border-radius:14px;padding:clamp(26px,3.4vw,48px) clamp(24px,3vw,44px);background:var(--ink);}
+.weights-table .wcol{display:flex;flex-direction:column;}
+.weights-table .wrow{position:relative;font-size:clamp(22px,3.4vw,46px);line-height:1.42;
+  letter-spacing:-.02em;color:var(--cream);white-space:nowrap;}
+.weights-table .wrow::after{content:"";position:absolute;left:0;right:0;bottom:.18em;height:1px;background:var(--orange);opacity:.9;}
+.wt-mono{background:var(--linen);color:var(--ink);border-radius:14px;padding:clamp(22px,3vw,38px);margin-top:16px;
   font-variant-numeric:tabular-nums;letter-spacing:.01em;}
 .wt-mono div{font-size:clamp(16px,1.9vw,23px);line-height:1.7;}
+
+/* ---- Typesetting specimens with specs + measurement guides ---- */
+.tset{border-top:1px solid var(--line);padding-top:18px;margin-top:30px;}
+.tset-meta{display:flex;flex-wrap:wrap;gap:6px 46px;font-size:12.5px;color:var(--ink-45);margin-bottom:22px;line-height:1.5;}
+.tset-meta b{display:block;color:var(--ink);font-weight:500;}
+.tset-meta .pair{display:flex;gap:10px;}
+.tset-meta .pair span:first-child{min-width:66px;}
+.tset-spec{position:relative;}
+.tset-spec .rule{position:absolute;left:0;right:0;height:1px;background:var(--orange);opacity:.55;}
+.tset-spec .hl{font-size:clamp(34px,7vw,86px);font-weight:600;letter-spacing:-.03em;line-height:.92;margin:0;}
+.tset-spec .bd{font-size:clamp(16px,1.7vw,21px);font-weight:400;line-height:1.5;margin:0;max-width:52ch;}
+.tset-spec .eb{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;line-height:1.6;margin:0;color:var(--ink-60);}
+
+/* four annotated concept panels */
+.tset-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 16px;}
+.tset-panel{position:relative;background:var(--ink);color:var(--cream);border-radius:14px;
+  padding:clamp(24px,3vw,40px);min-height:clamp(200px,23vw,300px);display:flex;align-items:center;overflow:hidden;}
+.tset-panel p{margin:0;font-size:clamp(24px,3.6vw,50px);font-weight:600;letter-spacing:-.028em;line-height:1.02;position:relative;z-index:1;}
+.tset-panel .guides{position:absolute;inset:0;pointer-events:none;z-index:2;}
+/* leading: horizontal rules on each baseline */
+.g-lead{background:repeating-linear-gradient(to bottom, transparent 0, transparent calc(1.02em - 1px), rgba(255,81,34,.95) calc(1.02em - 1px), rgba(255,81,34,.95) 1.02em);
+  font-size:clamp(24px,3.6vw,50px);}
+/* tracking: vertical rules between glyph columns */
+.g-track{background:repeating-linear-gradient(to right, transparent 0, transparent 27px, rgba(255,81,34,.8) 27px, rgba(255,81,34,.8) 28px);}
+/* kerning: two isolated vertical rules */
+.g-kern i{position:absolute;top:14%;bottom:14%;width:1px;background:rgba(255,81,34,.95);}
+/* hierarchy: left brackets */
+.g-hier i{position:absolute;left:clamp(18px,2.4vw,30px);width:2px;background:rgba(255,81,34,.95);}
 
 /* Display panels (two-up) */
 .panel-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
@@ -1024,8 +1055,8 @@ p.body{color:var(--ink-80);max-width:66ch;}
           <p class="cash-lead">A humanist grotesk. Modern, plainly legible, calm. It reads clearly for an audience that often reads English as a second language, and it holds up from 11 px compliance copy to a 100 px hero line.</p>
           <div class="spec-hero">
             <div class="nm-name">Mona Sans</div>
-            <div class="line"><span class="lt">From</span> exam <span class="ch">&rsaquo;</span> <span class="box">licence</span></div>
-            <div class="line"><span class="ch">&rsaquo;</span> placement <span class="lt">in</span> 4&ndash;6 <span class="lt">weeks</span></div>
+            <div class="line"><span class="lt">From</span> exam to <span class="arw-hl pad-pt" data-arw="sunset">licence</span></div>
+            <div class="line">to placement <span class="lt">in</span> 4&ndash;6 <span class="lt">weeks</span></div>
             <div class="line"><span class="lt">DHA &middot; SCFHS &middot; Prometric</span></div>
           </div>
         </div>
@@ -1034,8 +1065,8 @@ p.body{color:var(--ink-80);max-width:66ch;}
           <h2 class="cash-h">Our typeface</h2>
           <p class="cash-lead">Mona Sans ships in eight weights with matching italics. The brand uses a narrow band of them: SemiBold for headings, Regular for body, Medium for emphasis. The rest exist for range, not for daily use.</p>
           <div class="weights-table">
-            <div><div style="font-weight:200">ExtraLight</div><div style="font-weight:200;font-style:italic">ExtraLight Italic</div><div style="font-weight:300">Light</div><div style="font-weight:300;font-style:italic">Light Italic</div><div style="font-weight:400">Regular</div><div style="font-weight:400;font-style:italic">Regular Italic</div><div style="font-weight:500">Medium</div><div style="font-weight:500;font-style:italic">Medium Italic</div></div>
-            <div><div style="font-weight:600">SemiBold</div><div style="font-weight:600;font-style:italic">SemiBold Italic</div><div style="font-weight:700">Bold</div><div style="font-weight:700;font-style:italic">Bold Italic</div><div style="font-weight:800">ExtraBold</div><div style="font-weight:800;font-style:italic">ExtraBold Italic</div><div style="font-weight:900">Black</div><div style="font-weight:900;font-style:italic">Black Italic</div></div>
+            <div class="wcol"><div class="wrow" style="font-weight:200">ExtraLight</div><div class="wrow" style="font-weight:200;font-style:italic">ExtraLight Italic</div><div class="wrow" style="font-weight:300">Light</div><div class="wrow" style="font-weight:300;font-style:italic">Light Italic</div><div class="wrow" style="font-weight:400">Regular</div><div class="wrow" style="font-weight:400;font-style:italic">Regular Italic</div><div class="wrow" style="font-weight:500">Medium</div><div class="wrow" style="font-weight:500;font-style:italic">Medium Italic</div></div>
+            <div class="wcol"><div class="wrow" style="font-weight:600">SemiBold</div><div class="wrow" style="font-weight:600;font-style:italic">SemiBold Italic</div><div class="wrow" style="font-weight:700">Bold</div><div class="wrow" style="font-weight:700;font-style:italic">Bold Italic</div><div class="wrow" style="font-weight:800">ExtraBold</div><div class="wrow" style="font-weight:800;font-style:italic">ExtraBold Italic</div><div class="wrow" style="font-weight:900">Black</div><div class="wrow" style="font-weight:900;font-style:italic">Black Italic</div></div>
           </div>
           <div class="wt-mono">
             <div style="font-weight:400">Tabular  0123456789  4&ndash;6 weeks</div>
@@ -1091,12 +1122,58 @@ p.body{color:var(--ink-80);max-width:66ch;}
 
         <div class="cash-sec" id="t-setting">
           <h2 class="cash-h">Typesetting</h2>
-          <p class="cash-lead">The same sentence, set four ways. Only the first is correct. Tracking, leading and case are not styling choices, they are part of the identity.</p>
-          <div class="set-grid">
-            <div class="set-item"><div class="box"><p>One platform, from first assessment to first shift.</p></div><p class="tcap"><b>Correct</b>SemiBold, tight but breathing. Leading 1.1, tracking -0.025em, sentence case.</p></div>
-            <div class="set-item"><div class="box tight"><p>One platform, from first assessment to first shift.</p></div><p class="tcap"><b>Too tight</b>Leading below 1 and heavy negative tracking. Letters collide and the line stops reading.</p></div>
-            <div class="set-item"><div class="box loose"><p>One platform, from first assessment to first shift.</p></div><p class="tcap"><b>Too loose</b>Wide tracking and open leading make the sentence drift apart and feel uncertain.</p></div>
-            <div class="set-item"><div class="box caps"><p>One platform, from first assessment to first shift.</p></div><p class="tcap"><b>Not all caps</b>Caps are for small labels only. At headline size they read as shouting.</p></div>
+          <p class="cash-lead">Good typesetting needs a discerning eye. These are the values we set type at, and the four principles that keep every layout consistent and legible.</p>
+
+          <div class="tset">
+            <div class="tset-meta">
+              <div><b>Headline</b>Mona Sans SemiBold</div>
+              <div class="pair"><span>Leading:</span><span>92%</span></div>
+              <div class="pair"><span>Tracking:</span><span>-30 (-3%)</span></div>
+            </div>
+            <div class="tset-spec">
+              <p class="hl">One platform, from<br>first assessment</p>
+            </div>
+          </div>
+
+          <div class="tset">
+            <div class="tset-meta">
+              <div><b>Body</b>Mona Sans Regular</div>
+              <div class="pair"><span>Leading:</span><span>150%</span></div>
+              <div class="pair"><span>Tracking:</span><span>0</span></div>
+            </div>
+            <div class="tset-spec">
+              <p class="bd">Body text is regular weight at a calm line height. Much of the audience reads English as a second language, so lines stay short, sentences carry one idea, and the measure never runs past 70 characters.</p>
+            </div>
+          </div>
+
+          <div class="tset">
+            <div class="tset-meta">
+              <div><b>Eyebrow</b>Mona Sans SemiBold</div>
+              <div class="pair"><span>Leading:</span><span>160%</span></div>
+              <div class="pair"><span>Tracking:</span><span>+140 (14%)</span></div>
+            </div>
+            <div class="tset-spec">
+              <p class="eb">Workforce readiness &middot; Licensing &middot; Deployment</p>
+            </div>
+          </div>
+
+          <div class="tset-grid" style="margin-top:44px">
+            <div>
+              <div class="tset-panel"><div class="guides g-lead"></div><p>Licensed<br>and ready<br>to work</p></div>
+              <p class="tcap"><b>Leading</b>The space between lines. Aim between 92% and 150% of the type size. Large headlines take the lower value, body text the higher. Never let ascenders and descenders touch.</p>
+            </div>
+            <div>
+              <div class="tset-panel"><div class="guides g-track"></div><p>Licensed<br>and ready<br>to work</p></div>
+              <p class="tcap"><b>Tracking</b>The spacing across a whole string. Display type sits at -3%, body at 0, small eyebrow labels open up to +14%. Tighten as type grows, open it as type shrinks.</p>
+            </div>
+            <div>
+              <div class="tset-panel"><div class="guides g-kern"><i style="left:31%"></i><i style="left:44%"></i></div><p>Licensed<br>and ready<br>to work</p></div>
+              <p class="tcap"><b>Kerning</b>The space between two specific letters. Mona Sans is well kerned, so leave it alone at body sizes. Only adjust by hand when type is set very large and a pair opens up.</p>
+            </div>
+            <div>
+              <div class="tset-panel" style="flex-direction:column;align-items:flex-start;justify-content:center;gap:14px"><div class="guides g-hier"><i style="top:16%;height:34%"></i><i style="top:58%;height:26%"></i></div><p style="padding-left:26px">Licensed<br>and ready</p><p style="font-size:clamp(13px,1.5vw,19px);font-weight:400;line-height:1.4;padding-left:26px;opacity:.75">Assessed, trained and<br>certified before travel</p></div>
+              <p class="tcap"><b>Hierarchy</b>The size relationship between levels. Keep the contrast high: a headline should be at least three times its supporting line. Low contrast reads as flat and uncertain.</p>
+            </div>
           </div>
         </div>
 
