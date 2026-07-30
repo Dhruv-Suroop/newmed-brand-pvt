@@ -6,7 +6,7 @@
 <title>NewMed Skills — Brand Guidelines</title>
 <meta name="description" content="The brand standards manual for NewMed Skills: logo, colour, typography, voice and applications.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="styles.css?v=31">
+<link rel="stylesheet" href="styles.css?v=32">
 </head>
 <body>
 
@@ -141,6 +141,7 @@
         <div class="ns-subs">
             <a href="#ap-toolkit" data-parent="applications">Brand toolkit</a>
             <a href="#ap-signature" data-parent="applications">Email signature</a>
+            <a href="#ap-card" data-parent="applications">Business card</a>
           </div>
         </div>
       </div>
@@ -794,7 +795,7 @@
             <div class="tool"><h4>Email signature</h4><p>The daily touchpoint. Copy it straight into Gmail or Outlook.</p><span class="soon on">Ready below</span></div>
             <div class="tool"><h4>Video-call background</h4><p>A branded 1920×1080 background with your name and title.</p><span class="soon">Coming next</span></div>
             <div class="tool"><h4>LinkedIn banner</h4><p>A 1584×396 header over the gradient, with your title and a line.</p><span class="soon">Coming next</span></div>
-            <div class="tool"><h4>Business card</h4><p>Print-ready front and back, exported as a PDF.</p><span class="soon">Coming next</span></div>
+            <div class="tool"><h4>Business card</h4><p>Print-ready front and back, exported as a PDF.</p><span class="soon on">Ready below</span></div>
             <div class="tool"><h4>Letterhead</h4><p>An A4 template with your name and department.</p><span class="soon">Coming next</span></div>
             <div class="tool"><h4>Social avatar</h4><p>Your initials or photo set inside the arrow.</p><span class="soon">Coming next</span></div>
           </div>
@@ -811,6 +812,7 @@
               <div><label for="sf-email">Email</label><input id="sf-email" class="tg-input" data-f="email" value="priya@newmedskills.com" autocomplete="off"></div>
               <div><label for="sf-phone">Phone</label><input id="sf-phone" class="tg-input" data-f="phone" value="+44 20 1234 5678" autocomplete="off"></div>
               <div><label for="sf-loc">Location (optional)</label><input id="sf-loc" class="tg-input" data-f="location" placeholder="London" autocomplete="off"></div>
+              <div><label for="sf-tag">Tagline (optional)</label><input id="sf-tag" class="tg-input" data-f="tagline" value="From first assessment to first shift." autocomplete="off"></div>
             </div>
             <div class="sig-preview"></div>
             <div class="sig-actions">
@@ -821,6 +823,32 @@
           </div>
           <p class="tcap" style="max-width:66ch"><b>Installing it</b>Gmail: Settings → See all settings → Signature → paste. Outlook: File → Options → Mail → Signatures → paste. The logo loads from our hosted brand assets, so it shows in every email without attaching anything.</p>
         </div>
+
+        <div class="cash-sec" id="ap-card">
+          <h2 class="cash-h">Business card</h2>
+          <p class="cash-lead">Type your details, check the front and back, then save a print-ready PDF (3.5 × 2 in, one face per page) to send straight to a printer.</p>
+          <div class="cardgen" id="cardgen">
+            <div class="sig-form">
+              <div><label for="cf-name">Full name</label><input id="cf-name" class="tg-input" data-f="name" value="Priya Nair" autocomplete="off"></div>
+              <div><label for="cf-creds">Credentials (optional)</label><input id="cf-creds" class="tg-input" data-f="creds" placeholder="RN, BSN" autocomplete="off"></div>
+              <div><label for="cf-title">Job title</label><input id="cf-title" class="tg-input" data-f="title" value="Clinical Readiness Lead" autocomplete="off"></div>
+              <div><label for="cf-email">Email</label><input id="cf-email" class="tg-input" data-f="email" value="priya@newmedskills.com" autocomplete="off"></div>
+              <div><label for="cf-phone">Phone</label><input id="cf-phone" class="tg-input" data-f="phone" value="+44 20 1234 5678" autocomplete="off"></div>
+              <div><label for="cf-web">Website (optional)</label><input id="cf-web" class="tg-input" data-f="website" value="newmedskills.com" autocomplete="off"></div>
+              <div style="grid-column:1/-1"><label for="cf-tag">Back tagline</label><input id="cf-tag" class="tg-input" data-f="tagline" value="From first assessment to first shift." autocomplete="off"></div>
+            </div>
+            <div class="bc-previews">
+              <div class="bcard bcard-front bc-front-wrap"></div>
+              <div class="bcard bcard-back bc-back-wrap"></div>
+            </div>
+            <div class="sig-actions">
+              <button type="button" data-pdf>Save as PDF</button>
+            </div>
+            <p class="sig-hint"></p>
+          </div>
+          <p class="tcap" style="max-width:66ch"><b>Printing it</b>Save as PDF at 3.5 × 2 in with margins set to none, then send to your print supplier — ideally on uncoated stock for the warm, matte brand feel. Two pages: front, then back.</p>
+        </div>
+
       </div>
     </section>
 
@@ -865,6 +893,7 @@
 <script src="app.js?v=9"></script>
 <script src="gradient.js?v=6"></script>
 <script src="typegen.js?v=3"></script>
-<script src="appsig.js?v=1"></script>
+<script src="appsig.js?v=2"></script>
+<script src="appcard.js?v=1"></script>
 </body>
 </html>
