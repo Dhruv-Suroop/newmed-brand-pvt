@@ -517,6 +517,10 @@ p.body{color:var(--ink-80);max-width:66ch;}
 .gen-bar button[data-save]:hover{background:var(--ink);}
 .gen-bar .hint{font-size:12.5px;color:var(--ink-45);margin-left:auto;}
 .gen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.gen-grid.two{grid-template-columns:repeat(2,1fr);}
+/* captions flip to cream on the dark grounds */
+.gen .gen-meta.on-dark .nm{color:var(--cream);}
+.gen .gen-meta.on-dark .st{color:rgba(244,241,234,.72);}
 
 /* ---- Typography page ---- */
 .spec-hero{border-radius:14px;background:var(--bone);padding:clamp(34px,5vw,72px);
@@ -1250,35 +1254,41 @@ p.body{color:var(--ink-80);max-width:66ch;}
               <canvas aria-label="Organic brand gradient"></canvas>
               <div class="gen-meta"><span class="nm">Organic</span><span class="st">Amber &middot; Signal Orange &middot; Linen on Cream</span></div>
             </div></div>
-            <div class="gen-bar"><button type="button" data-shuffle>Shuffle</button><button type="button" data-toggle>Pause</button><button type="button" data-save data-w="3840" data-label="Save 3840 px">Save 3840 px</button><button type="button" data-save data-w="1920" data-label="Save 1920 px">Save 1920 px</button></div>
+            <div class="gen-bar">
+              <button type="button" data-shuffle>Shuffle</button>
+              <button type="button" data-toggle>Pause</button>
+              <button type="button" data-save data-w="3840" data-label="Save 3840 px">Save 3840 px</button>
+              <button type="button" data-save data-w="1920" data-label="Save 1920 px">Save 1920 px</button>
+            </div>
           </div>
           <p class="tcap" style="max-width:64ch">Motion is slow and unlooping, and it pauses when scrolled out of view or when the system asks for reduced motion. The saved PNG is rendered fresh at full resolution, not upscaled from the preview.</p>
 
           <h3 class="blk" style="margin-top:46px;color:var(--clay)">Presets</h3>
-          <div class="gen-grid">
+          <div class="gen-grid two">
             <div data-gradient data-recipe="sunrise">
-            <div class="gen sq"><div class="gen-inner">
-              <canvas aria-label="Sunrise brand gradient"></canvas>
-              <div class="gen-meta"><span class="nm">Sunrise</span><span class="st">#FF5122 &rarr; #F4F1EA</span></div>
-            </div></div>
-            <div class="gen-bar"><button type="button" data-shuffle>Shuffle</button><button type="button" data-save data-w="2400" data-label="Save">Save</button></div>
-          </div>
-            <div data-gradient data-recipe="amberrise">
-            <div class="gen sq"><div class="gen-inner">
-              <canvas aria-label="Amber Rise brand gradient"></canvas>
-              <div class="gen-meta"><span class="nm">Amber Rise</span><span class="st">#FF9D00 &rarr; #F4F1EA</span></div>
-            </div></div>
-            <div class="gen-bar"><button type="button" data-shuffle>Shuffle</button><button type="button" data-save data-w="2400" data-label="Save">Save</button></div>
-          </div>
+              <div class="gen sq"><div class="gen-inner">
+                <canvas aria-label="Sunrise gradient"></canvas>
+                <div class="gen-meta"><span class="nm">Sunrise</span><span class="st">Amber on Signal Orange</span></div>
+              </div></div>
+              <div class="gen-bar">
+                <button type="button" data-swap>Switch ground</button>
+                <button type="button" data-shuffle>Shuffle</button>
+                <button type="button" data-save data-w="2400" data-label="Save">Save</button>
+              </div>
+            </div>
             <div data-gradient data-recipe="deep">
-            <div class="gen sq"><div class="gen-inner">
-              <canvas aria-label="Deep brand gradient"></canvas>
-              <div class="gen-meta"><span class="nm">Deep</span><span class="st">#7C3134 &middot; #FF5122 on #EFE9E0</span></div>
-            </div></div>
-            <div class="gen-bar"><button type="button" data-shuffle>Shuffle</button><button type="button" data-save data-w="2400" data-label="Save">Save</button></div>
+              <div class="gen sq"><div class="gen-inner">
+                <canvas aria-label="Deep gradient"></canvas>
+                <div class="gen-meta on-dark"><span class="nm">Deep</span><span class="st">Signal Orange on Clay</span></div>
+              </div></div>
+              <div class="gen-bar">
+                <button type="button" data-swap>Switch ground</button>
+                <button type="button" data-shuffle>Shuffle</button>
+                <button type="button" data-save data-w="2400" data-label="Save">Save</button>
+              </div>
+            </div>
           </div>
-          </div>
-          <p class="tcap" style="max-width:64ch"><b>Using a generated wash</b>Place it behind a hero statement or a whole section, never behind body copy. Keep type in Clinical Ink or Cream and check contrast where the type actually sits.</p>
+          <p class="tcap" style="max-width:64ch"><b>Using a generated wash</b>Switch ground flips which colour leads. Place a wash behind a hero statement or a whole section, never behind body copy, and keep type in Cream on the warm and dark grounds.</p>
         </div>
 
         <div class="cash-sec" id="c-modes">
@@ -1349,13 +1359,18 @@ p.body{color:var(--ink-80);max-width:66ch;}
     ink:    [57, 30, 26]
   };
 
-  // Recipes name which palette colours may appear, and the ground they sit on.
+  /* Recipes name which palette colours may appear, and the ground they sit on.
+     `swap` points at the inverted pairing, for the switch control. */
   var RECIPES = {
-    sunrise:  { ground: 'cream', blobs: ['orange', 'orange', 'amber', 'linen'] },
-    amberrise:{ ground: 'cream', blobs: ['amber', 'amber', 'orange', 'linen'] },
-    organic:  { ground: 'cream', blobs: ['amber', 'orange', 'linen', 'amber', 'orange'] },
-    deep:     { ground: 'linen', blobs: ['clay', 'orange', 'amber', 'clay'] },
-    cool:     { ground: 'cream', blobs: ['teal', 'amber', 'linen', 'teal'] }
+    organic:    { ground: 'cream',  blobs: ['amber', 'orange', 'linen', 'amber', 'orange'] },
+    sunrise:    { ground: 'orange', blobs: ['amber', 'amber', 'amber', 'amber'], swap: 'sunriseAlt',
+                  label: 'Sunrise', stops: 'Amber on Signal Orange' },
+    sunriseAlt: { ground: 'amber',  blobs: ['orange', 'orange', 'orange', 'orange'], swap: 'sunrise',
+                  label: 'Sunrise, inverted', stops: 'Signal Orange on Amber' },
+    deep:       { ground: 'clay',   blobs: ['orange', 'orange', 'amber', 'orange'], swap: 'deepAlt',
+                  label: 'Deep', stops: 'Signal Orange on Clay' },
+    deepAlt:    { ground: 'ink',    blobs: ['orange', 'orange', 'amber', 'orange'], swap: 'deep',
+                  label: 'Deep, ink', stops: 'Signal Orange on Clinical Ink' }
   };
 
   function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
@@ -1377,7 +1392,7 @@ p.body{color:var(--ink-80);max-width:66ch;}
         x: 0.12 + r() * 0.76,          // normalised centre
         y: 0.12 + r() * 0.76,
         rad: 0.42 + r() * 0.46,        // normalised radius
-        alpha: 0.55 + r() * 0.4,
+        alpha: 0.62 + r() * 0.34,
         // drift: unhurried but perceptible. Periods are unequal and coprime-ish
         // so the composition never visibly repeats. ~14-26s per cycle.
         px: 0.10 + r() * 0.13,
@@ -1477,6 +1492,25 @@ p.body{color:var(--ink-80);max-width:66ch;}
         running = !running;
         b.textContent = running ? 'Pause' : 'Play';
         if (running) start(); else stop();
+      });
+    });
+
+    var swaps = Array.prototype.slice.call(root.querySelectorAll('[data-swap]'));
+    swaps.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var next = (RECIPES[recipe] || {}).swap;
+        if (!next) return;
+        recipe = next;
+        state = makeBlobs(recipe, seed);
+        paint(ctx, canvas.width, canvas.height, state, performance.now());
+        var spec = RECIPES[recipe];
+        var nm = root.querySelector('.gen-meta .nm');
+        var st = root.querySelector('.gen-meta .st');
+        if (nm && spec.label) nm.textContent = spec.label;
+        if (st && spec.stops) st.textContent = spec.stops;
+        // ground luminance decides whether the caption sits in ink or cream
+        var meta = root.querySelector('.gen-meta');
+        if (meta) meta.classList.toggle('on-dark', spec.ground === 'clay' || spec.ground === 'ink');
       });
     });
 

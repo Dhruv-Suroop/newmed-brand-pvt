@@ -517,6 +517,10 @@ p.body{color:var(--ink-80);max-width:66ch;}
 .gen-bar button[data-save]:hover{background:var(--ink);}
 .gen-bar .hint{font-size:12.5px;color:var(--ink-45);margin-left:auto;}
 .gen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.gen-grid.two{grid-template-columns:repeat(2,1fr);}
+/* captions flip to cream on the dark grounds */
+.gen .gen-meta.on-dark .nm{color:var(--cream);}
+.gen .gen-meta.on-dark .st{color:rgba(244,241,234,.72);}
 
 /* ---- Typography page ---- */
 .spec-hero{border-radius:14px;background:var(--bone);padding:clamp(34px,5vw,72px);
@@ -1252,13 +1256,18 @@ p.body{color:var(--ink-80);max-width:66ch;}
     ink:    [57, 30, 26]
   };
 
-  // Recipes name which palette colours may appear, and the ground they sit on.
+  /* Recipes name which palette colours may appear, and the ground they sit on.
+     `swap` points at the inverted pairing, for the switch control. */
   var RECIPES = {
-    sunrise:  { ground: 'cream', blobs: ['orange', 'orange', 'amber', 'linen'] },
-    amberrise:{ ground: 'cream', blobs: ['amber', 'amber', 'orange', 'linen'] },
-    organic:  { ground: 'cream', blobs: ['amber', 'orange', 'linen', 'amber', 'orange'] },
-    deep:     { ground: 'linen', blobs: ['clay', 'orange', 'amber', 'clay'] },
-    cool:     { ground: 'cream', blobs: ['teal', 'amber', 'linen', 'teal'] }
+    organic:    { ground: 'cream',  blobs: ['amber', 'orange', 'linen', 'amber', 'orange'] },
+    sunrise:    { ground: 'orange', blobs: ['amber', 'amber', 'amber', 'amber'], swap: 'sunriseAlt',
+                  label: 'Sunrise', stops: 'Amber on Signal Orange' },
+    sunriseAlt: { ground: 'amber',  blobs: ['orange', 'orange', 'orange', 'orange'], swap: 'sunrise',
+                  label: 'Sunrise, inverted', stops: 'Signal Orange on Amber' },
+    deep:       { ground: 'clay',   blobs: ['orange', 'orange', 'amber', 'orange'], swap: 'deepAlt',
+                  label: 'Deep', stops: 'Signal Orange on Clay' },
+    deepAlt:    { ground: 'ink',    blobs: ['orange', 'orange', 'amber', 'orange'], swap: 'deep',
+                  label: 'Deep, ink', stops: 'Signal Orange on Clinical Ink' }
   };
 
   function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
@@ -1280,7 +1289,7 @@ p.body{color:var(--ink-80);max-width:66ch;}
         x: 0.12 + r() * 0.76,          // normalised centre
         y: 0.12 + r() * 0.76,
         rad: 0.42 + r() * 0.46,        // normalised radius
-        alpha: 0.55 + r() * 0.4,
+        alpha: 0.62 + r() * 0.34,
         // drift: unhurried but perceptible. Periods are unequal and coprime-ish
         // so the composition never visibly repeats. ~14-26s per cycle.
         px: 0.10 + r() * 0.13,
@@ -1380,6 +1389,25 @@ p.body{color:var(--ink-80);max-width:66ch;}
         running = !running;
         b.textContent = running ? 'Pause' : 'Play';
         if (running) start(); else stop();
+      });
+    });
+
+    var swaps = Array.prototype.slice.call(root.querySelectorAll('[data-swap]'));
+    swaps.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var next = (RECIPES[recipe] || {}).swap;
+        if (!next) return;
+        recipe = next;
+        state = makeBlobs(recipe, seed);
+        paint(ctx, canvas.width, canvas.height, state, performance.now());
+        var spec = RECIPES[recipe];
+        var nm = root.querySelector('.gen-meta .nm');
+        var st = root.querySelector('.gen-meta .st');
+        if (nm && spec.label) nm.textContent = spec.label;
+        if (st && spec.stops) st.textContent = spec.stops;
+        // ground luminance decides whether the caption sits in ink or cream
+        var meta = root.querySelector('.gen-meta');
+        if (meta) meta.classList.toggle('on-dark', spec.ground === 'clay' || spec.ground === 'ink');
       });
     });
 
