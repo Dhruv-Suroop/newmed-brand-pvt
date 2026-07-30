@@ -522,6 +522,77 @@ p.body{color:var(--ink-80);max-width:66ch;}
 .gen .gen-meta.on-dark .nm{color:var(--cream);}
 .gen .gen-meta.on-dark .st{color:rgba(244,241,234,.72);}
 
+
+/* ==== Typography page (rebuilt) ==== */
+/* Type scale specimens */
+.tscale{display:flex;flex-direction:column;}
+.tscale .trow{border-top:1px solid var(--line);padding:20px 0 22px;}
+.tscale .trow:first-child{border-top:0;}
+.tlab{display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:12px;
+  font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-45);}
+.tlab b{color:var(--ink-60);font-weight:600;}
+.tsamp{color:var(--ink);font-weight:600;letter-spacing:-.02em;line-height:1.04;
+  font-size:min(var(--sz),12.5vw);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tsamp.body{font-weight:400;letter-spacing:-.005em;line-height:1.5;white-space:normal;}
+.tsamp.eyebrow{font-weight:600;letter-spacing:.14em;text-transform:uppercase;}
+
+/* Weights */
+.wgrid{display:flex;flex-direction:column;}
+.wrow{display:flex;align-items:baseline;gap:clamp(16px,3vw,40px);
+  border-top:1px solid var(--line);padding:16px 0;}
+.wrow:first-child{border-top:0;}
+.wrow .wn{flex:0 0 auto;width:132px;color:var(--ink-60);font-size:13px;font-weight:500;}
+.wrow .wn i{display:block;color:var(--ink-45);font-style:normal;font-size:12px;}
+.wrow .ws{font-size:clamp(26px,3.6vw,40px);letter-spacing:-.02em;color:var(--ink);font-weight:var(--w);}
+
+/* Arrow rules list */
+.arules{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.arule{background:var(--bone);border-radius:14px;padding:22px 22px 24px;}
+.arule h4{margin:0 0 8px;color:var(--clay);font-size:18px;letter-spacing:-.01em;}
+.arule p{margin:0;color:var(--ink-80);font-size:15px;line-height:1.5;}
+
+/* ---- Type + arrow generator ---- */
+.tgen{background:var(--bone);border-radius:16px;padding:clamp(22px,3vw,40px);}
+.tg-field{display:block;margin-bottom:8px;font-size:13px;font-weight:500;color:var(--ink-60);}
+.tg-input{width:100%;font-family:inherit;font-size:16px;color:var(--ink);
+  background:var(--cream);border:1px solid var(--line);border-radius:10px;
+  padding:12px 14px;outline:none;transition:border-color .16s var(--ease);}
+.tg-input:focus{border-color:var(--orange);}
+.tg-stage{margin-top:22px;min-height:1.6em;color:var(--ink);
+  font-size:clamp(28px,4.4vw,58px);font-weight:600;letter-spacing:-.02em;line-height:1.5;
+  text-wrap:balance;}
+.tg-word{cursor:pointer;border-radius:5px;transition:background .12s var(--ease);}
+.tg-stage>.tg-word:hover{background:rgba(57,30,26,.07);}
+/* the arrow highlight — reuses [data-arw] paint, overrides layout for text flow */
+/* line-height:1 fixes the arrow height so the pointed cap (42.6% of height)
+   always clears the right padding, at any font-size. */
+.tg-hl{display:inline-block;vertical-align:baseline;white-space:nowrap;line-height:1;
+  padding:.24em .84em .28em .34em;color:var(--tgtext,var(--cream));font-weight:600;}
+.tg-hl .tg-word{color:inherit;}
+.tg-hl .tg-word:hover{background:rgba(244,241,234,.16);}
+.tg-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:22px;}
+.tg-controls .lbl{font-size:13px;color:var(--ink-45);margin-right:2px;}
+.tg-swatch{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);
+  cursor:pointer;padding:0;transition:transform .12s var(--ease);}
+.tg-swatch:hover{transform:scale(1.08);}
+.tg-swatch.is-on{outline:2px solid var(--ink);outline-offset:2px;}
+.tg-sw-sunset{background:linear-gradient(90deg,#ff9d00,#ff5122);}
+.tg-sw-coral{background:#ff5122;}
+.tg-sw-amber{background:#ff9d00;}
+.tg-sw-ink{background:#391e1a;}
+.tg-examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.tg-examples button, .tg-controls .tg-x{font-family:inherit;font-size:13px;font-weight:500;
+  padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--cream);
+  color:var(--ink);cursor:pointer;transition:background .14s var(--ease),color .14s var(--ease);}
+.tg-examples button:hover{background:var(--ink);color:var(--cream);border-color:transparent;}
+.tg-hint{margin-top:16px;font-size:13.5px;color:var(--ink-45);min-height:1.2em;}
+
+@media (max-width:720px){
+  .arules{grid-template-columns:1fr;}
+  .wrow .wn{width:100px;}
+}
+/* ==== end Typography rebuild ==== */
+
 /* ---- Typography page ---- */
 .spec-hero{border-radius:14px;background:var(--bone);padding:clamp(34px,5vw,72px);
   min-height:clamp(320px,42vw,560px);display:flex;flex-direction:column;justify-content:center;gap:6px;overflow:hidden;}
@@ -1041,17 +1112,13 @@ p.body{color:var(--ink-80);max-width:66ch;}
         <div class="nav-sec" data-sec="type">
           <a class="ns-link" href="type.html" data-nav>Typography</a>
           <div class="ns-subs">
-            <a href="#t-specimen" data-parent="type">Mona Sans</a>
-            <a href="#t-weights" data-parent="type">Our typeface</a>
-            <a href="#t-arrows" data-parent="type">Type and the arrow</a>
+            <a href="#t-typeface" data-parent="type">Mona Sans</a>
             <a href="#t-scale" data-parent="type">Type scale</a>
-            <a href="#t-everyday" data-parent="type">Everyday usage</a>
-            <a href="#t-expressive" data-parent="type">Expressive usage</a>
-            <a href="#t-setting" data-parent="type">Typesetting</a>
-            <a href="#t-features" data-parent="type">Typeface features</a>
-            <a href="#t-misuse" data-parent="type">Incorrect usage</a>
-            <a href="#t-lang" data-parent="type">Languages</a>
-            <a href="#t-res" data-parent="type">Resources</a>
+            <a href="#t-weights" data-parent="type">Weights</a>
+            <a href="#t-arrows" data-parent="type">Type and the arrow</a>
+            <a href="#t-construction" data-parent="type">Construction</a>
+            <a href="#t-generator" data-parent="type">Arrow generator</a>
+            <a href="#t-setting" data-parent="type">Setting rules</a>
           </div>
         </div>
         <div class="nav-sec" data-sec="voice">
@@ -1246,6 +1313,164 @@ p.body{color:var(--ink-80);max-width:66ch;}
 
 <div class="toast" id="toast"><span class="tk">✓</span> <span id="toast-msg">Copied</span></div>
 
+<script>
+/* NewMed Skills — THE ARROW engine (locked geometry).
+   Standalone so both the app and the static handoff pages can paint arrows
+   without pulling in the navigation code. Exposes window.NMArrow. */
+(function () {
+  'use strict';
+
+  /* ---- THE ARROW ----
+     Geometry ported verbatim from the brand's master SVGs:
+     corner radius = 10% of height, point length = 42.6% of height.
+     Only colour may change; radius and point angle never do. */
+  var ARROW_M = 165.88;
+
+  function arrowPathD(W, H, notch) {
+    var s = H / ARROW_M;
+    var r = 16.59 * s, P = 70.59 * s;
+    var x0 = Math.max(W - P, notch ? 6 : r);
+    var pt = 'c ' + (7.82*s) + ' 0 ' + (15.19*s) + ' ' + (3.68*s) + ' ' + (19.89*s) + ' ' + (9.93*s) +
+             ' l ' + (47.37*s) + ' ' + (63.04*s) +
+             ' c ' + (4.44*s) + ' ' + (5.9*s) + ' ' + (4.44*s) + ' ' + (14.03*s) + ' 0 ' + (19.93*s) +
+             ' l ' + (-47.37*s) + ' ' + (63.04*s) +
+             ' c ' + (-4.7*s) + ' ' + (6.25*s) + ' ' + (-12.07*s) + ' ' + (9.93*s) + ' ' + (-19.89*s) + ' ' + (9.93*s);
+    if (notch) {
+      var nt = 'c ' + (7.82*s) + ' 0 ' + (15.19*s) + ' ' + (-3.68*s) + ' ' + (19.89*s) + ' ' + (-9.93*s) +
+               ' l ' + (47.37*s) + ' ' + (-63.04*s) +
+               ' c ' + (4.44*s) + ' ' + (-5.9*s) + ' ' + (4.44*s) + ' ' + (-14.03*s) + ' 0 ' + (-19.93*s) +
+               ' l ' + (-47.37*s) + ' ' + (-63.04*s) +
+               ' c ' + (-4.7*s) + ' ' + (-6.25*s) + ' ' + (-12.07*s) + ' ' + (-9.93*s) + ' ' + (-19.89*s) + ' ' + (-9.93*s);
+      return 'M 0 0 H ' + x0 + ' ' + pt + ' H 0 ' + nt + ' Z';
+    }
+    return 'M ' + r + ' 0 H ' + x0 + ' ' + pt + ' H ' + r +
+           ' c ' + (-9.16*s) + ' 0 ' + (-16.59*s) + ' ' + (-7.43*s) + ' ' + (-16.59*s) + ' ' + (-16.59*s) +
+           ' V ' + r + ' c 0 ' + (-9.16*s) + ' ' + (7.43*s) + ' ' + (-16.59*s) + ' ' + (16.59*s) + ' ' + (-16.59*s) + ' Z';
+  }
+
+  // Portrait variant: arrow clips the bottom only; the head juts freely above.
+  function arrowOpenTopD(W, H) {
+    var s = H / ARROW_M, B = 4000;
+    var r = 16.59 * s, P = 70.59 * s;
+    var x0 = Math.max(W - P, r);
+    var pt = 'c ' + (7.82*s) + ' 0 ' + (15.19*s) + ' ' + (3.68*s) + ' ' + (19.89*s) + ' ' + (9.93*s) +
+             ' l ' + (47.37*s) + ' ' + (63.04*s) +
+             ' c ' + (4.44*s) + ' ' + (5.9*s) + ' ' + (4.44*s) + ' ' + (14.03*s) + ' 0 ' + (19.93*s) +
+             ' l ' + (-47.37*s) + ' ' + (63.04*s) +
+             ' c ' + (-4.7*s) + ' ' + (6.25*s) + ' ' + (-12.07*s) + ' ' + (9.93*s) + ' ' + (-19.89*s) + ' ' + (9.93*s);
+    return 'M ' + (-B) + ' ' + (-B) + ' H ' + B + ' V 0 H ' + x0 + ' ' + pt + ' H ' + r +
+           ' c ' + (-9.16*s) + ' 0 ' + (-16.59*s) + ' ' + (-7.43*s) + ' ' + (-16.59*s) + ' ' + (-16.59*s) +
+           ' V ' + r + ' c 0 ' + (-9.16*s) + ' ' + (7.43*s) + ' ' + (-16.59*s) + ' ' + (16.59*s) + ' ' + (-16.59*s) +
+           ' H ' + (-B) + ' Z';
+  }
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var gseq = 0;
+
+  function paintArrow(el) {
+    var W = el.offsetWidth, H = el.offsetHeight;
+    if (W < 4 || H < 4) return;
+    var fill = el.getAttribute('data-arw') || 'coral';
+    var notch = el.hasAttribute('data-notch');
+    var outline = el.hasAttribute('data-outline');
+    var old = el.querySelector(':scope > svg.arw-bg');
+    if (old) old.remove();
+
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('class', 'arw-bg');
+    svg.setAttribute('width', W); svg.setAttribute('height', H);
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('aria-hidden', 'true');
+
+    var f = fill;
+    if (fill === 'sunset') {
+      var id = 'nmarw' + (++gseq);
+      var defs = document.createElementNS(NS, 'defs');
+      var lg = document.createElementNS(NS, 'linearGradient');
+      lg.setAttribute('id', id); lg.setAttribute('x1','0'); lg.setAttribute('y1','0');
+      lg.setAttribute('x2','1'); lg.setAttribute('y2','0');
+      [['0','#ff9d00'],['1','#ff5122']].forEach(function (p) {
+        var st = document.createElementNS(NS, 'stop');
+        st.setAttribute('offset', p[0]); st.setAttribute('stop-color', p[1]);
+        lg.appendChild(st);
+      });
+      defs.appendChild(lg); svg.appendChild(defs);
+      f = 'url(#' + id + ')';
+    } else {
+      var map = { coral:'#ff5122', amber:'#ff9d00', cream:'#efe9e0', white:'#f4f1ea', ink:'#391e1a', maroon:'#7c3134' };
+      f = map[fill] || fill;
+    }
+
+    var path = document.createElementNS(NS, 'path');
+    path.setAttribute('d', arrowPathD(W, H, notch));
+    if (outline) {
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', f);
+      path.setAttribute('stroke-width', el.getAttribute('data-sw') || 2);
+    } else {
+      path.setAttribute('fill', f);
+    }
+    svg.appendChild(path);
+    el.insertBefore(svg, el.firstChild);
+  }
+
+  /* Portrait: an arrow occupies the lower part of the frame; the cutout is
+     clipped to it on the bottom only, so head and shoulders jut freely above. */
+  function paintPortrait(el) {
+    var img = el.querySelector('img');
+    if (!img) return;
+    var W = img.offsetWidth, H = img.offsetHeight;
+    if (W < 4 || H < 4) return;
+
+    var frac = parseFloat(el.getAttribute('data-arw-portrait')) || 0.58; // arrow height as share of image
+    var aH = Math.round(H * frac), aTop = H - aH;
+
+    var shape = el.querySelector(':scope > .pa-arrow');
+    if (!shape) {
+      shape = document.createElement('span');
+      shape.className = 'pa-arrow';
+      shape.setAttribute('data-arw', el.getAttribute('data-fill') || 'coral');
+      el.insertBefore(shape, el.firstChild);
+    }
+    shape.style.height = aH + 'px';
+    paintArrow(shape);
+
+    var id = el.getAttribute('data-clip-id');
+    if (!id) { id = 'nmclip' + (++gseq); el.setAttribute('data-clip-id', id); }
+    var old = el.querySelector(':scope > svg.arw-clip');
+    if (old) old.remove();
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('class', 'arw-clip'); svg.setAttribute('width', '0'); svg.setAttribute('height', '0');
+    var defs = document.createElementNS(NS, 'defs');
+    var cp = document.createElementNS(NS, 'clipPath');
+    cp.setAttribute('id', id); cp.setAttribute('clipPathUnits', 'userSpaceOnUse');
+    var pth = document.createElementNS(NS, 'path');
+    pth.setAttribute('d', arrowOpenTopD(W, aH));
+    pth.setAttribute('transform', 'translate(0,' + aTop + ')');
+    cp.appendChild(pth); defs.appendChild(cp); svg.appendChild(defs);
+    el.insertBefore(svg, el.firstChild);
+    img.style.clipPath = 'url(#' + id + ')';
+  }
+
+  function paintAllArrows() {
+    Array.prototype.slice.call(document.querySelectorAll('[data-arw]')).forEach(paintArrow);
+    Array.prototype.slice.call(document.querySelectorAll('[data-arw-portrait]')).forEach(paintPortrait);
+  }
+
+  // Expose the locked-geometry engine so other modules (e.g. the type
+  // generator) reuse the exact arrow rather than re-deriving its maths.
+  window.NMArrow = { paint: paintArrow, pathD: arrowPathD, paintAll: paintAllArrows };
+
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(paintAllArrows);
+  paintAllArrows();
+  window.addEventListener('resize', function () {
+    clearTimeout(window.__arwT);
+    window.__arwT = setTimeout(paintAllArrows, 120);
+  });
+  document.addEventListener('nm:repaint', paintAllArrows);
+})();
+
+</script>
 
 <script>
 /* NewMed Skills — live organic gradient generator.
@@ -1459,6 +1684,139 @@ p.body{color:var(--ink-80);max-width:66ch;}
       if (r.width > 2 && c.width < 3) window.dispatchEvent(new Event('resize'));
     });
   });
+})();
+
+</script>
+<script>
+/* NewMed Skills — Type + Arrow generator.
+   Type a headline, click a word to start the arrow highlight and another to end
+   it. The run is wrapped in THE ARROW — rounded start cap on the left end,
+   pointed cap on the right end — reusing the locked-geometry engine from app.js
+   (window.NMArrow). The arrow always sits on the ENDS of the chosen text. */
+(function () {
+  'use strict';
+
+  var root = document.getElementById('typegen');
+  if (!root) return;
+
+  var input   = root.querySelector('.tg-input');
+  var stage   = root.querySelector('.tg-stage');
+  var hint    = root.querySelector('.tg-hint');
+  var fillBtns = Array.prototype.slice.call(root.querySelectorAll('[data-fill]'));
+
+  // text colour that keeps contrast on each fill (no off-palette values)
+  var TEXTON = { sunset: 'cream', coral: 'cream', amber: 'ink', ink: 'cream', maroon: 'cream' };
+
+  var words = [];
+  var selStart = -1, selEnd = -1;   // inclusive highlighted run
+  var anchor = -1, hasRange = false;
+  var fill = 'sunset';
+
+  function tokenize(str) {
+    return str.trim().split(/\s+/).filter(Boolean);
+  }
+
+  function setHint() {
+    if (selStart < 0) { hint.textContent = 'Click a word to start the arrow.'; return; }
+    if (!hasRange)    { hint.textContent = 'Click another word to set where the arrow ends — or the same word for one.'; return; }
+    var n = selEnd - selStart + 1;
+    hint.textContent = n < 2
+      ? 'Tip: highlight two or more words — the arrow phrase carries the movement.'
+      : 'Nice. The arrow marks “' + words.slice(selStart, selEnd + 1).join(' ') + '”.';
+  }
+
+  function selectWord(i) {
+    if (selStart < 0 || hasRange) {          // fresh anchor
+      anchor = i; selStart = i; selEnd = i; hasRange = false;
+    } else {                                  // complete the run
+      selStart = Math.min(anchor, i);
+      selEnd   = Math.max(anchor, i);
+      hasRange = true;
+    }
+    render();
+  }
+
+  function render() {
+    stage.textContent = '';
+    var hl = null;
+    for (var i = 0; i < words.length; i++) {
+      if (i === selStart && selStart >= 0) {
+        // open the arrow highlight and pour the whole run into it
+        hl = document.createElement('span');
+        hl.className = 'tg-hl';
+        hl.setAttribute('data-arw', fill);
+        hl.style.setProperty('--tgtext', 'var(--' + (TEXTON[fill] || 'cream') + ')');
+        for (var j = selStart; j <= selEnd; j++) {
+          if (j > selStart) hl.appendChild(document.createTextNode(' '));
+          hl.appendChild(word(j));
+        }
+        stage.appendChild(hl);
+        stage.appendChild(document.createTextNode(' '));
+        i = selEnd;
+      } else {
+        stage.appendChild(word(i));
+        stage.appendChild(document.createTextNode(' '));
+      }
+    }
+    // paint the arrow behind the run (synchronous; offset sizes are ready)
+    if (hl && window.NMArrow) window.NMArrow.paint(hl);
+    setHint();
+  }
+
+  function word(i) {
+    var s = document.createElement('span');
+    s.className = 'tg-word';
+    s.setAttribute('data-i', i);
+    s.textContent = words[i];
+    return s;
+  }
+
+  function rebuild(keepSel) {
+    var prevLen = words.length;
+    words = tokenize(input.value);
+    if (!keepSel || selStart >= words.length || selEnd >= words.length || words.length !== prevLen) {
+      // default: highlight the last two words, modelling the "last line" rule
+      if (words.length >= 2) { selStart = words.length - 2; selEnd = words.length - 1; }
+      else if (words.length === 1) { selStart = selEnd = 0; }
+      else { selStart = selEnd = -1; }
+      anchor = selStart; hasRange = true;
+    }
+    render();
+  }
+
+  // events -------------------------------------------------------------
+  stage.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-i]');
+    if (el) selectWord(parseInt(el.getAttribute('data-i'), 10));
+  });
+
+  input.addEventListener('input', function () { rebuild(true); });
+
+  fillBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      fill = b.getAttribute('data-fill');
+      fillBtns.forEach(function (x) { x.classList.toggle('is-on', x === b); });
+      render();
+    });
+  });
+
+  root.querySelectorAll('[data-example]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      input.value = b.getAttribute('data-example');
+      rebuild(false);
+    });
+  });
+
+  // repaint when the type section becomes visible or the window resizes,
+  // since the arrow needs real box metrics to size itself
+  document.addEventListener('nm:repaint', function () { if (stage.offsetWidth > 4) render(); });
+  window.addEventListener('resize', function () {
+    clearTimeout(root.__t); root.__t = setTimeout(render, 140);
+  });
+
+  fillBtns.forEach(function (x) { x.classList.toggle('is-on', x.getAttribute('data-fill') === fill); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
+  rebuild(false);
 })();
 
 </script>

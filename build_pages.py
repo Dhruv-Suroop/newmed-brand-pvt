@@ -43,10 +43,15 @@ css = re.sub(r"url\('(assets/fonts/[^']+)'\)",
              lambda m: f"url('{datauri(ROOT / m.group(1))}')", css)
 html = re.sub(r'<link rel="stylesheet" href="styles\.css[^"]*">',
               "<style>\n" + css + "\n</style>", html)
-html = re.sub(r'<script src="app\.js[^"]*"></script>', "", html)          # static: drop JS
-# keep the gradient generator: it is self-contained and needs no nav JS
-gjs = (ROOT / "gradient.js").read_text()
-html = re.sub(r'<script src="gradient\.js[^"]*"></script>', "<script>\n" + gjs + "\n</script>", html)
+html = re.sub(r'<script src="app\.js[^"]*"></script>', "", html)          # static: drop nav JS
+# keep the self-contained modules (no nav code): the arrow engine, the gradient
+# generator, and the type generator — inline so the handoff pages render live.
+for mod in ("arrow.js", "gradient.js", "typegen.js"):
+    src = (ROOT / mod).read_text()
+    # function replacement: the JS contains backslashes (regex literals) that
+    # would otherwise be parsed as re template escapes.
+    html = re.sub(r'<script src="%s[^"]*"></script>' % re.escape(mod),
+                  lambda m, s=src: "<script>\n" + s + "\n</script>", html)
 html = html.replace('<link rel="icon" href="favicon.png">',
                     f'<link rel="icon" href="{datauri(ROOT / "assets/logos/png/favicon.png")}">')
 
