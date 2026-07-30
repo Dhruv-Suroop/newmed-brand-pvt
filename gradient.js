@@ -23,10 +23,10 @@
                   label: 'Sunrise', stops: 'Amber on Signal Orange' },
     sunriseAlt: { ground: 'amber',  blobs: ['orange', 'orange', 'orange', 'orange'], swap: 'sunrise',
                   label: 'Sunrise, inverted', stops: 'Signal Orange on Amber' },
-    deep:       { ground: 'clay',   blobs: ['orange', 'orange', 'amber', 'orange'], swap: 'deepAlt',
-                  label: 'Deep', stops: 'Signal Orange on Clay' },
-    deepAlt:    { ground: 'ink',    blobs: ['orange', 'orange', 'amber', 'orange'], swap: 'deep',
-                  label: 'Deep, ink', stops: 'Signal Orange on Clinical Ink' }
+    deep:       { ground: 'ink', mode: 'edge', colour: 'amber',  swap: 'deepAlt',
+                  label: 'Deep', stops: 'Amber on Clinical Ink' },
+    deepAlt:    { ground: 'ink', mode: 'edge', colour: 'orange', swap: 'deep',
+                  label: 'Deep', stops: 'Signal Orange on Clinical Ink' }
   };
 
   function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
@@ -42,6 +42,26 @@
 
   function makeBlobs(recipe, seed) {
     var r = rng(seed), spec = RECIPES[recipe] || RECIPES.organic, out = [];
+    if (spec.mode === 'edge') {
+      // one big, soft form hugging a random edge — a couple of overlapping globs
+      // so it reads as a single mass. Low alpha keeps the ink ground dominant.
+      var edges = [{ x: 0.02, y: 0.5 }, { x: 0.98, y: 0.5 }, { x: 0.5, y: 0.02 }, { x: 0.5, y: 0.98 },
+                   { x: 0.04, y: 0.94 }, { x: 0.96, y: 0.06 }, { x: 0.04, y: 0.06 }, { x: 0.96, y: 0.94 }];
+      var e = edges[Math.floor(r() * edges.length)];
+      var n = 2 + Math.floor(r() * 2);            // 2–3 attached globs
+      for (var k = 0; k < n; k++) {
+        out.push({
+          colour: spec.colour,
+          x: e.x + (r() - 0.5) * 0.16,
+          y: e.y + (r() - 0.5) * 0.16,
+          rad: 0.74 + r() * 0.30,                 // big
+          alpha: 0.30 + r() * 0.14,               // subtle
+          px: 0.03 + r() * 0.05, py: 0.03 + r() * 0.05,
+          sx: 2600 + r() * 1800, sy: 3000 + r() * 1800, phase: r() * Math.PI * 2
+        });
+      }
+      return { ground: spec.ground, blobs: out };
+    }
     spec.blobs.forEach(function (name, i) {
       out.push({
         colour: name,

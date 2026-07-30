@@ -66,7 +66,7 @@ def repl(m):
 
 html = re.sub(r'(src|href)="(assets/[^"]+)"', repl, html)
 
-SECTIONS = ["intro", "brand", "logo", "colour", "type", "voice", "applications", "downloads"]
+SECTIONS = ["intro", "brand", "logo", "arrow", "colour", "type", "voice", "applications", "downloads"]
 FILE = {s: ("home.html" if s == "intro" else f"{s}.html") for s in SECTIONS}
 
 # Rewrite section-level nav (#brand -> brand.html) so the static pages navigate
