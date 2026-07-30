@@ -2129,10 +2129,11 @@ p.body{color:var(--ink-80);max-width:66ch;}
 </script>
 <script>
 /* NewMed Skills — business card generator.
-   Staff type their details; front + back render live and export as a
-   print-ready PDF (3.5 x 2 in, one face per page) via the browser's
-   Save-as-PDF. Self-contained: the card CSS is shared between the on-page
-   preview and the print window, logos load from the hosted brand assets. */
+   Reproduces the supplied two-artboard design:
+   FRONT  = coral, cream logo + rule + tagline, website centred at the foot.
+   BACK   = linen, a white arrow band holding the name + designation with the
+            coral symbol at its point, then email/phone and address in two
+            columns. Staff fill the back; export a print-ready PDF (3.5x2in). */
 (function () {
   'use strict';
 
@@ -2140,70 +2141,65 @@ p.body{color:var(--ink-80);max-width:66ch;}
   if (!root) return;
 
   var BASE = 'https://dhruv-suroop.github.io/newmed-brand/assets/logos';
-  var LOGO = BASE + '/png/stack-colour.png';
-  var LOGO_C = BASE + '/svg/stack-cream.svg';
+  var LOGO_CREAM = BASE + '/svg/stack-cream.svg';
+  var SYMBOL = BASE + '/png/symbol-colour.png';
 
-  // locked-geometry arrow (radius 10% of height, point 42.6%) for the accent
-  function arrowPathD(W, H) {
-    var s = H / 165.88, r = 16.59 * s, P = 70.59 * s, x0 = Math.max(W - P, r);
-    var pt = 'c ' + (7.82 * s) + ' 0 ' + (15.19 * s) + ' ' + (3.68 * s) + ' ' + (19.89 * s) + ' ' + (9.93 * s) +
-      ' l ' + (47.37 * s) + ' ' + (63.04 * s) +
-      ' c ' + (4.44 * s) + ' ' + (5.9 * s) + ' ' + (4.44 * s) + ' ' + (14.03 * s) + ' 0 ' + (19.93 * s) +
-      ' l ' + (-47.37 * s) + ' ' + (63.04 * s) +
-      ' c ' + (-4.7 * s) + ' ' + (6.25 * s) + ' ' + (-12.07 * s) + ' ' + (9.93 * s) + ' ' + (-19.89 * s) + ' ' + (9.93 * s);
-    return 'M ' + r + ' 0 H ' + x0 + ' ' + pt + ' H ' + r +
-      ' c ' + (-9.16 * s) + ' 0 ' + (-16.59 * s) + ' ' + (-7.43 * s) + ' ' + (-16.59 * s) + ' ' + (-16.59 * s) +
-      ' V ' + r + ' c 0 ' + (-9.16 * s) + ' ' + (7.43 * s) + ' ' + (-16.59 * s) + ' ' + (16.59 * s) + ' ' + (-16.59 * s) + ' Z';
-  }
-  var ACCENT = arrowPathD(100, 34);
-
-  // visual rules in em so one template scales to the preview (px) and print (in)
   var CARD_CSS =
     '.bcard{position:relative;overflow:hidden;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}' +
     '.bcard *{box-sizing:border-box;}' +
-    '.bcard-front{background:#f4f1ea;padding:1.35em 1.6em;}' +
-    '.bc-logo{height:2.5em;display:block;}' +
-    '.bc-accent{position:absolute;top:1.5em;right:0;width:3.6em;height:1.22em;}' +
-    '.bc-info{position:absolute;left:1.6em;right:1.2em;bottom:1.35em;}' +
-    '.bc-name{font-size:1.5em;font-weight:bold;color:#391e1a;line-height:1;}' +
-    '.bc-name .cr{color:#7c3134;font-weight:normal;font-size:.72em;}' +
-    '.bc-title{font-size:1em;color:#7c3134;margin-top:.35em;}' +
-    '.bc-contact{font-size:.82em;color:#391e1a;margin-top:.95em;line-height:1.55;}' +
-    '.bc-contact a{color:#ff5122;text-decoration:none;}' +
-    '.bcard-back{background:#ff5122;display:flex;flex-direction:column;align-items:center;justify-content:center;}' +
-    '.bc-logo-c{height:3em;}' +
-    '.bc-tag{font-size:.92em;color:#f4f1ea;margin-top:1.15em;}';
+    /* front */
+    '.bcard-front{background:#ff5122;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.4em;}' +
+    '.bc-lock{display:flex;align-items:center;gap:1.1em;}' +
+    '.bc-flogo{height:3em;display:block;}' +
+    '.bc-rule{width:1.5px;height:3.2em;background:#f4f1ea;opacity:.85;}' +
+    '.bc-tagline{color:#f4f1ea;font-weight:bold;font-size:1em;line-height:1.18;max-width:8.6em;}' +
+    '.bc-web{position:absolute;left:0;right:0;bottom:1.3em;text-align:center;color:#f4f1ea;font-size:.92em;}' +
+    /* back */
+    '.bcard-back{background:#f4f1ea;}' +
+    '.bc-band{position:absolute;top:1.5em;left:0;width:80%;height:2.7em;background:#fff;' +
+      'display:flex;flex-direction:column;justify-content:center;padding-left:2.1em;' +
+      'clip-path:polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);}' +
+    '.bc-name2{color:#7c3134;font-weight:bold;font-size:1.55em;line-height:1;}' +
+    '.bc-desig{color:#ff5122;font-weight:bold;font-size:.72em;letter-spacing:.09em;margin-top:.25em;}' +
+    '.bc-symbol{position:absolute;top:1.5em;right:1.4em;height:2.7em;}' +
+    '.bc-cols{position:absolute;left:2.1em;right:1.5em;bottom:1.5em;display:flex;justify-content:space-between;gap:1.4em;}' +
+    '.bc-col{color:#391e1a;font-size:.85em;line-height:1.45;max-width:9.5em;}';
 
   var st = document.createElement('style'); st.textContent = CARD_CSS; document.head.appendChild(st);
 
-  var fields = ['name', 'creds', 'title', 'email', 'phone', 'website', 'tagline'];
+  var fields = ['name', 'designation', 'email', 'phone', 'address'];
   var inputs = {};
   fields.forEach(function (f) { inputs[f] = root.querySelector('[data-f="' + f + '"]'); });
   var front = root.querySelector('.bc-front-wrap');
   var back = root.querySelector('.bc-back-wrap');
 
   function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
-  function vals() { var v = {}; fields.forEach(function (f) { v[f] = inputs[f] ? inputs[f].value.trim() : ''; }); return v; }
+  function vals() { var v = {}; fields.forEach(function (f) { v[f] = inputs[f] ? inputs[f].value : ''; }); return v; }
 
-  function innerFront(v) {
-    var name = esc(v.name) || 'Your Name';
-    var creds = v.creds ? ' <span class="cr">' + esc(v.creds) + '</span>' : '';
-    var lines = [];
-    if (v.email) lines.push('<a href="mailto:' + esc(v.email) + '">' + esc(v.email) + '</a>');
-    if (v.phone) lines.push(esc(v.phone));
-    if (v.website) lines.push(esc(v.website));
-    return '<img class="bc-logo" src="' + LOGO + '" alt="NewMed Skills">' +
-      '<svg class="bc-accent" viewBox="0 0 100 34" preserveAspectRatio="none" aria-hidden="true"><path d="' + ACCENT + '" fill="#ff5122"/></svg>' +
-      '<div class="bc-info"><div class="bc-name">' + name + creds + '</div>' +
-      '<div class="bc-title">' + (esc(v.title) || 'Job title') + '</div>' +
-      '<div class="bc-contact">' + lines.join('<br>') + '</div></div>';
+  function innerFront() {
+    return '<div class="bc-lock">' +
+        '<img class="bc-flogo" src="' + LOGO_CREAM + '" alt="NewMed Skills">' +
+        '<span class="bc-rule"></span>' +
+        '<div class="bc-tagline">Building Workforce-Ready Healthcare Talent.</div>' +
+      '</div>' +
+      '<div class="bc-web">newmedskills.com</div>';
   }
+
   function innerBack(v) {
-    return '<img class="bc-logo-c" src="' + LOGO_C + '" alt="NewMed Skills">' +
-      '<div class="bc-tag">' + (esc(v.tagline) || 'From first assessment to first shift.') + '</div>';
+    var name = esc((v.name || '').trim()) || 'First Name';
+    var desig = esc((v.designation || '').trim()).toUpperCase() || 'DESIGNATION';
+    var left = [];
+    if ((v.email || '').trim()) left.push(esc(v.email.trim()));
+    if ((v.phone || '').trim()) left.push(esc(v.phone.trim()));
+    var addr = esc((v.address || '').trim()).replace(/\n/g, '<br>');
+    return '<div class="bc-band"><div class="bc-name2">' + name + '</div>' +
+        '<div class="bc-desig">' + desig + '</div></div>' +
+      '<img class="bc-symbol" src="' + SYMBOL + '" alt="">' +
+      '<div class="bc-cols"><div class="bc-col">' + left.join('<br>') + '</div>' +
+        '<div class="bc-col">' + addr + '</div></div>';
   }
 
-  function render() { var v = vals(); front.innerHTML = innerFront(v); back.innerHTML = innerBack(v); }
+  function render() { var v = vals(); front.innerHTML = innerFront(); back.innerHTML = innerBack(v); }
   fields.forEach(function (f) { if (inputs[f]) inputs[f].addEventListener('input', render); });
 
   var hint = root.querySelector('.sig-hint');
@@ -2216,12 +2212,12 @@ p.body{color:var(--ink-80);max-width:66ch;}
       '.bcard{width:3.5in;height:2in;font-size:.125in;page-break-after:always;}' +
       '.bcard:last-child{page-break-after:auto}' + CARD_CSS +
       '</style></head><body>' +
-      '<div class="bcard bcard-front">' + innerFront(v) + '</div>' +
+      '<div class="bcard bcard-front">' + innerFront() + '</div>' +
       '<div class="bcard bcard-back">' + innerBack(v) + '</div>' +
       '<scr' + 'ipt>window.onload=function(){setTimeout(function(){window.print();},300);};</scr' + 'ipt>' +
       '</body></html>');
     w.document.close();
-    if (hint) { hint.textContent = 'Opened the print dialog — choose “Save as PDF”, size 3.5 × 2 in.'; setTimeout(function () { hint.textContent = ''; }, 4000); }
+    if (hint) { hint.textContent = 'Opened the print dialog — choose “Save as PDF”, size 3.5 × 2 in, margins none.'; setTimeout(function () { hint.textContent = ''; }, 4000); }
   });
 
   render();
