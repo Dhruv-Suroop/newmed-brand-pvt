@@ -1779,8 +1779,20 @@ p.body{color:var(--ink-80);max-width:66ch;}
   }
 
   // ---- export -------------------------------------------------------
-  var _mctx = null;
-  function measureCtx() { if (!_mctx) _mctx = document.createElement('canvas').getContext('2d'); return _mctx; }
+  function r2(n) { return Math.round(n * 100) / 100; }
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+  // Exact baseline of a word straight from the browser's own layout — a
+  // zero-size inline-block on the baseline. Removes all font-metric guesswork,
+  // which is what made words drift up and down in the SVG.
+  function baselineOf(el) {
+    var s = document.createElement('span');
+    s.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline';
+    el.parentNode.insertBefore(s, el.nextSibling);
+    var y = s.getBoundingClientRect().top;
+    el.parentNode.removeChild(s);
+    return y;
+  }
 
   function collect() {
     var hl = stage.querySelector('.tg-hl');
@@ -1791,7 +1803,7 @@ p.body{color:var(--ink-80);max-width:66ch;}
       var r = el.getBoundingClientRect(), cs = getComputedStyle(el);
       minX = Math.min(minX, r.left); minY = Math.min(minY, r.top);
       maxX = Math.max(maxX, r.right); maxY = Math.max(maxY, r.bottom);
-      return { el: el, r: r, cs: cs, inHl: !!(hl && hl.contains(el)) };
+      return { el: el, r: r, cs: cs, base: baselineOf(el), inHl: !!(hl && hl.contains(el)) };
     });
     var hlBox = null;
     if (hl) {
@@ -1813,6 +1825,12 @@ p.body{color:var(--ink-80);max-width:66ch;}
     setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
   }
 
+  function fillFor(ctx, w) {
+    if (fill !== 'sunset') return HEX[fill] || HEX.coral;
+    var g = ctx.createLinearGradient(0, 0, w, 0);
+    g.addColorStop(0, HEX.amber); g.addColorStop(1, HEX.coral); return g;
+  }
+
   function exportPNG(targetW) {
     var c = collect(); if (!c) return;
     var S = (targetW || 2600) / c.w;
@@ -1822,51 +1840,62 @@ p.body{color:var(--ink-80);max-width:66ch;}
     if (c.hlBox) {
       ctx.save();
       ctx.translate((c.hlBox.r.left - c.ox) * S, (c.hlBox.r.top - c.oy) * S); ctx.scale(S, S);
-      var p = new Path2D(window.NMArrow.pathD(c.hlBox.W, c.hlBox.H, false));
-      if (fill === 'sunset') {
-        var g = ctx.createLinearGradient(0, 0, c.hlBox.W, 0);
-        g.addColorStop(0, HEX.amber); g.addColorStop(1, HEX.coral); ctx.fillStyle = g;
-      } else { ctx.fillStyle = HEX[fill] || HEX.coral; }
-      ctx.fill(p); ctx.restore();
+      ctx.fillStyle = fillFor(ctx, c.hlBox.W);
+      ctx.fill(new Path2D(window.NMArrow.pathD(c.hlBox.W, c.hlBox.H, false)));
+      ctx.restore();
     }
     c.boxes.forEach(function (b) {
-      var fs = parseFloat(b.cs.fontSize), lh = parseFloat(b.cs.lineHeight) || fs;
+      var fs = parseFloat(b.cs.fontSize);
       ctx.font = b.cs.fontWeight + ' ' + (fs * S) + 'px "Mona Sans", sans-serif';
       try { ctx.letterSpacing = (fs * S * -0.02) + 'px'; } catch (e) {}
-      ctx.textBaseline = 'top';
+      ctx.textBaseline = 'alphabetic';   // pin to the measured baseline
       ctx.fillStyle = b.inHl ? HEX[TEXTON[fill] || 'cream'] : HEX.ink;
-      ctx.fillText(b.el.textContent, (b.r.left - c.ox) * S, (b.r.top - c.oy + (lh - fs) / 2) * S);
+      ctx.fillText(b.el.textContent, (b.r.left - c.ox) * S, (b.base - c.oy) * S);
     });
     cnv.toBlob(function (bl) { download(bl, 'newmed-headline.png'); }, 'image/png');
   }
 
-  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
-  function r2(n) { return Math.round(n * 100) / 100; }
+  // embed Mona Sans so the SVG renders identically to the preview, even where
+  // the viewer doesn't have the font installed
+  var fontCSS = null;
+  function loadFont() {
+    if (fontCSS !== null) return Promise.resolve(fontCSS);
+    return fetch('assets/fonts/mona-sans-var.woff2')
+      .then(function (r) { return r.arrayBuffer(); })
+      .then(function (buf) {
+        var bin = '', bytes = new Uint8Array(buf), i;
+        for (i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+        fontCSS = "@font-face{font-family:'Mona Sans';font-weight:200 900;font-style:normal;" +
+          "src:url(data:font/woff2;base64," + btoa(bin) + ") format('woff2');}";
+        return fontCSS;
+      })
+      .catch(function () { fontCSS = ''; return ''; });  // fall back to referencing by name
+  }
 
   function exportSVG() {
-    var c = collect(); if (!c) return;
-    var out = ['<svg xmlns="http://www.w3.org/2000/svg" width="' + Math.round(c.w) +
-      '" height="' + Math.round(c.h) + '" viewBox="0 0 ' + r2(c.w) + ' ' + r2(c.h) + '">'];
-    out.push('<defs><linearGradient id="nmag" x1="0" y1="0" x2="1" y2="0">' +
-      '<stop offset="0" stop-color="' + HEX.amber + '"/><stop offset="1" stop-color="' + HEX.coral + '"/></linearGradient></defs>');
-    if (c.hlBox) {
-      var f = fill === 'sunset' ? 'url(#nmag)' : (HEX[fill] || HEX.coral);
-      out.push('<path transform="translate(' + r2(c.hlBox.r.left - c.ox) + ',' + r2(c.hlBox.r.top - c.oy) + ')" d="' +
-        window.NMArrow.pathD(c.hlBox.W, c.hlBox.H, false) + '" fill="' + f + '"/>');
-    }
-    var mc = measureCtx();
-    c.boxes.forEach(function (b) {
-      var fs = parseFloat(b.cs.fontSize), lh = parseFloat(b.cs.lineHeight) || fs;
-      mc.font = b.cs.fontWeight + ' ' + fs + 'px "Mona Sans", sans-serif';
-      var asc = mc.measureText(b.el.textContent).actualBoundingBoxAscent || fs * 0.78;
-      var y = (b.r.top - c.oy) + (lh - fs) / 2 + asc;
-      var col = b.inHl ? HEX[TEXTON[fill] || 'cream'] : HEX.ink;
-      out.push('<text x="' + r2(b.r.left - c.ox) + '" y="' + r2(y) + '" font-family="Mona Sans, sans-serif" ' +
-        'font-weight="' + b.cs.fontWeight + '" font-size="' + fs + '" letter-spacing="' + r2(fs * -0.02) +
-        '" fill="' + col + '">' + esc(b.el.textContent) + '</text>');
+    var c = collect(); if (!c) return Promise.resolve();
+    return loadFont().then(function (fcss) {
+      var out = ['<svg xmlns="http://www.w3.org/2000/svg" width="' + Math.round(c.w) +
+        '" height="' + Math.round(c.h) + '" viewBox="0 0 ' + r2(c.w) + ' ' + r2(c.h) + '">'];
+      out.push('<defs>' + (fcss ? '<style>' + fcss + '</style>' : '') +
+        '<linearGradient id="nmag" x1="0" y1="0" x2="1" y2="0">' +
+        '<stop offset="0" stop-color="' + HEX.amber + '"/><stop offset="1" stop-color="' + HEX.coral + '"/></linearGradient></defs>');
+      if (c.hlBox) {
+        var f = fill === 'sunset' ? 'url(#nmag)' : (HEX[fill] || HEX.coral);
+        out.push('<path transform="translate(' + r2(c.hlBox.r.left - c.ox) + ',' + r2(c.hlBox.r.top - c.oy) + ')" d="' +
+          window.NMArrow.pathD(c.hlBox.W, c.hlBox.H, false) + '" fill="' + f + '"/>');
+      }
+      c.boxes.forEach(function (b) {
+        var fs = parseFloat(b.cs.fontSize);
+        var col = b.inHl ? HEX[TEXTON[fill] || 'cream'] : HEX.ink;
+        out.push('<text x="' + r2(b.r.left - c.ox) + '" y="' + r2(b.base - c.oy) +
+          '" font-family="Mona Sans, sans-serif" font-weight="' + b.cs.fontWeight +
+          '" font-size="' + fs + '" letter-spacing="' + r2(fs * -0.02) +
+          '" fill="' + col + '">' + esc(b.el.textContent) + '</text>');
+      });
+      out.push('</svg>');
+      download(new Blob([out.join('')], { type: 'image/svg+xml' }), 'newmed-headline.svg');
     });
-    out.push('</svg>');
-    download(new Blob([out.join('')], { type: 'image/svg+xml' }), 'newmed-headline.svg');
   }
 
   // events ------------------------------------------------------------
@@ -1893,10 +1922,15 @@ p.body{color:var(--ink-80);max-width:66ch;}
     b.addEventListener('click', function () {
       var lbl = b.textContent;
       b.textContent = 'Saving…';
-      try { (b.getAttribute('data-export') === 'svg') ? exportSVG() : exportPNG(2600); } catch (e) {}
-      setTimeout(function () { b.textContent = lbl; }, 1400);
+      var done = function () { setTimeout(function () { b.textContent = lbl; }, 1400); };
+      try {
+        if (b.getAttribute('data-export') === 'svg') {
+          var p = exportSVG(); (p && p.then) ? p.then(done, done) : done();
+        } else { exportPNG(2600); done(); }
+      } catch (e) { done(); }
     });
   });
+  loadFont();   // warm the embedded-font cache
 
   document.addEventListener('nm:repaint', function () { if (stage.offsetWidth > 4) render(); });
   window.addEventListener('resize', function () { clearTimeout(root.__t); root.__t = setTimeout(render, 140); });
