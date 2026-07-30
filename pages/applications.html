@@ -377,7 +377,7 @@ p.body{color:var(--ink-80);max-width:66ch;}
    THE ARROW — the identity's container system.
    Shape is drawn by app.js (radius 10% of height, point 42.6%).
    ============================================================ */
-.arw-bg{position:absolute;inset:0;display:block;pointer-events:none;z-index:-1;}
+.arw-bg{position:absolute;inset:0;display:block;pointer-events:none;z-index:-1;overflow:visible;}
 .arw-bg path{stroke-linejoin:round;stroke-linecap:round;}
 .arw-clip{position:absolute;width:0;height:0;}
 
@@ -402,7 +402,7 @@ p.body{color:var(--ink-80);max-width:66ch;}
 .arw-chip{width:56px;height:46px;justify-content:flex-start;padding-left:12px;color:var(--cream);
   font-weight:600;font-size:17px;line-height:1;}
 .arw-chip.sm{width:42px;height:34px;font-size:13px;padding-left:9px;}
-.arw-chip > svg:not(.arw-bg){width:22px;height:22px;}
+
 .arw-chip{font-size:19px;font-weight:600;padding-left:14px;}
 
 /* 5. Full-width list row */
@@ -1317,6 +1317,7 @@ p.body{color:var(--ink-80);max-width:66ch;}
       path.setAttribute('fill', 'none');
       path.setAttribute('stroke', f);
       path.setAttribute('stroke-width', el.getAttribute('data-sw') || 2);
+      path.setAttribute('stroke-linejoin', 'round');
     } else {
       path.setAttribute('fill', f);
     }

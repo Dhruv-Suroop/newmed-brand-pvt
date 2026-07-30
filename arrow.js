@@ -91,6 +91,7 @@
       path.setAttribute('fill', 'none');
       path.setAttribute('stroke', f);
       path.setAttribute('stroke-width', el.getAttribute('data-sw') || 2);
+      path.setAttribute('stroke-linejoin', 'round');
     } else {
       path.setAttribute('fill', f);
     }
