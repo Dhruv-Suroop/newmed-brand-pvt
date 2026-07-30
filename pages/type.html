@@ -437,6 +437,79 @@ p.body{color:var(--ink-80);max-width:66ch;}
 .orbwrap{position:relative;overflow:hidden;}
 .orbwrap > .orb{position:absolute;pointer-events:none;opacity:.85;}
 
+/* ============================================================
+   BRAND PAGE — built from supplied SVG artwork
+   ============================================================ */
+.gfx{display:block;width:100%;height:auto;}
+
+/* the shape section: big floating logo sticky left, prose right */
+.shape-split{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(28px,4vw,72px);align-items:start;}
+.shape-logo{position:sticky;top:calc(var(--topbar-h) + 34px);align-self:start;display:flex;justify-content:center;padding:clamp(10px,2vw,30px) 0;}
+.shape-logo img{width:min(84%,340px);height:auto;}
+.shape-body{display:flex;flex-direction:column;gap:clamp(34px,5vw,72px);}
+.shape-body h2{color:var(--clay);font-size:clamp(26px,3.4vw,40px);letter-spacing:-.025em;margin:0 0 14px;}
+.shape-body p{margin:0;color:var(--ink-80);}
+
+/* five attributes — card per supplied ref (363x371, r20) */
+.attr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.attr-card{background:var(--bone);border-radius:20px;padding:28px 25px 30px;
+  min-height:clamp(300px,26vw,371px);display:flex;flex-direction:column;}
+.attr-card .num{color:var(--orange);font-size:22px;font-weight:400;line-height:1;}
+.attr-card .ttl{color:var(--clay);font-size:clamp(44px,5.4vw,69px);font-weight:400;
+  letter-spacing:-.02em;line-height:1;margin-top:26px;}
+.attr-card .bdy{margin-top:auto;padding-top:34px;color:var(--ink);font-size:16px;font-weight:500;line-height:1.2;}
+
+/* ---- Typography page ---- */
+.spec-hero{border-radius:14px;background:var(--bone);padding:clamp(34px,5vw,72px);
+  min-height:clamp(320px,42vw,560px);display:flex;flex-direction:column;justify-content:center;gap:6px;overflow:hidden;}
+.spec-hero .nm-name{font-size:clamp(38px,7vw,104px);font-weight:600;letter-spacing:-.035em;line-height:1;color:var(--orange);}
+.spec-hero .line{font-size:clamp(26px,5vw,74px);font-weight:600;letter-spacing:-.03em;line-height:1.06;color:var(--ink);}
+.spec-hero .line .lt{font-weight:300;}
+.spec-hero .line .ch{color:var(--orange);}
+.spec-hero .line .box{background:var(--ink);color:var(--cream);padding:0 .16em;border-radius:.08em;}
+
+/* Weight list — big, dark, ruled. Each row sits on a coral baseline. */
+.weights-table{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(26px,4vw,70px);
+  border-radius:14px;padding:clamp(26px,3.4vw,48px) clamp(24px,3vw,44px);background:var(--ink);}
+.weights-table .wcol{display:flex;flex-direction:column;}
+.weights-table .wrow{position:relative;font-size:clamp(22px,3.4vw,46px);line-height:1.42;
+  letter-spacing:-.02em;color:var(--cream);white-space:nowrap;}
+.weights-table .wrow::after{content:"";position:absolute;left:0;right:0;bottom:.18em;height:1px;background:var(--orange);opacity:.9;}
+.wt-mono{background:var(--linen);color:var(--ink);border-radius:14px;padding:clamp(22px,3vw,38px);margin-top:16px;
+  font-variant-numeric:tabular-nums;letter-spacing:.01em;}
+.wt-mono div{font-size:clamp(16px,1.9vw,23px);line-height:1.7;}
+
+/* ---- Typesetting specimens with specs + measurement guides ---- */
+.tset{border-top:1px solid var(--line);padding-top:18px;margin-top:30px;}
+.tset-meta{display:flex;flex-wrap:wrap;gap:6px 46px;font-size:12.5px;color:var(--ink-45);margin-bottom:22px;line-height:1.5;}
+.tset-meta b{display:block;color:var(--ink);font-weight:500;}
+.tset-meta .pair{display:flex;gap:10px;}
+.tset-meta .pair span:first-child{min-width:66px;}
+.tset-spec{position:relative;}
+.tset-spec .rule{position:absolute;left:0;right:0;height:1px;background:var(--orange);opacity:.55;}
+.tset-spec .hl{font-size:clamp(34px,7vw,86px);font-weight:600;letter-spacing:-.03em;line-height:.92;margin:0;}
+.tset-spec .bd{font-size:clamp(16px,1.7vw,21px);font-weight:400;line-height:1.5;margin:0;max-width:52ch;}
+.tset-spec .eb{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;line-height:1.6;margin:0;color:var(--ink-60);}
+
+/* four demonstration panels — real comparisons, no decorative guides */
+.tset-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 16px;}
+.tset-panel{background:var(--ink);color:var(--cream);border-radius:14px;
+  padding:clamp(24px,3vw,40px);min-height:clamp(200px,23vw,300px);display:flex;flex-direction:column;justify-content:center;gap:clamp(16px,2vw,26px);}
+.tset-panel .demo-row{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:center;}
+.tset-panel .demo-row .lbl{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--amber);line-height:1.3;font-variant-numeric:tabular-nums;}
+.tset-panel .demo-row p{margin:0;font-size:clamp(17px,2.1vw,27px);font-weight:600;letter-spacing:-.02em;}
+.tset-panel .demo-row.lead-tight p{line-height:.92;}
+.tset-panel .demo-row.lead-loose p{line-height:1.5;}
+.tset-panel .pair-demo{display:flex;flex-direction:column;gap:6px;}
+.tset-panel .pair-demo .k{display:flex;align-items:baseline;gap:16px;}
+.tset-panel .pair-demo .glyphs{font-size:clamp(46px,7vw,96px);font-weight:600;line-height:1;}
+.tset-panel .pair-demo .k .lbl{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);}
+.tset-panel .hier{display:flex;flex-direction:column;gap:10px;}
+.tset-panel .hier .h{font-size:clamp(28px,4.4vw,56px);font-weight:600;letter-spacing:-.028em;line-height:1;}
+.tset-panel .hier .s{font-size:clamp(13px,1.4vw,18px);font-weight:400;line-height:1.4;opacity:.72;}
+.tset-panel .ratio{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);}
+
 /* ---- Typography page ---- */
 .spec-hero{border-radius:14px;background:var(--bone);padding:clamp(34px,5vw,72px);
   min-height:clamp(320px,42vw,560px);display:flex;flex-direction:column;justify-content:center;gap:6px;overflow:hidden;}
@@ -771,6 +844,10 @@ p.body{color:var(--ink-80);max-width:66ch;}
   .cash-sec{grid-template-columns:1fr;}
   .cash-h,.cash-lead{grid-column:auto;}
   .variants,.tone-grid,.tactics{grid-template-columns:1fr;}
+  .shape-split{grid-template-columns:1fr;}
+  .shape-logo{position:static;}
+  .shape-logo img{width:min(60%,240px);}
+  .attr-grid{grid-template-columns:1fr;}
   .weights-table,.panel-2,.set-grid{grid-template-columns:1fr;}
   .lang-cols{columns:2;}
   .variants[style]{grid-template-columns:1fr 1fr!important;}
@@ -852,10 +929,11 @@ p.body{color:var(--ink-80);max-width:66ch;}
           <a class="ns-link" href="brand.html" data-nav>Brand</a>
           <div class="ns-subs">
             <a href="#b-about" data-parent="brand">Overview</a>
+            <a href="#b-promise" data-parent="brand">The promise</a>
             <a href="#b-positioning" data-parent="brand">Positioning</a>
             <a href="#b-shape" data-parent="brand">The shape</a>
-            <a href="#b-journey" data-parent="brand">The journey</a>
-            <a href="#b-personality" data-parent="brand">Personality</a>
+            <a href="#b-journey" data-parent="brand">Six stages</a>
+            <a href="#b-personality" data-parent="brand">Five attributes</a>
           </div>
         </div>
         <div class="nav-sec" data-sec="logo">
@@ -1159,20 +1237,38 @@ p.body{color:var(--ink-80);max-width:66ch;}
 
           <div class="tset-grid" style="margin-top:44px">
             <div>
-              <div class="tset-panel"><div class="guides g-lead"></div><p>Licensed<br>and ready<br>to work</p></div>
-              <p class="tcap"><b>Leading</b>The space between lines. Aim between 92% and 150% of the type size. Large headlines take the lower value, body text the higher. Never let ascenders and descenders touch.</p>
+              <div class="tset-panel">
+                <div class="demo-row lead-tight"><span class="lbl">92%</span><p>Licensed<br>and ready<br>to work</p></div>
+                <div class="demo-row lead-loose"><span class="lbl">150%</span><p>Licensed<br>and ready<br>to work</p></div>
+              </div>
+              <p class="tcap"><b>Leading</b>The space between lines, set as a percentage of the type size. Display type takes 92%, body text 150%. The larger the type, the tighter the leading. Never let a descender touch the line below.</p>
             </div>
             <div>
-              <div class="tset-panel"><div class="guides g-track"></div><p>Licensed<br>and ready<br>to work</p></div>
-              <p class="tcap"><b>Tracking</b>The spacing across a whole string. Display type sits at -3%, body at 0, small eyebrow labels open up to +14%. Tighten as type grows, open it as type shrinks.</p>
+              <div class="tset-panel">
+                <div class="demo-row"><span class="lbl">-3%</span><p style="letter-spacing:-.03em">Licensed and ready</p></div>
+                <div class="demo-row"><span class="lbl">0</span><p style="letter-spacing:0">Licensed and ready</p></div>
+                <div class="demo-row"><span class="lbl">+14%</span><p style="letter-spacing:.14em;font-size:clamp(13px,1.4vw,17px);text-transform:uppercase">Licensed and ready</p></div>
+              </div>
+              <p class="tcap"><b>Tracking</b>The spacing applied across a whole string. Display sits at -3%, body at 0, and small all-caps labels open to +14%. Tighten as type grows, open it as type shrinks.</p>
             </div>
             <div>
-              <div class="tset-panel"><div class="guides g-kern"><i style="left:31%"></i><i style="left:44%"></i></div><p>Licensed<br>and ready<br>to work</p></div>
-              <p class="tcap"><b>Kerning</b>The space between two specific letters. Mona Sans is well kerned, so leave it alone at body sizes. Only adjust by hand when type is set very large and a pair opens up.</p>
+              <div class="tset-panel">
+                <div class="pair-demo">
+                  <div class="k"><span class="glyphs" style="font-kerning:none">AV</span><span class="lbl">Kerning off</span></div>
+                  <div class="k"><span class="glyphs" style="font-kerning:normal">AV</span><span class="lbl">Kerning on</span></div>
+                </div>
+              </div>
+              <p class="tcap"><b>Kerning</b>The space between one specific pair of letters, built into the font. On <b>AV</b> at 140 px, Mona Sans pulls the pair 15 px tighter on its own. Leave it on and leave it alone. Only adjust by hand at very large display sizes.</p>
             </div>
             <div>
-              <div class="tset-panel" style="flex-direction:column;align-items:flex-start;justify-content:center;gap:14px"><div class="guides g-hier"><i style="top:16%;height:34%"></i><i style="top:58%;height:26%"></i></div><p style="padding-left:26px">Licensed<br>and ready</p><p style="font-size:clamp(13px,1.5vw,19px);font-weight:400;line-height:1.4;padding-left:26px;opacity:.75">Assessed, trained and<br>certified before travel</p></div>
-              <p class="tcap"><b>Hierarchy</b>The size relationship between levels. Keep the contrast high: a headline should be at least three times its supporting line. Low contrast reads as flat and uncertain.</p>
+              <div class="tset-panel">
+                <div class="hier">
+                  <span class="h">Licensed<br>and ready</span>
+                  <span class="s">Assessed, trained and certified<br>before travel</span>
+                  <span class="ratio">56 / 18 &nbsp;&middot;&nbsp; roughly 3&times;</span>
+                </div>
+              </div>
+              <p class="tcap"><b>Hierarchy</b>The size relationship between levels. Keep a headline at least three times its supporting line. Anything closer reads as flat and makes the reader work out what matters.</p>
             </div>
           </div>
         </div>
