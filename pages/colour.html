@@ -269,6 +269,7 @@ p.body{color:var(--ink-80);max-width:66ch;}
 /* ---- Color swatches ---- */
 .sw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:38px 26px;}
 .sw-grid.two{grid-template-columns:repeat(2,1fr);}
+.sw-grid.hier{grid-template-columns:1.5fr 1fr 1fr 1fr;}
 .swatch{cursor:pointer;}
 .swatch .chip{height:clamp(180px,22vw,260px);border-radius:14px;background:var(--sw);border:1px solid rgba(57,30,26,.1);
   transition:transform .16s var(--ease),box-shadow .16s var(--ease);}
@@ -873,7 +874,7 @@ p.body{color:var(--ink-80);max-width:66ch;}
   .gallery{columns:1;}
   .scale-row{grid-template-columns:70px 1fr;}
   .a11y-grid{grid-template-columns:1fr;}
-  .sw-grid,.sw-grid.two{grid-template-columns:1fr 1fr;}
+  .sw-grid,.sw-grid.two,.sw-grid.hier{grid-template-columns:1fr 1fr;}
   .scroller{margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px;}
   .cash-sec{grid-template-columns:1fr;}
   .cash-h,.cash-lead{grid-column:auto;}
@@ -997,8 +998,7 @@ p.body{color:var(--ink-80);max-width:66ch;}
         <div class="nav-sec is-active" data-sec="colour">
           <a class="ns-link is-active" href="colour.html" data-nav>Colour</a>
           <div class="ns-subs">
-            <a href="#c-palette" data-parent="colour">The palette</a>
-            <a href="#c-core" data-parent="colour">Core</a>
+            <a href="#c-palette" data-parent="colour">Signal Orange</a>
             <a href="#c-supporting" data-parent="colour">Secondary</a>
             <a href="#c-neutrals" data-parent="colour">Neutrals</a>
             <a href="#c-gradients" data-parent="colour">The gradient</a>
@@ -1179,18 +1179,11 @@ p.body{color:var(--ink-80);max-width:66ch;}
           </div>
         </div>
 
-        <div class="cash-sec" id="c-core">
-          <h2 class="cash-h">Clinical Ink</h2>
-          <p class="cash-lead">Every word of text and every dark surface. A warm near-black, never a pure black. Ink and Signal Orange together do most of the work.</p>
-          <div class="sw-grid two">
-            <div class="swatch dark" data-hex="#391E1A" style="--sw:#391E1A"><div class="chip"></div><div class="vals"><div><b>Name</b><span>Clinical Ink</span></div><div><b>HEX</b><span>#391E1A</span></div><div><b>RGB</b><span>57 30 26</span></div></div></div>
-          </div>
-        </div>
-
         <div class="cash-sec" id="c-supporting">
           <h2 class="cash-h">Secondary</h2>
-          <p class="cash-lead">Amber extends the warmth beside orange. Clay adds depth for serious moments. Vitals Teal is the one cool note, and the most sparing of the three.</p>
-          <div class="sw-grid">
+          <p class="cash-lead">Clinical Ink carries every word of text and every dark surface: a warm near-black, never a pure black. Amber extends the warmth beside orange, Clay adds depth for serious moments, and Vitals Teal is the one cool note and the most sparing of all.</p>
+          <div class="sw-grid hier">
+            <div class="swatch dark" data-hex="#391E1A" style="--sw:#391E1A"><div class="chip"></div><div class="vals"><div><b>Name</b><span>Clinical Ink</span></div><div><b>HEX</b><span>#391E1A</span></div><div><b>RGB</b><span>57 30 26</span></div></div></div>
             <div class="swatch" data-hex="#FF9D00" style="--sw:#FF9D00"><div class="chip"></div><div class="vals"><div><b>Name</b><span>Amber</span></div><div><b>HEX</b><span>#FF9D00</span></div><div><b>RGB</b><span>255 157 0</span></div></div></div>
             <div class="swatch dark" data-hex="#7C3134" style="--sw:#7C3134"><div class="chip"></div><div class="vals"><div><b>Name</b><span>Clay</span></div><div><b>HEX</b><span>#7C3134</span></div><div><b>RGB</b><span>124 49 52</span></div></div></div>
             <div class="swatch" data-hex="#93CCCD" style="--sw:#93CCCD"><div class="chip"></div><div class="vals"><div><b>Name</b><span>Vitals Teal</span></div><div><b>HEX</b><span>#93CCCD</span></div><div><b>RGB</b><span>147 204 205</span></div></div></div>

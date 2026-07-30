@@ -269,6 +269,7 @@ p.body{color:var(--ink-80);max-width:66ch;}
 /* ---- Color swatches ---- */
 .sw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:38px 26px;}
 .sw-grid.two{grid-template-columns:repeat(2,1fr);}
+.sw-grid.hier{grid-template-columns:1.5fr 1fr 1fr 1fr;}
 .swatch{cursor:pointer;}
 .swatch .chip{height:clamp(180px,22vw,260px);border-radius:14px;background:var(--sw);border:1px solid rgba(57,30,26,.1);
   transition:transform .16s var(--ease),box-shadow .16s var(--ease);}
@@ -873,7 +874,7 @@ p.body{color:var(--ink-80);max-width:66ch;}
   .gallery{columns:1;}
   .scale-row{grid-template-columns:70px 1fr;}
   .a11y-grid{grid-template-columns:1fr;}
-  .sw-grid,.sw-grid.two{grid-template-columns:1fr 1fr;}
+  .sw-grid,.sw-grid.two,.sw-grid.hier{grid-template-columns:1fr 1fr;}
   .scroller{margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px;}
   .cash-sec{grid-template-columns:1fr;}
   .cash-h,.cash-lead{grid-column:auto;}
@@ -997,8 +998,7 @@ p.body{color:var(--ink-80);max-width:66ch;}
         <div class="nav-sec" data-sec="colour">
           <a class="ns-link" href="colour.html" data-nav>Colour</a>
           <div class="ns-subs">
-            <a href="#c-palette" data-parent="colour">The palette</a>
-            <a href="#c-core" data-parent="colour">Core</a>
+            <a href="#c-palette" data-parent="colour">Signal Orange</a>
             <a href="#c-supporting" data-parent="colour">Secondary</a>
             <a href="#c-neutrals" data-parent="colour">Neutrals</a>
             <a href="#c-gradients" data-parent="colour">The gradient</a>
