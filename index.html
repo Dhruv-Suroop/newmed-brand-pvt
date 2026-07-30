@@ -6,7 +6,7 @@
 <title>NewMed Skills — Brand Guidelines</title>
 <meta name="description" content="The brand standards manual for NewMed Skills: logo, colour, typography, voice and applications.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="styles.css?v=28">
+<link rel="stylesheet" href="styles.css?v=29">
 </head>
 <body>
 
@@ -657,8 +657,8 @@
           <h2 class="cash-h">Arrow generator</h2>
           <p class="cash-lead">Type a headline, then click a word to start the arrow and another to set where it ends. The caps always land on the ENDS of the run — rounded start, pointed finish — drawn with the exact locked geometry. Keep the highlight to two or three words and let it land the line.</p>
           <div class="tgen" id="typegen">
-            <label class="tg-field" for="tg-input">Your headline</label>
-            <input id="tg-input" class="tg-input" type="text" value="From first assessment to first shift" autocomplete="off" spellcheck="false">
+            <label class="tg-field" for="tg-input">Your headline — press Enter for a line break</label>
+            <textarea id="tg-input" class="tg-input" rows="2" autocomplete="off" spellcheck="false">From first assessment to first shift</textarea>
             <div class="tg-stage" aria-live="polite"></div>
             <div class="tg-controls">
               <span class="lbl">Fill</span>
@@ -671,6 +671,10 @@
               <button data-example="From first assessment to first shift">From first assessment to first shift</button>
               <button data-example="We move people forward">We move people forward</button>
               <button data-example="Ready for the ward">Ready for the ward</button>
+            </div>
+            <div class="tg-actions">
+              <button class="tg-x" data-export="png">Download PNG</button>
+              <button class="tg-x" data-export="svg">Download SVG</button>
             </div>
             <p class="tg-hint"></p>
           </div>
@@ -869,6 +873,6 @@
 <script src="arrow.js?v=1"></script>
 <script src="app.js?v=9"></script>
 <script src="gradient.js?v=5"></script>
-<script src="typegen.js?v=1"></script>
+<script src="typegen.js?v=2"></script>
 </body>
 </html>
