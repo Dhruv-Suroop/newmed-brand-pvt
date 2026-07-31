@@ -1,0 +1,57 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="Challenge grid" subtitle="The workforce challenge — problem cards" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><link rel="stylesheet" href="../styles.css" />
+<style>
+  html,body{margin:0}
+  .slide{position:relative;width:1280px;height:720px;background:var(--color-bg-raised);overflow:hidden;font-family:var(--font-sans);color:var(--text-primary)}
+  .content{padding:72px 96px;height:100%;box-sizing:border-box;display:flex;flex-direction:column}
+  .eye{font-size:14px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--brand-primary)}
+  h2{font-family:var(--font-display);font-weight:600;font-size:44px;letter-spacing:-0.02em;line-height:1.05;margin:14px 0 8px;max-width:820px;color:var(--heading-color)}
+  .lead{font-size:19px;color:var(--text-secondary);max-width:760px;margin:0 0 36px;line-height:1.5}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .cell{background:var(--nm-cream);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:22px 22px}
+  .cn{font-family:var(--font-mono);font-size:12px;color:var(--brand-primary);font-weight:600}
+  .ch{font-size:17px;font-weight:600;margin:12px 0 6px;color:var(--heading-color)}
+  .cp{font-size:14.5px;color:var(--text-secondary);line-height:1.45;margin:0}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Eyebrow } = window.NewMedSkillsDesignSystem_cd1078;
+const ITEMS = [
+  ["01","Critical staffing shortages","Persistent gaps in nursing and allied health."],
+  ["02","Rising recruitment costs","Escalating cost-per-hire and agency fees."],
+  ["03","Licensing complexity","Cross-border credentialing and verification."],
+  ["04","High attrition","Early-stage exits eroding ROI on hires."],
+  ["05","Variable candidate quality","Inconsistent readiness from CV to deployment."],
+  ["06","Long hiring timelines","Months from requisition to contribution."],
+];
+function Slide(){
+  return (
+    <div className="slide"><div className="content">
+      <span className="eye">The context</span>
+      <h2>The challenge isn't finding candidates.</h2>
+      <p className="lead">It's finding professionals who are ready to contribute from day one. Hospitals need workforce-ready professionals — not just CVs.</p>
+      <div className="grid">
+        {ITEMS.map(([n,h,p])=>(
+          <div className="cell" key={n}>
+            <span className="cn">{n}</span>
+            <div className="ch">{h}</div>
+            <p className="cp">{p}</p>
+          </div>
+        ))}
+      </div>
+    </div></div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Slide/>);
+</script>
+</body>
+</html>

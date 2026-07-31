@@ -1156,3 +1156,87 @@ p.body{color:var(--ink-80);max-width:66ch;}
   opacity: 0.5;
   pointer-events: none;
 }
+
+/* ---- Download Cards ---- */
+.dl-card {
+  display: flex;
+  align-items: center;
+  background: var(--bone);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  text-decoration: none;
+  color: var(--ink);
+  gap: 16px;
+  transition: all 0.2s var(--ease);
+  width: fit-content;
+  min-width: 280px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  margin-top: 24px;
+}
+.dl-card:hover {
+  background: #fff;
+  border-color: rgba(255, 81, 34, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px -4px rgba(57, 30, 26, 0.08);
+}
+.dl-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 81, 34, 0.1);
+  color: var(--orange);
+  border-radius: 8px;
+}
+.dl-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.dl-title {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.dl-meta {
+  font-size: 12px;
+  color: var(--ink-60);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.dl-action {
+  color: var(--ink-45);
+  transition: color 0.2s;
+}
+.dl-card:hover .dl-action {
+  color: var(--orange);
+}
+
+/* ---- Logo Inline Downloads ---- */
+.logo-dl-bar {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.logo-dl-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--bone);
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--line-soft);
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.logo-dl-pill:hover {
+  background: var(--orange);
+  color: var(--cream);
+  border-color: var(--orange);
+}

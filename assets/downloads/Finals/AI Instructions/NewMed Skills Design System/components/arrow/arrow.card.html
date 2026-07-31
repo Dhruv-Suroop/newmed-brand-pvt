@@ -1,0 +1,68 @@
+<!-- @dsCard group="Components" viewport="900x560" name="Arrow system" subtitle="The signature shape: highlight, CTA, badge, list, chips, portrait" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="../../styles.css" />
+<style>
+  body { margin: 0; background: var(--nm-cream); font-family: var(--font-sans); color: var(--text-primary); padding: 28px; }
+  .lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 12px; }
+  .sec { margin-bottom: 26px; }
+  .row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Arrow, ArrowIcon, ArrowPortrait, ArrowHighlight, ArrowButton, ArrowBadge, ArrowList } = window.NewMedSkillsDesignSystem_cd1078;
+function Demo() {
+  return (
+    <div>
+      <div className="sec">
+        <p className="lbl">Headline highlight</p>
+        <div style={{fontFamily:"var(--font-display)",fontWeight:600,fontSize:38,letterSpacing:"-0.02em",lineHeight:1.15,color:"var(--heading-color)"}}>
+          Building <ArrowHighlight>Workforce-Ready</ArrowHighlight> Healthcare Talent.
+        </div>
+      </div>
+      <div className="sec">
+        <p className="lbl">CTAs & badge</p>
+        <div className="row">
+          <ArrowButton size="lg">Book a workforce discussion</ArrowButton>
+          <ArrowButton outline size="lg">See how it works</ArrowButton>
+          <ArrowBadge>Healthcare Workforce Readiness</ArrowBadge>
+        </div>
+      </div>
+      <div className="sec">
+        <p className="lbl">Numbered list</p>
+        <ArrowList size={54} items={["Schedule a workforce planning discussion","Launch a pilot recruitment programme"]} />
+      </div>
+      <div className="sec" style={{display:"flex",gap:40,alignItems:"flex-end"}}>
+        <div>
+          <p className="lbl">Chips & fills — color changes, radius never does</p>
+          <div className="row">
+            <ArrowIcon size={48} contentStyle={{fontWeight:700,fontSize:22}}>1</ArrowIcon>
+            <ArrowIcon size={48} fill="sunset" contentStyle={{fontWeight:700,fontSize:22}}>2</ArrowIcon>
+            <ArrowIcon size={48} outline contentStyle={{fontWeight:700,fontSize:22}}>3</ArrowIcon>
+            <Arrow fill="ink"><span style={{color:"var(--nm-cream)",fontWeight:600,fontSize:14}}>Ink</span></Arrow>
+            <Arrow fill="maroon"><span style={{color:"#fff",fontWeight:600,fontSize:14}}>Maroon</span></Arrow>
+            <Arrow fill="coral" opacity={0.25}><span style={{fontWeight:600,fontSize:14}}>Translucent</span></Arrow>
+            <Arrow fill="cream" notch><span style={{color:"var(--brand-primary)",fontWeight:600,fontSize:14}}>Notched</span></Arrow>
+          </div>
+        </div>
+        <div>
+          <p className="lbl">Portrait — clipped in, jutting out</p>
+          <ArrowPortrait src="../../assets/photos/nurse-newmed-hijab.png" width={230} height={140} jut={0.5} imgScale={0.95} alt="Cutout in arrow" />
+        </div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

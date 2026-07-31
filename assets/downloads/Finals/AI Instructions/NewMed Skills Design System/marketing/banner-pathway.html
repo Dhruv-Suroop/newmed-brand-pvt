@@ -1,0 +1,44 @@
+<!-- @dsCard group="Marketing" viewport="1920x1000" name="Web banner — pathway" subtitle="Arrow highlight + chips; organic gradient; outline arrow band" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><link rel="stylesheet" href="../styles.css" />
+<style>
+  html,body{margin:0}
+  .banner{position:relative;width:1920px;height:1000px;background:var(--nm-cream);overflow:hidden;font-family:var(--font-sans)}
+  .wash{position:absolute;left:-10%;right:-10%;bottom:-46%;height:105%;pointer-events:none;filter:blur(46px);background:
+    radial-gradient(60% 70% at 60% 78%, rgba(255,81,34,0.75) 0%, rgba(255,81,34,0) 72%),
+    radial-gradient(52% 66% at 26% 88%, rgba(255,120,34,0.6) 0%, rgba(255,120,34,0) 70%),
+    radial-gradient(50% 60% at 84% 92%, rgba(255,157,0,0.55) 0%, rgba(255,157,0,0) 70%)}
+  h1{position:absolute;left:96px;top:96px;margin:0;font-family:var(--font-display);font-weight:600;font-size:104px;line-height:1.06;letter-spacing:-0.02em;color:var(--heading-color);z-index:2}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Arrow, ArrowIcon, ArrowHighlight, Logo } = window.NewMedSkillsDesignSystem_cd1078;
+function ArrowRightGlyph(){
+  return <svg width="0.9em" height="0.9em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8m-3-3 3 3-3 3"/></svg>;
+}
+function Banner(){
+  return (
+    <div className="banner">
+      <div className="wash"></div>
+      <div style={{position:"absolute",right:96,top:96,zIndex:2}}><Logo variant="horizontal" size={28} /></div>
+      <h1>Your global pathway<br/><ArrowHighlight fill="coral" icon={<ArrowRightGlyph/>}><span style={{fontWeight:600}}>awaits you</span></ArrowHighlight></h1>
+      <div style={{position:"absolute",left:96,right:96,bottom:88,zIndex:2}}>
+        <Arrow outline stroke="rgba(255,255,255,0.9)" strokeWidth={2} fill="none" style={{width:"100%"}} contentStyle={{minHeight:110,width:"100%"}}>
+          <span style={{fontSize:34,fontWeight:600,letterSpacing:"0.06em",color:"#fff",paddingLeft:40}}>www.newmedskills.com</span>
+        </Arrow>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Banner/>);
+</script>
+</body>
+</html>

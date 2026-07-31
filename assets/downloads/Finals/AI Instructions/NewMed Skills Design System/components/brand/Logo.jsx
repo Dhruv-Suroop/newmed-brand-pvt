@@ -1,0 +1,40 @@
+import React from "react";
+
+const SYMBOL_PATH = "M202.06,29.68c-4.41-12.14-14.04-21.7-26.18-26.12-10.95-3.56-21.17-3.56-41.94-3.56h-62.26c-20.7,0-30.93,0-42.01,3.43C17.47,7.85,7.91,17.48,3.49,29.61,0,40.76,0,51.05,0,71.69v62.19c0,20.77,0,30.93,3.36,42.14,4.42,12.07,14.05,21.7,26.18,26.11,11.15,3.5,21.44,3.5,42.01,3.5h62.32c20.64,0,30.93,0,42.01-3.5,12.14-4.41,21.77-13.98,26.18-26.11,3.5-11.21,3.5-21.44,3.5-42.14v-62.13c0-20.64,0-30.93-3.5-42.07ZM124.73,53c0-1.96,1.59-3.55,3.55-3.55h11.7c1.56,0,3.03.79,3.9,2.09l13.76,20.7c1.03,1.56,1.04,3.59.01,5.16l-13.53,20.67c-.86,1.32-2.34,2.11-3.92,2.11h-11.92c-1.96,0-3.55-1.58-3.55-3.54v-43.64ZM51.7,52.99c0-1.95,1.58-3.54,3.54-3.54h26.94c1.47,0,2.86.7,3.74,1.87l5.6,7.46c.95,1.26.95,2.99,0,4.25l-5.6,7.45c-.88,1.18-2.27,1.88-3.74,1.88h-26.94c-1.96,0-3.54-1.59-3.54-3.55v-15.82ZM51.7,80.82c0-1.95,1.58-3.54,3.54-3.54h47.87c1.48,0,2.87.69,3.75,1.87l5.6,7.45c.95,1.26.95,3,0,4.26l-5.6,7.45c-.88,1.18-2.27,1.87-3.75,1.87h-47.87c-1.96,0-3.54-1.58-3.54-3.54v-15.82ZM84.85,133.23l-13.83,21.11c-.75,1.15-2.02,1.84-3.39,1.84h-13.02c-1.61,0-2.91-1.31-2.91-2.92v-45.24c0-1.61,1.3-2.91,2.91-2.91h12.79c1.35,0,2.62.68,3.38,1.81l14.05,21.15c1.04,1.56,1.05,3.59.02,5.16ZM157.71,146.85l-5.6,7.46c-.89,1.17-2.27,1.87-3.75,1.87h-26.95c-1.95,0-3.54-1.59-3.54-3.54v-15.82c0-1.96,1.59-3.55,3.54-3.55h26.95c1.48,0,2.86.7,3.75,1.88l5.6,7.45c.95,1.26.95,2.99,0,4.25ZM157.71,118.68l-5.6,7.46c-.88,1.18-2.27,1.87-3.74,1.87h-47.88c-1.96,0-3.54-1.59-3.54-3.54v-15.82c0-1.96,1.58-3.54,3.54-3.54h47.88c1.47,0,2.86.69,3.74,1.87l5.6,7.45c.95,1.26.95,2.99,0,4.25Z";
+
+/** The NewMed Skills coral symbol (chevron shards). Real brand mark, inline. */
+export function Symbol({ size = 40, style = {} }) {
+  return (
+    <span style={{ display: "inline-flex", width: size, height: size, ...style }}>
+      <svg viewBox="0 0 205.56 205.63" width={size} height={size} aria-label="NewMed Skills symbol">
+        <path d={SYMBOL_PATH} fill="var(--brand-primary)" />
+      </svg>
+    </span>
+  );
+}
+
+/**
+ * The NewMed Skills logo. `horizontal` (symbol + wordmark), `stack`, or `symbol`.
+ * Wordmark is bold "NewMed" + regular "Skills" (the fixed lockup). Always two words.
+ */
+export function Logo({ variant = "horizontal", size = 32, color = "var(--nm-ink)", style = {} }) {
+  const symbolSize = variant === "stack" ? size * 1.6 : size * 1.28;
+  const wordmark = (fs) => (
+    <span style={{ fontFamily: "var(--font-display)", fontSize: fs, lineHeight: 0.95, letterSpacing: "-0.02em", color, whiteSpace: "nowrap" }}>
+      <span style={{ fontWeight: 700 }}>NewMed</span>{variant === "stack" ? <br /> : " "}
+      <span style={{ fontWeight: 400 }}>Skills</span>
+    </span>
+  );
+  if (variant === "symbol") return <Symbol size={size} style={style} />;
+  return (
+    <span style={{
+      display: "inline-flex", alignItems: "center",
+      flexDirection: variant === "stack" ? "column" : "row",
+      gap: variant === "stack" ? size * 0.4 : size * 0.5,
+      ...style,
+    }}>
+      <Symbol size={symbolSize} />
+      {wordmark(size)}
+    </span>
+  );
+}

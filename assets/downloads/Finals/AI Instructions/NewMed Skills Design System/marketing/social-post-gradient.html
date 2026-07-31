@@ -1,0 +1,36 @@
+<!-- @dsCard group="Marketing" viewport="1080x1080" name="Social post — gradient arrow" subtitle="Translucent gradient arrow as content container" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><link rel="stylesheet" href="../styles.css" />
+<style>
+  html,body{margin:0}
+  .post{position:relative;width:1080px;height:1080px;background:var(--nm-cream);overflow:hidden;font-family:var(--font-sans)}
+  .eye{position:absolute;right:72;top:80;font-size:22px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--brand-primary)}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Arrow, Logo } = window.NewMedSkillsDesignSystem_cd1078;
+function Post(){
+  return (
+    <div className="post">
+      <div style={{position:"absolute",left:72,top:72}}><Logo variant="horizontal" size={30} /></div>
+      <span style={{position:"absolute",right:72,top:84,fontSize:22,fontWeight:700,letterSpacing:"0.14em",textTransform:"uppercase",color:"var(--brand-primary)"}}>What we do</span>
+      <Arrow fill="sunset" opacity={0.22} style={{position:"absolute",left:110,top:250,width:880,height:620}} contentStyle={{padding:0,width:"100%"}}><span></span></Arrow>
+      <div style={{position:"absolute",left:190,top:400,zIndex:2,maxWidth:600}}>
+        <h2 style={{margin:"0 0 36px",fontFamily:"var(--font-display)",fontWeight:600,fontSize:88,lineHeight:1.02,letterSpacing:"-0.02em",color:"var(--brand-primary)"}}>Mobility,<br/>handled.</h2>
+        <div style={{fontSize:28,lineHeight:1.6,color:"var(--nm-ink)",fontWeight:500}}>Visa support<br/>Credential verification<br/>Exam preparation</div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Post/>);
+</script>
+</body>
+</html>
