@@ -20,6 +20,9 @@
   var HEX = { cream: '#f4f1ea', ink: '#391e1a', amber: '#ff9d00', coral: '#ff5122', maroon: '#7c3134' };
 
   var tokens = [], count = 0, wtext = [];
+  var mode = 'text', iconInput = document.getElementById('tg-icon-input');
+  var iconScaleInput = document.getElementById('tg-icon-scale');
+  var iconScaleVal = document.getElementById('tg-icon-scale-val');
   var selStart = -1, selEnd = -1, anchor = -1, hasRange = false, fill = 'sunset';
 
   // parse the textarea into word / line-break tokens ------------------
@@ -53,7 +56,40 @@
 
   function render() {
     stage.textContent = '';
-    var hl = null, k = 0;
+    var hl = null;
+
+    if (mode === 'icon') {
+      hl = document.createElement('span');
+      hl.className = 'tg-hl icon-mode';
+      hl.setAttribute('data-arw', fill);
+      hl.style.setProperty('--tgtext', 'var(--' + (TEXTON[fill] || 'cream') + ')');
+      
+      var iconBox = document.createElement('span');
+      iconBox.className = 'arw-icon-box';
+      
+      var iconWrapper = document.createElement('span');
+      iconWrapper.className = 'arw-icon-svg-wrapper';
+      
+      var scale = iconScaleInput ? parseInt(iconScaleInput.value, 10) : 70;
+      if (iconScaleVal) iconScaleVal.textContent = scale + '%';
+      iconWrapper.style.width = (scale / 100) + 'em';
+      iconWrapper.style.height = (scale / 100) + 'em';
+      
+      var svgCode = (iconInput.value || '').trim();
+      if (!svgCode.startsWith('<svg')) {
+         svgCode = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L22 20H2L12 2Z" fill="currentColor"/></svg>';
+      }
+      
+      iconWrapper.innerHTML = svgCode;
+      iconBox.appendChild(iconWrapper);
+      hl.appendChild(iconBox);
+      stage.appendChild(hl);
+      if (window.NMArrow) window.NMArrow.paint(hl);
+      hint.textContent = 'Icon mode: pasting raw SVG code.';
+      return;
+    }
+
+    var k = 0;
     while (k < tokens.length) {
       var tk = tokens[k];
       if (tk.br) { stage.appendChild(document.createElement('br')); k++; continue; }
@@ -120,7 +156,7 @@
   function collect() {
     var hl = stage.querySelector('.tg-hl');
     var els = slice(stage.querySelectorAll('.tg-word'));
-    if (!els.length) return null;
+    if (!els.length && mode !== 'icon') return null;
     var minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
     var boxes = els.map(function (el) {
       var r = el.getBoundingClientRect(), cs = getComputedStyle(el);
@@ -167,14 +203,33 @@
       ctx.fill(new Path2D(window.NMArrow.pathD(c.hlBox.W, c.hlBox.H, false)));
       ctx.restore();
     }
-    c.boxes.forEach(function (b) {
-      var fs = parseFloat(b.cs.fontSize);
-      ctx.font = b.cs.fontWeight + ' ' + (fs * S) + 'px "Mona Sans", sans-serif';
-      try { ctx.letterSpacing = (fs * S * -0.02) + 'px'; } catch (e) {}
-      ctx.textBaseline = 'alphabetic';   // pin to the measured baseline
-      ctx.fillStyle = b.inHl ? HEX[TEXTON[fill] || 'cream'] : HEX.ink;
-      ctx.fillText(b.el.textContent, (b.r.left - c.ox) * S, (b.base - c.oy) * S);
-    });
+    if (mode === 'icon') {
+      var svgWrap = stage.querySelector('.arw-icon-svg-wrapper svg');
+      if (svgWrap) {
+        var svgStr = new XMLSerializer().serializeToString(svgWrap);
+        svgStr = svgStr.replace(/currentColor/gi, HEX[TEXTON[fill] || 'cream']);
+        var img = new Image();
+        img.onload = function() {
+          var scale = iconScaleInput ? parseInt(iconScaleInput.value, 10) / 100 : 0.7;
+          var iw = c.hlBox.H * scale * S;
+          var ix = (c.hlBox.r.left - c.ox + c.hlBox.H * ((1 - scale) / 2)) * S;
+          var iy = (c.hlBox.r.top - c.oy + c.hlBox.H * ((1 - scale) / 2)) * S;
+          ctx.drawImage(img, ix, iy, iw, iw);
+          cnv.toBlob(function (bl) { download(bl, 'newmed-arrow.png'); }, 'image/png');
+        };
+        img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr);
+        return;
+      }
+    } else {
+      c.boxes.forEach(function (b) {
+        var fs = parseFloat(b.cs.fontSize);
+        ctx.font = b.cs.fontWeight + ' ' + (fs * S) + 'px "Mona Sans", sans-serif';
+        try { ctx.letterSpacing = (fs * S * -0.02) + 'px'; } catch (e) {}
+        ctx.textBaseline = 'alphabetic';   // pin to the measured baseline
+        ctx.fillStyle = b.inHl ? HEX[TEXTON[fill] || 'cream'] : HEX.ink;
+        ctx.fillText(b.el.textContent, (b.r.left - c.ox) * S, (b.base - c.oy) * S);
+      });
+    }
     cnv.toBlob(function (bl) { download(bl, 'newmed-headline.png'); }, 'image/png');
   }
 
@@ -208,16 +263,31 @@
         out.push('<path transform="translate(' + r2(c.hlBox.r.left - c.ox) + ',' + r2(c.hlBox.r.top - c.oy) + ')" d="' +
           window.NMArrow.pathD(c.hlBox.W, c.hlBox.H, false) + '" fill="' + f + '"/>');
       }
-      c.boxes.forEach(function (b) {
-        var fs = parseFloat(b.cs.fontSize);
-        var col = b.inHl ? HEX[TEXTON[fill] || 'cream'] : HEX.ink;
-        out.push('<text x="' + r2(b.r.left - c.ox) + '" y="' + r2(b.base - c.oy) +
-          '" font-family="Mona Sans, sans-serif" font-weight="' + b.cs.fontWeight +
-          '" font-size="' + fs + '" letter-spacing="' + r2(fs * -0.02) +
-          '" fill="' + col + '">' + esc(b.el.textContent) + '</text>');
-      });
+      if (mode === 'icon') {
+        var svgWrap = stage.querySelector('.arw-icon-svg-wrapper svg');
+        if (svgWrap) {
+          var svgStr = new XMLSerializer().serializeToString(svgWrap);
+          var scale = iconScaleInput ? parseInt(iconScaleInput.value, 10) / 100 : 0.7;
+          var iw = c.hlBox.H * scale;
+          var ix = c.hlBox.r.left - c.ox + c.hlBox.H * ((1 - scale) / 2);
+          var iy = c.hlBox.r.top - c.oy + c.hlBox.H * ((1 - scale) / 2);
+          var col = HEX[TEXTON[fill] || 'cream'];
+          svgStr = svgStr.replace(/currentColor/gi, col);
+          svgStr = svgStr.replace(/^<svg[^>]*>/i, '<svg x="' + r2(ix) + '" y="' + r2(iy) + '" width="' + r2(iw) + '" height="' + r2(iw) + '">');
+          out.push(svgStr);
+        }
+      } else {
+        c.boxes.forEach(function (b) {
+          var fs = parseFloat(b.cs.fontSize);
+          var col = b.inHl ? HEX[TEXTON[fill] || 'cream'] : HEX.ink;
+          out.push('<text x="' + r2(b.r.left - c.ox) + '" y="' + r2(b.base - c.oy) +
+            '" font-family="Mona Sans, sans-serif" font-weight="' + b.cs.fontWeight +
+            '" font-size="' + fs + '" letter-spacing="' + r2(fs * -0.02) +
+            '" fill="' + col + '">' + esc(b.el.textContent) + '</text>');
+        });
+      }
       out.push('</svg>');
-      download(new Blob([out.join('')], { type: 'image/svg+xml' }), 'newmed-headline.svg');
+      download(new Blob([out.join('')], { type: 'image/svg+xml' }), mode === 'icon' ? 'newmed-arrow.svg' : 'newmed-headline.svg');
     });
   }
 
@@ -228,6 +298,60 @@
   });
 
   input.addEventListener('input', function () { rebuild(true); });
+  if (iconInput) iconInput.addEventListener('input', function() { render(); });
+  if (iconScaleInput) iconScaleInput.addEventListener('input', function() { render(); });
+  
+  // Icon Library logic
+  var iconSearch = document.getElementById('tg-icon-search');
+  var iconGrid = document.getElementById('tg-icon-grid');
+  var icons = window.MATERIAL_ICONS || [];
+  
+  function renderIconGrid(filter) {
+    if (!iconGrid) return;
+    iconGrid.innerHTML = '';
+    var filtered = icons.filter(function(name) { return name.indexOf(filter) !== -1; });
+    filtered.slice(0, 100).forEach(function(name) {
+      var btn = document.createElement('button');
+      btn.className = 'icon-grid-item';
+      btn.textContent = name;
+      btn.title = name;
+      btn.addEventListener('click', function() {
+        btn.classList.add('loading');
+        fetch('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/' + name + '/default/24px.svg')
+          .then(function(res) { return res.text(); })
+          .then(function(svg) {
+            btn.classList.remove('loading');
+            slice(iconGrid.querySelectorAll('.icon-grid-item')).forEach(function(b) { b.classList.toggle('selected', b === btn); });
+            if (iconInput) {
+              iconInput.value = svg;
+              render();
+            }
+          })
+          .catch(function() {
+            btn.classList.remove('loading');
+            alert('Failed to load SVG for ' + name);
+          });
+      });
+      iconGrid.appendChild(btn);
+    });
+  }
+  
+  if (iconSearch) {
+    iconSearch.addEventListener('input', function() { renderIconGrid(this.value.toLowerCase().trim()); });
+    renderIconGrid('');
+  }
+
+  var tabs = slice(root.querySelectorAll('.tg-tab'));
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      mode = t.getAttribute('data-mode');
+      tabs.forEach(function(x){ x.classList.toggle('active', x === t); });
+      root.querySelector('#tg-text-ui').style.display = (mode === 'text') ? 'block' : 'none';
+      root.querySelector('#tg-icon-ui').style.display = (mode === 'icon') ? 'block' : 'none';
+      root.querySelector('.tg-examples').style.display = (mode === 'text') ? 'flex' : 'none';
+      render();
+    });
+  });
 
   fillBtns.forEach(function (b) {
     b.addEventListener('click', function () {

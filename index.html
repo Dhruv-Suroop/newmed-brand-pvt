@@ -7,6 +7,7 @@
 <meta name="description" content="The brand standards manual for NewMed Skills: logo, colour, typography, voice and applications.">
 <link rel="icon" href="favicon.png">
 <link rel="stylesheet" href="styles.css?v=32">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 </head>
 <body>
 
@@ -28,29 +29,13 @@
   </a>
   <div class="tb-title">Brand Guidelines</div>
   <nav class="tb-nav">
-    <div class="tb-group" data-group>
-      <button class="tb-btn" type="button">Foundations <svg class="caret"><use href="#ico-caret"/></svg></button>
-      <div class="tb-menu">
-        <a href="#brand" data-nav>Brand</a>
-        <a href="#logo" data-nav>Logo</a>
-        <a href="#arrow" data-nav>The arrow</a>
-        <a href="#colour" data-nav>Colour</a>
-        <a href="#type" data-nav>Typography</a>
-        <a href="#voice" data-nav>Voice &amp; Tone</a>
-      </div>
-    </div>
-    <div class="tb-group" data-group>
-      <button class="tb-btn" type="button">Expressions <svg class="caret"><use href="#ico-caret"/></svg></button>
-      <div class="tb-menu">
-        <a href="#applications" data-nav>Applications</a>
-      </div>
-    </div>
-    <div class="tb-group" data-group>
-      <button class="tb-btn" type="button">Resources <svg class="caret"><use href="#ico-caret"/></svg></button>
-      <div class="tb-menu">
-        <a href="#downloads" data-nav>Downloads</a>
-      </div>
-    </div>
+    <a href="#brand" class="tb-btn" data-nav style="text-decoration: none;">Brand</a>
+    <a href="#logo" class="tb-btn" data-nav style="text-decoration: none;">Logo</a>
+    <a href="#arrow" class="tb-btn" data-nav style="text-decoration: none;">The arrow</a>
+    <a href="#colour" class="tb-btn" data-nav style="text-decoration: none;">Colour</a>
+    <a href="#type" class="tb-btn" data-nav style="text-decoration: none;">Typography</a>
+    <a href="#voice" class="tb-btn" data-nav style="text-decoration: none;">Voice &amp; Tone</a>
+    <a href="#applications" class="tb-btn" data-nav style="text-decoration: none;">Applications</a>
     <button class="hamb" id="hamb" aria-label="Menu"><span></span></button>
   </nav>
 </header>
@@ -61,8 +46,6 @@
   <!-- ============ SIDEBAR ============ -->
   <aside class="sidebar" id="sidebar">
     <nav class="side-nav" id="sidenav">
-      <div class="nav-group">
-        <p class="ng-title">Foundations</p>
         <div class="nav-sec" data-sec="brand">
           <a class="ns-link" href="#brand" data-nav>Brand</a>
           <div class="ns-subs">
@@ -83,7 +66,6 @@
             <a href="#l-partners" data-parent="logo">Partnerships</a>
             <a href="#l-inuse" data-parent="logo">In use</a>
             <a href="#l-misuse" data-parent="logo">Incorrect usage</a>
-            <a href="#l-res" data-parent="logo">Resources</a>
           </div>
         </div>
         <div class="nav-sec" data-sec="arrow">
@@ -133,29 +115,16 @@
             <a href="#v-check" data-parent="voice">10 second check</a>
           </div>
         </div>
-      </div>
-      <div class="nav-group">
-        <p class="ng-title">Expressions</p>
         <div class="nav-sec" data-sec="applications">
           <a class="ns-link" href="#applications" data-nav>Applications</a>
-        <div class="ns-subs">
-            <a href="#ap-toolkit" data-parent="applications">Brand toolkit</a>
+          <div class="ns-subs">
             <a href="#ap-signature" data-parent="applications">Email signature</a>
             <a href="#ap-card" data-parent="applications">Business card</a>
+            <a href="#ap-letterhead" data-parent="applications">Letterhead</a>
+            <a href="#ap-meeting" data-parent="applications">Meeting background</a>
+            <a href="#ap-presentation" data-parent="applications">Presentation</a>
           </div>
         </div>
-      </div>
-      <div class="nav-group">
-        <p class="ng-title">Resources</p>
-        <div class="nav-sec" data-sec="downloads">
-          <a class="ns-link" href="#downloads" data-nav>Downloads</a>
-        <div class="ns-subs">
-            <a href="#d-logos" data-parent="downloads">Logo files</a>
-            <a href="#d-colour" data-parent="downloads">Colour and type</a>
-            <a href="#d-contact" data-parent="downloads">Still to come</a>
-          </div>
-        </div>
-      </div>
     </nav>
     <div class="sb-foot">
       <b>Version 1.0</b> · 2026<br>
@@ -299,12 +268,12 @@
           <h2 class="cash-h">Symbol and lockups</h2>
           <p class="cash-lead">Six configurations cover every format. Choose the one that fits the space, then hold it. The symbol may stand alone as an icon, but never replaces the name in copy.</p>
           <div class="variants" style="grid-template-columns:repeat(3,1fr)">
-            <div><div class="vtile" style="background:var(--bone)"><img src="assets/logos/svg/horizontal-colour.svg" alt="Horizontal lockup"></div><p class="vcap"><b>Horizontal</b>The default lockup.</p></div>
-            <div><div class="vtile" style="background:var(--bone)"><img src="assets/logos/svg/stack-colour.svg" alt="Stacked lockup"></div><p class="vcap"><b>Stack</b>Square and centred layouts.</p></div>
-            <div><div class="vtile" style="background:var(--bone)"><img src="assets/logos/svg/vertical-colour.svg" alt="Vertical lockup"></div><p class="vcap"><b>Vertical</b>Narrow columns.</p></div>
-            <div><div class="vtile" style="background:var(--bone)"><img src="assets/logos/svg/badge-colour.svg" alt="Badge lockup"></div><p class="vcap"><b>Badge</b>Stamps and seals.</p></div>
-            <div><div class="vtile" style="background:var(--bone)"><img src="assets/logos/svg/short-colour.svg" alt="Short lockup"></div><p class="vcap"><b>Short</b>Tight horizontal spaces.</p></div>
-            <div><div class="vtile" style="background:var(--bone)"><img src="assets/logos/svg/symbol-colour.svg" alt="Symbol" style="max-width:44%"></div><p class="vcap"><b>Symbol</b>App icon, avatar, favicon.</p></div>
+            <div><div class="vtile" style="background:var(--bone)"><img src="assets/logos/svg/horizontal-colour.svg" alt="Horizontal lockup"><a href="assets/logos/svg/horizontal-colour.svg" download class="dl-hover-btn">Download SVG</a></div><p class="vcap"><b>Horizontal</b>The default lockup.</p></div>
+            <div><div class="vtile" style="background:var(--bone)"><img src="assets/logos/svg/stack-colour.svg" alt="Stacked lockup"><a href="assets/logos/svg/stack-colour.svg" download class="dl-hover-btn">Download SVG</a></div><p class="vcap"><b>Stack</b>Square and centred layouts.</p></div>
+            <div><div class="vtile" style="background:var(--bone)"><img src="assets/logos/svg/vertical-colour.svg" alt="Vertical lockup"><a href="assets/logos/svg/vertical-colour.svg" download class="dl-hover-btn">Download SVG</a></div><p class="vcap"><b>Vertical</b>Narrow columns.</p></div>
+            <div><div class="vtile" style="background:var(--bone)"><img src="assets/logos/svg/badge-colour.svg" alt="Badge lockup"><a href="assets/logos/svg/badge-colour.svg" download class="dl-hover-btn">Download SVG</a></div><p class="vcap"><b>Badge</b>Stamps and seals.</p></div>
+            <div><div class="vtile" style="background:var(--bone)"><img src="assets/logos/svg/short-colour.svg" alt="Short lockup"><a href="assets/logos/svg/short-colour.svg" download class="dl-hover-btn">Download SVG</a></div><p class="vcap"><b>Short</b>Tight horizontal spaces.</p></div>
+            <div><div class="vtile" style="background:var(--bone)"><img src="assets/logos/svg/symbol-colour.svg" alt="Symbol" style="max-width:44%"><a href="assets/logos/svg/symbol-colour.svg" download class="dl-hover-btn">Download SVG</a></div><p class="vcap"><b>Symbol</b>App icon, avatar, favicon.</p></div>
           </div>
         </div>
 
@@ -367,6 +336,10 @@
         <div class="cash-sec" id="ar-anatomy">
           <h2 class="cash-h">Anatomy</h2>
           <p class="cash-lead">The geometry is locked. Corner radius is 10% of the arrow's height. The point is 42.6% of the height. Colour and length change freely; the radius and the point angle never do.</p>
+          <div style="margin-bottom: 24px;">
+            <a class="btn sm" href="assets/graphics/arrow-start-cap.svg" download>Download Start Cap SVG</a>
+            <a class="btn sm" href="assets/graphics/arrow-end-cap.svg" download>Download End Cap SVG</a>
+          </div>
           <div class="arw-hero" data-arw="sunset"><div class="big">Every arrow in the system<br>is this one shape, stretched.</div></div>
           <div class="panel-2" style="margin-top:16px">
             <div><div class="tpanel" style="padding:34px"><span data-arw="coral" style="width:100%;height:120px"></span></div><p class="tcap"><b>Solid</b>The default. Coral, or the amber to coral gradient for highlights.</p></div>
@@ -585,6 +558,9 @@
         <div class="cash-sec" id="t-typeface">
           <h2 class="cash-h">Mona Sans</h2>
           <p class="cash-lead">One typeface, no second family. Modern and open, it reads clearly for an audience that often reads English as a second language, and it holds its character from dense body text up to poster scale. Display is set tight and semibold; body stays regular and calm.</p>
+          <div style="margin-bottom: 24px;">
+            <a class="btn" href="https://fonts.google.com/specimen/Mona+Sans" target="_blank" rel="noopener">Download from Google Fonts</a>
+          </div>
           <img class="gfx" src="assets/graphics/type-hero.svg" alt="Mona Sans set at hero scale: a display headline interlocking with an arrow-clipped portrait">
         </div>
 
@@ -644,8 +620,36 @@
           <h2 class="cash-h">Arrow generator</h2>
           <p class="cash-lead">Type a headline, then click a word to start the arrow and another to set where it ends. The caps always land on the ENDS of the run — rounded start, pointed finish — drawn with the exact locked geometry. Keep the highlight to two or three words and let it land the line.</p>
           <div class="tgen" id="typegen">
-            <label class="tg-field" for="tg-input">Your headline — press Enter for a line break</label>
-            <textarea id="tg-input" class="tg-input" rows="2" autocomplete="off" spellcheck="false">From first assessment to first shift</textarea>
+            <div class="tg-tabs">
+              <button class="tg-tab active" data-mode="text">Text highlight</button>
+              <button class="tg-tab" data-mode="icon">Icon chip</button>
+            </div>
+            
+            <div id="tg-text-ui">
+              <label class="tg-field" for="tg-input">Your headline — press Enter for a line break</label>
+              <textarea id="tg-input" class="tg-input" rows="2" autocomplete="off" spellcheck="false">From first assessment to first shift</textarea>
+            </div>
+            
+            <div id="tg-icon-ui" style="display:none;">
+              <label class="tg-field" for="tg-icon-search">Search icon library</label>
+              <input id="tg-icon-search" class="tg-input" type="search" autocomplete="off" spellcheck="false" placeholder="e.g. check, medical, heart">
+              
+              <div class="icon-grid" id="tg-icon-grid"></div>
+              
+              <div style="margin-top: 12px; display: flex; align-items: center; gap: 12px;">
+                <label class="tg-field" for="tg-icon-scale" style="margin-bottom: 0;">Icon scale</label>
+                <input type="range" id="tg-icon-scale" min="30" max="100" value="70" style="flex: 1;">
+                <span id="tg-icon-scale-val" style="font-size: 13px; font-weight: 600; color: var(--ink);">70%</span>
+              </div>
+              
+              <details style="margin-top: 16px;">
+                <summary style="font-size: 13px; font-weight: 600; cursor: pointer; color: var(--ink);">Advanced: Paste raw SVG</summary>
+                <div style="margin-top: 8px;">
+                  <textarea id="tg-icon-input" class="tg-input" rows="4" autocomplete="off" spellcheck="false" placeholder="<svg>...</svg>"></textarea>
+                  <p class="tg-field" style="margin-top: 8px;">The SVG will be recolored to match the arrow fill and perfectly centered.</p>
+                </div>
+              </details>
+            </div>
             <div class="tg-stage" aria-live="polite"></div>
             <div class="tg-controls">
               <span class="lbl">Fill</span>
@@ -788,19 +792,6 @@
           <p class="lead">Everyday collateral anyone at NewMed can make in a minute — type your details, download the file. No design tools, always on-brand.</p>
         </div>
 
-        <div class="cash-sec" id="ap-toolkit">
-          <h2 class="cash-h">Brand toolkit</h2>
-          <p class="cash-lead">A small set of self-serve tools. Each takes your details and hands back a finished, on-brand file — nothing to design, nothing to get wrong.</p>
-          <div class="tool-list">
-            <div class="tool"><h4>Email signature</h4><p>The daily touchpoint. Copy it straight into Gmail or Outlook.</p><span class="soon on">Ready below</span></div>
-            <div class="tool"><h4>Video-call background</h4><p>A branded 1920×1080 background with your name and title.</p><span class="soon">Coming next</span></div>
-            <div class="tool"><h4>LinkedIn banner</h4><p>A 1584×396 header over the gradient, with your title and a line.</p><span class="soon">Coming next</span></div>
-            <div class="tool"><h4>Business card</h4><p>Print-ready front and back, exported as a PDF.</p><span class="soon on">Ready below</span></div>
-            <div class="tool"><h4>Letterhead</h4><p>An A4 template with your name and department.</p><span class="soon">Coming next</span></div>
-            <div class="tool"><h4>Social avatar</h4><p>Your initials or photo set inside the arrow.</p><span class="soon">Coming next</span></div>
-          </div>
-        </div>
-
         <div class="cash-sec" id="ap-signature">
           <h2 class="cash-h">Email signature</h2>
           <p class="cash-lead">Type your details, then copy the signature straight into Gmail or Outlook, or download it as a file.</p>
@@ -827,7 +818,19 @@
         <div class="cash-sec" id="ap-card">
           <h2 class="cash-h">Business card</h2>
           <p class="cash-lead">Type your details, check the front and back, then save a print-ready PDF (3.5 × 2 in, one face per page) to send straight to a printer.</p>
-          <div class="cardgen" id="cardgen">
+          
+          <div class="gate-overlay" id="gate-card">
+            <div class="gate-box">
+              <span class="material-symbols-outlined" style="font-size: 32px; margin-bottom: 12px; color: var(--orange)">lock</span>
+              <h3>Password Required</h3>
+              <p>Please enter the password to unlock this generator.</p>
+              <input type="password" id="pw-card" class="tg-input" style="margin-bottom: 12px;">
+              <button class="btn sm" id="btn-pw-card">Unlock</button>
+              <p class="tg-hint" id="hint-pw-card" style="color: #ff5122;"></p>
+            </div>
+          </div>
+          
+          <div class="cardgen gated-content" id="cardgen" style="display: none;">
             <div class="sig-form">
               <div><label for="cf-name">First name</label><input id="cf-name" class="tg-input" data-f="name" value="Priya Nair" autocomplete="off"></div>
               <div><label for="cf-desig">Designation</label><input id="cf-desig" class="tg-input" data-f="designation" value="Clinical Readiness Lead" autocomplete="off"></div>
@@ -846,37 +849,44 @@
           <p class="tcap" style="max-width:66ch"><b>Printing it</b>Save as PDF at 3.5 × 2 in, margins none, then send to your print supplier — ideally uncoated stock for the warm, matte feel. The office address is part of the back artwork; tell me if it should vary by location. Two pages: front, then back.</p>
         </div>
 
-      </div>
-    </section>
-
-    <!-- ========== 08 DOWNLOADS ========== -->
-    <section class="section" id="downloads">
-      <div class="wrap">
-        <div class="sec-head">
-          <h1 class="sec-title">Resources.</h1>
-          <p class="lead">Every logo in three formats, the colour values, and the typeface. SVG for screen and scaling, PNG for quick placement, PDF for print.</p>
-        </div>
-
-        <div class="cash-sec" id="d-logos">
-          <h2 class="cash-h">Logo files</h2>
-          <p class="cash-lead">All six lockups plus the symbol and app icon.</p>
-          <div class="res-list"><div class="res"><div><div class="rn">Horizontal, colour</div><div class="rd">Primary lockup</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/horizontal-colour.svg" download>SVG</a><a class="btn sm" href="assets/logos/png/horizontal-colour.png" download>PNG</a><a class="btn sm" href="assets/logos/pdf/horizontal-colour.pdf" download>PDF</a></div></div><div class="res"><div><div class="rn">Horizontal, black</div><div class="rd">Single colour and reverse</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/horizontal-black.svg" download>SVG</a><a class="btn sm" href="assets/logos/png/horizontal-black.png" download>PNG</a><a class="btn sm" href="assets/logos/pdf/horizontal-black.pdf" download>PDF</a></div></div><div class="res"><div><div class="rn">Stack, colour</div><div class="rd">Centred and square spaces</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/stack-colour.svg" download>SVG</a><a class="btn sm" href="assets/logos/png/stack-colour.png" download>PNG</a><a class="btn sm" href="assets/logos/pdf/stack-colour.pdf" download>PDF</a></div></div><div class="res"><div><div class="rn">Vertical, colour</div><div class="rd">Narrow columns</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/vertical-colour.svg" download>SVG</a><a class="btn sm" href="assets/logos/png/vertical-colour.png" download>PNG</a><a class="btn sm" href="assets/logos/pdf/vertical-colour.pdf" download>PDF</a></div></div><div class="res"><div><div class="rn">Badge, colour</div><div class="rd">Stamps and seals</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/badge-colour.svg" download>SVG</a><a class="btn sm" href="assets/logos/png/badge-colour.png" download>PNG</a><a class="btn sm" href="assets/logos/pdf/badge-colour.pdf" download>PDF</a></div></div><div class="res"><div><div class="rn">Short, colour</div><div class="rd">Tight horizontal spaces</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/short-colour.svg" download>SVG</a><a class="btn sm" href="assets/logos/png/short-colour.png" download>PNG</a><a class="btn sm" href="assets/logos/pdf/short-colour.pdf" download>PDF</a></div></div><div class="res"><div><div class="rn">Symbol, colour</div><div class="rd">App icon, avatar, favicon</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/symbol-colour.svg" download>SVG</a><a class="btn sm" href="assets/logos/png/symbol-colour.png" download>PNG</a><a class="btn sm" href="assets/logos/pdf/symbol-colour.pdf" download>PDF</a></div></div><div class="res"><div><div class="rn">App icon, 1024 px</div><div class="rd">iOS and store ready</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/png/app-icon-1024.png" download>PNG</a></div></div></div>
-        </div>
-
-        <div class="cash-sec" id="d-colour">
-          <h2 class="cash-h">Colour and type</h2>
-          <p class="cash-lead">Master swatch artwork and the primary typeface.</p>
-          <div class="res-list">
-            <div class="res"><div><div class="rn">Colour palette</div><div class="rd">Master swatch artwork with every value</div></div><div class="dl-row"><a class="btn sm" href="assets/logos/svg/colours.svg" download>SVG</a></div></div>
-            <div class="res"><div><div class="rn">Mona Sans</div><div class="rd">Primary typeface, open source under the SIL Open Font License</div></div><div class="dl-row"><a class="btn sm" href="https://github.com/github/mona-sans" target="_blank" rel="noopener">Get font</a></div></div>
+        <div class="cash-sec" id="ap-letterhead">
+          <h2 class="cash-h">Letterhead</h2>
+          <p class="cash-lead">An A4 template with the NewMed Skills background baked in. Download the Word document to edit and use.</p>
+          <div style="margin-top: 16px;">
+            <a href="assets/graphics/NewMed_Letterhead.docx" download class="btn">Download .docx Template</a>
           </div>
         </div>
 
-        <div class="cash-sec" id="d-contact">
-          <h2 class="cash-h">Still to come</h2>
-          <p class="cash-lead">Co-branding rules, motion, iconography and photography direction are the natural next sections. This manual is built to grow.</p>
+        <div class="cash-sec" id="ap-meeting">
+          <h2 class="cash-h">Meeting background</h2>
+          <p class="cash-lead">Customisable video-call backgrounds for Teams and Zoom.</p>
+          <div class="tpanel" style="padding: 48px; background: var(--bone);">
+            <p style="color: var(--ink); opacity: 0.6; font-weight: 600;">Coming Soon — We will design this together.</p>
+          </div>
         </div>
 
+        <div class="cash-sec" id="ap-presentation">
+          <h2 class="cash-h">Presentation template</h2>
+          <p class="cash-lead">PowerPoint template for external presentations, pitch decks, and internal updates.</p>
+          
+          <div class="gate-overlay" id="gate-presentation">
+            <div class="gate-box">
+              <span class="material-symbols-outlined" style="font-size: 32px; margin-bottom: 12px; color: var(--orange)">lock</span>
+              <h3>Password Required</h3>
+              <p>Please enter the password to download this template.</p>
+              <input type="password" id="pw-presentation" class="tg-input" style="margin-bottom: 12px;">
+              <button class="btn sm" id="btn-pw-presentation">Unlock</button>
+              <p class="tg-hint" id="hint-pw-presentation" style="color: #ff5122;"></p>
+            </div>
+          </div>
+          
+          <div class="gated-content" id="presentation-dl" style="display: none; margin-top: 16px;">
+            <a href="#" class="btn" onclick="alert('PPTX file pending upload.')">Download .pptx Template</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="wrap">
         <p class="body muted" style="margin-top:56px;font-size:13.5px;border-top:1px solid var(--line);padding-top:20px">NewMed Skills Brand Guidelines &middot; Version 1.0 &middot; 2026 &middot; Confidential, for internal and partner use.</p>
       </div>
     </section>
@@ -886,6 +896,7 @@
 
 <div class="toast" id="toast"><span class="tk">✓</span> <span id="toast-msg">Copied</span></div>
 
+<script src="assets/icons.js?v=1"></script>
 <script src="arrow.js?v=1"></script>
 <script src="app.js?v=9"></script>
 <script src="gradient.js?v=6"></script>

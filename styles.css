@@ -1033,3 +1033,126 @@ p.body{color:var(--ink-80);max-width:66ch;}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;}
 }
+
+/* Logo download hover */
+.vtile {
+  position: relative;
+  overflow: hidden;
+}
+.dl-hover-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(10px);
+  background: var(--orange);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 40px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.vtile:hover .dl-hover-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) translateY(0);
+}
+
+/* Arrow generator tabs */
+.tg-tabs { display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 1px solid var(--bone); padding-bottom: 8px; }
+.tg-tab { background: transparent; border: none; font-size: 14px; font-weight: 600; color: var(--ink); opacity: 0.5; cursor: pointer; padding: 4px 8px; }
+.tg-tab.active { opacity: 1; border-bottom: 2px solid var(--orange); }
+.arw-icon-chip { display: inline-flex; align-items: center; justify-content: center; font-family: 'Material Symbols Outlined'; font-size: 24px; padding: 12px 0; }
+
+/* Password gate overlay */
+.gate-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: var(--bone);
+  border-radius: 12px;
+  margin-top: 16px;
+  text-align: center;
+}
+.gate-box h3 { margin-bottom: 8px; font-weight: 600; color: var(--ink); font-size: 20px; }
+.gate-box p { color: var(--ink); opacity: 0.7; margin-bottom: 16px; font-size: 14px; }
+.gate-box .tg-input { width: 100%; max-width: 300px; padding: 12px; margin: 0 auto 12px auto; display: block; }
+
+/* Icon Arrow Box */
+.arw-icon-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.0em;  /* 100% of height */
+  height: 1.0em; /* 100% of height */
+  position: relative;
+  /* The drawn arrow will be W = 1.426em.
+     The icon box occupies the 0..1em area.
+     The right edge of this box is where the end cap begins. */
+}
+.arw-icon-svg-wrapper {
+  width: 0.7em;  /* 70% of height */
+  height: 0.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.arw-icon-svg-wrapper svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+/* For icon mode, the hl container needs to be exactly 1.426em wide. */
+.tg-hl.icon-mode {
+  display: inline-flex;
+  align-items: center;
+  width: 1.426em; /* W = 100 + 42.6 = 142.6 */
+  height: 1.0em;
+  padding: 0;
+  vertical-align: middle;
+  font-size: 100px; /* Base scale for generator */
+}
+.tg-hl.icon-mode .arw-icon-box {
+  width: 1.0em;
+  height: 1.0em;
+}
+
+/* Icon Grid */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.icon-grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  background: var(--bone);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--ink);
+  font-family: 'Material Symbols Outlined', sans-serif;
+  font-size: 24px;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.icon-grid-item:hover, .icon-grid-item.selected {
+  background: var(--orange);
+  color: var(--cream);
+  border-color: var(--orange);
+}
+.icon-grid-item.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}

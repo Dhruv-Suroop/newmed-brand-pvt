@@ -3,6 +3,7 @@
   <defs>
     <style>
       .cls-1 {
+        fill: #391e1a;
         font-family: MonaSans-Regular, 'Mona Sans';
         font-size: 8px;
       }

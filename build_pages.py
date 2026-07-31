@@ -58,11 +58,18 @@ html = html.replace('<link rel="icon" href="favicon.png">',
 
 def repl(m):
     attr, path = m.group(1), m.group(2)
-    if path.endswith(".pdf"):
+    if path.endswith((".pdf", ".docx", ".pptx", ".zip")):
         return f'{attr}="#"'
     p = MOCK / pathlib.Path(path).name if "/mockups/" in path else ROOT / path
     return f'{attr}="{datauri(p)}"'
 
+
+# inline the icons list script (self-contained) before the generic asset rewrite
+try:
+    _icons = (ROOT / "assets/icons.js").read_text()
+    html = re.sub(r'<script src="assets/icons\.js[^"]*"></script>', lambda m: "<script>\n" + _icons + "\n</script>", html)
+except FileNotFoundError:
+    pass
 
 html = re.sub(r'(src|href)="(assets/[^"]+)"', repl, html)
 

@@ -20,10 +20,14 @@
 
   var frontSVG = '', backSVG = '', fontCSS = null, bind = {};
 
-  // strip width/height so the artwork scales to the wrapper (viewBox stays)
-  function prep(s) {
-    return s.replace(/(<svg\b[^>]*?)\s(?:width|height)="[^"]*"/g, '$1')
-            .replace(/(<svg\b[^>]*?)\s(?:width|height)="[^"]*"/g, '$1');
+  function prep(s, prefix) {
+    var str = s.replace(/(<svg\b[^>]*?)\s(?:width|height)="[^"]*"/g, '$1')
+               .replace(/(<svg\b[^>]*?)\s(?:width|height)="[^"]*"/g, '$1');
+    if (prefix) {
+      str = str.replace(/\.cls-/g, '.' + prefix + '-cls-')
+               .replace(/class="cls-/g, 'class="' + prefix + '-cls-');
+    }
+    return str;
   }
   function fit(svgEl) { svgEl.style.width = '100%'; svgEl.style.height = '100%'; svgEl.style.display = 'block'; }
   // render text in the page's Mona Sans (the SVG names per-weight families that aren't loaded)
@@ -34,12 +38,12 @@
   }
 
   function injectFront() {
-    frontWrap.innerHTML = prep(frontSVG);
+    frontWrap.innerHTML = prep(frontSVG, 'cf');
     var el = frontWrap.querySelector('svg'); if (el) { fit(el); fonts(el); }
   }
 
   function injectBack() {
-    backWrap.innerHTML = prep(backSVG);
+    backWrap.innerHTML = prep(backSVG, 'cb');
     var el = backWrap.querySelector('svg'); if (!el) return;
     fit(el); fonts(el);
     bind = {};

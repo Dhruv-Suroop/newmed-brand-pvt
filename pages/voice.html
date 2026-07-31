@@ -1043,7 +1043,131 @@ p.body{color:var(--ink-80);max-width:66ch;}
   *{animation:none!important;transition:none!important;}
 }
 
+/* Logo download hover */
+.vtile {
+  position: relative;
+  overflow: hidden;
+}
+.dl-hover-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(10px);
+  background: var(--orange);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 40px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.vtile:hover .dl-hover-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) translateY(0);
+}
+
+/* Arrow generator tabs */
+.tg-tabs { display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 1px solid var(--bone); padding-bottom: 8px; }
+.tg-tab { background: transparent; border: none; font-size: 14px; font-weight: 600; color: var(--ink); opacity: 0.5; cursor: pointer; padding: 4px 8px; }
+.tg-tab.active { opacity: 1; border-bottom: 2px solid var(--orange); }
+.arw-icon-chip { display: inline-flex; align-items: center; justify-content: center; font-family: 'Material Symbols Outlined'; font-size: 24px; padding: 12px 0; }
+
+/* Password gate overlay */
+.gate-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: var(--bone);
+  border-radius: 12px;
+  margin-top: 16px;
+  text-align: center;
+}
+.gate-box h3 { margin-bottom: 8px; font-weight: 600; color: var(--ink); font-size: 20px; }
+.gate-box p { color: var(--ink); opacity: 0.7; margin-bottom: 16px; font-size: 14px; }
+.gate-box .tg-input { width: 100%; max-width: 300px; padding: 12px; margin: 0 auto 12px auto; display: block; }
+
+/* Icon Arrow Box */
+.arw-icon-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.0em;  /* 100% of height */
+  height: 1.0em; /* 100% of height */
+  position: relative;
+  /* The drawn arrow will be W = 1.426em.
+     The icon box occupies the 0..1em area.
+     The right edge of this box is where the end cap begins. */
+}
+.arw-icon-svg-wrapper {
+  width: 0.7em;  /* 70% of height */
+  height: 0.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.arw-icon-svg-wrapper svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+/* For icon mode, the hl container needs to be exactly 1.426em wide. */
+.tg-hl.icon-mode {
+  display: inline-flex;
+  align-items: center;
+  width: 1.426em; /* W = 100 + 42.6 = 142.6 */
+  height: 1.0em;
+  padding: 0;
+  vertical-align: middle;
+  font-size: 100px; /* Base scale for generator */
+}
+.tg-hl.icon-mode .arw-icon-box {
+  width: 1.0em;
+  height: 1.0em;
+}
+
+/* Icon Grid */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.icon-grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  background: var(--bone);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--ink);
+  font-family: 'Material Symbols Outlined', sans-serif;
+  font-size: 24px;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.icon-grid-item:hover, .icon-grid-item.selected {
+  background: var(--orange);
+  color: var(--cream);
+  border-color: var(--orange);
+}
+.icon-grid-item.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 </head>
 <body class="at-section">
 
@@ -1065,29 +1189,13 @@ p.body{color:var(--ink-80);max-width:66ch;}
   </a>
   <div class="tb-title">Brand Guidelines</div>
   <nav class="tb-nav">
-    <div class="tb-group" data-group>
-      <button class="tb-btn" type="button">Foundations <svg class="caret"><use href="#ico-caret"/></svg></button>
-      <div class="tb-menu">
-        <a href="brand.html" data-nav>Brand</a>
-        <a href="logo.html" data-nav>Logo</a>
-        <a href="arrow.html" data-nav>The arrow</a>
-        <a href="colour.html" data-nav>Colour</a>
-        <a href="type.html" data-nav>Typography</a>
-        <a href="voice.html" data-nav>Voice &amp; Tone</a>
-      </div>
-    </div>
-    <div class="tb-group" data-group>
-      <button class="tb-btn" type="button">Expressions <svg class="caret"><use href="#ico-caret"/></svg></button>
-      <div class="tb-menu">
-        <a href="applications.html" data-nav>Applications</a>
-      </div>
-    </div>
-    <div class="tb-group" data-group>
-      <button class="tb-btn" type="button">Resources <svg class="caret"><use href="#ico-caret"/></svg></button>
-      <div class="tb-menu">
-        <a href="downloads.html" data-nav>Downloads</a>
-      </div>
-    </div>
+    <a href="brand.html" class="tb-btn" data-nav style="text-decoration: none;">Brand</a>
+    <a href="logo.html" class="tb-btn" data-nav style="text-decoration: none;">Logo</a>
+    <a href="arrow.html" class="tb-btn" data-nav style="text-decoration: none;">The arrow</a>
+    <a href="colour.html" class="tb-btn" data-nav style="text-decoration: none;">Colour</a>
+    <a href="type.html" class="tb-btn" data-nav style="text-decoration: none;">Typography</a>
+    <a href="voice.html" class="tb-btn" data-nav style="text-decoration: none;">Voice &amp; Tone</a>
+    <a href="applications.html" class="tb-btn" data-nav style="text-decoration: none;">Applications</a>
     <button class="hamb" id="hamb" aria-label="Menu"><span></span></button>
   </nav>
 </header>
@@ -1098,8 +1206,6 @@ p.body{color:var(--ink-80);max-width:66ch;}
   <!-- ============ SIDEBAR ============ -->
   <aside class="sidebar" id="sidebar">
     <nav class="side-nav" id="sidenav">
-      <div class="nav-group">
-        <p class="ng-title">Foundations</p>
         <div class="nav-sec" data-sec="brand">
           <a class="ns-link" href="brand.html" data-nav>Brand</a>
           <div class="ns-subs">
@@ -1120,7 +1226,6 @@ p.body{color:var(--ink-80);max-width:66ch;}
             <a href="#l-partners" data-parent="logo">Partnerships</a>
             <a href="#l-inuse" data-parent="logo">In use</a>
             <a href="#l-misuse" data-parent="logo">Incorrect usage</a>
-            <a href="#l-res" data-parent="logo">Resources</a>
           </div>
         </div>
         <div class="nav-sec" data-sec="arrow">
@@ -1170,29 +1275,16 @@ p.body{color:var(--ink-80);max-width:66ch;}
             <a href="#v-check" data-parent="voice">10 second check</a>
           </div>
         </div>
-      </div>
-      <div class="nav-group">
-        <p class="ng-title">Expressions</p>
         <div class="nav-sec" data-sec="applications">
           <a class="ns-link" href="applications.html" data-nav>Applications</a>
-        <div class="ns-subs">
-            <a href="#ap-toolkit" data-parent="applications">Brand toolkit</a>
+          <div class="ns-subs">
             <a href="#ap-signature" data-parent="applications">Email signature</a>
             <a href="#ap-card" data-parent="applications">Business card</a>
+            <a href="#ap-letterhead" data-parent="applications">Letterhead</a>
+            <a href="#ap-meeting" data-parent="applications">Meeting background</a>
+            <a href="#ap-presentation" data-parent="applications">Presentation</a>
           </div>
         </div>
-      </div>
-      <div class="nav-group">
-        <p class="ng-title">Resources</p>
-        <div class="nav-sec" data-sec="downloads">
-          <a class="ns-link" href="downloads.html" data-nav>Downloads</a>
-        <div class="ns-subs">
-            <a href="#d-logos" data-parent="downloads">Logo files</a>
-            <a href="#d-colour" data-parent="downloads">Colour and type</a>
-            <a href="#d-contact" data-parent="downloads">Still to come</a>
-          </div>
-        </div>
-      </div>
     </nav>
     <div class="sb-foot">
       <b>Version 1.0</b> · 2026<br>
@@ -1310,12 +1402,43 @@ p.body{color:var(--ink-80);max-width:66ch;}
     </section>
 
     <!-- ========== 07 APPLICATIONS ========== -->
-    <!-- ========== 08 DOWNLOADS ========== -->
     </main>
 </div>
 
 <div class="toast" id="toast"><span class="tk">✓</span> <span id="toast-msg">Copied</span></div>
 
+<script>
+window.MATERIAL_ICONS = [
+  "arrow_forward", "arrow_back", "arrow_downward", "arrow_upward", 
+  "chevron_right", "chevron_left", "expand_more", "expand_less",
+  "check", "close", "add", "remove", "more_horiz", "more_vert",
+  "search", "menu", "home", "person", "settings", "info", "help",
+  "warning", "error", "done", "verified", "favorite", "star",
+  "thumb_up", "thumb_down", "visibility", "visibility_off",
+  "edit", "delete", "content_copy", "share", "download", "upload",
+  "lock", "lock_open", "mail", "phone", "chat", "notifications",
+  
+  "medical_services", "healing", "monitor_heart", "vaccines",
+  "stethoscope", "prescriptions", "bloodtype", "vital_signs",
+  "emergency", "health_and_safety", "psychology", "local_hospital",
+  "local_pharmacy", "medication", "coronavirus", "sanitizer",
+  "masks", "science", "biotech", "microbiology", "genetics",
+  "water_drop", "clean_hands", "safety_divider", "social_distance",
+  
+  "article", "description", "assignment", "event", "calendar_today",
+  "schedule", "watch_later", "work", "store", "shopping_cart",
+  "credit_card", "payments", "receipt", "account_balance",
+  "analytics", "trending_up", "trending_down", "insights",
+  "lightbulb", "emoji_objects", "explore", "location_on", "map",
+  "language", "public", "school", "workspace_premium",
+  
+  "computer", "smartphone", "tablet", "laptop", "desktop_windows",
+  "keyboard", "mouse", "print", "memory", "security", "shield",
+  "cloud", "cloud_done", "cloud_download", "cloud_upload",
+  "wifi", "bluetooth", "power", "battery_full", "dns", "database"
+];
+
+</script>
 <script>
 /* NewMed Skills — THE ARROW engine (locked geometry).
    Standalone so both the app and the static handoff pages can paint arrows
@@ -1734,6 +1857,9 @@ p.body{color:var(--ink-80);max-width:66ch;}
   var HEX = { cream: '#f4f1ea', ink: '#391e1a', amber: '#ff9d00', coral: '#ff5122', maroon: '#7c3134' };
 
   var tokens = [], count = 0, wtext = [];
+  var mode = 'text', iconInput = document.getElementById('tg-icon-input');
+  var iconScaleInput = document.getElementById('tg-icon-scale');
+  var iconScaleVal = document.getElementById('tg-icon-scale-val');
   var selStart = -1, selEnd = -1, anchor = -1, hasRange = false, fill = 'sunset';
 
   // parse the textarea into word / line-break tokens ------------------
@@ -1767,7 +1893,40 @@ p.body{color:var(--ink-80);max-width:66ch;}
 
   function render() {
     stage.textContent = '';
-    var hl = null, k = 0;
+    var hl = null;
+
+    if (mode === 'icon') {
+      hl = document.createElement('span');
+      hl.className = 'tg-hl icon-mode';
+      hl.setAttribute('data-arw', fill);
+      hl.style.setProperty('--tgtext', 'var(--' + (TEXTON[fill] || 'cream') + ')');
+      
+      var iconBox = document.createElement('span');
+      iconBox.className = 'arw-icon-box';
+      
+      var iconWrapper = document.createElement('span');
+      iconWrapper.className = 'arw-icon-svg-wrapper';
+      
+      var scale = iconScaleInput ? parseInt(iconScaleInput.value, 10) : 70;
+      if (iconScaleVal) iconScaleVal.textContent = scale + '%';
+      iconWrapper.style.width = (scale / 100) + 'em';
+      iconWrapper.style.height = (scale / 100) + 'em';
+      
+      var svgCode = (iconInput.value || '').trim();
+      if (!svgCode.startsWith('<svg')) {
+         svgCode = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L22 20H2L12 2Z" fill="currentColor"/></svg>';
+      }
+      
+      iconWrapper.innerHTML = svgCode;
+      iconBox.appendChild(iconWrapper);
+      hl.appendChild(iconBox);
+      stage.appendChild(hl);
+      if (window.NMArrow) window.NMArrow.paint(hl);
+      hint.textContent = 'Icon mode: pasting raw SVG code.';
+      return;
+    }
+
+    var k = 0;
     while (k < tokens.length) {
       var tk = tokens[k];
       if (tk.br) { stage.appendChild(document.createElement('br')); k++; continue; }
@@ -1834,7 +1993,7 @@ p.body{color:var(--ink-80);max-width:66ch;}
   function collect() {
     var hl = stage.querySelector('.tg-hl');
     var els = slice(stage.querySelectorAll('.tg-word'));
-    if (!els.length) return null;
+    if (!els.length && mode !== 'icon') return null;
     var minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
     var boxes = els.map(function (el) {
       var r = el.getBoundingClientRect(), cs = getComputedStyle(el);
@@ -1881,14 +2040,33 @@ p.body{color:var(--ink-80);max-width:66ch;}
       ctx.fill(new Path2D(window.NMArrow.pathD(c.hlBox.W, c.hlBox.H, false)));
       ctx.restore();
     }
-    c.boxes.forEach(function (b) {
-      var fs = parseFloat(b.cs.fontSize);
-      ctx.font = b.cs.fontWeight + ' ' + (fs * S) + 'px "Mona Sans", sans-serif';
-      try { ctx.letterSpacing = (fs * S * -0.02) + 'px'; } catch (e) {}
-      ctx.textBaseline = 'alphabetic';   // pin to the measured baseline
-      ctx.fillStyle = b.inHl ? HEX[TEXTON[fill] || 'cream'] : HEX.ink;
-      ctx.fillText(b.el.textContent, (b.r.left - c.ox) * S, (b.base - c.oy) * S);
-    });
+    if (mode === 'icon') {
+      var svgWrap = stage.querySelector('.arw-icon-svg-wrapper svg');
+      if (svgWrap) {
+        var svgStr = new XMLSerializer().serializeToString(svgWrap);
+        svgStr = svgStr.replace(/currentColor/gi, HEX[TEXTON[fill] || 'cream']);
+        var img = new Image();
+        img.onload = function() {
+          var scale = iconScaleInput ? parseInt(iconScaleInput.value, 10) / 100 : 0.7;
+          var iw = c.hlBox.H * scale * S;
+          var ix = (c.hlBox.r.left - c.ox + c.hlBox.H * ((1 - scale) / 2)) * S;
+          var iy = (c.hlBox.r.top - c.oy + c.hlBox.H * ((1 - scale) / 2)) * S;
+          ctx.drawImage(img, ix, iy, iw, iw);
+          cnv.toBlob(function (bl) { download(bl, 'newmed-arrow.png'); }, 'image/png');
+        };
+        img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr);
+        return;
+      }
+    } else {
+      c.boxes.forEach(function (b) {
+        var fs = parseFloat(b.cs.fontSize);
+        ctx.font = b.cs.fontWeight + ' ' + (fs * S) + 'px "Mona Sans", sans-serif';
+        try { ctx.letterSpacing = (fs * S * -0.02) + 'px'; } catch (e) {}
+        ctx.textBaseline = 'alphabetic';   // pin to the measured baseline
+        ctx.fillStyle = b.inHl ? HEX[TEXTON[fill] || 'cream'] : HEX.ink;
+        ctx.fillText(b.el.textContent, (b.r.left - c.ox) * S, (b.base - c.oy) * S);
+      });
+    }
     cnv.toBlob(function (bl) { download(bl, 'newmed-headline.png'); }, 'image/png');
   }
 
@@ -1922,16 +2100,31 @@ p.body{color:var(--ink-80);max-width:66ch;}
         out.push('<path transform="translate(' + r2(c.hlBox.r.left - c.ox) + ',' + r2(c.hlBox.r.top - c.oy) + ')" d="' +
           window.NMArrow.pathD(c.hlBox.W, c.hlBox.H, false) + '" fill="' + f + '"/>');
       }
-      c.boxes.forEach(function (b) {
-        var fs = parseFloat(b.cs.fontSize);
-        var col = b.inHl ? HEX[TEXTON[fill] || 'cream'] : HEX.ink;
-        out.push('<text x="' + r2(b.r.left - c.ox) + '" y="' + r2(b.base - c.oy) +
-          '" font-family="Mona Sans, sans-serif" font-weight="' + b.cs.fontWeight +
-          '" font-size="' + fs + '" letter-spacing="' + r2(fs * -0.02) +
-          '" fill="' + col + '">' + esc(b.el.textContent) + '</text>');
-      });
+      if (mode === 'icon') {
+        var svgWrap = stage.querySelector('.arw-icon-svg-wrapper svg');
+        if (svgWrap) {
+          var svgStr = new XMLSerializer().serializeToString(svgWrap);
+          var scale = iconScaleInput ? parseInt(iconScaleInput.value, 10) / 100 : 0.7;
+          var iw = c.hlBox.H * scale;
+          var ix = c.hlBox.r.left - c.ox + c.hlBox.H * ((1 - scale) / 2);
+          var iy = c.hlBox.r.top - c.oy + c.hlBox.H * ((1 - scale) / 2);
+          var col = HEX[TEXTON[fill] || 'cream'];
+          svgStr = svgStr.replace(/currentColor/gi, col);
+          svgStr = svgStr.replace(/^<svg[^>]*>/i, '<svg x="' + r2(ix) + '" y="' + r2(iy) + '" width="' + r2(iw) + '" height="' + r2(iw) + '">');
+          out.push(svgStr);
+        }
+      } else {
+        c.boxes.forEach(function (b) {
+          var fs = parseFloat(b.cs.fontSize);
+          var col = b.inHl ? HEX[TEXTON[fill] || 'cream'] : HEX.ink;
+          out.push('<text x="' + r2(b.r.left - c.ox) + '" y="' + r2(b.base - c.oy) +
+            '" font-family="Mona Sans, sans-serif" font-weight="' + b.cs.fontWeight +
+            '" font-size="' + fs + '" letter-spacing="' + r2(fs * -0.02) +
+            '" fill="' + col + '">' + esc(b.el.textContent) + '</text>');
+        });
+      }
       out.push('</svg>');
-      download(new Blob([out.join('')], { type: 'image/svg+xml' }), 'newmed-headline.svg');
+      download(new Blob([out.join('')], { type: 'image/svg+xml' }), mode === 'icon' ? 'newmed-arrow.svg' : 'newmed-headline.svg');
     });
   }
 
@@ -1942,6 +2135,60 @@ p.body{color:var(--ink-80);max-width:66ch;}
   });
 
   input.addEventListener('input', function () { rebuild(true); });
+  if (iconInput) iconInput.addEventListener('input', function() { render(); });
+  if (iconScaleInput) iconScaleInput.addEventListener('input', function() { render(); });
+  
+  // Icon Library logic
+  var iconSearch = document.getElementById('tg-icon-search');
+  var iconGrid = document.getElementById('tg-icon-grid');
+  var icons = window.MATERIAL_ICONS || [];
+  
+  function renderIconGrid(filter) {
+    if (!iconGrid) return;
+    iconGrid.innerHTML = '';
+    var filtered = icons.filter(function(name) { return name.indexOf(filter) !== -1; });
+    filtered.slice(0, 100).forEach(function(name) {
+      var btn = document.createElement('button');
+      btn.className = 'icon-grid-item';
+      btn.textContent = name;
+      btn.title = name;
+      btn.addEventListener('click', function() {
+        btn.classList.add('loading');
+        fetch('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/' + name + '/default/24px.svg')
+          .then(function(res) { return res.text(); })
+          .then(function(svg) {
+            btn.classList.remove('loading');
+            slice(iconGrid.querySelectorAll('.icon-grid-item')).forEach(function(b) { b.classList.toggle('selected', b === btn); });
+            if (iconInput) {
+              iconInput.value = svg;
+              render();
+            }
+          })
+          .catch(function() {
+            btn.classList.remove('loading');
+            alert('Failed to load SVG for ' + name);
+          });
+      });
+      iconGrid.appendChild(btn);
+    });
+  }
+  
+  if (iconSearch) {
+    iconSearch.addEventListener('input', function() { renderIconGrid(this.value.toLowerCase().trim()); });
+    renderIconGrid('');
+  }
+
+  var tabs = slice(root.querySelectorAll('.tg-tab'));
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      mode = t.getAttribute('data-mode');
+      tabs.forEach(function(x){ x.classList.toggle('active', x === t); });
+      root.querySelector('#tg-text-ui').style.display = (mode === 'text') ? 'block' : 'none';
+      root.querySelector('#tg-icon-ui').style.display = (mode === 'icon') ? 'block' : 'none';
+      root.querySelector('.tg-examples').style.display = (mode === 'text') ? 'flex' : 'none';
+      render();
+    });
+  });
 
   fillBtns.forEach(function (b) {
     b.addEventListener('click', function () {
@@ -2107,10 +2354,14 @@ p.body{color:var(--ink-80);max-width:66ch;}
 
   var frontSVG = '', backSVG = '', fontCSS = null, bind = {};
 
-  // strip width/height so the artwork scales to the wrapper (viewBox stays)
-  function prep(s) {
-    return s.replace(/(<svg\b[^>]*?)\s(?:width|height)="[^"]*"/g, '$1')
-            .replace(/(<svg\b[^>]*?)\s(?:width|height)="[^"]*"/g, '$1');
+  function prep(s, prefix) {
+    var str = s.replace(/(<svg\b[^>]*?)\s(?:width|height)="[^"]*"/g, '$1')
+               .replace(/(<svg\b[^>]*?)\s(?:width|height)="[^"]*"/g, '$1');
+    if (prefix) {
+      str = str.replace(/\.cls-/g, '.' + prefix + '-cls-')
+               .replace(/class="cls-/g, 'class="' + prefix + '-cls-');
+    }
+    return str;
   }
   function fit(svgEl) { svgEl.style.width = '100%'; svgEl.style.height = '100%'; svgEl.style.display = 'block'; }
   // render text in the page's Mona Sans (the SVG names per-weight families that aren't loaded)
@@ -2121,12 +2372,12 @@ p.body{color:var(--ink-80);max-width:66ch;}
   }
 
   function injectFront() {
-    frontWrap.innerHTML = prep(frontSVG);
+    frontWrap.innerHTML = prep(frontSVG, 'cf');
     var el = frontWrap.querySelector('svg'); if (el) { fit(el); fonts(el); }
   }
 
   function injectBack() {
-    backWrap.innerHTML = prep(backSVG);
+    backWrap.innerHTML = prep(backSVG, 'cb');
     var el = backWrap.querySelector('svg'); if (!el) return;
     fit(el); fonts(el);
     bind = {};
