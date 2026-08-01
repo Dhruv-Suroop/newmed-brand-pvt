@@ -36,7 +36,7 @@
 '<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;color:#391E1A;border-collapse:collapse;">' +
   '<tr>' +
     '<td style="padding:2px 20px 2px 0;vertical-align:middle;border-right:2px solid #FF5122;">' +
-      '<img src="' + LOGO + '" alt="NewMed Skills" width="150" style="display:block;border:0;">' +
+      '<img src="' + LOGO + '" alt="NewMed Skills" width="200" style="display:block;border:0;">' +
     '</td>' +
     '<td style="padding:2px 0 2px 20px;vertical-align:middle;">' +
       '<div style="font-size:16px;font-weight:bold;color:#391E1A;letter-spacing:.2px;">' + name + creds + '</div>' +
