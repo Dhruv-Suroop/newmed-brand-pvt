@@ -116,3 +116,25 @@ Exactly **7 colours**. No tints, no shades, no extra colours, no white. Never in
 ---
 
 *Kept current by whoever ships. Last structural update: proportion viz made seamless; nav de-duped.*
+
+---
+
+## 9. Voice & Tone — REBUILD (from Dhruv's tone doc; supersedes the earlier "remove it")
+
+Voice is **kept**, rebuilt from the input doc. It is **not** a repeat of the Brand personality (the 2×2 Certain/Plain/Warm/Guiding stays under Brand). Intro should feel warm, empathetic, human.
+
+**Three tones** (drop all other variants; frame metrics as traits each tone *has*, never "low X"):
+- **Clinical** — the most factual, specific tone. The reader wants information that is complete and to the point, without emotion. *To the point · Upfront · Specific.* Touchpoints: compliance docs · licensing pages · detailed FAQs · terms.
+- **Standard** — the default for most of the site. Clear *and* empathetic; simple, accessible language with emphasis to make points. *To the point · Approachable · Upfront.* Touchpoints: website · standard emails · social posts & campaigns.
+- **Bedside** — one-to-one, where empathy is needed. Speaks to emotions, anxieties and fears (fees, visas, arriving alone) and offers reassurance and calm. *Evocative · Approachable · Confident.* Touchpoints: website headings · social · one-on-one candidate conversations.
+
+Remove: the "nearer, not louder" line, and the principle section at the end.
+
+**Non-negotiables** (heading copy): "Non-negotiable, to ensure maximum clarity. Check every piece of copy for these — every piece must sound like NewMed Skills."
+- **Acronyms** — spell out every acronym on first use, then abbreviate. A nurse abroad may not know what it stands for.
+- **Sentence case** — sentence case for headings and buttons. All caps only for small labels. Numerals when a number is meaningful.
+
+**The check (5):** 1. Is every claim backed? · 2. Does every sentence capture one idea? · 3. Are there any vague words? · 4. Any banned words hiding in there? · 5. Does it sound confident?
+
+## 10. Iconography — NEW section, place after the Arrow section
+Brief, a few examples. Rules: **single colour · thick strokes · no sharp corners · simplified and clean, no clutter.**
