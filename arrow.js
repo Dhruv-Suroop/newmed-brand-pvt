@@ -81,7 +81,10 @@
       defs.appendChild(lg); svg.appendChild(defs);
       f = 'url(#' + id + ')';
     } else {
-      var map = { orange:'#ff5122', yellow:'#ff9d00', teal:'#93cccd', amber:'#ff9d00', coral:'#ff5122', cream:'#efe9e0', white:'#f4f1ea', ink:'#391e1a', maroon:'#7c3134' };
+      var map = { orange:'#ff5122', yellow:'#ff9d00', teal:'#93cccd', maroon:'#7c3134',
+                  cream:'#f4f1ea', offwhite:'#efe9e0', ink:'#391e1a',
+                  // legacy aliases, kept so older markup keeps painting
+                  amber:'#ff9d00', coral:'#ff5122', white:'#f4f1ea', bone:'#efe9e0' };
       f = map[fill] || fill;
     }
 

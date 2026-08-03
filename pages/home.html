@@ -1471,7 +1471,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .cash-h .ch-arw{
   display:inline-block;white-space:nowrap;
   padding:.2em .8em .2em .34em;
-  color:var(--cream);font-weight:600;}
+  color:var(--clay);font-weight:600;}
 .cash-h .ch-arw > svg.arw-bg{border-radius:0;}
 .section:not(.home) .cash-sec > .cash-h{
   font-size:clamp(22px,4.4vw,58px);max-width:none;line-height:1.24;}
@@ -1786,7 +1786,10 @@ window.MATERIAL_ICONS = [
       defs.appendChild(lg); svg.appendChild(defs);
       f = 'url(#' + id + ')';
     } else {
-      var map = { orange:'#ff5122', yellow:'#ff9d00', teal:'#93cccd', amber:'#ff9d00', coral:'#ff5122', cream:'#efe9e0', white:'#f4f1ea', ink:'#391e1a', maroon:'#7c3134' };
+      var map = { orange:'#ff5122', yellow:'#ff9d00', teal:'#93cccd', maroon:'#7c3134',
+                  cream:'#f4f1ea', offwhite:'#efe9e0', ink:'#391e1a',
+                  // legacy aliases, kept so older markup keeps painting
+                  amber:'#ff9d00', coral:'#ff5122', white:'#f4f1ea', bone:'#efe9e0' };
       f = map[fill] || fill;
     }
 

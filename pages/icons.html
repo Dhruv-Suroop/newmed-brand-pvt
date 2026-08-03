@@ -1471,7 +1471,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .cash-h .ch-arw{
   display:inline-block;white-space:nowrap;
   padding:.2em .8em .2em .34em;
-  color:var(--cream);font-weight:600;}
+  color:var(--clay);font-weight:600;}
 .cash-h .ch-arw > svg.arw-bg{border-radius:0;}
 .section:not(.home) .cash-sec > .cash-h{
   font-size:clamp(22px,4.4vw,58px);max-width:none;line-height:1.24;}
@@ -1624,7 +1624,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ic-rules">
-          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">How our icons look</span></h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">How our icons look</span></h2>
           <p class="cash-lead">One simple, consistent style throughout. When you need an icon that is not shown here, draw it to these same four rules so the set always reads as one family.</p>
           <div class="arules">
             <div class="arule"><h4>Single colour</h4><p>One colour per icon — Deep Brown by default, or cream when it sits on a dark or orange ground. Never multi-colour, never a gradient.</p></div>
@@ -1635,7 +1635,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ic-examples">
-          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">A few in use</span></h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">A few in use</span></h2>
           <p class="cash-lead">A small sample from across the journey, from first assessment to first shift. The same rounded, single-colour style holds on light and on orange.</p>
           <div class="ico-set">
             <div class="ico-cell"><span class="ms-rounded">clinical_notes</span><span class="lbl">Assess</span></div>
@@ -1656,7 +1656,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ic-generator">
-          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">Icon chip generator</span></h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">Icon chip generator</span></h2>
           <p class="cash-lead">Search the icon library, pick a glyph and it drops into the arrow chip at the right optical size. Change the fill, then take it away as a PNG or SVG.</p>
           <div class="tgen" id="icongen" data-lock="icon">
             <div class="tg-tabs">
@@ -1837,7 +1837,10 @@ window.MATERIAL_ICONS = [
       defs.appendChild(lg); svg.appendChild(defs);
       f = 'url(#' + id + ')';
     } else {
-      var map = { orange:'#ff5122', yellow:'#ff9d00', teal:'#93cccd', amber:'#ff9d00', coral:'#ff5122', cream:'#efe9e0', white:'#f4f1ea', ink:'#391e1a', maroon:'#7c3134' };
+      var map = { orange:'#ff5122', yellow:'#ff9d00', teal:'#93cccd', maroon:'#7c3134',
+                  cream:'#f4f1ea', offwhite:'#efe9e0', ink:'#391e1a',
+                  // legacy aliases, kept so older markup keeps painting
+                  amber:'#ff9d00', coral:'#ff5122', white:'#f4f1ea', bone:'#efe9e0' };
       f = map[fill] || fill;
     }
 

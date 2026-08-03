@@ -1471,7 +1471,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .cash-h .ch-arw{
   display:inline-block;white-space:nowrap;
   padding:.2em .8em .2em .34em;
-  color:var(--cream);font-weight:600;}
+  color:var(--clay);font-weight:600;}
 .cash-h .ch-arw > svg.arw-bg{border-radius:0;}
 .section:not(.home) .cash-sec > .cash-h{
   font-size:clamp(22px,4.4vw,58px);max-width:none;line-height:1.24;}
@@ -1627,7 +1627,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ap-signature">
-          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">Email signature</span></h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">Email signature</span></h2>
           <p class="cash-lead">Type your details, then copy the signature straight into Gmail or Outlook, or download it as a file.</p>
           <div class="appgen" id="siggen">
             <div class="sig-form">
@@ -1650,7 +1650,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ap-card">
-          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">Business card</span></h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">Business card</span></h2>
           <p class="cash-lead">Type your details, check the front and back, then save a print-ready PDF (3.5 × 2 in, one face per page) to send straight to a printer.</p>
           
           <div class="gate-overlay" id="gate-card">
@@ -1692,7 +1692,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ap-letterhead">
-          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">Letterhead</span></h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">Letterhead</span></h2>
           <p class="cash-lead">An A4 template with the NewMed Skills background baked in. Download the Word document to edit and use.</p>
           <div style="margin-top: 16px;">
             <a href="#" download class="dl-card" style="margin-top:0">
@@ -1707,7 +1707,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ap-meeting">
-          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">Meeting background</span></h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">Meeting background</span></h2>
           <p class="cash-lead">Customisable video-call backgrounds for Teams and Zoom.</p>
           <div class="tpanel" style="padding: 48px; background: var(--bone);">
             <p style="color: var(--deep-brown); opacity: 0.6; font-weight: 600;">Coming Soon — We will design this together.</p>
@@ -1715,7 +1715,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ap-presentation">
-          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">Presentation template</span></h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">Presentation template</span></h2>
           <p class="cash-lead">PowerPoint template for external presentations, pitch decks, and internal updates.</p>
           
           <div class="gate-overlay" id="gate-presentation">
@@ -1868,7 +1868,10 @@ window.MATERIAL_ICONS = [
       defs.appendChild(lg); svg.appendChild(defs);
       f = 'url(#' + id + ')';
     } else {
-      var map = { orange:'#ff5122', yellow:'#ff9d00', teal:'#93cccd', amber:'#ff9d00', coral:'#ff5122', cream:'#efe9e0', white:'#f4f1ea', ink:'#391e1a', maroon:'#7c3134' };
+      var map = { orange:'#ff5122', yellow:'#ff9d00', teal:'#93cccd', maroon:'#7c3134',
+                  cream:'#f4f1ea', offwhite:'#efe9e0', ink:'#391e1a',
+                  // legacy aliases, kept so older markup keeps painting
+                  amber:'#ff9d00', coral:'#ff5122', white:'#f4f1ea', bone:'#efe9e0' };
       f = map[fill] || fill;
     }
 

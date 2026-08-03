@@ -147,6 +147,14 @@ Brief, a few examples. Rules: **single colour · thick strokes · no sharp corne
 
 ---
 
+## 10b. Arrow colour tokens (`data-arw`) — aligned to the palette names (Aug 4)
+
+`arrow.js` used to map `cream` to `#efe9e0`, which the rename turned into **Off white** — inverted against the brand names and disagreeing with `typegen.js`. Now aligned:
+
+`orange` `#ff5122` · `yellow` `#ff9d00` · `maroon` `#7c3134` · `ink` `#391e1a` · **`cream` `#f4f1ea`** · **`offwhite` `#efe9e0`** · `teal` `#93cccd`.
+
+Old names (`coral`, `amber`, `white`, `bone`) are kept as aliases so nothing stops painting. Use the palette names.
+
 ## 11. The journey graphic — two variants, do not mix them up (Aug 4)
 
 `six-stages.svg` exists twice because the arrow shapes must contrast with whatever sits behind them:
