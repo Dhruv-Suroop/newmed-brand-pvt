@@ -16,12 +16,12 @@ Exactly **7 colours**. No tints, no shades, no extra colours, no white. Never in
 | **Maroon** | `#7C3134` | depth, for serious moments |
 | **Deep Brown** | `#391E1A` | all text + dark surfaces (a warm near-black) |
 | **Teal** | `#93CCCD` | the one cool note; the most sparing of all |
-| **Off White** | `#F4F1EA` | the page / primary light surface |
-| **Off White (deep)** | `#EFE9E0` | sunken surfaces — cards, panels |
+| **Cream** | `#F4F1EA` | the page / primary light surface |
+| **Off white** | `#EFE9E0` | sunken surfaces — cards, panels |
 
-**Retire these words everywhere** (copy *and* code): Signal Orange, Coral → **NewMed Orange**; Clinical Ink → **Deep Brown**; Amber → **Yellow**; Vitals Teal → **Teal**; Clay → **Maroon**; Linen / Bone → **Off White (deep)**; Cream → **Off White**.
+**Retire these words everywhere** (copy *and* code): Signal Orange, Coral → **NewMed Orange**; Clinical Ink → **Deep Brown**; Amber → **Yellow**; Vitals Teal → **Teal**; Clay → **Maroon**; Linen / Bone → **Off white**. (**Cream** is the light one, `#F4F1EA`.)
 
-> Open question for Dhruv: two neutrals both read as "Off White." Keep it that way, or give the deep one its own plain name (e.g. **Sand**)?
+> ✅ Resolved (Aug 4): the light neutral is **Cream** `#F4F1EA`, the sunken one is **Off white** `#EFE9E0`. Applied in `v3.html`; **`index.html` still uses the older "Off white / Off white (deep)" pair.**
 
 ---
 
@@ -29,7 +29,7 @@ Exactly **7 colours**. No tints, no shades, no extra colours, no white. Never in
 
 - It is an **arrow**. Never "chevron".
 - The orange is **NewMed Orange** (or just "orange"). Never "coral".
-- Use "off white", not "cream / linen / bone" in copy.
+- Neutrals are **Cream** (the page) and **Off white** (sunken surfaces). Never "linen" or "bone".
 - The name is always **NewMed Skills** — two words.
 
 ---
@@ -53,7 +53,7 @@ Exactly **7 colours**. No tints, no shades, no extra colours, no white. Never in
 
 **Fill:** default is the **Yellow → Orange gradient**. Flat orange, yellow, or deep brown are the alternates. Gradients are organic and soft — never hard-edged.
 
-**Text inside an arrow:** Off White on orange / gradient / deep-brown fills; Deep Brown on yellow. Always keep contrast.
+**Text inside an arrow:** Cream on orange / gradient / deep-brown fills; Deep Brown on yellow. Always keep contrast.
 
 **Uses** (each is a legitimate, distinct application):
 1. **Headline highlight** — the key phrase set inside the arrow. Minimum **2 words**; highlight the phrase carrying the movement/promise (never filler, never the negative half of a sentence); make it the **last line** so no word orphans; **one arrow per headline**.
@@ -144,3 +144,16 @@ Remove: the "nearer, not louder" line, and the principle section at the end.
 
 ## 10. Iconography — NEW section, place after the Arrow section
 Brief, a few examples. Rules: **single colour · thick strokes · no sharp corners · simplified and clean, no clutter.**
+
+---
+
+## 11. The journey graphic — two variants, do not mix them up (Aug 4)
+
+`six-stages.svg` exists twice because the arrow shapes must contrast with whatever sits behind them:
+
+| File | Arrow fill | Use on |
+|---|---|---|
+| `six-stages.svg` | `#efe9e0` Off white | the **page background** (Cream) — Arrow page |
+| `six-stages-onband.svg` | `#f4f1ea` Cream | a **sunken Off white band** — v3 Brand page |
+
+Put either on the wrong ground and the arrows become invisible, because the fill matches the background exactly. `index.html` uses the original only — **never "fix" the original to suit a band.**
