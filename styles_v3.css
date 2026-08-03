@@ -1302,7 +1302,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
   margin-top:clamp(56px,8vw,120px);margin-bottom:clamp(56px,8vw,120px);}
 .v3-dark .v3-kicker{color:var(--orange);}
 .v3-dark blockquote{margin:0;font-size:clamp(31px,5.8vw,92px);line-height:1;letter-spacing:-.04em;
-  font-weight:600;color:var(--cream);max-width:14ch;}
+  font-weight:600;color:var(--cream);max-width:26ch;text-wrap:balance;}
 .v3-dark .v3-sub{margin:clamp(28px,3.6vw,52px) 0 0;max-width:54ch;
   color:rgba(244,241,234,.72);font-size:clamp(15px,1.35vw,18px);line-height:1.62;}
 
@@ -1363,4 +1363,19 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
   .v3-attr:hover .n,.v3-attr:hover .t,
   .v3-sec:hover > .v3-statement .arw-hl,
   .v3-hero:hover .v3-ghost{transform:none!important;}
+}
+
+/* --- Orb wash on the big panels ---------------------------------
+   Reuses the promise card's hover. On Deep Brown the stock orb's
+   off-white radials go milky, so the dark band gets warm glow only. */
+.v3-band.orb-hover,.v3-dark.orb-hover{isolation:isolate;}
+.v3-dark.orb-hover::before{
+  background:
+    radial-gradient(58% 54% at 12% 86%, rgba(255,81,34,.50) 0%, rgba(255,81,34,.15) 46%, rgba(255,81,34,0) 72%),
+    radial-gradient(54% 56% at 84% 80%, rgba(255,157,0,.38) 0%, rgba(255,157,0,.12) 48%, rgba(255,157,0,0) 74%),
+    radial-gradient(46% 44% at 64% 22%, rgba(255,157,0,.18) 0%, rgba(255,157,0,0) 70%);
+  filter:blur(26px);
+}
+@media (prefers-reduced-motion: reduce){
+  .orb-hover::before{transition:none!important;}
 }
