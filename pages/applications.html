@@ -1463,6 +1463,25 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 
 .eb2{text-transform:none;letter-spacing:normal;}
 
+/* --- Subsection heading inside a flat arrow -----------------------
+   Flat NewMed Orange, Cream type, no gradient — the gradient stays
+   reserved for the one promise highlight. An arrow cannot wrap across
+   line boxes (arrow.js measures a single box), so the heading is
+   nowrap and drops back to plain type on narrow screens. */
+.cash-h .ch-arw{
+  display:inline-block;white-space:nowrap;
+  padding:.2em .8em .2em .34em;
+  color:var(--cream);font-weight:600;}
+.cash-h .ch-arw > svg.arw-bg{border-radius:0;}
+.section:not(.home) .cash-sec > .cash-h{
+  font-size:clamp(22px,4.4vw,58px);max-width:none;line-height:1.24;}
+.cash-sec:hover > .cash-h{transform:translateX(5px);}
+
+@media(max-width:620px){
+  .cash-h .ch-arw{white-space:normal;padding:0;color:var(--clay);}
+  .cash-h .ch-arw > svg.arw-bg{display:none;}
+}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
@@ -1608,7 +1627,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ap-signature">
-          <h2 class="cash-h">Email signature</h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">Email signature</span></h2>
           <p class="cash-lead">Type your details, then copy the signature straight into Gmail or Outlook, or download it as a file.</p>
           <div class="appgen" id="siggen">
             <div class="sig-form">
@@ -1631,7 +1650,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ap-card">
-          <h2 class="cash-h">Business card</h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">Business card</span></h2>
           <p class="cash-lead">Type your details, check the front and back, then save a print-ready PDF (3.5 × 2 in, one face per page) to send straight to a printer.</p>
           
           <div class="gate-overlay" id="gate-card">
@@ -1673,7 +1692,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ap-letterhead">
-          <h2 class="cash-h">Letterhead</h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">Letterhead</span></h2>
           <p class="cash-lead">An A4 template with the NewMed Skills background baked in. Download the Word document to edit and use.</p>
           <div style="margin-top: 16px;">
             <a href="#" download class="dl-card" style="margin-top:0">
@@ -1688,7 +1707,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ap-meeting">
-          <h2 class="cash-h">Meeting background</h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">Meeting background</span></h2>
           <p class="cash-lead">Customisable video-call backgrounds for Teams and Zoom.</p>
           <div class="tpanel" style="padding: 48px; background: var(--bone);">
             <p style="color: var(--deep-brown); opacity: 0.6; font-weight: 600;">Coming Soon — We will design this together.</p>
@@ -1696,7 +1715,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ap-presentation">
-          <h2 class="cash-h">Presentation template</h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">Presentation template</span></h2>
           <p class="cash-lead">PowerPoint template for external presentations, pitch decks, and internal updates.</p>
           
           <div class="gate-overlay" id="gate-presentation">

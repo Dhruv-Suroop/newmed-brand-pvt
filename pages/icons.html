@@ -1463,6 +1463,25 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 
 .eb2{text-transform:none;letter-spacing:normal;}
 
+/* --- Subsection heading inside a flat arrow -----------------------
+   Flat NewMed Orange, Cream type, no gradient — the gradient stays
+   reserved for the one promise highlight. An arrow cannot wrap across
+   line boxes (arrow.js measures a single box), so the heading is
+   nowrap and drops back to plain type on narrow screens. */
+.cash-h .ch-arw{
+  display:inline-block;white-space:nowrap;
+  padding:.2em .8em .2em .34em;
+  color:var(--cream);font-weight:600;}
+.cash-h .ch-arw > svg.arw-bg{border-radius:0;}
+.section:not(.home) .cash-sec > .cash-h{
+  font-size:clamp(22px,4.4vw,58px);max-width:none;line-height:1.24;}
+.cash-sec:hover > .cash-h{transform:translateX(5px);}
+
+@media(max-width:620px){
+  .cash-h .ch-arw{white-space:normal;padding:0;color:var(--clay);}
+  .cash-h .ch-arw > svg.arw-bg{display:none;}
+}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
@@ -1605,7 +1624,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ic-rules">
-          <h2 class="cash-h">How our icons look</h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">How our icons look</span></h2>
           <p class="cash-lead">One simple, consistent style throughout. When you need an icon that is not shown here, draw it to these same four rules so the set always reads as one family.</p>
           <div class="arules">
             <div class="arule"><h4>Single colour</h4><p>One colour per icon — Deep Brown by default, or cream when it sits on a dark or orange ground. Never multi-colour, never a gradient.</p></div>
@@ -1616,7 +1635,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ic-examples">
-          <h2 class="cash-h">A few in use</h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">A few in use</span></h2>
           <p class="cash-lead">A small sample from across the journey, from first assessment to first shift. The same rounded, single-colour style holds on light and on orange.</p>
           <div class="ico-set">
             <div class="ico-cell"><span class="ms-rounded">clinical_notes</span><span class="lbl">Assess</span></div>
@@ -1637,7 +1656,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="ic-generator">
-          <h2 class="cash-h">Icon chip generator</h2>
+          <h2 class="cash-h"><span class="ch-arw" data-arw="orange">Icon chip generator</span></h2>
           <p class="cash-lead">Search the icon library, pick a glyph and it drops into the arrow chip at the right optical size. Change the fill, then take it away as a PNG or SVG.</p>
           <div class="tgen" id="icongen" data-lock="icon">
             <div class="tg-tabs">

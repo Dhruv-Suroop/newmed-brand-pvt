@@ -1453,3 +1453,22 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 @media(max-width:640px){.eb2{--eb2-h:34px;}}
 
 .eb2{text-transform:none;letter-spacing:normal;}
+
+/* --- Subsection heading inside a flat arrow -----------------------
+   Flat NewMed Orange, Cream type, no gradient — the gradient stays
+   reserved for the one promise highlight. An arrow cannot wrap across
+   line boxes (arrow.js measures a single box), so the heading is
+   nowrap and drops back to plain type on narrow screens. */
+.cash-h .ch-arw{
+  display:inline-block;white-space:nowrap;
+  padding:.2em .8em .2em .34em;
+  color:var(--cream);font-weight:600;}
+.cash-h .ch-arw > svg.arw-bg{border-radius:0;}
+.section:not(.home) .cash-sec > .cash-h{
+  font-size:clamp(22px,4.4vw,58px);max-width:none;line-height:1.24;}
+.cash-sec:hover > .cash-h{transform:translateX(5px);}
+
+@media(max-width:620px){
+  .cash-h .ch-arw{white-space:normal;padding:0;color:var(--clay);}
+  .cash-h .ch-arw > svg.arw-bg{display:none;}
+}
