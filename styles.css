@@ -1488,3 +1488,27 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .arw-key i{width:13px;height:13px;border-radius:4px;flex:none;
   box-shadow:inset 0 0 0 1px rgba(57,30,26,.12);}
 .arw-key b{color:var(--deep-brown);font-weight:600;font-variant-numeric:tabular-nums;}
+
+/* --- Discrete arrow row (magnitude per category) ------------------
+   Each value is a COMPLETE arrow — its own rounded butt and point —
+   set butt-to-tip with a small consistent gap. Distinct from
+   .arw-stack, where notched segments interlock at zero gap to show
+   shares of one whole.
+
+   Widths come from flex-grow, not percentages, so the gaps are taken
+   out of the available space automatically and the row always fills
+   exactly. Gap is 2.15% of the height, matching the supplied artwork
+   (1.73 units at 80.47). min-width keeps a small value from shrinking
+   below its own point + caps, where the shape stops reading. */
+.arw-row{display:flex;flex-direction:row!important;flex-wrap:nowrap;
+  gap:calc(var(--row-h,60px) * 0.0215)!important;align-items:flex-start;width:100%;}
+.arw-row > .ar-item{flex-basis:0;min-width:calc(var(--row-h,60px) * 0.8);
+  display:flex;flex-direction:column;gap:12px;min-height:0;}
+.arw-row .ar-bar{display:block;width:100%;height:var(--row-h,60px);}
+.arw-row .ar-lbl{font-size:13px;line-height:1.35;color:rgba(57,30,26,.62);}
+.arw-row .ar-lbl b{display:block;color:var(--deep-brown);font-weight:600;
+  font-size:15px;font-variant-numeric:tabular-nums;}
+@media(max-width:640px){
+  .arw-row{flex-wrap:wrap!important;gap:14px!important;}
+  .arw-row > .ar-item{flex-basis:100%;}
+}
