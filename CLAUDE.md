@@ -50,8 +50,10 @@ This document tracks changes made by Antigravity (AI assistant) while taking ove
 - **Broken `#downloads` links fixed:** 4 links pointed at `#downloads`, a section that no longer exists (merged into Applications) — clicking dumped the user to the home page. Repointed: home "Logo download"→`#logo`, "Type download"→`#type`, logo Resources "Downloads"→`#l-lockups`, arrow "Partner with us" CTA→`#applications`. Removed `downloads` from `build_pages.py` SECTIONS (it was emitting an empty `downloads.html`) and deleted that page.
 - Re-ran `build_pages.py`. All local, not yet committed/pushed.
 
-### Session: v3 poster-scale redesign (Aug 3-4) — SANDBOX, not live
-- **`v3.html` + `styles_v3.css` + `v3_motion.js`** are a self-contained redesign sandbox. `index.html` is untouched and still the live site. v3 is committed locally but **not pushed** (it would be publicly reachable at `/v3.html`).
+### Session: v3 poster-scale redesign (Aug 3-4) — NOW LIVE (cut over Aug 4)
+- **Cutover done (Aug 4):** v3 replaced `index.html`; `styles_v3.css` became `styles.css`; `v3.html`/`styles_v3.css` deleted. Pre-cutover site is recoverable at commit `bd45cfd`. `build_pages.py` now also inlines `v3_eyebrow.js` and `v3_motion.js` — **if you add a new JS module, add it to that list or the handoff pages silently lose it.**
+- **Eyebrow badge** is rendered by `v3_eyebrow.js` from Dhruv's optically-corrected SVG, NOT from `arrow.js`. Only the two straight horizontal runs stretch; every curve, radius and the point are verbatim. Those optical tweaks are deliberately **not** fed back into the generator.
+- **Icon generator** lives on the Iconography page; Typography keeps text-highlight. `typegen.js` is multi-instance (`initGen` over every `.tgen`, ends-with id lookups, `data-lock` pins the mode).
 - **Style:** composition-led, not motion-led. Full-bleed poster heroes (display type ~150px), single left-aligned editorial column (the Cash-App 2-col sub-heading grid is collapsed in v3), full-bleed Deep Brown band as the one dominant move, attributes as big editorial rows. Rolled out to all 7 sections.
 - **Arrow highlight** is used **once**, on the phrase carrying the promise. Per the rules: gradient (sunset) fill, off-white text, 2+ words, last line. Not used on the hero (orange-on-orange) or on "Trust is demonstrated, not claimed" (rules forbid highlighting the negative half).
 - **Orb hover** extended from the promise card to the journey + positioning bands; the dark band has a warm-glow-only variant because the stock orb's off-white radials go milky on Deep Brown.

@@ -104,7 +104,7 @@ body.at-home .app{grid-template-columns:1fr;}
 
 /* ---- Main ---- */
 .main{min-width:0;position:relative;}
-.section{display:none;padding:0 clamp(20px,3.4vw,52px) 130px;animation:fade .45s var(--ease);}
+.section{display:none;--secpad:clamp(20px,3.4vw,52px);padding:0 var(--secpad) 130px;animation:fade .45s var(--ease);}
 .section.is-active{display:block;}
 @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
 .wrap{max-width:var(--maxw);margin:0 auto;}
@@ -649,8 +649,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .bc-previews{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;}
 .bc-front-wrap,.bc-back-wrap{width:350px;height:200px;font-size:12.5px;border-radius:12px;
   overflow:hidden;box-shadow:0 10px 34px rgba(57,30,26,.14);}
-@media(max-width:820px){.cardgen .sig-form{grid-template-columns:1fr;}
-  .bc-front-wrap,.bc-back-wrap{width:100%;max-width:350px;height:auto;aspect-ratio:1.75;}}
+@media(max-width:820px){.cardgen .sig-form{grid-template-columns:1fr;}}
 
 /* ---- Typography page ---- */
 .spec-hero{border-radius:14px;background:var(--bone);padding:clamp(34px,5vw,72px);
@@ -978,15 +977,15 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .index-list a:hover{color:var(--deep-brown);padding-left:16px;}
 .index-list .ix-name{flex:1;min-width:0;}
 .ix-prev{position:fixed;left:0;top:0;transform:scale(.92);
-  width:232px;height:150px;border-radius:14px;overflow:hidden;pointer-events:none;
+  width:464px;height:300px;border-radius:20px;overflow:hidden;pointer-events:none;
   opacity:0;transition:opacity .16s var(--ease),transform .16s var(--ease);z-index:60;will-change:left,top;
   box-shadow:0 20px 50px rgba(57,30,26,.24);border:1px solid var(--line);
   display:flex;align-items:center;justify-content:center;background:var(--linen);}
 .index-list a:hover .ix-prev{opacity:1;transform:scale(1);}
 .ix-prev img{width:100%;height:100%;object-fit:cover;}
 .ix-prev.pv-pad{background:var(--cream);}
-.ix-prev.pv-pad img{width:auto;height:auto;max-width:78%;max-height:44px;object-fit:contain;}
-.ix-prev .pv-mark{width:74px;height:74px;color:var(--cream);}
+.ix-prev.pv-pad img{width:auto;height:auto;max-width:78%;max-height:88px;object-fit:contain;}
+.ix-prev .pv-mark{width:148px;height:148px;color:var(--cream);}
 .ix-prev .pv-mark svg{width:100%;height:100%;}
 .ix-prev:has(.pv-mark){background:var(--orange);}
 .ix-prev.pv-cols{gap:0;}
@@ -1018,7 +1017,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
   .sidebar{position:fixed;top:0;left:0;width:290px;max-width:86vw;height:100vh;padding-top:22px;transform:translateX(-100%);transition:transform .3s var(--ease);z-index:60;}
   .sidebar.open{transform:none;box-shadow:0 0 60px rgba(0,0,0,.25);}
   body.at-home .sidebar{display:flex;}
-  .section{padding:40px 22px 90px;}
+  .section{--secpad:22px;padding:40px var(--secpad) 90px;}
   .sec-head{grid-template-columns:1fr;gap:12px;
     margin-left:-22px;margin-right:-22px;padding:34px 22px;}
   .section:not(.home) .block{grid-template-columns:1fr;}
@@ -1272,6 +1271,198 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
   border-color: var(--orange);
 }
 
+/* ==================================================================
+   V3 — poster-scale editorial (Brand section proof)
+   Composition-led, no motion: honours "nothing bounces".
+   ================================================================== */
+.v3-bleed{margin-left:calc(-1 * var(--secpad));margin-right:calc(-1 * var(--secpad));
+  padding-left:var(--secpad);padding-right:var(--secpad);}
+.v3-sec[id]{scroll-margin-top:90px;}
+
+/* --- Hero: full-bleed orange, type at poster scale, ghost arrow bleeding out --- */
+.v3-hero{position:relative;overflow:hidden;background:var(--orange);
+  padding-top:clamp(60px,10vw,140px);padding-bottom:clamp(60px,10vw,140px);
+  margin-bottom:clamp(56px,8vw,120px);}
+.v3-hero > *{position:relative;z-index:2;}
+.v3-kicker{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin:0 0 clamp(22px,3vw,40px);}
+.v3-hero .v3-kicker{color:rgba(244,241,234,.8);}
+.v3-hero h1{color:var(--cream);font-size:clamp(50px,10.2vw,152px);line-height:.9;
+  letter-spacing:-.045em;max-width:13ch;}
+.v3-hero .v3-lead{margin:clamp(26px,3.6vw,50px) 0 0;max-width:44ch;color:var(--deep-brown);
+  font-size:clamp(17px,1.6vw,22px);line-height:1.42;font-weight:500;}
+
+/* --- Editorial statement + supporting columns --- */
+.v3-statement{font-size:clamp(29px,5.2vw,78px);line-height:1.02;letter-spacing:-.035em;
+  font-weight:600;color:var(--deep-brown);max-width:17ch;margin:0;}
+.v3-statement em{font-style:normal;color:var(--orange);white-space:nowrap;}
+.v3-statement .nb{white-space:nowrap;}
+.v3-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3.4vw,64px);
+  margin-top:clamp(30px,4vw,58px);}
+.v3-cols p{margin:0 0 1.15em;font-size:16px;line-height:1.66;color:rgba(57,30,26,.78);}
+.v3-cols p:last-child{margin-bottom:0;}
+.v3-cols b{color:var(--deep-brown);font-weight:600;}
+
+/* --- Dark band: the one dominant move --- */
+.v3-dark{background:var(--deep-brown);
+  padding-top:clamp(70px,10vw,150px);padding-bottom:clamp(70px,10vw,150px);
+  margin-top:clamp(56px,8vw,120px);margin-bottom:clamp(56px,8vw,120px);}
+.v3-dark .v3-kicker{color:var(--orange);}
+.v3-dark blockquote{margin:0;font-size:clamp(31px,5.8vw,92px);line-height:1;letter-spacing:-.04em;
+  font-weight:600;color:var(--cream);max-width:26ch;text-wrap:balance;}
+.v3-dark .v3-sub{margin:clamp(28px,3.6vw,52px) 0 0;max-width:54ch;
+  color:rgba(244,241,234,.72);font-size:clamp(15px,1.35vw,18px);line-height:1.62;}
+
+/* --- Attributes as big editorial rows --- */
+.v3-attrs{margin-top:clamp(32px,4.6vw,60px);border-top:1px solid rgba(57,30,26,.15);}
+.v3-attr{display:grid;grid-template-columns:minmax(74px,.42fr) 1fr 1.5fr;
+  gap:clamp(16px,3vw,48px);align-items:baseline;
+  padding:clamp(26px,3.8vw,52px) 0;border-bottom:1px solid rgba(57,30,26,.15);}
+.v3-attr .n{font-size:clamp(26px,4vw,58px);line-height:1;color:var(--orange);font-weight:400;
+  font-variant-numeric:tabular-nums;letter-spacing:-.03em;}
+.v3-attr .t{font-size:clamp(30px,4.8vw,72px);line-height:.98;letter-spacing:-.035em;
+  color:var(--clay);font-weight:600;}
+.v3-attr .d{font-size:16px;line-height:1.62;color:rgba(57,30,26,.75);}
+
+/* --- Sunken band for the journey graphic --- */
+.v3-band{background:var(--bone);padding-top:clamp(46px,6vw,92px);padding-bottom:clamp(46px,6vw,92px);
+  margin-top:clamp(52px,7vw,104px);}
+.v3-band img{display:block;width:100%;height:auto;}
+
+@media(max-width:820px){
+  .v3-cols{grid-template-columns:1fr;}
+  .v3-attr{grid-template-columns:1fr;gap:10px;}
+  }
+
+/* --- Arrow highlight inside poster statements ---------------------
+   Per the construction rule the arrow is ~2x cap height, so the line
+   needs room or successive lines collide with the shape.            */
+.v3-statement.has-arw{line-height:1.3;}
+.v3-statement .arw-hl{padding:.2em .62em .2em .3em;color:var(--cream);}
+
+/* --- Motion: calm only. Decelerating ease, no overshoot, nothing
+   bounces. Everything is opacity + a short vertical settle.        --- */
+:root{--ease-out:cubic-bezier(.16,1,.3,1);}
+.reveal{opacity:0;transform:translateY(16px);
+  transition:opacity .72s var(--ease-out),transform .72s var(--ease-out);
+  transition-delay:var(--d,0ms);}
+.reveal.is-in{opacity:1;transform:none;}
+
+/* --- Hover: directional, echoing the arrow's forward motion --- */
+.v3-attr{transition:background .28s var(--ease-out);
+  margin-inline:calc(-1 * clamp(10px,1.6vw,24px));
+  padding-inline:clamp(10px,1.6vw,24px);border-radius:14px;}
+.v3-attr:hover{background:var(--bone);}
+.v3-attr .n,.v3-attr .t{transition:transform .34s var(--ease-out),color .28s var(--ease-out);}
+.v3-attr:hover .n{transform:translateX(7px);color:var(--orange);}
+.v3-attr:hover .t{transform:translateX(4px);}
+
+.v3-statement .arw-hl{transition:transform .34s var(--ease-out);display:inline-block;}
+.v3-sec:hover > .v3-statement .arw-hl{transform:translateX(5px);}
+
+.v3-hero:hover 
+/* Reduced motion: never leave a revealed element stuck invisible. */
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1!important;transform:none!important;}
+  .v3-attr:hover .n,.v3-attr:hover .t,
+  .v3-sec:hover > .v3-statement .arw-hl,
+  .v3-hero:hover }
+
+/* --- Orb wash on the big panels ---------------------------------
+   Reuses the promise card's hover. On Deep Brown the stock orb's
+   off-white radials go milky, so the dark band gets warm glow only. */
+.v3-band.orb-hover,.v3-dark.orb-hover{isolation:isolate;}
+.v3-dark.orb-hover::before{
+  background:
+    radial-gradient(58% 54% at 12% 86%, rgba(255,81,34,.50) 0%, rgba(255,81,34,.15) 46%, rgba(255,81,34,0) 72%),
+    radial-gradient(54% 56% at 84% 80%, rgba(255,157,0,.38) 0%, rgba(255,157,0,.12) 48%, rgba(255,157,0,0) 74%),
+    radial-gradient(46% 44% at 64% 22%, rgba(255,157,0,.18) 0%, rgba(255,157,0,0) 70%);
+  filter:blur(26px);
+}
+@media (prefers-reduced-motion: reduce){
+  .orb-hover::before{transition:none!important;}
+}
+
+/* ==================================================================
+   V3 ROLLOUT — the approved poster language, applied site-wide.
+   Section headers become heroes; the Cash-App two-column sub-heading
+   grid collapses to a single left-aligned editorial column so every
+   page reads like the Brand section.
+   ================================================================== */
+
+/* --- Every section header becomes a poster hero --- */
+.section:not(.home) .sec-head{
+  display:block;
+  padding-top:clamp(58px,9.4vw,132px);padding-bottom:clamp(58px,9.4vw,132px);
+  margin-bottom:clamp(52px,7.5vw,112px);
+}
+.section:not(.home) .sec-head .v3-kicker{color:rgba(244,241,234,.8);}
+.section:not(.home) .sec-head .sec-title{
+  font-size:clamp(48px,9.6vw,146px);line-height:.9;letter-spacing:-.045em;
+  max-width:13ch;color:var(--cream);}
+.section:not(.home) .sec-head .lead{
+  margin:clamp(24px,3.4vw,46px) 0 0;max-width:44ch;padding-top:0;
+  font-size:clamp(17px,1.6vw,22px);line-height:1.42;font-weight:500;color:var(--deep-brown);}
+
+/* --- Sub-sections: one editorial column, statement-scale headings --- */
+.section:not(.home) .cash-sec{grid-template-columns:1fr;}
+.section:not(.home) .cash-sec > .cash-h,
+.section:not(.home) .cash-sec > .cash-lead{grid-column:1;}
+.section:not(.home) .cash-sec > .cash-h{
+  font-size:clamp(27px,4.6vw,64px);line-height:1.03;letter-spacing:-.035em;
+  color:var(--clay);max-width:18ch;}
+.section:not(.home) .cash-sec > .cash-lead{
+  max-width:58ch;margin-top:clamp(14px,1.6vw,22px);
+  font-size:clamp(15px,1.35vw,17px);line-height:1.62;color:rgba(57,30,26,.7);}
+
+/* Same for the older .block prose sections */
+.section:not(.home) .block{grid-template-columns:1fr;}
+.section:not(.home) .block:not(.band) > h2,
+.section:not(.home) .block > h3{grid-column:1;
+  font-size:clamp(27px,4.6vw,64px);line-height:1.03;letter-spacing:-.035em;max-width:18ch;}
+
+/* --- UI: consistent, calm hover across every card type --- */
+.vtile,.tpanel,.arule,.ico-cell,.swatch,.dont,.res,.a11y,.wrow{
+  transition:transform .34s var(--ease-out),box-shadow .34s var(--ease-out),
+             background .28s var(--ease-out),border-color .28s var(--ease-out);}
+.vtile:hover,.tpanel:hover,.arule:hover,.swatch:hover,.dont:hover,.a11y:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 34px -18px rgba(57,30,26,.34);}
+.arule:hover,.res:hover{background:var(--cream);}
+.ico-cell:not(.on-orange):hover{transform:translateY(-4px);}
+.ico-cell .ms-rounded{transition:color .28s var(--ease-out),transform .34s var(--ease-out);}
+.ico-cell:not(.on-orange):hover .ms-rounded{color:var(--orange);}
+.res{border-radius:14px;padding-inline:clamp(10px,1.4vw,20px);
+  margin-inline:calc(-1 * clamp(10px,1.4vw,20px));}
+
+/* Sub-headings nudge forward on hover, echoing the arrow */
+.cash-sec > .cash-h{transition:transform .34s var(--ease-out);}
+.cash-sec:hover > .cash-h{transform:translateX(5px);}
+
+@media (prefers-reduced-motion: reduce){
+  .vtile:hover,.tpanel:hover,.arule:hover,.swatch:hover,.dont:hover,.a11y:hover,
+  .ico-cell:not(.on-orange):hover,.cash-sec:hover > .cash-h{transform:none!important;}
+}
+
+/* --- Business card preview at full width -------------------------
+   The faces are SVGs stretched to their wrapper, so they scale by box
+   size alone; the old fixed 350x200 was the only thing holding them
+   small. Two up on desktop, stacked on narrow. */
+.bc-previews{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,26px);
+  margin-top:clamp(20px,2.6vw,30px);}
+.bc-front-wrap,.bc-back-wrap{width:100%;height:auto;aspect-ratio:1.75;}
+@media(max-width:820px){.bc-previews{grid-template-columns:1fr;}}
+
+
+/* --- Eyebrow badge (brand manual) --------------------------------
+   Rendered by v3_eyebrow.js from the supplied artwork. Height-driven:
+   the SVG carries its own aspect ratio, so only the height is set. */
+.eb2{display:inline-block;line-height:0;--eb2-h:44px;}
+.eb2 .eb2-svg{display:block;height:var(--eb2-h);width:auto;overflow:visible;}
+.v3-hero .eb2,.sec-head .eb2{margin-bottom:clamp(20px,3vw,38px);}
+@media(max-width:640px){.eb2{--eb2-h:34px;}}
+
+.eb2{text-transform:none;letter-spacing:normal;}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
@@ -1351,6 +1542,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
           <div class="ns-subs">
             <a href="#ic-rules" data-parent="icons">How our icons look</a>
             <a href="#ic-examples" data-parent="icons">A few in use</a>
+            <a href="#ic-generator" data-parent="icons">Icon chip generator</a>
           </div>
         </div>
         <div class="nav-sec" data-sec="colour">
@@ -1410,6 +1602,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
     <section class="section is-active" id="applications">
       <div class="wrap">
         <div class="sec-head">
+          <span class="eb2 v3-kicker" data-on="orange" data-num="07" data-label="Applications"></span>
           <h1 class="sec-title">The brand, in your hands.</h1>
           <p class="lead">Everyday collateral anyone at NewMed can make in a minute — type your details, download the file. No design tools, always on-brand.</p>
         </div>
@@ -1733,6 +1926,233 @@ window.MATERIAL_ICONS = [
 </script>
 
 <script>
+/* NewMed Skills — eyebrow badge (brand manual only).
+   Built from Dhruv's optically-corrected SVG, NOT from arrow.js. The
+   generator keeps its own programmatic geometry; these optical tweaks
+   deliberately do not flow back into it.
+
+   The supplied artwork has its text converted to paths, so it cannot
+   carry a different label. We keep the path data verbatim and stretch
+   ONLY the two straight horizontal runs — every curve, corner radius
+   and the point angle are untouched, so the optical correction holds at
+   any label length.
+
+   Markup: <span class="eb2" data-num="01" data-label="What we do"></span>
+           add data-on="orange" when it sits on the orange band. */
+(function () {
+  'use strict';
+
+  var NS = 'http://www.w3.org/2000/svg';
+
+  // --- Dhruv's artwork, verbatim -------------------------------------
+  var VB_W = 360.05, VB_H = 84.47;
+  var CHIP = 'M75.61,47.43l-23.74,31.6c-1.63,2.17-4.19,3.45-6.91,3.45H5.42c-2.99,0-5.42-2.43-5.42-5.42V7.42C0,4.43,2.43,2,5.42,2h39.54c2.72,0,5.27,1.28,6.91,3.45l23.74,31.6c2.31,3.07,2.31,7.3,0,10.38Z';
+  // outline arrow: only M-x and the h-run scale with the label
+  function outline(d) {
+    return 'M' + (356.32 + d).toFixed(2) + ',47.43l-23.74,31.6c-1.63,2.17-4.19,3.45-6.91,3.45H81.07' +
+           'c-2.99,0-5.42-2.43-5.42-5.42V7.42c0-2.99,2.43-5.42,5.42-5.42h' + (244.6 + d).toFixed(2) +
+           'c2.72,0,5.27,1.28,6.91,3.45l23.74,31.6c2.31,3.07,2.31,7.3,0,10.38Z';
+  }
+
+  var LABEL_X = 108.36;   // where the label starts in the original
+  var TAIL    = 43.73;    // label end -> viewBox end, clears the point
+  var BASE_Y  = 55.74;    // shared text baseline
+  var FS      = 37;       // matches the 26.78 cap height of the artwork
+
+  function build(el) {
+    var num   = el.getAttribute('data-num')   || '';
+    var label = el.getAttribute('data-label') || '';
+    // On the orange band the arrows must invert or they vanish into it.
+    var onOrange = el.getAttribute('data-on') === 'orange';
+    var line = onOrange ? '#f4f1ea' : '#ff5122';   // Cream / NewMed Orange
+    var counter = onOrange ? '#ff5122' : '#f4f1ea';
+
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('class', 'eb2-svg');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('aria-hidden', 'true');
+
+    var chip = document.createElementNS(NS, 'path');
+    chip.setAttribute('d', CHIP);
+    chip.setAttribute('fill', line);
+
+    var arw = document.createElementNS(NS, 'path');
+    arw.setAttribute('fill', 'none');
+    arw.setAttribute('stroke', line);
+    arw.setAttribute('stroke-width', '4');
+    arw.setAttribute('stroke-miterlimit', '10');
+
+    var tNum = document.createElementNS(NS, 'text');
+    tNum.setAttribute('x', '30.5');
+    tNum.setAttribute('y', BASE_Y);
+    tNum.setAttribute('text-anchor', 'middle');
+    tNum.setAttribute('fill', counter);
+    tNum.setAttribute('font-size', FS);
+    tNum.setAttribute('font-weight', '600');
+    tNum.setAttribute('font-family', "'Mona Sans', Arial, sans-serif");
+    tNum.textContent = num;
+
+    var tLbl = document.createElementNS(NS, 'text');
+    tLbl.setAttribute('x', LABEL_X);
+    tLbl.setAttribute('y', BASE_Y);
+    tLbl.setAttribute('fill', line);
+    tLbl.setAttribute('font-size', FS);
+    tLbl.setAttribute('font-weight', '500');
+    tLbl.setAttribute('font-family', "'Mona Sans', Arial, sans-serif");
+    tLbl.textContent = label;
+
+    svg.appendChild(chip); svg.appendChild(arw);
+    svg.appendChild(tNum); svg.appendChild(tLbl);
+    el.innerHTML = '';
+    el.appendChild(svg);
+
+    // measure the real label, then size the arrow to it
+    var w;
+    try { w = tLbl.getComputedTextLength(); } catch (e) { w = 0; }
+    if (!w) w = label.length * FS * 0.52;          // fallback if not yet laid out
+    var total = LABEL_X + w + TAIL;
+    arw.setAttribute('d', outline(total - VB_W));
+    svg.setAttribute('viewBox', '0 0 ' + total.toFixed(2) + ' ' + VB_H);
+    svg.setAttribute('width', total.toFixed(2));
+    svg.setAttribute('height', VB_H);
+    el.style.setProperty('--eb2-ratio', (total / VB_H).toFixed(4));
+  }
+
+  function all() {
+    return Array.prototype.slice.call(document.querySelectorAll('.eb2'));
+  }
+  function paint() { all().forEach(build); }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', paint);
+  } else { paint(); }
+
+  // Mona Sans changes the measured width once it loads; sections are also
+  // display:none until navigated to, so re-measure on both.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(paint);
+  document.addEventListener('nm:repaint', paint);
+})();
+
+</script>
+<script>
+/* NewMed Skills — v3 reveal-on-scroll.
+   Calm motion only: a short opacity + vertical settle on a decelerating
+   curve. Nothing springs, overshoots or bounces, per the brand rules.
+
+   Note on this site's structure: sections are display:none until you
+   navigate to them, so elements are laid out only once their section
+   becomes active. IntersectionObserver can't report on a display:none
+   subtree, so we (re)arm elements on the app's `nm:repaint` event and
+   also sweep anything already in view at that moment. That makes the
+   hidden->visible transition deterministic without a blanket timeout
+   that would strip the animation off the rest of the page. */
+(function () {
+  'use strict';
+
+  var SEL = [
+    // Brand section (the original v3 proof)
+    '.v3-hero', '.v3-sec > .v3-kicker', '.v3-sec > .v3-statement', '.v3-cols > div',
+    '.v3-dark .v3-kicker', '.v3-dark blockquote', '.v3-dark .v3-sub',
+    '.v3-band img', '.v3-attr',
+    // rolled out across every other page
+    '.section:not(.home) .sec-head',
+    '.cash-sec > .cash-h', '.cash-sec > .cash-lead',
+    '.block > h2', '.block > h3', '.block > .body',
+    '.variants > div', '.arules > .arule', '.ico-set > .ico-cell',
+    '.sw-grid > .swatch', '.dd > .dont', '.panel-2 > div',
+    '.wgrid > .wrow', '.a11y-grid > .a11y', '.res-list > .res',
+    '.gfx', '.dpanel', '.logo-dl-two > .ldl-card'
+  ].join(',');
+
+  function all() {
+    return Array.prototype.slice.call(document.querySelectorAll(SEL));
+  }
+  function show(el) {
+    el.classList.remove('reveal');
+    el.classList.add('is-in');
+  }
+  function inView(el) {
+    var r = el.getBoundingClientRect();
+    if (!r.width && !r.height) return false;          // still display:none
+    return r.top < window.innerHeight && r.bottom > 0;
+  }
+
+  function init() {
+    var reduced = window.matchMedia &&
+                  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // No observer or the reader asked for less motion: just show everything.
+    // Nothing is ever left at opacity 0.
+    if (reduced || !('IntersectionObserver' in window)) {
+      all().forEach(show);
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        var sibs = el.parentNode
+          ? Array.prototype.slice.call(el.parentNode.children) : [];
+        var i = Math.max(0, sibs.indexOf(el));
+        el.style.setProperty('--d', Math.min(i, 5) * 70 + 'ms');
+        show(el);
+        io.unobserve(el);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+
+    function arm() {
+      all().forEach(function (el) {
+        if (el.classList.contains('is-in')) return;
+        if (!el.__nmArmed) {
+          el.__nmArmed = true;
+          el.classList.add('reveal');
+          io.observe(el);
+        }
+        // Element just became laid out and is already on screen: reveal it
+        // now rather than waiting on an observer callback that may not come.
+        if (inView(el)) { io.unobserve(el); show(el); }
+      });
+    }
+
+    // A fast scroll can jump an element from below the fold to above it
+    // without it ever intersecting, which would leave it hidden for good.
+    // Sweep anything the reader has already reached.
+    function sweep() {
+      all().forEach(function (el) {
+        if (el.classList.contains('is-in')) return;
+        if (el.getBoundingClientRect().top < window.innerHeight) {
+          io.unobserve(el); show(el);
+        }
+      });
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; sweep(); });
+    }
+
+    arm();
+    document.addEventListener('nm:repaint', arm);
+    window.addEventListener('hashchange', arm);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+  }
+
+  try {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else { init(); }
+  } catch (err) {
+    window.__NM_MOTION_ERR = String((err && err.stack) || err);
+    all().forEach(show);   // fail open: content is never left invisible
+  }
+})();
+
+</script>
+<script>
 /* NewMed Skills — live organic gradient generator.
    Renders the brand's organic wash on canvas, drifts it gently, and exports
    at high resolution. Palette-locked: every stop is one of the seven brand
@@ -1976,12 +2396,18 @@ window.MATERIAL_ICONS = [
 (function () {
   'use strict';
 
-  var root = document.getElementById('typegen');
-  if (!root) return;
+  // Multi-instance: the Typography page runs a text-highlight generator and
+  // the Iconography page runs an icon-chip one. Element lookups use
+  // ends-with selectors so a second copy can prefix its ids and stay valid.
+  var roots = Array.prototype.slice.call(document.querySelectorAll('.tgen'));
+  if (!roots.length) return;
+  roots.forEach(initGen);
+
+  function initGen(root) {
 
   function slice(x) { return Array.prototype.slice.call(x); }
 
-  var input    = root.querySelector('.tg-input');
+  var input    = root.querySelector('[id$="tg-input"]');
   var stage    = root.querySelector('.tg-stage');
   var hint     = root.querySelector('.tg-hint');
   var fillBtns = slice(root.querySelectorAll('[data-fill]'));
@@ -1990,9 +2416,10 @@ window.MATERIAL_ICONS = [
   var HEX = { cream: '#f4f1ea', ink: '#391e1a', orange: '#ff5122', yellow: '#ff9d00', amber: '#ff9d00', coral: '#ff5122', maroon: '#7c3134' };
 
   var tokens = [], count = 0, wtext = [];
-  var mode = 'text', iconInput = document.getElementById('tg-icon-input');
-  var iconScaleInput = document.getElementById('tg-icon-scale');
-  var iconScaleVal = document.getElementById('tg-icon-scale-val');
+  var mode = root.getAttribute('data-lock') || 'text';
+  var iconInput = root.querySelector('[id$="tg-icon-input"]');
+  var iconScaleInput = root.querySelector('[id$="tg-icon-scale"]');
+  var iconScaleVal = root.querySelector('[id$="tg-icon-scale-val"]');
   var selStart = -1, selEnd = -1, anchor = -1, hasRange = false, fill = 'sunset';
 
   // parse the textarea into word / line-break tokens ------------------
@@ -2272,8 +2699,8 @@ window.MATERIAL_ICONS = [
   if (iconScaleInput) iconScaleInput.addEventListener('input', function() { render(); });
   
   // Icon Library logic
-  var iconSearch = document.getElementById('tg-icon-search');
-  var iconGrid = document.getElementById('tg-icon-grid');
+  var iconSearch = root.querySelector('[id$="tg-icon-search"]');
+  var iconGrid = root.querySelector('[id$="tg-icon-grid"]');
   var icons = window.MATERIAL_ICONS || [];
   
   function renderIconGrid(filter) {
@@ -2316,8 +2743,8 @@ window.MATERIAL_ICONS = [
     t.addEventListener('click', function () {
       mode = t.getAttribute('data-mode');
       tabs.forEach(function(x){ x.classList.toggle('active', x === t); });
-      root.querySelector('#tg-text-ui').style.display = (mode === 'text') ? 'block' : 'none';
-      root.querySelector('#tg-icon-ui').style.display = (mode === 'icon') ? 'block' : 'none';
+      root.querySelector('[id$="tg-text-ui"]').style.display = (mode === 'text') ? 'block' : 'none';
+      root.querySelector('[id$="tg-icon-ui"]').style.display = (mode === 'icon') ? 'block' : 'none';
       root.querySelector('.tg-examples').style.display = (mode === 'text') ? 'flex' : 'none';
       render();
     });
@@ -2353,8 +2780,24 @@ window.MATERIAL_ICONS = [
   window.addEventListener('resize', function () { clearTimeout(root.__t); root.__t = setTimeout(render, 140); });
 
   fillBtns.forEach(function (x) { x.classList.toggle('is-on', x.getAttribute('data-fill') === fill); });
+
+  // A locked instance shows only its own controls; the tab strip is pointless
+  // when there is nothing to switch to.
+  var lock = root.getAttribute('data-lock');
+  if (lock) {
+    var tabStrip = root.querySelector('.tg-tabs');
+    if (tabStrip) tabStrip.style.display = 'none';
+    var tUI = root.querySelector('[id$="tg-text-ui"]');
+    var iUI = root.querySelector('[id$="tg-icon-ui"]');
+    var ex  = root.querySelector('.tg-examples');
+    if (tUI) tUI.style.display = (lock === 'text') ? 'block' : 'none';
+    if (iUI) iUI.style.display = (lock === 'icon') ? 'block' : 'none';
+    if (ex)  ex.style.display  = (lock === 'text') ? 'flex'  : 'none';
+  }
+
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
   rebuild(false);
+  }
 })();
 
 </script>

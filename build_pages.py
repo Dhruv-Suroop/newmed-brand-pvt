@@ -46,7 +46,8 @@ html = re.sub(r'<link rel="stylesheet" href="styles\.css[^"]*">',
 html = re.sub(r'<script src="app\.js[^"]*"></script>', "", html)          # static: drop nav JS
 # keep the self-contained modules (no nav code): the arrow engine, the gradient
 # generator, and the type generator — inline so the handoff pages render live.
-for mod in ("arrow.js", "gradient.js", "typegen.js", "appsig.js", "appcard.js"):
+for mod in ("arrow.js", "gradient.js", "typegen.js", "appsig.js", "appcard.js",
+            "v3_eyebrow.js", "v3_motion.js"):
     src = (ROOT / mod).read_text()
     # function replacement: the JS contains backslashes (regex literals) that
     # would otherwise be parsed as re template escapes.
