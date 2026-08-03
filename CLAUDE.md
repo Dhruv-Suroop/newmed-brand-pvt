@@ -41,6 +41,21 @@ This document tracks changes made by Antigravity (AI assistant) while taking ove
 
 ---
 
+### Session: Checklist cleanup — personality 2×2, rename sweep, iconography, logo rework (Aug 3)
+- **Task B — Personality → 2×2:** removed the "Credible" attr-card (folded its substance point into "Certain"), set `.attr-grid` to 2 columns, heading/lead "Five"→"Four", nav sub-item "Five attributes"→"Four attributes".
+- **Task A — rename sweep, DONE & verified.** Code tokens: `data-arw`/`data-fill` `coral`→`orange`, `amber`→`yellow`; arrow.js + typegen.js maps re-keyed to orange/yellow (kept coral/amber as aliases for safety) and added `teal:#93cccd`; fixed the orange type-gen swatch that had no CSS (`.tg-sw-coral/amber`→`.tg-sw-orange/yellow`); bumped `arrow.js?v=2`, `typegen.js?v=4`. Copy: all visible Bone/Cream/Linen/Ink/Clay→Off white/Off white (deep)/Deep Brown/Maroon across logo, colour, a11y, gradient, highlight sections. Neutrals swatches renamed Cream→"Off white", Off white→"Off white (deep)". Audit: 0 coral/amber tokens, 0 old colour words in copy, 0 "chevron". Verified all 24 arrow fills resolve to brand hexes (no generic CSS colours).
+- **§10 — Iconography:** new top-level section `#icons` between Arrow and Colour (nav in sidebar/topbar/home). Four rules (single colour · thick strokes · no sharp corners · simplified/clean) + two example rows using **Material Symbols Rounded** (added that font link; scoped via `.ms-rounded`). Added to `build_pages.py` SECTIONS → `pages/icons.html`.
+- **Task E — Logo rework (doable parts):** logo story/ambition/momentum copy already in the lead + kinetic-logo orange placeholder already present (from Antigravity). This pass: removed per-tile download pills from the 4 on-colour showcase tiles in `#l-primary` and added **two download rectangles** (Orange-and-brown + Off white, one Download SVG button each) per Dhruv's note; resolved the default-lockup contradiction (Horizontal caption "The default lockup"→"Wide, horizontal layouts" — stack stays primary); evened the lockup grid by capping `.vtile img` max-height so the vertical lockup no longer stretches its tile (all 6 tiles now 286px). **Still pending (needs Dhruv's assets):** the real kinetic logo, and the rounded-rectangle graphic.
+- **Portrait use-case tile fixed:** it was 661px tall vs 200px siblings (`#ar-uses`). Added `.tpanel-portrait` (scoped `flex:none!important` + fixed height overriding the `.panel-2 > div > .tpanel{flex:1}` rule) so the grey rectangle matches its neighbours and the cutout scales to fit. Bumped `styles.css?v=34` (all this session's CSS changes were behind the stale v=32).
+- **Broken `#downloads` links fixed:** 4 links pointed at `#downloads`, a section that no longer exists (merged into Applications) — clicking dumped the user to the home page. Repointed: home "Logo download"→`#logo`, "Type download"→`#type`, logo Resources "Downloads"→`#l-lockups`, arrow "Partner with us" CTA→`#applications`. Removed `downloads` from `build_pages.py` SECTIONS (it was emitting an empty `downloads.html`) and deleted that page.
+- Re-ran `build_pages.py`. All local, not yet committed/pushed.
+
+### Session: Voice & Tone removed (Aug 3)
+- **Voice & tone section removed entirely** at Dhruv's request. The section was briefly built into `index.html` (`#voice`) then pulled: removed the section, all nav entries (sidebar, top bar, home index), the `.tone-grid/.tone-card/.vcheck` CSS, `pages/voice.html`, and `"voice"` from `build_pages.py` SECTIONS. Meta description no longer lists voice. Site now runs Brand → Logo → Arrow → Colour → Type → Applications.
+- **Kept — a real bugfix:** the earlier colour rename left `index.html` pointing at `radial-orange.svg`/`radial-yellow.svg` while the files on disk were still `radial-coral.svg`/`radial-amber.svg` (broke the Colour page images live AND `build_pages.py`). Renamed via `git mv` to finish that sweep.
+
+---
+
 ## 3. Instructions for Claude / Handover Notes
 - Work is being conducted locally in `/Users/dhruv/Dhruv/Work/era/framer bg/newmed-brand-manual`.
 - All changes are tested locally before committing.

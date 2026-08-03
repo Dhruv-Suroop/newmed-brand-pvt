@@ -54,7 +54,7 @@
   function paintArrow(el) {
     var W = el.offsetWidth, H = el.offsetHeight;
     if (W < 4 || H < 4) return;
-    var fill = el.getAttribute('data-arw') || 'coral';
+    var fill = el.getAttribute('data-arw') || 'orange';
     var notch = el.hasAttribute('data-notch');
     var outline = el.hasAttribute('data-outline');
     var old = el.querySelector(':scope > svg.arw-bg');
@@ -81,7 +81,7 @@
       defs.appendChild(lg); svg.appendChild(defs);
       f = 'url(#' + id + ')';
     } else {
-      var map = { coral:'#ff5122', amber:'#ff9d00', cream:'#efe9e0', white:'#f4f1ea', ink:'#391e1a', maroon:'#7c3134' };
+      var map = { orange:'#ff5122', yellow:'#ff9d00', teal:'#93cccd', amber:'#ff9d00', coral:'#ff5122', cream:'#efe9e0', white:'#f4f1ea', ink:'#391e1a', maroon:'#7c3134' };
       f = map[fill] || fill;
     }
 
@@ -114,7 +114,7 @@
     if (!shape) {
       shape = document.createElement('span');
       shape.className = 'pa-arrow';
-      shape.setAttribute('data-arw', el.getAttribute('data-fill') || 'coral');
+      shape.setAttribute('data-arw', el.getAttribute('data-fill') || 'orange');
       el.insertBefore(shape, el.firstChild);
     }
     shape.style.height = aH + 'px';

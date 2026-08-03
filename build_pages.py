@@ -73,7 +73,7 @@ except FileNotFoundError:
 
 html = re.sub(r'(src|href)="(assets/[^"]+)"', repl, html)
 
-SECTIONS = ["intro", "brand", "logo", "arrow", "colour", "type", "voice", "applications", "downloads"]
+SECTIONS = ["intro", "brand", "logo", "arrow", "icons", "colour", "type", "applications"]
 FILE = {s: ("home.html" if s == "intro" else f"{s}.html") for s in SECTIONS}
 
 # Rewrite section-level nav (#brand -> brand.html) so the static pages navigate

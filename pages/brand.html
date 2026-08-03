@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NewMed Skills — Brand Guidelines</title>
-<meta name="description" content="The brand standards manual for NewMed Skills: logo, colour, typography, voice and applications.">
+<meta name="description" content="The brand standards manual for NewMed Skills: logo, colour, typography and applications.">
 <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGUAAABlCAYAAABUfC3PAAAACXBIWXMAAAsSAAALEgHS3X78AAAEn0lEQVR4nO2d7XHTQBCGnzD8Dx3EMyqAdEA6SEYNYCogVIBTAaQCnAY0cQUoHZACNON0EFcQfpwNzBDI7eo+Vrp7fsva87znd6XbvfPR09MTFVu8yj2Ayt9UUQxSRTFIFcUgVRSDVFEMUkUxSBXFIK9Vn2qbs7DD+MUj3fAj0r39aJtT4I3n1Vu6YRt6CEeiN/q2WQA9cBJ6IH+wAZZ0w2PEGM/TNmvgvfBT13TDZchhSO3rK3EFATjfx0lL21wgFwTgI22TVRTfn/VY3tM2y0SxDpyO+Oxq7yJBsJzov+79fQocA+tQN7MsivuibZPq1zmWd6FszLIoAG8JOAMTEMTGrIsCcJ4hv2gJYmNTEAVgkXsAAkbb2FREmRqjbKyKEodRNjYVUba5B6BAbWNTEGVDN6xzD0KJysasi/IALHMPYgQqG7MuykWWhcmwiG3Msiifsi/jh0NkY1JRUs3aG7oh/UpxPEQ2JhVlhfP5mGyAoEvhRvC2MVmRC9gvEMZavc1XeWybFfA5cpQdsHgpT8rLwe6GvW5MxXOMm9D9/y6ynOiLRds4IWkuSEc39LmH4MH2pQtkorh80uPqHPZoG4ArumGVeST/4sqn+0XTOGFTkN98Dt3IEIh738kiFWUhHkoevhis73tPlDkn+ltD9f1rSb6bsygn2KjvP+Beur2Zsyjg6vu584u423PuokDe/CKyrQMliAJwkSGm2LYOlCJKDtRN6lWUOGzGrC6UIkrKlecdI0vYJYhyQzfcJow3em/N3EW5J23BbBNiAsxZFGcj6RovRtvWgTmLcpm4ihlsAlhtnBjLjaKBbzsiXhDbOqBpnNiFCh6JOzR5xIl4r4h3T+CGQW3jxAX2lvFd78BYy3IbUn2XZfoY1U65KJXozDnRT5YqikGkjROnwC2yAw4ecI3aYR9P0zTPjeEaWGkekzVPX9ITJ06APmhp1p0NY1kQgI8oK5+pTpwIuvkfOAt4r5ioKp8pc8r5/nGzNMSVz9SJfkonSIRE1FmTWpTQNjYVRJ01OR6JS7Ux7/yS6z2lVBvzmoy5RCnVxrzI+UZfqo29SO5lltJszOvtPrcoJdmYd7k4tyhQjo15H9RgQRSYv41dTXErxJxt7E663c+KKCCzsak0cOxQNJdbEgX8bWyNrskhJTvgTFNP0W3ZjscxbrPr8r9XdcPjvqayxOLWcfdLXmv7wKRn3ffAO00gEd1wFD2GYazZl8Pezt6kWBRlN6NzvlRYyymQ6h8hXE66JE5O2uJySq/5sLWc8kA3LCLe3+EE+R49DnzQHEpqzb6WM4vzTZMfLYmi2t6sZJEoDihOvrAiinp78wQQn3xhRZQ8/8GVDlH/lwVRUtpWTrz7v3KLMmfbeg6vx/3coszdtlTkFGXUqQxzJpcowbY3z5FcopRqWyufi3KIEnR784TwrtOnFqVU2xLV6VOLUqJtiev0KUW5M2RbKSeG+I95pKJshdcfsGZb60RxRP1eB6T1lDe4LyRZ9XzE7ZK1VU107Uwxj51aa//grZ44YZDcyyyVZ6iiGKSKYpAqikGqKAapohikimKQKopBqigG+QkTL0uBA9it6gAAAABJRU5ErkJggg==">
 <style>
 /* ============================================================
@@ -330,10 +330,18 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 /* Variant tiles (logo on different grounds) */
 .variants{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
 .vtile{border-radius:14px;min-height:clamp(220px,26vw,330px);display:grid;place-items:center;padding:40px;border:1px solid rgba(57,30,26,.1);}
-.vtile img{max-width:74%;height:auto;}
+.vtile img{max-width:74%;height:auto;max-height:clamp(130px,17vw,200px);}
 .vtile .cap{grid-column:1/-1;}
 .vcap{margin-top:12px;font-size:12.5px;color:rgba(57,30,26,0.6);}
 .vcap b{display:block;color:var(--deep-brown);font-weight:600;font-size:13.5px;margin-bottom:2px;}
+/* Two primary-logo download cards */
+.logo-dl-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.ldl-card{display:flex;flex-direction:column;}
+.ldl-card .vtile{min-height:clamp(180px,22vw,260px);margin-bottom:14px;}
+.ldl-card .dl-row{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.ldl-card .dl-row b{color:var(--deep-brown);font-size:14px;font-weight:600;}
+.ldl-card .dl-row .btn{margin:0;}
+@media(max-width:640px){.logo-dl-two{grid-template-columns:1fr;}}
 
 /* Word lists (should be / should not be) */
 .wordlists{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,4vw,56px);max-width:620px;}
@@ -413,6 +421,10 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 /* 6. Portrait — arrow holds the lower half; head juts freely above */
 .arw-portrait{position:relative;display:block;isolation:isolate;}
 .arw-portrait img{display:block;width:100%;height:auto;position:relative;z-index:1;}
+/* Portrait use-case tile: match sibling tile height, scale the cutout to fit */
+.tpanel-portrait{padding:0;overflow:hidden;align-items:flex-end;justify-content:center;flex:none!important;height:clamp(200px,24vw,320px)!important;min-height:0!important;}
+.tpanel-portrait .arw-portrait{width:auto;height:96%;}
+.tpanel-portrait .arw-portrait img{width:auto;height:100%;max-height:none;}
 .arw-portrait > .pa-arrow{position:absolute;left:0;right:0;bottom:0;display:block;z-index:0;}
 
 /* 7. Journey cards — arrow cards in sequence, each notched into the last */
@@ -454,7 +466,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .shape-body p{margin:0;color:rgba(57,30,26,0.8);}
 
 /* five attributes — card per supplied ref (363x371, r20) */
-.attr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.attr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
 .attr-card{background:var(--bone);border-radius:20px;padding:28px 25px 30px;
   min-height:clamp(300px,26vw,371px);display:flex;flex-direction:column;}
 .attr-card .num{color:var(--orange);font-size:22px;font-weight:400;line-height:1;}
@@ -551,6 +563,16 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .arule h4{margin:0 0 8px;color:var(--clay);font-size:18px;letter-spacing:-.01em;}
 .arule p{margin:0;color:rgba(57,30,26,0.8);font-size:15px;line-height:1.5;}
 
+/* ---- Iconography ---- */
+.ms-rounded{font-family:'Material Symbols Rounded';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';-webkit-font-smoothing:antialiased;}
+.ico-set{background:var(--bone);border-radius:20px;padding:clamp(28px,4vw,44px);display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:clamp(20px,3vw,36px);}
+.ico-cell{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;}
+.ico-cell .ms-rounded{font-size:clamp(40px,4.4vw,52px);color:var(--deep-brown);}
+.ico-cell.on-orange{background:var(--orange);border-radius:16px;padding:22px 8px;}
+.ico-cell.on-orange .ms-rounded{color:var(--cream);}
+.ico-cell span.lbl{font-size:12.5px;color:rgba(57,30,26,0.55);font-weight:500;}
+.ico-cell.on-orange span.lbl{color:rgba(244,241,234,0.85);}
+
 /* ---- Type + arrow generator ---- */
 .tgen{background:var(--bone);border-radius:16px;padding:clamp(22px,3vw,40px);}
 .tg-field{display:block;margin-bottom:8px;font-size:13px;font-weight:500;color:rgba(57,30,26,0.6);}
@@ -578,8 +600,8 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .tg-swatch:hover{transform:scale(1.08);}
 .tg-swatch.is-on{outline:2px solid var(--deep-brown);outline-offset:2px;}
 .tg-sw-sunset{background:linear-gradient(90deg,#ff9d00,#ff5122);}
-.tg-sw-coral{background:#ff5122;}
-.tg-sw-amber{background:#ff9d00;}
+.tg-sw-orange{background:#ff5122;}
+.tg-sw-yellow{background:#ff9d00;}
 .tg-sw-ink{background:#391e1a;}
 .tg-examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
 .tg-examples button, .tg-controls .tg-x, .tg-actions button{font-family:inherit;font-size:13px;font-weight:500;
@@ -1252,6 +1274,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
 </head>
 <body class="at-section">
 
@@ -1276,6 +1299,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
     <a href="brand.html" class="tb-btn" data-nav style="text-decoration: none;">Brand</a>
     <a href="logo.html" class="tb-btn" data-nav style="text-decoration: none;">Logo</a>
     <a href="arrow.html" class="tb-btn" data-nav style="text-decoration: none;">The arrow</a>
+    <a href="icons.html" class="tb-btn" data-nav style="text-decoration: none;">Iconography</a>
     <a href="colour.html" class="tb-btn" data-nav style="text-decoration: none;">Colour</a>
     <a href="type.html" class="tb-btn" data-nav style="text-decoration: none;">Typography</a>
     <a href="applications.html" class="tb-btn" data-nav style="text-decoration: none;">Applications</a>
@@ -1297,7 +1321,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
             <a href="#b-positioning" data-parent="brand">Positioning</a>
             <a href="#b-shape" data-parent="brand">The shape</a>
             <a href="#b-journey" data-parent="brand">Six stages</a>
-            <a href="#b-personality" data-parent="brand">Five attributes</a>
+            <a href="#b-personality" data-parent="brand">Four attributes</a>
           </div>
         </div>
         <div class="nav-sec" data-sec="logo">
@@ -1320,6 +1344,13 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
             <a href="#ar-journey" data-parent="arrow">Journey and rows</a>
             <a href="#ar-scale" data-parent="arrow">Use in data</a>
             <a href="#ar-misuse" data-parent="arrow">Incorrect usage</a>
+          </div>
+        </div>
+        <div class="nav-sec" data-sec="icons">
+          <a class="ns-link" href="icons.html" data-nav>Iconography</a>
+          <div class="ns-subs">
+            <a href="#ic-rules" data-parent="icons">How our icons look</a>
+            <a href="#ic-examples" data-parent="icons">A few in use</a>
           </div>
         </div>
         <div class="nav-sec" data-sec="colour">
@@ -1423,15 +1454,16 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
         </div>
 
         <div class="cash-sec" id="b-personality">
-          <h2 class="cash-h">Five attributes, always on</h2>
-          <p class="cash-lead">All five are present in every sentence and every layout, at every level of the register. They are the fixed identity.</p>
-          <div class="attr-grid"><div class="attr-card orb-hover"><span class="num">01</span><span class="ttl">Certain</span><span class="bdy">Settled, factual, unhurried. Every claim carries a number or a mechanism. We inform someone competent enough to draw their own conclusion.</span></div><div class="attr-card orb-hover"><span class="num">02</span><span class="ttl">Plain</span><span class="bdy">Clear, concrete, direct. Short sentences, one idea at a time. Written as if translating for a capable new colleague who doesn't know the acronyms yet.</span></div><div class="attr-card orb-hover"><span class="num">03</span><span class="ttl">Warm</span><span class="bdy">Steady, human, on the reader's side. Warmth lives in naming the real stakes, fees, visas, arriving alone, not in soft words.</span></div><div class="attr-card orb-hover"><span class="num">04</span><span class="ttl">Guiding</span><span class="bdy">Directional and sequential. From and to constructions, numbered steps, action verbs: assess, train, license, deploy, support.</span></div><div class="attr-card orb-hover"><span class="num">05</span><span class="ttl">Credible</span><span class="bdy">Trusted, calm, unexaggerated, most of all when the stakes are high. Confidence comes from substance, never volume.</span></div></div>
+          <h2 class="cash-h">Four attributes, always on</h2>
+          <p class="cash-lead">All four are present in every sentence and every layout, at every level of the register. They are the fixed identity.</p>
+          <div class="attr-grid"><div class="attr-card orb-hover"><span class="num">01</span><span class="ttl">Certain</span><span class="bdy">Settled, factual, unhurried. Every claim carries a number or a mechanism, so confidence comes from substance, never volume — most of all when the stakes are high. We inform someone competent enough to draw their own conclusion.</span></div><div class="attr-card orb-hover"><span class="num">02</span><span class="ttl">Plain</span><span class="bdy">Clear, concrete, direct. Short sentences, one idea at a time. Written as if translating for a capable new colleague who doesn't know the acronyms yet.</span></div><div class="attr-card orb-hover"><span class="num">03</span><span class="ttl">Warm</span><span class="bdy">Steady, human, on the reader's side. Warmth lives in naming the real stakes, fees, visas, arriving alone, not in soft words.</span></div><div class="attr-card orb-hover"><span class="num">04</span><span class="ttl">Guiding</span><span class="bdy">Directional and sequential. From and to constructions, numbered steps, action verbs: assess, train, license, deploy, support.</span></div></div>
         </div>
       </div>
     </section>
 
     <!-- ========== 03 LOGO ========== -->
     <!-- ========== ARROW SYSTEM ========== -->
+    <!-- ========== 03b ICONOGRAPHY ========== -->
     <!-- ========== 04 COLOUR ========== -->
     <!-- ========== 05 TYPOGRAPHY ========== -->
     <!-- ========== 07 APPLICATIONS ========== -->
@@ -1529,7 +1561,7 @@ window.MATERIAL_ICONS = [
   function paintArrow(el) {
     var W = el.offsetWidth, H = el.offsetHeight;
     if (W < 4 || H < 4) return;
-    var fill = el.getAttribute('data-arw') || 'coral';
+    var fill = el.getAttribute('data-arw') || 'orange';
     var notch = el.hasAttribute('data-notch');
     var outline = el.hasAttribute('data-outline');
     var old = el.querySelector(':scope > svg.arw-bg');
@@ -1556,7 +1588,7 @@ window.MATERIAL_ICONS = [
       defs.appendChild(lg); svg.appendChild(defs);
       f = 'url(#' + id + ')';
     } else {
-      var map = { coral:'#ff5122', amber:'#ff9d00', cream:'#efe9e0', white:'#f4f1ea', ink:'#391e1a', maroon:'#7c3134' };
+      var map = { orange:'#ff5122', yellow:'#ff9d00', teal:'#93cccd', amber:'#ff9d00', coral:'#ff5122', cream:'#efe9e0', white:'#f4f1ea', ink:'#391e1a', maroon:'#7c3134' };
       f = map[fill] || fill;
     }
 
@@ -1589,7 +1621,7 @@ window.MATERIAL_ICONS = [
     if (!shape) {
       shape = document.createElement('span');
       shape.className = 'pa-arrow';
-      shape.setAttribute('data-arw', el.getAttribute('data-fill') || 'coral');
+      shape.setAttribute('data-arw', el.getAttribute('data-fill') || 'orange');
       el.insertBefore(shape, el.firstChild);
     }
     shape.style.height = aH + 'px';
@@ -1886,8 +1918,8 @@ window.MATERIAL_ICONS = [
   var hint     = root.querySelector('.tg-hint');
   var fillBtns = slice(root.querySelectorAll('[data-fill]'));
 
-  var TEXTON = { sunset: 'cream', coral: 'cream', amber: 'ink', ink: 'cream', maroon: 'cream' };
-  var HEX = { cream: '#f4f1ea', ink: '#391e1a', amber: '#ff9d00', coral: '#ff5122', maroon: '#7c3134' };
+  var TEXTON = { sunset: 'cream', orange: 'cream', yellow: 'ink', coral: 'cream', amber: 'ink', ink: 'cream', maroon: 'cream' };
+  var HEX = { cream: '#f4f1ea', ink: '#391e1a', orange: '#ff5122', yellow: '#ff9d00', amber: '#ff9d00', coral: '#ff5122', maroon: '#7c3134' };
 
   var tokens = [], count = 0, wtext = [];
   var mode = 'text', iconInput = document.getElementById('tg-icon-input');

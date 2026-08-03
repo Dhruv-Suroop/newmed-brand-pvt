@@ -16,8 +16,8 @@
   var hint     = root.querySelector('.tg-hint');
   var fillBtns = slice(root.querySelectorAll('[data-fill]'));
 
-  var TEXTON = { sunset: 'cream', coral: 'cream', amber: 'ink', ink: 'cream', maroon: 'cream' };
-  var HEX = { cream: '#f4f1ea', ink: '#391e1a', amber: '#ff9d00', coral: '#ff5122', maroon: '#7c3134' };
+  var TEXTON = { sunset: 'cream', orange: 'cream', yellow: 'ink', coral: 'cream', amber: 'ink', ink: 'cream', maroon: 'cream' };
+  var HEX = { cream: '#f4f1ea', ink: '#391e1a', orange: '#ff5122', yellow: '#ff9d00', amber: '#ff9d00', coral: '#ff5122', maroon: '#7c3134' };
 
   var tokens = [], count = 0, wtext = [];
   var mode = 'text', iconInput = document.getElementById('tg-icon-input');

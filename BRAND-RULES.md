@@ -96,7 +96,11 @@ Exactly **7 colours**. No tints, no shades, no extra colours, no white. Never in
 
 ---
 
-## 8. Open cleanup tasks (for Gemini — do as focused passes, verify after each)
+## 8. Open cleanup tasks — STATUS (Aug 3)
+
+**A ✅ done** (tokens + copy renamed, audit clean, arrows verified). **B ✅ done** (2×2, Credible removed). **C ✅ done.** **D — moot** (voice section removed). **E ⚠️ mostly done** — logo story/kinetic placeholder/two download rectangles/lockup-grid evening/default-lockup contradiction all done; **still pending on Dhruv's assets:** the real kinetic logo + the rounded-rectangle graphic. **F ✅ done.** **§10 Iconography ✅ built.** Original task text kept below for reference.
+
+## 8 (original). Open cleanup tasks (for Gemini — do as focused passes, verify after each)
 
 **A. Rename sweep — separate visible copy from code tokens (this is the error-prone one):**
   - *Copy only* (visible text in index.html): Signal Orange → NewMed Orange · Amber → Yellow · Clay → Maroon · "coral" → "orange". Do **not** touch attribute values or class names here.
@@ -119,9 +123,11 @@ Exactly **7 colours**. No tints, no shades, no extra colours, no white. Never in
 
 ---
 
-## 9. Voice & Tone — REBUILD (from Dhruv's tone doc; supersedes the earlier "remove it")
+## 9. Voice & Tone — ❌ REMOVED (Aug 3, at Dhruv's request)
 
-Voice is **kept**, rebuilt from the input doc. It is **not** a repeat of the Brand personality (the 2×2 Certain/Plain/Warm/Guiding stays under Brand). Intro should feel warm, empathetic, human.
+**Status:** the Voice & tone section has been **removed from the site entirely** — no `#voice` section, no nav entry, no `pages/voice.html`. The spec below is retained only as a record of the intended content, in case it is ever revived. Do not rebuild without Dhruv confirming.
+
+Voice was (previously) to be rebuilt from the input doc. It is **not** a repeat of the Brand personality (the 2×2 Certain/Plain/Warm/Guiding stays under Brand). Intro should feel warm, empathetic, human.
 
 **Three tones** (drop all other variants; frame metrics as traits each tone *has*, never "low X"):
 - **Clinical** — the most factual, specific tone. The reader wants information that is complete and to the point, without emotion. *To the point · Upfront · Specific.* Touchpoints: compliance docs · licensing pages · detailed FAQs · terms.

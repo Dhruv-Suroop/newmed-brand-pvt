@@ -321,10 +321,18 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 /* Variant tiles (logo on different grounds) */
 .variants{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
 .vtile{border-radius:14px;min-height:clamp(220px,26vw,330px);display:grid;place-items:center;padding:40px;border:1px solid rgba(57,30,26,.1);}
-.vtile img{max-width:74%;height:auto;}
+.vtile img{max-width:74%;height:auto;max-height:clamp(130px,17vw,200px);}
 .vtile .cap{grid-column:1/-1;}
 .vcap{margin-top:12px;font-size:12.5px;color:rgba(57,30,26,0.6);}
 .vcap b{display:block;color:var(--deep-brown);font-weight:600;font-size:13.5px;margin-bottom:2px;}
+/* Two primary-logo download cards */
+.logo-dl-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.ldl-card{display:flex;flex-direction:column;}
+.ldl-card .vtile{min-height:clamp(180px,22vw,260px);margin-bottom:14px;}
+.ldl-card .dl-row{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.ldl-card .dl-row b{color:var(--deep-brown);font-size:14px;font-weight:600;}
+.ldl-card .dl-row .btn{margin:0;}
+@media(max-width:640px){.logo-dl-two{grid-template-columns:1fr;}}
 
 /* Word lists (should be / should not be) */
 .wordlists{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,4vw,56px);max-width:620px;}
@@ -404,6 +412,10 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 /* 6. Portrait — arrow holds the lower half; head juts freely above */
 .arw-portrait{position:relative;display:block;isolation:isolate;}
 .arw-portrait img{display:block;width:100%;height:auto;position:relative;z-index:1;}
+/* Portrait use-case tile: match sibling tile height, scale the cutout to fit */
+.tpanel-portrait{padding:0;overflow:hidden;align-items:flex-end;justify-content:center;flex:none!important;height:clamp(200px,24vw,320px)!important;min-height:0!important;}
+.tpanel-portrait .arw-portrait{width:auto;height:96%;}
+.tpanel-portrait .arw-portrait img{width:auto;height:100%;max-height:none;}
 .arw-portrait > .pa-arrow{position:absolute;left:0;right:0;bottom:0;display:block;z-index:0;}
 
 /* 7. Journey cards — arrow cards in sequence, each notched into the last */
@@ -445,7 +457,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .shape-body p{margin:0;color:rgba(57,30,26,0.8);}
 
 /* five attributes — card per supplied ref (363x371, r20) */
-.attr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.attr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
 .attr-card{background:var(--bone);border-radius:20px;padding:28px 25px 30px;
   min-height:clamp(300px,26vw,371px);display:flex;flex-direction:column;}
 .attr-card .num{color:var(--orange);font-size:22px;font-weight:400;line-height:1;}
@@ -542,6 +554,16 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .arule h4{margin:0 0 8px;color:var(--clay);font-size:18px;letter-spacing:-.01em;}
 .arule p{margin:0;color:rgba(57,30,26,0.8);font-size:15px;line-height:1.5;}
 
+/* ---- Iconography ---- */
+.ms-rounded{font-family:'Material Symbols Rounded';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';-webkit-font-smoothing:antialiased;}
+.ico-set{background:var(--bone);border-radius:20px;padding:clamp(28px,4vw,44px);display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:clamp(20px,3vw,36px);}
+.ico-cell{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;}
+.ico-cell .ms-rounded{font-size:clamp(40px,4.4vw,52px);color:var(--deep-brown);}
+.ico-cell.on-orange{background:var(--orange);border-radius:16px;padding:22px 8px;}
+.ico-cell.on-orange .ms-rounded{color:var(--cream);}
+.ico-cell span.lbl{font-size:12.5px;color:rgba(57,30,26,0.55);font-weight:500;}
+.ico-cell.on-orange span.lbl{color:rgba(244,241,234,0.85);}
+
 /* ---- Type + arrow generator ---- */
 .tgen{background:var(--bone);border-radius:16px;padding:clamp(22px,3vw,40px);}
 .tg-field{display:block;margin-bottom:8px;font-size:13px;font-weight:500;color:rgba(57,30,26,0.6);}
@@ -569,8 +591,8 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .tg-swatch:hover{transform:scale(1.08);}
 .tg-swatch.is-on{outline:2px solid var(--deep-brown);outline-offset:2px;}
 .tg-sw-sunset{background:linear-gradient(90deg,#ff9d00,#ff5122);}
-.tg-sw-coral{background:#ff5122;}
-.tg-sw-amber{background:#ff9d00;}
+.tg-sw-orange{background:#ff5122;}
+.tg-sw-yellow{background:#ff9d00;}
 .tg-sw-ink{background:#391e1a;}
 .tg-examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
 .tg-examples button, .tg-controls .tg-x, .tg-actions button{font-family:inherit;font-size:13px;font-weight:500;
