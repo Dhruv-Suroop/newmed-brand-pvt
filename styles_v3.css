@@ -1275,15 +1275,13 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .v3-hero{position:relative;overflow:hidden;background:var(--orange);
   padding-top:clamp(60px,10vw,140px);padding-bottom:clamp(60px,10vw,140px);
   margin-bottom:clamp(56px,8vw,120px);}
-.v3-hero > *:not(.v3-ghost){position:relative;z-index:2;}
+.v3-hero > *{position:relative;z-index:2;}
 .v3-kicker{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin:0 0 clamp(22px,3vw,40px);}
 .v3-hero .v3-kicker{color:rgba(244,241,234,.8);}
 .v3-hero h1{color:var(--cream);font-size:clamp(50px,10.2vw,152px);line-height:.9;
   letter-spacing:-.045em;max-width:13ch;}
 .v3-hero .v3-lead{margin:clamp(26px,3.6vw,50px) 0 0;max-width:44ch;color:var(--deep-brown);
   font-size:clamp(17px,1.6vw,22px);line-height:1.42;font-weight:500;}
-.v3-ghost{position:absolute;right:3%;top:50%;transform:translateY(-50%);
-  width:min(32%,420px);height:clamp(140px,19vw,270px);opacity:.16;z-index:1;pointer-events:none;}
 
 /* --- Editorial statement + supporting columns --- */
 .v3-statement{font-size:clamp(29px,5.2vw,78px);line-height:1.02;letter-spacing:-.035em;
@@ -1325,8 +1323,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 @media(max-width:820px){
   .v3-cols{grid-template-columns:1fr;}
   .v3-attr{grid-template-columns:1fr;gap:10px;}
-  .v3-ghost{display:none;}
-}
+  }
 
 /* --- Arrow highlight inside poster statements ---------------------
    Per the construction rule the arrow is ~2x cap height, so the line
@@ -1354,16 +1351,13 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .v3-statement .arw-hl{transition:transform .34s var(--ease-out);display:inline-block;}
 .v3-sec:hover > .v3-statement .arw-hl{transform:translateX(5px);}
 
-.v3-ghost{transition:transform .9s var(--ease-out),opacity .9s var(--ease-out);}
-.v3-hero:hover .v3-ghost{transform:translateY(-50%) translateX(14px);opacity:.22;}
-
+.v3-hero:hover 
 /* Reduced motion: never leave a revealed element stuck invisible. */
 @media (prefers-reduced-motion: reduce){
   .reveal{opacity:1!important;transform:none!important;}
   .v3-attr:hover .n,.v3-attr:hover .t,
   .v3-sec:hover > .v3-statement .arw-hl,
-  .v3-hero:hover .v3-ghost{transform:none!important;}
-}
+  .v3-hero:hover }
 
 /* --- Orb wash on the big panels ---------------------------------
    Reuses the promise card's hover. On Deep Brown the stock orb's
@@ -1378,4 +1372,65 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 }
 @media (prefers-reduced-motion: reduce){
   .orb-hover::before{transition:none!important;}
+}
+
+/* ==================================================================
+   V3 ROLLOUT — the approved poster language, applied site-wide.
+   Section headers become heroes; the Cash-App two-column sub-heading
+   grid collapses to a single left-aligned editorial column so every
+   page reads like the Brand section.
+   ================================================================== */
+
+/* --- Every section header becomes a poster hero --- */
+.section:not(.home) .sec-head{
+  display:block;
+  padding-top:clamp(58px,9.4vw,132px);padding-bottom:clamp(58px,9.4vw,132px);
+  margin-bottom:clamp(52px,7.5vw,112px);
+}
+.section:not(.home) .sec-head .v3-kicker{color:rgba(244,241,234,.8);}
+.section:not(.home) .sec-head .sec-title{
+  font-size:clamp(48px,9.6vw,146px);line-height:.9;letter-spacing:-.045em;
+  max-width:13ch;color:var(--cream);}
+.section:not(.home) .sec-head .lead{
+  margin:clamp(24px,3.4vw,46px) 0 0;max-width:44ch;padding-top:0;
+  font-size:clamp(17px,1.6vw,22px);line-height:1.42;font-weight:500;color:var(--deep-brown);}
+
+/* --- Sub-sections: one editorial column, statement-scale headings --- */
+.section:not(.home) .cash-sec{grid-template-columns:1fr;}
+.section:not(.home) .cash-sec > .cash-h,
+.section:not(.home) .cash-sec > .cash-lead{grid-column:1;}
+.section:not(.home) .cash-sec > .cash-h{
+  font-size:clamp(27px,4.6vw,64px);line-height:1.03;letter-spacing:-.035em;
+  color:var(--clay);max-width:18ch;}
+.section:not(.home) .cash-sec > .cash-lead{
+  max-width:58ch;margin-top:clamp(14px,1.6vw,22px);
+  font-size:clamp(15px,1.35vw,17px);line-height:1.62;color:rgba(57,30,26,.7);}
+
+/* Same for the older .block prose sections */
+.section:not(.home) .block{grid-template-columns:1fr;}
+.section:not(.home) .block:not(.band) > h2,
+.section:not(.home) .block > h3{grid-column:1;
+  font-size:clamp(27px,4.6vw,64px);line-height:1.03;letter-spacing:-.035em;max-width:18ch;}
+
+/* --- UI: consistent, calm hover across every card type --- */
+.vtile,.tpanel,.arule,.ico-cell,.swatch,.dont,.res,.a11y,.wrow{
+  transition:transform .34s var(--ease-out),box-shadow .34s var(--ease-out),
+             background .28s var(--ease-out),border-color .28s var(--ease-out);}
+.vtile:hover,.tpanel:hover,.arule:hover,.swatch:hover,.dont:hover,.a11y:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 34px -18px rgba(57,30,26,.34);}
+.arule:hover,.res:hover{background:var(--cream);}
+.ico-cell:not(.on-orange):hover{transform:translateY(-4px);}
+.ico-cell .ms-rounded{transition:color .28s var(--ease-out),transform .34s var(--ease-out);}
+.ico-cell:not(.on-orange):hover .ms-rounded{color:var(--orange);}
+.res{border-radius:14px;padding-inline:clamp(10px,1.4vw,20px);
+  margin-inline:calc(-1 * clamp(10px,1.4vw,20px));}
+
+/* Sub-headings nudge forward on hover, echoing the arrow */
+.cash-sec > .cash-h{transition:transform .34s var(--ease-out);}
+.cash-sec:hover > .cash-h{transform:translateX(5px);}
+
+@media (prefers-reduced-motion: reduce){
+  .vtile:hover,.tpanel:hover,.arule:hover,.swatch:hover,.dont:hover,.a11y:hover,
+  .ico-cell:not(.on-orange):hover,.cash-sec:hover > .cash-h{transform:none!important;}
 }

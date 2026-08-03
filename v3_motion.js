@@ -12,9 +12,20 @@
 (function () {
   'use strict';
 
-  var SEL = '.v3-hero, .v3-sec > .v3-kicker, .v3-sec > .v3-statement, .v3-cols > div,' +
-            '.v3-dark .v3-kicker, .v3-dark blockquote, .v3-dark .v3-sub,' +
-            '.v3-band img, .v3-attr';
+  var SEL = [
+    // Brand section (the original v3 proof)
+    '.v3-hero', '.v3-sec > .v3-kicker', '.v3-sec > .v3-statement', '.v3-cols > div',
+    '.v3-dark .v3-kicker', '.v3-dark blockquote', '.v3-dark .v3-sub',
+    '.v3-band img', '.v3-attr',
+    // rolled out across every other page
+    '.section:not(.home) .sec-head',
+    '.cash-sec > .cash-h', '.cash-sec > .cash-lead',
+    '.block > h2', '.block > h3', '.block > .body',
+    '.variants > div', '.arules > .arule', '.ico-set > .ico-cell',
+    '.sw-grid > .swatch', '.dd > .dont', '.panel-2 > div',
+    '.wgrid > .wrow', '.a11y-grid > .a11y', '.res-list > .res',
+    '.gfx', '.dpanel', '.logo-dl-two > .ldl-card'
+  ].join(',');
 
   function all() {
     return Array.prototype.slice.call(document.querySelectorAll(SEL));
