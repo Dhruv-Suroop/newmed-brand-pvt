@@ -6,12 +6,18 @@
 (function () {
   'use strict';
 
-  var root = document.getElementById('typegen');
-  if (!root) return;
+  // Multi-instance: the Typography page runs a text-highlight generator and
+  // the Iconography page runs an icon-chip one. Element lookups use
+  // ends-with selectors so a second copy can prefix its ids and stay valid.
+  var roots = Array.prototype.slice.call(document.querySelectorAll('.tgen'));
+  if (!roots.length) return;
+  roots.forEach(initGen);
+
+  function initGen(root) {
 
   function slice(x) { return Array.prototype.slice.call(x); }
 
-  var input    = root.querySelector('.tg-input');
+  var input    = root.querySelector('[id$="tg-input"]');
   var stage    = root.querySelector('.tg-stage');
   var hint     = root.querySelector('.tg-hint');
   var fillBtns = slice(root.querySelectorAll('[data-fill]'));
@@ -20,9 +26,10 @@
   var HEX = { cream: '#f4f1ea', ink: '#391e1a', orange: '#ff5122', yellow: '#ff9d00', amber: '#ff9d00', coral: '#ff5122', maroon: '#7c3134' };
 
   var tokens = [], count = 0, wtext = [];
-  var mode = 'text', iconInput = document.getElementById('tg-icon-input');
-  var iconScaleInput = document.getElementById('tg-icon-scale');
-  var iconScaleVal = document.getElementById('tg-icon-scale-val');
+  var mode = root.getAttribute('data-lock') || 'text';
+  var iconInput = root.querySelector('[id$="tg-icon-input"]');
+  var iconScaleInput = root.querySelector('[id$="tg-icon-scale"]');
+  var iconScaleVal = root.querySelector('[id$="tg-icon-scale-val"]');
   var selStart = -1, selEnd = -1, anchor = -1, hasRange = false, fill = 'sunset';
 
   // parse the textarea into word / line-break tokens ------------------
@@ -302,8 +309,8 @@
   if (iconScaleInput) iconScaleInput.addEventListener('input', function() { render(); });
   
   // Icon Library logic
-  var iconSearch = document.getElementById('tg-icon-search');
-  var iconGrid = document.getElementById('tg-icon-grid');
+  var iconSearch = root.querySelector('[id$="tg-icon-search"]');
+  var iconGrid = root.querySelector('[id$="tg-icon-grid"]');
   var icons = window.MATERIAL_ICONS || [];
   
   function renderIconGrid(filter) {
@@ -346,8 +353,8 @@
     t.addEventListener('click', function () {
       mode = t.getAttribute('data-mode');
       tabs.forEach(function(x){ x.classList.toggle('active', x === t); });
-      root.querySelector('#tg-text-ui').style.display = (mode === 'text') ? 'block' : 'none';
-      root.querySelector('#tg-icon-ui').style.display = (mode === 'icon') ? 'block' : 'none';
+      root.querySelector('[id$="tg-text-ui"]').style.display = (mode === 'text') ? 'block' : 'none';
+      root.querySelector('[id$="tg-icon-ui"]').style.display = (mode === 'icon') ? 'block' : 'none';
       root.querySelector('.tg-examples').style.display = (mode === 'text') ? 'flex' : 'none';
       render();
     });
@@ -383,6 +390,22 @@
   window.addEventListener('resize', function () { clearTimeout(root.__t); root.__t = setTimeout(render, 140); });
 
   fillBtns.forEach(function (x) { x.classList.toggle('is-on', x.getAttribute('data-fill') === fill); });
+
+  // A locked instance shows only its own controls; the tab strip is pointless
+  // when there is nothing to switch to.
+  var lock = root.getAttribute('data-lock');
+  if (lock) {
+    var tabStrip = root.querySelector('.tg-tabs');
+    if (tabStrip) tabStrip.style.display = 'none';
+    var tUI = root.querySelector('[id$="tg-text-ui"]');
+    var iUI = root.querySelector('[id$="tg-icon-ui"]');
+    var ex  = root.querySelector('.tg-examples');
+    if (tUI) tUI.style.display = (lock === 'text') ? 'block' : 'none';
+    if (iUI) iUI.style.display = (lock === 'icon') ? 'block' : 'none';
+    if (ex)  ex.style.display  = (lock === 'text') ? 'flex'  : 'none';
+  }
+
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
   rebuild(false);
+  }
 })();

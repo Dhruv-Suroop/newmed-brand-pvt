@@ -640,8 +640,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .bc-previews{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;}
 .bc-front-wrap,.bc-back-wrap{width:350px;height:200px;font-size:12.5px;border-radius:12px;
   overflow:hidden;box-shadow:0 10px 34px rgba(57,30,26,.14);}
-@media(max-width:820px){.cardgen .sig-form{grid-template-columns:1fr;}
-  .bc-front-wrap,.bc-back-wrap{width:100%;max-width:350px;height:auto;aspect-ratio:1.75;}}
+@media(max-width:820px){.cardgen .sig-form{grid-template-columns:1fr;}}
 
 /* ---- Typography page ---- */
 .spec-hero{border-radius:14px;background:var(--bone);padding:clamp(34px,5vw,72px);
@@ -1434,3 +1433,46 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
   .vtile:hover,.tpanel:hover,.arule:hover,.swatch:hover,.dont:hover,.a11y:hover,
   .ico-cell:not(.on-orange):hover,.cash-sec:hover > .cash-h{transform:none!important;}
 }
+
+/* --- Business card preview at full width -------------------------
+   The faces are SVGs stretched to their wrapper, so they scale by box
+   size alone; the old fixed 350x200 was the only thing holding them
+   small. Two up on desktop, stacked on narrow. */
+.bc-previews{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,26px);
+  margin-top:clamp(20px,2.6vw,30px);}
+.bc-front-wrap,.bc-back-wrap{width:100%;height:auto;aspect-ratio:1.75;}
+@media(max-width:820px){.bc-previews{grid-template-columns:1fr;}}
+
+/* --- Eyebrow badge, corrected -------------------------------------
+   It is TWO arrows, not one: a solid icon chip whose point tucks into
+   an outline arrow carrying the text. Both share one height so the
+   locked geometry (point = 42.6% of height) matches across the pair.
+   Right padding on the text arrow must clear its own point.          */
+.arw-eyebrow{display:inline-flex;align-items:center;--eb-h:46px;}
+.arw-eyebrow > span{position:relative;display:inline-flex;align-items:center;
+  justify-content:center;height:var(--eb-h);box-sizing:border-box;}
+.arw-eyebrow .eb-icon{
+  width:calc(var(--eb-h) * 1.46);
+  padding-right:calc(var(--eb-h) * 0.426);   /* keep the glyph out of the point */
+  color:var(--cream);}
+.arw-eyebrow .eb-icon .ms-rounded,
+.arw-eyebrow .eb-icon .material-symbols-outlined{font-size:calc(var(--eb-h) * 0.6);line-height:1;}
+.arw-eyebrow .eb-text{
+  margin-left:calc(var(--eb-h) * -0.30);      /* the chip's point tucks in */
+  padding-left:calc(var(--eb-h) * 0.52);
+  padding-right:calc(var(--eb-h) * 0.78);     /* clears its own point */
+  color:var(--orange);font-weight:600;
+  font-size:calc(var(--eb-h) * 0.285);letter-spacing:.13em;text-transform:uppercase;
+  white-space:nowrap;}
+.arw-eyebrow .eb-text > span{position:relative;z-index:1;}
+
+/* On the orange hero band both arrows must be Cream, not orange, or the
+   shapes disappear into the ground. The chip inverts: cream fill, orange
+   glyph; the outline arrow strokes cream and carries cream text. */
+.sec-head .arw-eyebrow .eb-icon,
+.v3-hero .arw-eyebrow .eb-icon{color:var(--orange);}
+.sec-head .arw-eyebrow .eb-text,
+.v3-hero .arw-eyebrow .eb-text{color:var(--cream);}
+
+.v3-kicker.arw-eyebrow{text-transform:none;letter-spacing:normal;}
+@media(max-width:640px){.arw-eyebrow{--eb-h:38px;}}
