@@ -6,7 +6,7 @@
 <title>NewMed Skills — Brand Guidelines</title>
 <meta name="description" content="The brand standards manual for NewMed Skills: logo, colour, typography and applications.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="styles.css?v=42">
+<link rel="stylesheet" href="styles.css?v=46">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
 </head>
@@ -444,7 +444,7 @@
 
         <div class="cash-sec" id="ar-scale">
           <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">Use in data</span></h2>
-          <p class="cash-lead">The arrow naturally translates to quantitative data. Use it for horizontal bar charts to convey momentum and direction alongside the metrics.</p>
+          <p class="cash-lead">The arrow naturally translates to quantitative data. Use it for horizontal bar charts to convey momentum and direction alongside the metrics, and nest it to show shares of a whole.</p>
           <div class="panel-2">
             <div>
               <div class="tpanel" style="flex-direction:column; align-items:flex-start; gap:16px;">
@@ -493,6 +493,25 @@
             </div>
           </div>
         </div>
+
+          <div style="margin-top:clamp(28px,4vw,48px)">
+            <div class="tpanel" style="flex-direction:column;align-items:flex-start;gap:0;width:100%">
+              <div style="font-size:14px;font-weight:600;margin-bottom:14px;color:var(--deep-brown);">Placements by destination</div>
+              <div class="arw-stack" style="--seg-h:56px">
+                <span data-arw="orange" style="width:45%"></span>
+                <span data-notch data-arw="maroon" style="width:30%"></span>
+                <span data-notch data-arw="yellow" style="width:15%"></span>
+                <span data-notch data-arw="offwhite" style="width:10%"></span>
+              </div>
+              <div class="arw-key">
+                <div><i style="background:#FF5122"></i>United Kingdom <b>45%</b></div>
+                <div><i style="background:#7C3134"></i>GCC <b>30%</b></div>
+                <div><i style="background:#FF9D00"></i>Europe <b>15%</b></div>
+                <div><i style="background:#EFE9E0"></i>North America <b>10%</b></div>
+              </div>
+            </div>
+            <p class="tcap" style="max-width:64ch"><b>Share of a whole</b>Nest the segments so they interlock at zero gap, largest share first. The same construction as the colour proportion bars — one continuous path, read left to right.</p>
+          </div>
 
         <div class="cash-sec" id="ar-misuse">
           <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">Incorrect usage</span></h2>
@@ -657,19 +676,19 @@
           <div class="feature-panel" style="background:var(--cream); border: 1px solid rgba(57,30,26,.1); border-radius:14px; padding:64px; display:flex; flex-direction:column; gap:48px; width:100%;">
             <div style="width:100%; text-align:left;">
               <div style="font-size:16px; font-weight:600; margin-bottom:16px; color:var(--deep-brown);">Default (70% Off white, 20% Orange, 10% Maroon)</div>
-              <div style="display:flex; align-items:center; gap:0; height:80px; width:100%;">
-                <span data-arw="#EFE9E0" style="width:70%; height:100%;"></span>
-                <span data-notch data-arw="orange" style="width:20%; height:100%; margin-left:-34px;"></span>
-                <span data-notch data-arw="maroon" style="width:10%; height:100%; margin-left:-34px;"></span>
+              <div class="arw-stack" style="--seg-h:80px">
+                <span data-arw="#EFE9E0" style="width:70%"></span>
+                <span data-notch data-arw="orange" style="width:20%"></span>
+                <span data-notch data-arw="maroon" style="width:10%"></span>
               </div>
             </div>
             <div style="width:100%; text-align:left;">
               <div style="font-size:16px; font-weight:600; margin-bottom:16px; color:var(--deep-brown);">Variant (70% Maroon, 10% Orange, 10% Yellow, 10% Off white)</div>
-              <div style="display:flex; align-items:center; gap:0; height:80px; width:100%;">
-                <span data-arw="maroon" style="width:70%; height:100%;"></span>
-                <span data-notch data-arw="orange" style="width:10%; height:100%; margin-left:-34px;"></span>
-                <span data-notch data-arw="yellow" style="width:10%; height:100%; margin-left:-34px;"></span>
-                <span data-notch data-arw="#EFE9E0" style="width:10%; height:100%; margin-left:-34px;"></span>
+              <div class="arw-stack" style="--seg-h:80px">
+                <span data-arw="maroon" style="width:70%"></span>
+                <span data-notch data-arw="orange" style="width:10%"></span>
+                <span data-notch data-arw="yellow" style="width:10%"></span>
+                <span data-notch data-arw="#EFE9E0" style="width:10%"></span>
               </div>
             </div>
           </div>

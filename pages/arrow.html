@@ -1482,6 +1482,22 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
   .cash-h .ch-arw > svg.arw-bg{display:none;}
 }
 
+/* --- Nested arrow bar (share / composition) -----------------------
+   Segments interlock at zero gap: each following arrow is notched and
+   pulled back by exactly the point length. The point is 42.6% of the
+   HEIGHT, so the overlap is derived from --seg-h rather than hardcoded
+   — set any height and the nesting still closes seamlessly. */
+.arw-stack{display:flex;flex-direction:row!important;flex-wrap:nowrap;justify-content:flex-start;
+  align-items:center;gap:0!important;width:100%;height:var(--seg-h,56px);}
+.arw-stack > span{height:100%;flex:none;}
+.arw-stack > span + span{margin-left:calc(var(--seg-h,56px) * -0.426);}
+
+.arw-key{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:18px;}
+.arw-key div{display:flex;align-items:center;gap:9px;font-size:14px;color:rgba(57,30,26,.78);}
+.arw-key i{width:13px;height:13px;border-radius:4px;flex:none;
+  box-shadow:inset 0 0 0 1px rgba(57,30,26,.12);}
+.arw-key b{color:var(--deep-brown);font-weight:600;font-variant-numeric:tabular-nums;}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
@@ -1664,7 +1680,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 
         <div class="cash-sec" id="ar-scale">
           <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">Use in data</span></h2>
-          <p class="cash-lead">The arrow naturally translates to quantitative data. Use it for horizontal bar charts to convey momentum and direction alongside the metrics.</p>
+          <p class="cash-lead">The arrow naturally translates to quantitative data. Use it for horizontal bar charts to convey momentum and direction alongside the metrics, and nest it to show shares of a whole.</p>
           <div class="panel-2">
             <div>
               <div class="tpanel" style="flex-direction:column; align-items:flex-start; gap:16px;">
@@ -1713,6 +1729,25 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
             </div>
           </div>
         </div>
+
+          <div style="margin-top:clamp(28px,4vw,48px)">
+            <div class="tpanel" style="flex-direction:column;align-items:flex-start;gap:0;width:100%">
+              <div style="font-size:14px;font-weight:600;margin-bottom:14px;color:var(--deep-brown);">Placements by destination</div>
+              <div class="arw-stack" style="--seg-h:56px">
+                <span data-arw="orange" style="width:45%"></span>
+                <span data-notch data-arw="maroon" style="width:30%"></span>
+                <span data-notch data-arw="yellow" style="width:15%"></span>
+                <span data-notch data-arw="offwhite" style="width:10%"></span>
+              </div>
+              <div class="arw-key">
+                <div><i style="background:#FF5122"></i>United Kingdom <b>45%</b></div>
+                <div><i style="background:#7C3134"></i>GCC <b>30%</b></div>
+                <div><i style="background:#FF9D00"></i>Europe <b>15%</b></div>
+                <div><i style="background:#EFE9E0"></i>North America <b>10%</b></div>
+              </div>
+            </div>
+            <p class="tcap" style="max-width:64ch"><b>Share of a whole</b>Nest the segments so they interlock at zero gap, largest share first. The same construction as the colour proportion bars — one continuous path, read left to right.</p>
+          </div>
 
         <div class="cash-sec" id="ar-misuse">
           <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">Incorrect usage</span></h2>
