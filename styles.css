@@ -1656,3 +1656,5 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
   .navscreen .index-list a{font-size:clamp(32px,10vw,54px);}
   .ns-inner{padding-top:96px;}
 }
+/* The arrow preview was an empty orange box — give it the actual shape */
+.ix-prev.pv-arw .pv-arrow{display:block;width:64%;height:32%;}

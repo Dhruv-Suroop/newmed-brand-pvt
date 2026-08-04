@@ -1665,6 +1665,8 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
   .navscreen .index-list a{font-size:clamp(32px,10vw,54px);}
   .ns-inner{padding-top:96px;}
 }
+/* The arrow preview was an empty orange box — give it the actual shape */
+.ix-prev.pv-arw .pv-arrow{display:block;width:64%;height:32%;}
 
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
@@ -1708,7 +1710,7 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
           </a></li>
       <li><a href="arrow.html" data-nav>
             <span class="ix-name">The arrow</span>
-            <span class="ix-prev pv-arw"></span>
+            <span class="ix-prev pv-arw"><span class="pv-arrow" data-arw="cream"></span></span>
           </a></li>
       <li><a href="icons.html" data-nav>
             <span class="ix-name">Iconography</span>
