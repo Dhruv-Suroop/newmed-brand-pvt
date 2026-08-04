@@ -1658,3 +1658,7 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
 }
 /* The arrow preview was an empty orange box — give it the actual shape */
 .ix-prev.pv-arw .pv-arrow{display:block;width:64%;height:32%;}
+/* Iconography preview: a small set, sized for the enlarged preview box.
+   A single 34px glyph was lost in it after the preview was doubled. */
+.ix-prev.pv-icons{background:var(--cream);gap:clamp(16px,2.2vw,30px);}
+.ix-prev.pv-icons .ms-rounded{font-size:clamp(38px,4.4vw,56px);color:var(--deep-brown);line-height:1;}
