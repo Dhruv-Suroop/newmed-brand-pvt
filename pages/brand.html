@@ -1673,6 +1673,10 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
    A single 34px glyph was lost in it after the preview was doubled. */
 .ix-prev.pv-icons{background:var(--cream);gap:clamp(16px,2.2vw,30px);}
 .ix-prev.pv-icons .ms-rounded{font-size:clamp(38px,4.4vw,56px);color:var(--deep-brown);line-height:1;}
+/* Gradient construction: the artwork is the panel, so it fills the box.
+   Overrides .dpair's padding and the --dw image cap. */
+.dpanel.bleed{padding:0!important;overflow:hidden;}
+.dpanel.bleed img{width:100%;max-width:none!important;height:auto;display:block;}
 
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
