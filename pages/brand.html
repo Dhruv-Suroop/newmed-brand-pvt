@@ -1678,6 +1678,72 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
 .dpanel.bleed{padding:0!important;overflow:hidden;}
 .dpanel.bleed img{width:100%;max-width:none!important;height:auto;display:block;}
 
+/* ==================================================================
+   PATTERN BUILDER
+   Rows always span the canvas, so widths are flex-grow weights and a
+   row is "100%" whatever it holds. Controls only appear on the arrow
+   you are pointing at — a canvas covered in plus and minus chips is
+   unreadable as a pattern.
+   ================================================================== */
+.patgen{background:var(--bone);border-radius:18px;padding:clamp(22px,2.8vw,36px);}
+.pg-side .pg-note{font-style:normal;font-weight:400;color:rgba(57,30,26,.42);}
+.pg-swatches{display:flex;flex-wrap:wrap;gap:8px;}
+.pg-swatches button{width:30px;height:30px;border-radius:50%;cursor:pointer;
+  border:1px solid rgba(57,30,26,.18);transition:transform .16s var(--ease-out);}
+.pg-swatches button:hover{transform:scale(1.1);}
+
+.pg-stagewrap{background:var(--cream);border:1px solid rgba(57,30,26,.1);
+  border-radius:14px;padding:clamp(20px,2.6vw,34px);overflow:hidden;}
+.pg-stage{display:flex;flex-direction:column;gap:10px;width:100%;
+  padding-right:46px;transform-origin:center;
+  transition:transform .34s var(--ease-out);}
+
+.pg-row{position:relative;display:flex;flex-direction:row!important;align-items:center;
+  gap:0;width:100%;height:var(--pg-h,74px);}
+/* One join model: a 5px overlap, so a row reads as a single continuous
+   shape rather than a line of separate arrows. */
+.pg-row > .pg-arw + .pg-arw{margin-left:-5px;}
+
+.pg-arw{position:relative;height:100%;flex-basis:0;min-width:0;cursor:pointer;
+  transition:filter .18s var(--ease-out);}
+.pg-arw:hover{filter:brightness(1.04);}
+.pg-arw.is-sel{outline:2px solid var(--deep-brown);outline-offset:3px;border-radius:4px;}
+
+/* controls reveal on the arrow you are pointing at */
+.pg-x,.pg-handle{opacity:0;transition:opacity .16s var(--ease-out);}
+.pg-arw:hover .pg-x,.pg-arw:hover .pg-handle,
+.pg-arw.is-sel .pg-x,.pg-arw.is-sel .pg-handle{opacity:1;}
+
+.pg-x{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:26px;height:26px;border-radius:50%;border:none;z-index:3;
+  background:rgba(57,30,26,.82);color:var(--cream);
+  font-size:17px;line-height:1;cursor:pointer;display:grid;place-items:center;}
+.pg-x:hover{background:var(--deep-brown);}
+
+/* resize lives on the tip, never on the same edge as delete */
+.pg-handle{position:absolute;top:0;right:0;width:16px;height:100%;z-index:3;
+  cursor:ew-resize;touch-action:none;}
+.pg-handle::after{content:'';position:absolute;top:50%;right:4px;
+  transform:translateY(-50%);width:3px;height:38%;border-radius:2px;
+  background:rgba(244,241,234,.9);box-shadow:0 0 0 1px rgba(57,30,26,.25);}
+
+.pg-plus{flex:none;width:32px;height:32px;border-radius:50%;cursor:pointer;
+  border:1px dashed rgba(57,30,26,.3);background:transparent;
+  color:rgba(57,30,26,.55);font-size:17px;line-height:1;
+  display:grid;place-items:center;
+  transition:background .16s var(--ease-out),color .16s var(--ease-out),
+             border-color .16s var(--ease-out);}
+.pg-row > .pg-plus{position:absolute;left:calc(100% + 10px);top:50%;
+  transform:translateY(-50%);}
+.pg-plus:hover:not(:disabled){background:var(--orange);color:var(--cream);border-color:transparent;}
+.pg-plus:disabled{opacity:.3;cursor:not-allowed;}
+.pg-plus-row{margin:2px 0 0;align-self:flex-start;position:static;}
+
+@media(max-width:640px){
+  .pg-x{width:22px;height:22px;font-size:15px;}
+  .pg-handle{width:22px;}          /* bigger touch target */
+}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
@@ -1785,6 +1851,7 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
             <a href="#ar-rounded" data-parent="arrow">Rounded rectangle</a>
             <a href="#ar-journey" data-parent="arrow">Journey and rows</a>
             <a href="#ar-scale" data-parent="arrow">Use in data</a>
+            <a href="#ar-pattern" data-parent="arrow">Pattern builder</a>
             <a href="#ar-datagen" data-parent="arrow">Data generator</a>
             <a href="#ar-misuse" data-parent="arrow">Incorrect usage</a>
           </div>
@@ -2127,6 +2194,7 @@ window.MATERIAL_ICONS = [
 
 </script>
 
+<script src="patterngen.js?v=2"></script>
 <script>
 /* NewMed Skills — data visualisation generator.
    Type one item per line, pick a form, export. The preview is built from

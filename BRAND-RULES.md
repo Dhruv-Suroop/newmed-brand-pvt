@@ -67,6 +67,10 @@ Exactly **7 colours**. No tints, no shades, no extra colours, no white. Never in
 
 **Never:** describe the shape in words right next to it; box a cutout fully inside; use hard-edged gradients; make anything bounce.
 
+**Pattern / texture (Aug 4).** The arrow may be tiled as a surface and may be rotated when used this way — the earlier "one dominant arrow per composition" and "always points right" restrictions were dropped deliberately. Limits that remain: never behind body copy; keep it above the size floor below; and remember section 3's proportion rule still applies, so a full-bleed saturated pattern spends the whole colour budget — tint it or drop its opacity.
+
+**Size floor.** Below roughly **0.85x the arrow's height** the point and both corner radii stop resolving and the shape reads as a lozenge, not an arrow. This is the hard minimum for pattern density and for any small chip.
+
 ---
 
 ## 5. Voice & tone
