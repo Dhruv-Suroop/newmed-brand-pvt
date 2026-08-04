@@ -155,6 +155,19 @@ Brief, a few examples. Rules: **single colour · thick strokes · no sharp corne
 
 Old names (`coral`, `amber`, `white`, `bone`) are kept as aliases so nothing stops painting. Use the palette names.
 
+## 10c. Data-visualisation colour sequence (Aug 4)
+
+Charts need more distinguishable hues than a brand palette provides. The generator cycles in this fixed order:
+
+**Brand colours:** 1 Orange `#FF5122` · 2 Yellow `#FF9D00` · 3 Teal `#93CCCD` · 4 Maroon `#7C3134`
+**Data-viz extension:** 5 Green `#8CCE84` · 6 Blue `#6F78C9` · 7 Purple `#BD7FCC` · 8 Pink `#D6699D`
+
+> The last four are **data visualisation only**. They are NOT brand colours and must never appear on brand surfaces — no headlines, arrows, backgrounds or logos. Section 1 still governs everything else.
+
+Cream and Deep Brown are deliberately **excluded** from the sequence: one disappears into the page, the other reads as black rather than as a category.
+
+Eight categories is the hard limit in multi-colour mode. Past that the generator drops the extra rows **and says so** — group the smallest categories, or switch to single-colour.
+
 ## 11. The journey graphic — two variants, do not mix them up (Aug 4)
 
 `six-stages.svg` exists twice because the arrow shapes must contrast with whatever sits behind them:

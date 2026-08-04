@@ -23,13 +23,21 @@
 
   // Palette order is deliberate: orange leads, teal appears only from the
   // fourth series on — it is the most sparing colour in the system.
+  // Categorical sequence. The first four are brand colours; the last four
+  // are a data-visualisation extension (from Dhruv's artwork) and exist
+  // ONLY here — they are not brand colours and must not appear on brand
+  // surfaces. Off white and Deep Brown are deliberately excluded: one
+  // disappears into the page, the other reads as black rather than as a
+  // category. `on` is the label colour with the better measured contrast.
   var SEQ = [
-    { key: 'orange',   hex: '#ff5122', on: '#f4f1ea' },
-    { key: 'maroon',   hex: '#7c3134', on: '#f4f1ea' },
-    { key: 'yellow',   hex: '#ff9d00', on: '#391e1a' },
-    { key: 'teal',     hex: '#93cccd', on: '#391e1a' },
-    { key: 'offwhite', hex: '#efe9e0', on: '#391e1a' },
-    { key: 'ink',      hex: '#391e1a', on: '#f4f1ea' }
+    { key: 'orange', hex: '#ff5122', on: '#391e1a' },
+    { key: 'yellow', hex: '#ff9d00', on: '#391e1a' },
+    { key: 'teal',   hex: '#93cccd', on: '#391e1a' },
+    { key: 'maroon', hex: '#7c3134', on: '#f4f1ea' },
+    { key: 'green',  hex: '#8cce84', on: '#391e1a' },
+    { key: 'blue',   hex: '#6f78c9', on: '#391e1a' },
+    { key: 'purple', hex: '#bd7fcc', on: '#391e1a' },
+    { key: 'pink',   hex: '#d6699d', on: '#391e1a' }
   ];
 
   var type = 'bars', colourMode = 'palette', size = 62;
@@ -146,7 +154,14 @@
       hint.textContent = 'Add one item per line, e.g. "United Kingdom 45".';
       return;
     }
-    if (rows.length > 8) rows = rows.slice(0, 8);
+    // In multi-colour mode the sequence bounds how many categories can be
+    // told apart, so extra rows are dropped — but never silently: the count
+    // is reported below. Single-colour mode has no such limit.
+    var dropped = 0;
+    if (colourMode !== 'single' && rows.length > SEQ.length) {
+      dropped = rows.length - SEQ.length;
+      rows = rows.slice(0, SEQ.length);
+    }
     stage.appendChild(
       type === 'shares' ? renderShares(rows) :
       type === 'row'    ? renderRow(rows)    : renderBars(rows));
@@ -154,10 +169,18 @@
     // arrows need a layout pass before the engine can measure them
     requestAnimationFrame(function () {
       qa('[data-dg-arw]').forEach(function (e) { window.NMArrow.paint(e); });
-      hint.textContent = rows.length + (rows.length === 1 ? ' item' : ' items') +
+      var msg = rows.length + (rows.length === 1 ? ' item' : ' items') +
         ' · ' + (type === 'shares' ? 'shares of one whole'
                : type === 'row'    ? 'magnitude per category'
                : 'comparative bars');
+      if (dropped) {
+        msg += ' · ' + dropped + ' not shown — the sequence has ' + SEQ.length +
+               ' distinct colours. Group the smallest, or switch to one colour.';
+        hint.classList.add('is-warn');
+      } else {
+        hint.classList.remove('is-warn');
+      }
+      hint.textContent = msg;
     });
   }
 

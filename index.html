@@ -6,7 +6,7 @@
 <title>NewMed Skills — Brand Guidelines</title>
 <meta name="description" content="The brand standards manual for NewMed Skills: logo, colour, typography and applications.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="styles.css?v=48">
+<link rel="stylesheet" href="styles.css?v=50">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
 </head>
@@ -531,7 +531,7 @@
           <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">Data generator</span></h2>
           <p class="cash-lead">Type one item per line, choose the form, and take it away as a PNG or SVG. Everything is built from the components on this page, so anything you make here is on-system by construction.</p>
           <div class="dgen" id="datagen">
-            <div class="dg-grid">
+            <div class="dg-controls">
               <div class="dg-side">
                 <div>
                   <label class="dg-lbl" for="dg-input">Your data &mdash; one item per line</label>
@@ -570,14 +570,12 @@ North America 10</textarea>
                   </div>
                 </div>
               </div>
-              <div>
-                <div class="dg-stagewrap"><div class="dg-stage" data-dg="stage"></div></div>
-                <div class="dg-foot">
-                  <p class="dg-hint" data-dg="hint"></p>
-                  <button class="dg-x" data-dg-export="png">Download PNG</button>
-                  <button class="dg-x" data-dg-export="svg">Download SVG</button>
-                </div>
-              </div>
+            </div>
+            <div class="dg-stagewrap"><div class="dg-stage" data-dg="stage"></div></div>
+            <div class="dg-foot">
+              <p class="dg-hint" data-dg="hint"></p>
+              <button class="dg-x" data-dg-export="png">Download PNG</button>
+              <button class="dg-x" data-dg-export="svg">Download SVG</button>
             </div>
           </div>
           <p class="tcap" style="max-width:64ch"><b>Which form</b>Comparative bars for values measured against each other, shares when the parts add up to one whole, per category when each stands on its own. The SVG names Mona Sans rather than embedding it, so install the font to open it elsewhere.</p>
@@ -1202,7 +1200,7 @@ North America 10</textarea>
 <script src="assets/icons.js?v=1"></script>
 <script src="arrow.js?v=3"></script>
 <script src="app.js?v=9"></script>
-<script src="datagen.js?v=1"></script>
+<script src="datagen.js?v=3"></script>
 <script src="v3_eyebrow.js?v=1"></script>
 <script src="v3_motion.js?v=6"></script>
 <script src="gradient.js?v=6"></script>
