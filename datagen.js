@@ -31,9 +31,9 @@
   // category. `on` is the label colour with the better measured contrast.
   var SEQ = [
     { key: 'orange',   hex: '#ff5122', on: '#391e1a' },
-    { key: 'dvyellow', hex: '#ff9c00', on: '#391e1a' },
+    { key: 'yellow',   hex: '#ff9d00', on: '#391e1a' },
     { key: 'maroon',   hex: '#7c3134', on: '#f4f1ea' },
-    { key: 'dvteal',   hex: '#92cbcc', on: '#391e1a' },
+    { key: 'teal',     hex: '#93cccd', on: '#391e1a' },
     { key: 'green',    hex: '#8cce84', on: '#391e1a' },
     { key: 'blue',     hex: '#6f78c9', on: '#391e1a' },
     { key: 'purple',   hex: '#bd7fcc', on: '#391e1a' },

@@ -1012,7 +1012,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 }
 @media(max-width:900px){
   .app{grid-template-columns:1fr;}
-  .tb-group{display:none;}
+  .tb-nav{display:none;}
   .hamb{display:grid;}
   .sidebar{position:fixed;top:0;left:0;width:290px;max-width:86vw;height:100vh;padding-top:22px;transform:translateX(-100%);transition:transform .3s var(--ease);z-index:60;}
   .sidebar.open{transform:none;box-shadow:0 0 60px rgba(0,0,0,.25);}
@@ -1556,6 +1556,53 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 @media(max-width:560px){.dg-side{grid-template-columns:1fr;}}
 .dg-hint.is-warn{color:var(--clay);font-weight:500;}
 
+/* ==================================================================
+   GENERATOR UI — one consistent shell for all four generators
+   (type highlight, icon chip, gradient, data). Fixes found by running
+   impeccable's detector over the built page: functional text under the
+   11px legibility floor, and panels whose children sat flush to the
+   edge with no inset.
+   ================================================================== */
+
+/* Shared panel: same ground, radius and inset everywhere */
+.tgen,.dgen,.gen{background:var(--bone);border-radius:18px;
+  padding:clamp(22px,2.8vw,36px);}
+.gen{overflow:hidden;}
+
+/* Field labels read as one family */
+.tg-field,.dg-label{display:block;margin-bottom:9px;font-size:12.5px;font-weight:600;
+  letter-spacing:.02em;color:rgba(57,30,26,.62);}
+
+/* Inputs: same height, radius and focus treatment */
+.tg-input,.dg-ta{border-radius:12px;border:1px solid rgba(57,30,26,.16);
+  background:var(--cream);transition:border-color .16s var(--ease),box-shadow .16s var(--ease);}
+.tg-input:focus,.dg-ta:focus{border-color:var(--orange);
+  box-shadow:0 0 0 3px rgba(255,81,34,.14);outline:none;}
+
+/* Tabs become the same pill control as the data generator's segments,
+   instead of an underlined-tab pattern that read as a different system */
+.tg-tabs{display:flex;gap:8px;margin-bottom:18px;border-bottom:none;padding-bottom:0;flex-wrap:wrap;}
+.tg-tab{background:var(--cream);border:1px solid rgba(57,30,26,.16);border-radius:999px;
+  font-size:13.5px;font-weight:600;color:var(--deep-brown);opacity:1;cursor:pointer;
+  padding:9px 18px;transition:background .16s var(--ease),color .16s var(--ease),
+  border-color .16s var(--ease);}
+.tg-tab:hover{border-color:rgba(57,30,26,.34);}
+.tg-tab.active{background:var(--orange);color:var(--cream);border-color:transparent;}
+
+/* Swatches: a clearer selected state than a bare outline */
+.tg-swatch{width:32px;height:32px;cursor:pointer;
+  transition:transform .16s var(--ease),box-shadow .16s var(--ease);}
+.tg-swatch:hover{transform:scale(1.08);}
+.tg-swatch.is-on{box-shadow:0 0 0 2px var(--cream),0 0 0 4px var(--deep-brown);}
+
+/* Functional text was 10px — below the 11px floor where it stops being
+   comfortably readable at a glance */
+.feature-colour .copyhint{font-size:11.5px;letter-spacing:.1em;}
+
+/* Buttons: consistent hit area across generators */
+.tg-examples button,.tg-controls .tg-x,.tg-actions button,.dg-x{
+  padding:10px 18px;font-size:13.5px;}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
@@ -2018,7 +2065,7 @@ window.MATERIAL_ICONS = [
       var map = { orange:'#ff5122', yellow:'#ff9d00', teal:'#93cccd', maroon:'#7c3134',
                   cream:'#f4f1ea', offwhite:'#efe9e0', ink:'#391e1a',
                   // data-viz extension only — never for brand surfaces
-                  dvyellow:'#ff9c00', dvteal:'#92cbcc', green:'#8cce84', blue:'#6f78c9', purple:'#bd7fcc', pink:'#d6699d',
+                  green:'#8cce84', blue:'#6f78c9', purple:'#bd7fcc', pink:'#d6699d',
                   // legacy aliases, kept so older markup keeps painting
                   amber:'#ff9d00', coral:'#ff5122', white:'#f4f1ea', bone:'#efe9e0' };
       f = map[fill] || fill;
@@ -2130,9 +2177,9 @@ window.MATERIAL_ICONS = [
   // category. `on` is the label colour with the better measured contrast.
   var SEQ = [
     { key: 'orange',   hex: '#ff5122', on: '#391e1a' },
-    { key: 'dvyellow', hex: '#ff9c00', on: '#391e1a' },
+    { key: 'yellow',   hex: '#ff9d00', on: '#391e1a' },
     { key: 'maroon',   hex: '#7c3134', on: '#f4f1ea' },
-    { key: 'dvteal',   hex: '#92cbcc', on: '#391e1a' },
+    { key: 'teal',     hex: '#93cccd', on: '#391e1a' },
     { key: 'green',    hex: '#8cce84', on: '#391e1a' },
     { key: 'blue',     hex: '#6f78c9', on: '#391e1a' },
     { key: 'purple',   hex: '#bd7fcc', on: '#391e1a' },
