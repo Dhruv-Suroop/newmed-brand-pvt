@@ -413,11 +413,11 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .arw-portrait{position:relative;display:block;isolation:isolate;}
 .arw-portrait img{display:block;width:100%;height:auto;position:relative;z-index:1;}
 /* Portrait use-case tile: match sibling tile height, scale the cutout to fit */
-.tpanel-portrait{--pt-h:clamp(210px,25vw,330px);
-  padding:0;overflow:hidden;align-items:flex-end;justify-content:center;
+.tpanel-portrait{--pt-h:clamp(210px,25vw,330px);--pt-pad:clamp(16px,2vw,30px);
+  padding:0 0 var(--pt-pad);overflow:hidden;align-items:flex-end;justify-content:center;
   flex:none!important;height:var(--pt-h)!important;min-height:0!important;}
 .tpanel-portrait .arw-portrait{width:auto;display:block;}
-.tpanel-portrait .arw-portrait img{width:auto;height:var(--pt-h);max-height:none;display:block;}
+.tpanel-portrait .arw-portrait img{width:auto;height:calc(var(--pt-h) - var(--pt-pad));max-height:none;display:block;}
 .arw-portrait > .pa-arrow{position:absolute;left:0;right:0;bottom:0;display:block;z-index:0;}
 
 /* 7. Journey cards — arrow cards in sequence, each notched into the last */
