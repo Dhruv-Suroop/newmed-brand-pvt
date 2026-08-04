@@ -97,8 +97,18 @@
       requestAnimationFrame(function () { ticking = false; sweep(); });
     }
 
-    arm();
-    document.addEventListener('nm:repaint', arm);
+    // A section is display:none until you navigate to it, and nm:repaint
+    // fires in the same frame it becomes visible — rects can still be zero,
+    // so nothing qualifies as in-view and the section renders blank until
+    // the reader happens to scroll. Re-check once layout has settled.
+    function armSoon() {
+      arm();
+      requestAnimationFrame(function () { arm(); requestAnimationFrame(arm); });
+      setTimeout(arm, 150);
+    }
+
+    armSoon();
+    document.addEventListener('nm:repaint', armSoon);
     window.addEventListener('hashchange', arm);
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });

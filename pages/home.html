@@ -562,7 +562,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 /* Arrow rules list */
 .arules{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .arule{background:var(--bone);border-radius:14px;padding:22px 22px 24px;}
-.arule h4{margin:0 0 8px;color:var(--clay);font-size:18px;letter-spacing:-.01em;}
+.arule h3{margin:0 0 8px;color:var(--clay);font-size:18px;letter-spacing:-.01em;}
 .arule p{margin:0;color:rgba(57,30,26,0.8);font-size:15px;line-height:1.5;}
 
 /* ---- Iconography ---- */
@@ -1770,14 +1770,15 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
             <a href="#l-partners" data-parent="logo">Partnerships</a>
             <a href="#l-inuse" data-parent="logo">In use</a>
             <a href="#l-misuse" data-parent="logo">Incorrect usage</a>
+            <a href="#l-res" data-parent="logo">Resources</a>
           </div>
         </div>
         <div class="nav-sec" data-sec="arrow">
           <a class="ns-link" href="arrow.html" data-nav>The arrow</a>
           <div class="ns-subs">
             <a href="#ar-anatomy" data-parent="arrow">Anatomy</a>
-            <a href="#ar-highlight" data-parent="arrow">Text highlight</a>
             <a href="#ar-uses" data-parent="arrow">Using the arrow</a>
+            <a href="#ar-rounded" data-parent="arrow">Rounded rectangle</a>
             <a href="#ar-journey" data-parent="arrow">Journey and rows</a>
             <a href="#ar-scale" data-parent="arrow">Use in data</a>
             <a href="#ar-datagen" data-parent="arrow">Data generator</a>
@@ -1798,6 +1799,7 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
             <a href="#c-palette" data-parent="colour">Orange</a>
             <a href="#c-supporting" data-parent="colour">Secondary</a>
             <a href="#c-neutrals" data-parent="colour">Neutrals</a>
+            <a href="#c-usage" data-parent="colour">Using the colours together</a>
             <a href="#c-gradients" data-parent="colour">Gradients</a>
             <a href="#c-radial" data-parent="colour">How a radial is built</a>
             <a href="#c-generator" data-parent="colour">Generator</a>
@@ -2610,8 +2612,18 @@ window.MATERIAL_ICONS = [
       requestAnimationFrame(function () { ticking = false; sweep(); });
     }
 
-    arm();
-    document.addEventListener('nm:repaint', arm);
+    // A section is display:none until you navigate to it, and nm:repaint
+    // fires in the same frame it becomes visible — rects can still be zero,
+    // so nothing qualifies as in-view and the section renders blank until
+    // the reader happens to scroll. Re-check once layout has settled.
+    function armSoon() {
+      arm();
+      requestAnimationFrame(function () { arm(); requestAnimationFrame(arm); });
+      setTimeout(arm, 150);
+    }
+
+    armSoon();
+    document.addEventListener('nm:repaint', armSoon);
     window.addEventListener('hashchange', arm);
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });

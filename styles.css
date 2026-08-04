@@ -553,7 +553,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 /* Arrow rules list */
 .arules{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .arule{background:var(--bone);border-radius:14px;padding:22px 22px 24px;}
-.arule h4{margin:0 0 8px;color:var(--clay);font-size:18px;letter-spacing:-.01em;}
+.arule h3{margin:0 0 8px;color:var(--clay);font-size:18px;letter-spacing:-.01em;}
 .arule p{margin:0;color:rgba(57,30,26,0.8);font-size:15px;line-height:1.5;}
 
 /* ---- Iconography ---- */
