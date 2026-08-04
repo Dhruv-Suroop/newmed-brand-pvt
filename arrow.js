@@ -84,7 +84,7 @@
       var map = { orange:'#ff5122', yellow:'#ff9d00', teal:'#93cccd', maroon:'#7c3134',
                   cream:'#f4f1ea', offwhite:'#efe9e0', ink:'#391e1a',
                   // data-viz extension only — never for brand surfaces
-                  green:'#8cce84', blue:'#6f78c9', purple:'#bd7fcc', pink:'#d6699d',
+                  dvyellow:'#ff9c00', dvteal:'#92cbcc', green:'#8cce84', blue:'#6f78c9', purple:'#bd7fcc', pink:'#d6699d',
                   // legacy aliases, kept so older markup keeps painting
                   amber:'#ff9d00', coral:'#ff5122', white:'#f4f1ea', bone:'#efe9e0' };
       f = map[fill] || fill;

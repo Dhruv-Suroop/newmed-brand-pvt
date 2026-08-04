@@ -159,8 +159,20 @@ Old names (`coral`, `amber`, `white`, `bone`) are kept as aliases so nothing sto
 
 Charts need more distinguishable hues than a brand palette provides. The generator cycles in this fixed order:
 
-**Brand colours:** 1 Orange `#FF5122` · 2 Yellow `#FF9D00` · 3 Teal `#93CCCD` · 4 Maroon `#7C3134`
-**Data-viz extension:** 5 Green `#8CCE84` · 6 Blue `#6F78C9` · 7 Purple `#BD7FCC` · 8 Pink `#D6699D`
+Fixed order, exact hexes (from Dhruv's artwork — use these, not the brand values, inside charts):
+
+| # | Name | Hex | Note |
+|---|---|---|---|
+| 1 | Orange | `#FF5122` | same as brand |
+| 2 | Yellow | `#FF9C00` | **not** brand `#FF9D00` |
+| 3 | Maroon | `#7C3134` | same as brand |
+| 4 | Teal | `#92CBCC` | **not** brand `#93CCCD` |
+| 5 | Green | `#8CCE84` | data-viz only |
+| 6 | Blue | `#6F78C9` | data-viz only |
+| 7 | Purple | `#BD7FCC` | data-viz only |
+| 8 | Pink | `#D6699D` | data-viz only |
+
+Tokens: `orange` `dvyellow` `maroon` `dvteal` `green` `blue` `purple` `pink`. The `dv-` prefixed ones exist so the brand tokens keep their exact brand values.
 
 > The last four are **data visualisation only**. They are NOT brand colours and must never appear on brand surfaces — no headlines, arrows, backgrounds or logos. Section 1 still governs everything else.
 
