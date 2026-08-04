@@ -29,7 +29,7 @@
     document.querySelectorAll('.nav-sec').forEach(function (sec) {
       sec.classList.toggle('is-active', sec.getAttribute('data-sec') === id);
     });
-    document.querySelectorAll('.ns-link').forEach(function (a) {
+    document.querySelectorAll('.ns-link, .tb-btn').forEach(function (a) {
       a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
     });
 
