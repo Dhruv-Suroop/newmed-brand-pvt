@@ -9,9 +9,16 @@
   var groups = Array.prototype.slice.call(document.querySelectorAll('.tb-group'));
   var spyRAF = 0;
 
+  var navscreen = document.getElementById('navscreen');
+
   function closeDrawer() {
     if (sidebar) sidebar.classList.remove('open');
     if (scrim) scrim.classList.remove('show');
+    if (navscreen) {
+      navscreen.classList.remove('open');
+      navscreen.setAttribute('aria-hidden', 'true');
+    }
+    document.body.classList.remove('nav-open');
   }
   function closeMenus() {
     groups.forEach(function (g) { g.classList.remove('open'); });
@@ -133,13 +140,19 @@
 
   /* ---- Mobile drawer ---- */
   var hamb = document.getElementById('hamb');
-  if (hamb) {
+  if (hamb && navscreen) {
     hamb.addEventListener('click', function (e) {
       e.stopPropagation();
-      var open = sidebar.classList.toggle('open');
-      scrim.classList.toggle('show', open);
+      var open = !navscreen.classList.contains('open');
+      navscreen.classList.toggle('open', open);
+      navscreen.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.classList.toggle('nav-open', open);
     });
   }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeDrawer();
+  });
+
   if (scrim) scrim.addEventListener('click', closeDrawer);
 
   /* ---- Keyboard: left/right between sections ---- */

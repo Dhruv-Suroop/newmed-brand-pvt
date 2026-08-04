@@ -6,7 +6,7 @@
 <title>NewMed Skills — Brand Guidelines</title>
 <meta name="description" content="The brand standards manual for NewMed Skills: logo, colour, typography and applications.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="styles.css?v=54">
+<link rel="stylesheet" href="styles.css?v=56">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
 </head>
@@ -25,21 +25,56 @@
 
 <!-- Global top bar -->
 <header class="topbar" id="topbar">
-  <a class="tb-logo" href="#intro" data-nav aria-label="NewMed Skills — home">
+  <a class="tb-logo" href="#brand" data-nav aria-label="NewMed Skills — home">
     <span class="mark"><svg class="mark"><use href="#nm-mark"/></svg></span>
   </a>
   <div class="tb-title">Brand Guidelines</div>
   <nav class="tb-nav">
-    <a href="#brand" class="tb-btn" data-nav style="text-decoration: none;">Brand</a>
-    <a href="#logo" class="tb-btn" data-nav style="text-decoration: none;">Logo</a>
-    <a href="#arrow" class="tb-btn" data-nav style="text-decoration: none;">The arrow</a>
-    <a href="#icons" class="tb-btn" data-nav style="text-decoration: none;">Iconography</a>
-    <a href="#colour" class="tb-btn" data-nav style="text-decoration: none;">Colour</a>
-    <a href="#type" class="tb-btn" data-nav style="text-decoration: none;">Typography</a>
-    <a href="#applications" class="tb-btn" data-nav style="text-decoration: none;">Applications</a>
     <button class="hamb" id="hamb" aria-label="Menu"><span></span></button>
   </nav>
 </header>
+<!-- Full-screen navigation -->
+<div class="navscreen" id="navscreen" aria-hidden="true">
+  <div class="ns-inner">
+    <p class="ns-kicker">NewMed Skills &middot; Brand Guidelines</p>
+    <ul class="index-list">
+      <li><a href="#brand" data-nav>
+            <span class="ix-name">Brand</span>
+            <span class="ix-prev"><span class="pv-mark"><svg class="mark"><use href="#nm-mark"/></svg></span></span>
+          </a></li>
+      <li><a href="#logo" data-nav>
+            <span class="ix-name">Logo</span>
+            <span class="ix-prev pv-pad"><img src="assets/logos/svg/horizontal-colour.svg" alt=""></span>
+          </a></li>
+      <li><a href="#arrow" data-nav>
+            <span class="ix-name">The arrow</span>
+            <span class="ix-prev pv-arw"></span>
+          </a></li>
+      <li><a href="#icons" data-nav>
+            <span class="ix-name">Iconography</span>
+            <span class="ix-prev pv-aa"><span class="ms-rounded" style="font-size:34px">health_and_safety</span></span>
+          </a></li>
+      <li><a href="#colour" data-nav>
+            <span class="ix-name">Colour</span>
+            <span class="ix-prev pv-cols"><i style="background:#FF5122"></i><i style="background:#391E1A"></i><i style="background:#7C3134"></i><i style="background:#FF9D00"></i><i style="background:#93CCCD"></i></span>
+          </a></li>
+      <li><a href="#type" data-nav>
+            <span class="ix-name">Typography</span>
+            <span class="ix-prev pv-aa"><span>Aa</span></span>
+          </a></li>
+      <li><a href="#applications" data-nav>
+            <span class="ix-name">Applications</span>
+            <span class="ix-prev"><img src="assets/mockups/app-icon-iphone.jpg" alt=""></span>
+          </a></li>
+        </ul>
+    <div class="ns-foot">
+          <a href="#logo" data-nav><svg width="14" height="14"><use href="#ico-dl"/></svg> Logo download</a>
+          <a href="#type" data-nav><svg width="14" height="14"><use href="#ico-dl"/></svg> Type download</a>
+          <a href="#colour" data-nav>Colour values</a>
+          <span class="hf-meta">Version 1.0 · 2026</span>
+        </div>
+  </div>
+</div>
 <div class="scrim" id="scrim"></div>
 
 <div class="app">
@@ -136,55 +171,9 @@
   <main class="main" id="main">
 
     <!-- ========== 01 HOME / INDEX ========== -->
-    <section class="section is-active home" id="intro">
-      <div class="home-wrap">
-        <div class="home-lead">
-          <p class="home-eyebrow"><span class="mark"><svg class="mark"><use href="#nm-mark"/></svg></span> NewMed Skills · Brand Guidelines</p>
-          <p class="home-intro">The single source of truth for how NewMed Skills looks, sounds and behaves. Pick a foundation to begin — every asset and value is ready to copy or download.</p>
-        </div>
-
-        <ul class="index-list">
-          <li><a href="#brand" data-nav>
-            <span class="ix-name">Brand</span>
-            <span class="ix-prev"><span class="pv-mark"><svg class="mark"><use href="#nm-mark"/></svg></span></span>
-          </a></li>
-          <li><a href="#logo" data-nav>
-            <span class="ix-name">Logo</span>
-            <span class="ix-prev pv-pad"><img src="assets/logos/svg/horizontal-colour.svg" alt=""></span>
-          </a></li>
-          <li><a href="#arrow" data-nav>
-            <span class="ix-name">The arrow</span>
-            <span class="ix-prev pv-arw"></span>
-          </a></li>
-          <li><a href="#icons" data-nav>
-            <span class="ix-name">Iconography</span>
-            <span class="ix-prev pv-aa"><span class="ms-rounded" style="font-size:34px">health_and_safety</span></span>
-          </a></li>
-          <li><a href="#colour" data-nav>
-            <span class="ix-name">Colour</span>
-            <span class="ix-prev pv-cols"><i style="background:#FF5122"></i><i style="background:#391E1A"></i><i style="background:#7C3134"></i><i style="background:#FF9D00"></i><i style="background:#93CCCD"></i></span>
-          </a></li>
-          <li><a href="#type" data-nav>
-            <span class="ix-name">Typography</span>
-            <span class="ix-prev pv-aa"><span>Aa</span></span>
-          </a></li>
-          <li><a href="#applications" data-nav>
-            <span class="ix-name">Applications</span>
-            <span class="ix-prev"><img src="assets/mockups/app-icon-iphone.jpg" alt=""></span>
-          </a></li>
-        </ul>
-
-        <div class="home-foot">
-          <a href="#logo" data-nav><svg width="14" height="14"><use href="#ico-dl"/></svg> Logo download</a>
-          <a href="#type" data-nav><svg width="14" height="14"><use href="#ico-dl"/></svg> Type download</a>
-          <a href="#colour" data-nav>Colour values</a>
-          <span class="hf-meta">Version 1.0 · 2026</span>
-        </div>
-      </div>
-    </section>
 
     <!-- ========== 02 BRAND ========== -->
-    <section class="section" id="brand">
+    <section class="section is-active" id="brand">
       <div class="wrap">
         <div class="v3-hero v3-bleed">
           <span class="eb2 v3-kicker" data-on="orange" data-num="01" data-label="Brand"></span>
@@ -1200,7 +1189,7 @@ North America 10</textarea>
 
 <script src="assets/icons.js?v=1"></script>
 <script src="arrow.js?v=5"></script>
-<script src="app.js?v=10"></script>
+<script src="app.js?v=11"></script>
 <script src="datagen.js?v=5"></script>
 <script src="v3_eyebrow.js?v=1"></script>
 <script src="v3_motion.js?v=6"></script>

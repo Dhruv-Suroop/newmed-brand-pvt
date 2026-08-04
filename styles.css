@@ -1607,3 +1607,52 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
   text-transform:uppercase;color:var(--deep-brown);}
 
 
+
+/* ==================================================================
+   FULL-SCREEN NAVIGATION
+   The section index is now something you summon, not the landing page.
+   Poster scale: bigger than the old list and one weight down (500),
+   which reads calmer at this size than 600 does.
+   ================================================================== */
+.hamb{display:grid!important;}          /* primary nav at every width */
+.tb-nav{display:flex!important;}
+
+.navscreen{position:fixed;inset:0;z-index:55;background:var(--cream);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .34s var(--ease-out),visibility .34s;
+  overflow-y:auto;display:flex;align-items:flex-start;}
+.navscreen.open{opacity:1;visibility:visible;pointer-events:auto;}
+body.nav-open{overflow:hidden;}
+
+.ns-inner{width:100%;max-width:1440px;margin:0 auto;
+  padding:clamp(84px,10vw,120px) clamp(20px,3.4vw,52px) clamp(40px,6vw,72px);}
+.ns-kicker{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--orange);margin:0 0 clamp(22px,3vw,40px);}
+
+.navscreen .index-list{margin:0;border-top:1px solid rgba(57,30,26,.14);}
+.navscreen .index-list li{border-top:none;border-bottom:1px solid rgba(57,30,26,.14);}
+.navscreen .index-list li:last-child{border-bottom:1px solid rgba(57,30,26,.14);}
+.navscreen .index-list a{
+  font-size:clamp(42px,8.6vw,118px);font-weight:500;letter-spacing:-.04em;
+  line-height:1.04;padding:clamp(10px,1.5vw,20px) 6px;
+  color:rgba(57,30,26,.34);}
+.navscreen .index-list a:hover{color:var(--deep-brown);padding-left:20px;}
+
+.ns-foot{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;
+  margin-top:clamp(28px,4vw,48px);font-size:14px;color:rgba(57,30,26,.6);}
+.ns-foot a{color:rgba(57,30,26,.7);text-decoration:none;display:inline-flex;align-items:center;gap:7px;}
+.ns-foot a:hover{color:var(--orange);}
+
+/* hamburger turns into a close mark while the nav is open */
+body.nav-open .topbar{z-index:60;background:transparent;border-bottom-color:transparent;}
+body.nav-open .tb-title{opacity:0;}
+body.nav-open .hamb{position:relative;z-index:61;}
+body.nav-open .hamb span{background:transparent;}
+body.nav-open .hamb span::before{top:0;transform:rotate(45deg);}
+body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
+.hamb span::before,.hamb span::after{transition:transform .28s var(--ease-out),top .28s var(--ease-out);}
+
+@media(max-width:640px){
+  .navscreen .index-list a{font-size:clamp(32px,10vw,54px);}
+  .ns-inner{padding-top:96px;}
+}
