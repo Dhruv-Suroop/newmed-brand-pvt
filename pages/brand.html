@@ -1744,6 +1744,22 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
   .pg-handle{width:22px;}          /* bigger touch target */
 }
 
+/* --- Illustrative use placeholders --------------------------------
+   Held at final proportions so the layout does not move when the real
+   artwork lands. */
+.illus-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.2vw,26px);}
+.illus-box{aspect-ratio:var(--ar,16/10);border-radius:14px;
+  background:var(--bone);border:1.5px dashed rgba(57,30,26,.26);
+  display:grid;place-items:center;text-align:center;
+  transition:border-color .28s var(--ease-out),background .28s var(--ease-out);}
+.illus:hover .illus-box{border-color:var(--orange);background:var(--cream);}
+.illus-box span{font-size:12px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(57,30,26,.4);line-height:1.6;}
+.illus-box span i{display:block;font-style:normal;letter-spacing:-.01em;
+  text-transform:none;font-size:17px;color:var(--clay);margin-top:4px;}
+.illus-note{margin-top:clamp(18px,2.4vw,28px);}
+@media(max-width:760px){.illus-grid{grid-template-columns:1fr;}}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
@@ -1851,6 +1867,7 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
             <a href="#ar-rounded" data-parent="arrow">Rounded rectangle</a>
             <a href="#ar-journey" data-parent="arrow">Journey and rows</a>
             <a href="#ar-scale" data-parent="arrow">Use in data</a>
+            <a href="#ar-illustrative" data-parent="arrow">Illustrative use</a>
             <a href="#ar-pattern" data-parent="arrow">Pattern builder</a>
             <a href="#ar-datagen" data-parent="arrow">Data generator</a>
             <a href="#ar-misuse" data-parent="arrow">Incorrect usage</a>

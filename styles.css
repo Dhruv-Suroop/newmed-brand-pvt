@@ -1734,3 +1734,19 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
   .pg-x{width:22px;height:22px;font-size:15px;}
   .pg-handle{width:22px;}          /* bigger touch target */
 }
+
+/* --- Illustrative use placeholders --------------------------------
+   Held at final proportions so the layout does not move when the real
+   artwork lands. */
+.illus-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.2vw,26px);}
+.illus-box{aspect-ratio:var(--ar,16/10);border-radius:14px;
+  background:var(--bone);border:1.5px dashed rgba(57,30,26,.26);
+  display:grid;place-items:center;text-align:center;
+  transition:border-color .28s var(--ease-out),background .28s var(--ease-out);}
+.illus:hover .illus-box{border-color:var(--orange);background:var(--cream);}
+.illus-box span{font-size:12px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(57,30,26,.4);line-height:1.6;}
+.illus-box span i{display:block;font-style:normal;letter-spacing:-.01em;
+  text-transform:none;font-size:17px;color:var(--clay);margin-top:4px;}
+.illus-note{margin-top:clamp(18px,2.4vw,28px);}
+@media(max-width:760px){.illus-grid{grid-template-columns:1fr;}}
