@@ -1750,3 +1750,9 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
   text-transform:none;font-size:17px;color:var(--clay);margin-top:4px;}
 .illus-note{margin-top:clamp(18px,2.4vw,28px);}
 @media(max-width:760px){.illus-grid{grid-template-columns:1fr;}}
+
+/* Arrows that carry type sit on the text baseline. The global [data-arw]
+   rule uses vertical-align:middle, which is right for a standalone shape
+   but centres a text-bearing arrow on the x-height midpoint — it dropped
+   the highlight ~10px below the words either side of it. */
+.v3-statement .arw-hl,.cash-h .ch-arw,.arw-hl{vertical-align:baseline;}

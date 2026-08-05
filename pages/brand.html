@@ -1760,6 +1760,12 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
 .illus-note{margin-top:clamp(18px,2.4vw,28px);}
 @media(max-width:760px){.illus-grid{grid-template-columns:1fr;}}
 
+/* Arrows that carry type sit on the text baseline. The global [data-arw]
+   rule uses vertical-align:middle, which is right for a standalone shape
+   but centres a text-bearing arrow on the x-height midpoint — it dropped
+   the highlight ~10px below the words either side of it. */
+.v3-statement .arw-hl,.cash-h .ch-arw,.arw-hl{vertical-align:baseline;}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
@@ -1949,7 +1955,7 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
             </div>
             <div>
               <p>Two people rely on us. The <b>candidate</b> — a nurse or doctor ready to work abroad. And the <b>hospital</b> — a team that needs qualified people without six months of unscreened CVs.</p>
-              <p>We name every credential and system plainly — Prometric, DataFlow, licensing exams — and we speak to both audiences without changing who we are.</p>
+              
             </div>
           </div>
         </div>
@@ -1963,7 +1969,7 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
         <div class="v3-dark v3-bleed v3-sec orb-hover" id="b-positioning">
           <p class="v3-kicker">Positioning</p>
           <blockquote>Trust is demonstrated,<br>not claimed.</blockquote>
-          <p class="v3-sub">Healthcare staffing is a low-trust category. Competitors sound like either body-shop salesmen — hype, urgency, promises — or enterprise software — sterile, jargon, “solutions.” Both try to manufacture trust, and both fail. The opening neither can occupy is <b style="color:var(--cream);font-weight:600">clinical calm</b>: the voice that doesn't need to raise itself to be believed. We write and design like a senior clinician speaks — someone who has done this a thousand times, states facts plainly, never oversells, and is calm precisely because they are competent.</p>
+          <p class="v3-sub">Healthcare staffing is a low-trust category. Competitors sound like either body-shop salesmen — hype, urgency, promises — or enterprise software — sterile, jargon, “solutions.” Both try to manufacture trust, and both fail. The opening neither can occupy is <b style="color:var(--cream);font-weight:600">clinical calm</b>: the voice that doesn't need to raise itself to be believed. We write and design the way a good mentor speaks — someone who has walked this a hundred times and still remembers what it felt like not to know. They tell you plainly what to expect, never oversell, and stay calm because they have seen it work out. The warmth is in being on your side, not in softening the facts.</p>
         </div>
 
         <div class="cash-sec" id="b-shape">
