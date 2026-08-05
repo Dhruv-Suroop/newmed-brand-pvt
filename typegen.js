@@ -225,13 +225,13 @@
       if (svgWrap) {
         var svgStr = new XMLSerializer().serializeToString(svgWrap);
         svgStr = svgStr.replace(/currentColor/gi, HEX[TEXTON[fill] || 'cream']);
+        var wrapEl = stage.querySelector('.arw-icon-svg-wrapper');
+        var wr = wrapEl.getBoundingClientRect();
         var img = new Image();
         img.onload = function() {
-          var scale = iconScaleInput ? parseInt(iconScaleInput.value, 10) / 100 : 0.7;
-          var iw = c.hlBox.H * scale * S;
-          var ix = (c.hlBox.r.left - c.ox + c.hlBox.H * ((1 - scale) / 2)) * S;
-          var iy = (c.hlBox.r.top - c.oy + c.hlBox.H * ((1 - scale) / 2)) * S;
-          ctx.drawImage(img, ix, iy, iw, iw);
+          var iw = wr.width * S, ih = wr.height * S;
+          var ix = (wr.left - c.ox) * S, iy = (wr.top - c.oy) * S;
+          ctx.drawImage(img, ix, iy, iw, ih);
           cnv.toBlob(function (bl) { download(bl, 'newmed-arrow.png'); }, 'image/png');
         };
         img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr);
@@ -281,16 +281,26 @@
           window.NMArrow.pathD(c.hlBox.W, c.hlBox.H, false) + '" fill="' + f + '"/>');
       }
       if (mode === 'icon') {
-        var svgWrap = stage.querySelector('.arw-icon-svg-wrapper svg');
+        var wrapEl = stage.querySelector('.arw-icon-svg-wrapper');
+        var svgWrap = wrapEl && wrapEl.querySelector('svg');
         if (svgWrap) {
           var svgStr = new XMLSerializer().serializeToString(svgWrap);
-          var scale = iconScaleInput ? parseInt(iconScaleInput.value, 10) / 100 : 0.7;
-          var iw = c.hlBox.H * scale;
-          var ix = c.hlBox.r.left - c.ox + c.hlBox.H * ((1 - scale) / 2);
-          var iy = c.hlBox.r.top - c.oy + c.hlBox.H * ((1 - scale) / 2);
+          // Take the icon's box straight from the rendered preview. Deriving
+          // it from the scale slider meant any CSS change to the chip silently
+          // desynced the export from what you were looking at.
+          var wr = wrapEl.getBoundingClientRect();
+          var ix = wr.left - c.ox, iy = wr.top - c.oy;
+          var iw = wr.width, ih = wr.height;
+          // Keep the source viewBox. Replacing the whole <svg> tag dropped it,
+          // so the 24-unit paths stopped scaling to the box and the icon came
+          // out tiny inside a full-size arrow.
+          var vbm = svgStr.match(/viewBox="([^"]+)"/i);
+          var vb = vbm ? vbm[1] : '0 0 24 24';
           var col = HEX[TEXTON[fill] || 'cream'];
           svgStr = svgStr.replace(/currentColor/gi, col);
-          svgStr = svgStr.replace(/^<svg[^>]*>/i, '<svg x="' + r2(ix) + '" y="' + r2(iy) + '" width="' + r2(iw) + '" height="' + r2(iw) + '">');
+          svgStr = svgStr.replace(/^<svg[^>]*>/i,
+            '<svg viewBox="' + vb + '" x="' + r2(ix) + '" y="' + r2(iy) +
+            '" width="' + r2(iw) + '" height="' + r2(ih) + '" overflow="visible">');
           out.push(svgStr);
         }
       } else {

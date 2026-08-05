@@ -273,7 +273,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .swatch{cursor:pointer;}
 .swatch .chip{height:clamp(180px,22vw,260px);border-radius:14px;background:var(--sw);border:1px solid rgba(57,30,26,.1);
   transition:transform .16s var(--ease),box-shadow .16s var(--ease);}
-.swatch:hover .chip{transform:translateY(-3px);box-shadow:0 18px 36px -20px rgba(57,30,26,.5);}
+
 .swatch .vals{margin-top:16px;font-size:13px;line-height:1.75;font-variant-numeric:tabular-nums;}
 .swatch .vals div{display:flex;gap:12px;}
 .swatch .vals b{flex:0 0 52px;font-weight:400;color:rgba(57,30,26,0.45);}
@@ -1119,8 +1119,8 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.0em;  /* 100% of height */
-  height: 1.0em; /* 100% of height */
+  width: 0.8em;  /* body of the arrow, tightened by 20px at the 100px base */
+  height: 1.0em;
   position: relative;
   /* The drawn arrow will be W = 1.426em.
      The icon box occupies the 0..1em area.
@@ -1129,6 +1129,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .arw-icon-svg-wrapper {
   width: 0.7em;  /* 70% of height */
   height: 0.7em;
+  max-width: 0.78em; max-height: 0.78em;   /* never wider than the body */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1143,14 +1144,14 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .tg-hl.icon-mode {
   display: inline-flex;
   align-items: center;
-  width: 1.426em; /* W = 100 + 42.6 = 142.6 */
+  width: 1.226em; /* body 80 + point 42.6 */
   height: 1.0em;
   padding: 0;
   vertical-align: middle;
   font-size: 100px; /* Base scale for generator */
 }
 .tg-hl.icon-mode .arw-icon-box {
-  width: 1.0em;
+  width: 0.8em;
   height: 1.0em;
 }
 
@@ -1426,7 +1427,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .vtile,.tpanel,.arule,.ico-cell,.swatch,.dont,.res,.a11y,.wrow{
   transition:transform .34s var(--ease-out),box-shadow .34s var(--ease-out),
              background .28s var(--ease-out),border-color .28s var(--ease-out);}
-.vtile:hover,.tpanel:hover,.arule:hover,.swatch:hover,.dont:hover,.a11y:hover{
+.vtile:hover,.tpanel:hover,.arule:hover,.dont:hover,.a11y:hover{
   transform:translateY(-3px);
   box-shadow:0 14px 34px -18px rgba(57,30,26,.34);}
 .arule:hover,.res:hover{background:var(--cream);}
@@ -1441,7 +1442,7 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .cash-sec:hover > .cash-h{transform:translateX(5px);}
 
 @media (prefers-reduced-motion: reduce){
-  .vtile:hover,.tpanel:hover,.arule:hover,.swatch:hover,.dont:hover,.a11y:hover,
+  .vtile:hover,.tpanel:hover,.arule:hover,.dont:hover,.a11y:hover,
   .ico-cell:not(.on-orange):hover,.cash-sec:hover > .cash-h{transform:none!important;}
 }
 
@@ -3320,13 +3321,13 @@ window.MATERIAL_ICONS = [
       if (svgWrap) {
         var svgStr = new XMLSerializer().serializeToString(svgWrap);
         svgStr = svgStr.replace(/currentColor/gi, HEX[TEXTON[fill] || 'cream']);
+        var wrapEl = stage.querySelector('.arw-icon-svg-wrapper');
+        var wr = wrapEl.getBoundingClientRect();
         var img = new Image();
         img.onload = function() {
-          var scale = iconScaleInput ? parseInt(iconScaleInput.value, 10) / 100 : 0.7;
-          var iw = c.hlBox.H * scale * S;
-          var ix = (c.hlBox.r.left - c.ox + c.hlBox.H * ((1 - scale) / 2)) * S;
-          var iy = (c.hlBox.r.top - c.oy + c.hlBox.H * ((1 - scale) / 2)) * S;
-          ctx.drawImage(img, ix, iy, iw, iw);
+          var iw = wr.width * S, ih = wr.height * S;
+          var ix = (wr.left - c.ox) * S, iy = (wr.top - c.oy) * S;
+          ctx.drawImage(img, ix, iy, iw, ih);
           cnv.toBlob(function (bl) { download(bl, 'newmed-arrow.png'); }, 'image/png');
         };
         img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr);
@@ -3376,16 +3377,26 @@ window.MATERIAL_ICONS = [
           window.NMArrow.pathD(c.hlBox.W, c.hlBox.H, false) + '" fill="' + f + '"/>');
       }
       if (mode === 'icon') {
-        var svgWrap = stage.querySelector('.arw-icon-svg-wrapper svg');
+        var wrapEl = stage.querySelector('.arw-icon-svg-wrapper');
+        var svgWrap = wrapEl && wrapEl.querySelector('svg');
         if (svgWrap) {
           var svgStr = new XMLSerializer().serializeToString(svgWrap);
-          var scale = iconScaleInput ? parseInt(iconScaleInput.value, 10) / 100 : 0.7;
-          var iw = c.hlBox.H * scale;
-          var ix = c.hlBox.r.left - c.ox + c.hlBox.H * ((1 - scale) / 2);
-          var iy = c.hlBox.r.top - c.oy + c.hlBox.H * ((1 - scale) / 2);
+          // Take the icon's box straight from the rendered preview. Deriving
+          // it from the scale slider meant any CSS change to the chip silently
+          // desynced the export from what you were looking at.
+          var wr = wrapEl.getBoundingClientRect();
+          var ix = wr.left - c.ox, iy = wr.top - c.oy;
+          var iw = wr.width, ih = wr.height;
+          // Keep the source viewBox. Replacing the whole <svg> tag dropped it,
+          // so the 24-unit paths stopped scaling to the box and the icon came
+          // out tiny inside a full-size arrow.
+          var vbm = svgStr.match(/viewBox="([^"]+)"/i);
+          var vb = vbm ? vbm[1] : '0 0 24 24';
           var col = HEX[TEXTON[fill] || 'cream'];
           svgStr = svgStr.replace(/currentColor/gi, col);
-          svgStr = svgStr.replace(/^<svg[^>]*>/i, '<svg x="' + r2(ix) + '" y="' + r2(iy) + '" width="' + r2(iw) + '" height="' + r2(iw) + '">');
+          svgStr = svgStr.replace(/^<svg[^>]*>/i,
+            '<svg viewBox="' + vb + '" x="' + r2(ix) + '" y="' + r2(iy) +
+            '" width="' + r2(iw) + '" height="' + r2(ih) + '" overflow="visible">');
           out.push(svgStr);
         }
       } else {
