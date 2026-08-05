@@ -3189,7 +3189,9 @@ window.MATERIAL_ICONS = [
       var W = 1.226, P = 0.426, bodyW = W - P;      // chip geometry, in em
       var boundary = bodyW + (1 - sEm) * P;          // arrow edge at the glyph's top
       var left0 = (bodyW - sEm) / 2;                 // where centring puts it
-      var shift = Math.max(0, Math.min(0.3, boundary - sEm - left0));
+      var target = 0.422 * W;                       // from the supplied artwork
+      var want = target - bodyW / 2;                 // ~0.117em off body-centre
+      var shift = Math.max(0, Math.min(want, boundary - sEm - left0));
       iconWrapper.style.transform = 'translateX(' + shift.toFixed(4) + 'em)';
       
       var svgCode = (iconInput.value || '').trim();
@@ -3334,7 +3336,7 @@ window.MATERIAL_ICONS = [
       var svgWrap = stage.querySelector('.arw-icon-svg-wrapper svg');
       if (svgWrap) {
         var svgStr = new XMLSerializer().serializeToString(svgWrap);
-        svgStr = svgStr.replace(/currentColor/gi, HEX[TEXTON[fill] || 'cream']);
+        svgStr = colouriseIcon(svgStr, HEX[TEXTON[fill] || 'cream']);
         var wrapEl = stage.querySelector('.arw-icon-svg-wrapper');
         var wr = wrapEl.getBoundingClientRect();
         var img = new Image();
@@ -3377,6 +3379,22 @@ window.MATERIAL_ICONS = [
       .catch(function () { fontCSS = ''; return ''; });  // fall back to referencing by name
   }
 
+
+  /* Material Symbols files carry no fill attribute and no currentColor —
+     the preview only looks right because CSS forces fill:currentColor.
+     Serialised for export they fell back to black. Set the fill on the
+     root so every path inherits it, and neutralise any explicit black. */
+  function colouriseIcon(svgStr, col) {
+    svgStr = svgStr.replace(/currentColor/gi, col);
+    svgStr = svgStr.replace(/fill="(#000{1,6}|black)"/gi, 'fill="' + col + '"');
+    if (/^<svg[^>]*\sfill="/i.test(svgStr)) {
+      svgStr = svgStr.replace(/^(<svg[^>]*\s)fill="[^"]*"/i, '$1fill="' + col + '"');
+    } else {
+      svgStr = svgStr.replace(/^<svg/i, '<svg fill="' + col + '"');
+    }
+    return svgStr;
+  }
+
   function exportSVG() {
     var c = collect(); if (!c) return Promise.resolve();
     return loadFont().then(function (fcss) {
@@ -3407,10 +3425,11 @@ window.MATERIAL_ICONS = [
           var vbm = svgStr.match(/viewBox="([^"]+)"/i);
           var vb = vbm ? vbm[1] : '0 0 24 24';
           var col = HEX[TEXTON[fill] || 'cream'];
-          svgStr = svgStr.replace(/currentColor/gi, col);
+          svgStr = colouriseIcon(svgStr, col);
           svgStr = svgStr.replace(/^<svg[^>]*>/i,
             '<svg viewBox="' + vb + '" x="' + r2(ix) + '" y="' + r2(iy) +
-            '" width="' + r2(iw) + '" height="' + r2(ih) + '" overflow="visible">');
+            '" width="' + r2(iw) + '" height="' + r2(ih) +
+            '" fill="' + col + '" overflow="visible">');
           out.push(svgStr);
         }
       } else {
