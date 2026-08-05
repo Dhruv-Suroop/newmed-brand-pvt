@@ -3277,6 +3277,20 @@ window.MATERIAL_ICONS = [
       if (iconScaleVal) iconScaleVal.textContent = scale + '%';
       iconWrapper.style.width = (scale / 100) + 'em';
       iconWrapper.style.height = (scale / 100) + 'em';
+
+      /* Optical centring. Centred in the body alone the glyph reads
+         left-heavy, because the point adds mass to the right. Nudge it
+         right — but only as far as the shape allows: the point tapers, so
+         at the glyph's top and bottom edges the arrow is narrower than at
+         its middle. Past that limit a square icon pokes out of the arrow.
+         The cap depends on the scale, which is why this is not a fixed
+         CSS offset. Exports read this element's rect, so they follow. */
+      var sEm = scale / 100;
+      var W = 1.226, P = 0.426, bodyW = W - P;      // chip geometry, in em
+      var boundary = bodyW + (1 - sEm) * P;          // arrow edge at the glyph's top
+      var left0 = (bodyW - sEm) / 2;                 // where centring puts it
+      var shift = Math.max(0, Math.min(0.3, boundary - sEm - left0));
+      iconWrapper.style.transform = 'translateX(' + shift.toFixed(4) + 'em)';
       
       var svgCode = (iconInput.value || '').trim();
       var usingDefault = !svgCode.startsWith('<svg');
