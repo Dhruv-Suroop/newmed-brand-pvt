@@ -1756,3 +1756,27 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
    but centres a text-bearing arrow on the x-height midpoint — it dropped
    the highlight ~10px below the words either side of it. */
 .v3-statement .arw-hl,.cash-h .ch-arw,.arw-hl{vertical-align:baseline;}
+
+/* --- Equal tile heights in the use-case grids ---------------------
+   .tpanel was flex:1, so each box absorbed whatever its caption did
+   not use — a two-line caption produced a shorter box than a one-line
+   one. Boxes are now a fixed height and captions flow beneath, so the
+   grid reads as a set. */
+.panel-2{--tile-h:clamp(200px,24vw,320px);}
+.panel-2 > div > .tpanel{flex:none!important;height:var(--tile-h)!important;min-height:0!important;}
+.tpanel-portrait{--pt-h:var(--tile-h,clamp(200px,24vw,320px));}
+
+/* --- Lockup grid: the symbol is one size everywhere ---------------
+   The orange mark is the full viewBox height in every lockup except
+   vertical, where it is 43.5%. Sizing each image off that ratio makes
+   the mark identical across the set; the lockups then vary in width,
+   which is the honest result. The horizontal lockup is the widest at
+   6.1:1, so it sets how large the mark can be inside the tile. */
+#l-lockups .vtile{padding:24px;min-height:clamp(170px,19vw,220px);}
+#l-lockups .vtile img{height:var(--imh,46px);width:auto;max-width:100%;max-height:none;}
+#l-lockups .vtile img[src*="vertical-"]{--imh:106px;}   /* 46 / 0.4354 */
+
+/* Arrow section: everything after "Using the arrow" is a child of it,
+   so those headings drop one level — h3, and a step down in size. */
+.cash-h.is-sub{font-size:clamp(20px,3.2vw,40px);}
+.ns-subs a.ns-sub2{padding-left:26px;}

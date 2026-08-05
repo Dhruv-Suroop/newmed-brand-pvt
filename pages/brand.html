@@ -1766,6 +1766,30 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
    the highlight ~10px below the words either side of it. */
 .v3-statement .arw-hl,.cash-h .ch-arw,.arw-hl{vertical-align:baseline;}
 
+/* --- Equal tile heights in the use-case grids ---------------------
+   .tpanel was flex:1, so each box absorbed whatever its caption did
+   not use — a two-line caption produced a shorter box than a one-line
+   one. Boxes are now a fixed height and captions flow beneath, so the
+   grid reads as a set. */
+.panel-2{--tile-h:clamp(200px,24vw,320px);}
+.panel-2 > div > .tpanel{flex:none!important;height:var(--tile-h)!important;min-height:0!important;}
+.tpanel-portrait{--pt-h:var(--tile-h,clamp(200px,24vw,320px));}
+
+/* --- Lockup grid: the symbol is one size everywhere ---------------
+   The orange mark is the full viewBox height in every lockup except
+   vertical, where it is 43.5%. Sizing each image off that ratio makes
+   the mark identical across the set; the lockups then vary in width,
+   which is the honest result. The horizontal lockup is the widest at
+   6.1:1, so it sets how large the mark can be inside the tile. */
+#l-lockups .vtile{padding:24px;min-height:clamp(170px,19vw,220px);}
+#l-lockups .vtile img{height:var(--imh,46px);width:auto;max-width:100%;max-height:none;}
+#l-lockups .vtile img[src*="vertical-"]{--imh:106px;}   /* 46 / 0.4354 */
+
+/* Arrow section: everything after "Using the arrow" is a child of it,
+   so those headings drop one level — h3, and a step down in size. */
+.cash-h.is-sub{font-size:clamp(20px,3.2vw,40px);}
+.ns-subs a.ns-sub2{padding-left:26px;}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
@@ -1870,13 +1894,13 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
           <div class="ns-subs">
             <a href="#ar-anatomy" data-parent="arrow">Anatomy</a>
             <a href="#ar-uses" data-parent="arrow">Using the arrow</a>
-            <a href="#ar-rounded" data-parent="arrow">Rounded rectangle</a>
-            <a href="#ar-journey" data-parent="arrow">Journey and rows</a>
-            <a href="#ar-scale" data-parent="arrow">Use in data</a>
-            <a href="#ar-illustrative" data-parent="arrow">Illustrative use</a>
-            <a href="#ar-pattern" data-parent="arrow">Pattern builder</a>
-            <a href="#ar-datagen" data-parent="arrow">Data generator</a>
-            <a href="#ar-misuse" data-parent="arrow">Incorrect usage</a>
+            <a href="#ar-rounded" data-parent="arrow" class="ns-sub2">Rounded rectangle</a>
+            <a href="#ar-journey" data-parent="arrow" class="ns-sub2">Journey and rows</a>
+            <a href="#ar-scale" data-parent="arrow" class="ns-sub2">Use in data</a>
+            <a href="#ar-datagen" data-parent="arrow" class="ns-sub2">Data generator</a>
+            <a href="#ar-illustrative" data-parent="arrow" class="ns-sub2">Illustrative use</a>
+            <a href="#ar-pattern" data-parent="arrow" class="ns-sub2">Pattern builder</a>
+            <a href="#ar-misuse" data-parent="arrow" class="ns-sub2">Incorrect usage</a>
           </div>
         </div>
         <div class="nav-sec" data-sec="icons">
