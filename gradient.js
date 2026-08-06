@@ -217,6 +217,16 @@
     });
   }
 
+  /* Exposed so other modules composite on the same wash instead of
+     reimplementing it. The meeting-background generator draws this and then
+     lays a logo over it; if the recipes change, both move together. */
+  window.NMGradient = {
+    paint: paint,
+    makeBlobs: makeBlobs,
+    RECIPES: RECIPES,
+    PALETTE: PALETTE
+  };
+
   function boot() {
     Array.prototype.slice.call(document.querySelectorAll('[data-gradient]')).forEach(initModule);
   }

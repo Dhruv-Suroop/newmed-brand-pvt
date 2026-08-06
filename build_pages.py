@@ -46,7 +46,11 @@ html = re.sub(r'<link rel="stylesheet" href="styles\.css[^"]*">',
 html = re.sub(r'<script src="app\.js[^"]*"></script>', "", html)          # static: drop nav JS
 # keep the self-contained modules (no nav code): the arrow engine, the gradient
 # generator, and the type generator — inline so the handoff pages render live.
-for mod in ("arrow.js", "gradient.js", "typegen.js", "appsig.js", "appcard.js",
+# bggen.js must stay after gradient.js: it reads window.NMGradient at boot.
+# Replacement happens at each script tag, so HTML order is what decides this.
+# Note it fetches its logo SVGs at runtime, which cannot work from a file://
+# snapshot — the handoff pages render the wash and skip the logo.
+for mod in ("arrow.js", "gradient.js", "bggen.js", "typegen.js", "appsig.js", "appcard.js",
             "v3_eyebrow.js", "v3_motion.js", "datagen.js"):
     src = (ROOT / mod).read_text()
     # function replacement: the JS contains backslashes (regex literals) that

@@ -6,7 +6,7 @@
 <title>NewMed Skills — Brand Guidelines</title>
 <meta name="description" content="The brand standards manual for NewMed Skills: logo, colour, typography and applications.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="styles.css?v=81">
+<link rel="stylesheet" href="styles.css?v=82">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
 </head>
@@ -1210,10 +1210,78 @@ North America 10</textarea>
 
         <div class="cash-sec" id="ap-meeting">
           <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">Meeting background</span></h2>
-          <p class="cash-lead">Customisable video-call backgrounds for Teams and Zoom.</p>
-          <div class="tpanel" style="padding: 48px; background: var(--bone);">
-            <p style="color: var(--deep-brown); opacity: 0.6; font-weight: 600;">Coming Soon — We will design this together.</p>
+          <p class="cash-lead">Video-call backgrounds for Teams and Zoom, built from the same gradient system as everything else. Pick a wash, place the logo, save it at 1920&times;1080.</p>
+
+          <div id="bggen" class="bgen">
+            <div class="bgen-stage" data-bg="stage">
+              <canvas class="bgen-l-bg" data-bg="bg" aria-hidden="true"></canvas>
+              <canvas class="bgen-l-fg" data-bg="fg" aria-label="Meeting background preview"></canvas>
+              <div class="bgen-guide" aria-hidden="true"></div>
+            </div>
+            <p class="bgen-hint" data-bg="hint"></p>
+
+            <div class="bgen-ctrls">
+              <div class="bgen-group">
+                <span class="bgen-lbl">Wash</span>
+                <div class="bgen-btns">
+                  <button type="button" data-recipe-pick="organic" class="is-on">Organic</button>
+                  <button type="button" data-recipe-pick="sunrise">Sunrise</button>
+                  <button type="button" data-recipe-pick="sunriseAlt">Sunrise inv.</button>
+                  <button type="button" data-recipe-pick="deep">Deep</button>
+                  <button type="button" data-recipe-pick="deepAlt">Deep alt</button>
+                </div>
+              </div>
+
+              <div class="bgen-group">
+                <span class="bgen-lbl">Lockup</span>
+                <div class="bgen-btns">
+                  <button type="button" data-lockup="horizontal" class="is-on">Horizontal</button>
+                  <button type="button" data-lockup="stack">Stack</button>
+                  <button type="button" data-lockup="vertical">Vertical</button>
+                  <button type="button" data-lockup="badge">Badge</button>
+                  <button type="button" data-lockup="symbol">Symbol</button>
+                </div>
+              </div>
+
+              <div class="bgen-group">
+                <span class="bgen-lbl">Logo colour</span>
+                <div class="bgen-btns">
+                  <button type="button" data-variant="cream">Off white</button>
+                  <button type="button" data-variant="ink">Deep Brown</button>
+                </div>
+              </div>
+
+              <div class="bgen-group">
+                <span class="bgen-lbl">Size</span>
+                <input class="bgen-range" type="range" min="6" max="55" value="30"
+                       data-bg="size" aria-label="Logo size">
+              </div>
+
+              <div class="bgen-group">
+                <span class="bgen-lbl">Position</span>
+                <div class="bgen-pos" role="group" aria-label="Logo position presets">
+                  <button type="button" data-pos="0,0"     aria-label="Top left"></button>
+                  <button type="button" data-pos="0.5,0"   aria-label="Top centre"></button>
+                  <button type="button" data-pos="1,0"     aria-label="Top right"></button>
+                  <button type="button" data-pos="0,0.5"   aria-label="Middle left"></button>
+                  <button type="button" data-pos="0.5,0.5" aria-label="Centre"></button>
+                  <button type="button" data-pos="1,0.5"   aria-label="Middle right"></button>
+                  <button type="button" data-pos="0,1"     aria-label="Bottom left"></button>
+                  <button type="button" data-pos="0.5,1"   aria-label="Bottom centre"></button>
+                  <button type="button" data-pos="1,1"     aria-label="Bottom right"></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="gen-bar">
+              <button type="button" data-bg="shuffle">Shuffle wash</button>
+              <button type="button" data-bg="guide" class="is-on">Hide guide</button>
+              <button type="button" data-bg-save="jpg">Save JPG</button>
+              <button type="button" data-bg-save="png">Save PNG</button>
+            </div>
           </div>
+
+          <p class="tcap" style="max-width:64ch"><b>Loading it in</b>Teams: Settings &rarr; Backgrounds &rarr; Add new. Zoom: Settings &rarr; Background &amp; effects &rarr; <b>+</b>. JPG is the safer choice &mdash; both apps accept it and the file is smaller. The dashed oval marks roughly where the caller sits; it is a guide only and is never exported.</p>
         </div>
 
         <div class="cash-sec" id="ap-presentation">
@@ -1251,7 +1319,8 @@ North America 10</textarea>
 <script src="datagen.js?v=5"></script>
 <script src="v3_eyebrow.js?v=1"></script>
 <script src="v3_motion.js?v=7"></script>
-<script src="gradient.js?v=6"></script>
+<script src="gradient.js?v=7"></script>
+<script src="bggen.js?v=2"></script>
 <script src="typegen.js?v=10"></script>
 <script src="appsig.js?v=6"></script>
 <script src="appcard.js?v=3"></script>

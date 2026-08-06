@@ -1831,3 +1831,52 @@ body.soon-open{overflow:hidden;}
   .deskonly .deskonly-note{color:rgba(57,30,26,.72);font-size:14.5px;}
   .deskonly .deskonly-note b{color:var(--deep-brown);font-weight:600;word-break:break-all;}
 }
+
+/* ---- Meeting background generator ---------------------------------- */
+/* Two stacked canvases: the gradient renders small and is scaled up by the
+   browser (that upscale is what softens it), the logo renders at device
+   resolution on top so it stays sharp. */
+.bgen{margin-top:18px;}
+.bgen-stage{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;
+  background:var(--bone);touch-action:none;cursor:grab;}
+.bgen-stage.is-drag{cursor:grabbing;}
+.bgen-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.bgen-l-bg{z-index:1;}
+.bgen-l-fg{z-index:2;}
+
+/* Where the caller's head and shoulders land. Preview only — it lives in the
+   DOM, not on the canvas, so it can never reach the exported file. */
+.bgen-guide{position:absolute;z-index:3;left:50%;top:52%;transform:translate(-50%,-50%);
+  width:34%;aspect-ratio:3/4;border:2px dashed rgba(57,30,26,.28);border-radius:50% 50% 44% 44%;
+  display:none;pointer-events:none;}
+.bgen-stage.show-guide .bgen-guide{display:block;}
+
+.bgen-hint{margin-top:10px;font-size:12.5px;color:rgba(57,30,26,.55);max-width:70ch;}
+
+.bgen-ctrls{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px 26px;margin-top:18px;padding:20px 22px;background:var(--bone);border-radius:14px;}
+.bgen-group{display:flex;flex-direction:column;gap:9px;}
+.bgen-lbl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:rgba(57,30,26,.5);}
+.bgen-btns{display:flex;flex-wrap:wrap;gap:6px;}
+.bgen-btns button{font-family:inherit;font-size:12.5px;font-weight:600;letter-spacing:-.005em;
+  padding:7px 11px;border-radius:999px;border:1px solid rgba(57,30,26,.16);
+  background:var(--cream);color:var(--deep-brown);cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease;}
+.bgen-btns button:hover:not(:disabled){border-color:rgba(57,30,26,.4);}
+.bgen-btns button.is-on{background:var(--deep-brown);color:var(--cream);border-color:transparent;}
+.bgen-btns button:disabled{opacity:.32;cursor:not-allowed;}
+
+.bgen-range{width:100%;accent-color:var(--orange);cursor:pointer;}
+
+/* 3x3 preset grid — a small map of the frame rather than nine text labels */
+.bgen-pos{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:82px;}
+.bgen-pos button{aspect-ratio:16/9;border-radius:3px;border:1px solid rgba(57,30,26,.18);
+  background:var(--cream);cursor:pointer;padding:0;
+  transition:background .14s ease,border-color .14s ease;}
+.bgen-pos button:hover{border-color:rgba(57,30,26,.45);}
+.bgen-pos button.is-on{background:var(--orange);border-color:transparent;}
+
+.bgen .gen-bar button[data-bg-save]{background:var(--orange);color:var(--cream);border-color:transparent;}
+.bgen .gen-bar button[data-bg-save]:hover{background:var(--deep-brown);}
+.bgen .gen-bar button.is-on{background:var(--deep-brown);color:var(--cream);border-color:transparent;}

@@ -1841,6 +1841,55 @@ body.soon-open{overflow:hidden;}
   .deskonly .deskonly-note b{color:var(--deep-brown);font-weight:600;word-break:break-all;}
 }
 
+/* ---- Meeting background generator ---------------------------------- */
+/* Two stacked canvases: the gradient renders small and is scaled up by the
+   browser (that upscale is what softens it), the logo renders at device
+   resolution on top so it stays sharp. */
+.bgen{margin-top:18px;}
+.bgen-stage{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;
+  background:var(--bone);touch-action:none;cursor:grab;}
+.bgen-stage.is-drag{cursor:grabbing;}
+.bgen-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.bgen-l-bg{z-index:1;}
+.bgen-l-fg{z-index:2;}
+
+/* Where the caller's head and shoulders land. Preview only — it lives in the
+   DOM, not on the canvas, so it can never reach the exported file. */
+.bgen-guide{position:absolute;z-index:3;left:50%;top:52%;transform:translate(-50%,-50%);
+  width:34%;aspect-ratio:3/4;border:2px dashed rgba(57,30,26,.28);border-radius:50% 50% 44% 44%;
+  display:none;pointer-events:none;}
+.bgen-stage.show-guide .bgen-guide{display:block;}
+
+.bgen-hint{margin-top:10px;font-size:12.5px;color:rgba(57,30,26,.55);max-width:70ch;}
+
+.bgen-ctrls{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px 26px;margin-top:18px;padding:20px 22px;background:var(--bone);border-radius:14px;}
+.bgen-group{display:flex;flex-direction:column;gap:9px;}
+.bgen-lbl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:rgba(57,30,26,.5);}
+.bgen-btns{display:flex;flex-wrap:wrap;gap:6px;}
+.bgen-btns button{font-family:inherit;font-size:12.5px;font-weight:600;letter-spacing:-.005em;
+  padding:7px 11px;border-radius:999px;border:1px solid rgba(57,30,26,.16);
+  background:var(--cream);color:var(--deep-brown);cursor:pointer;
+  transition:background .16s ease,color .16s ease,border-color .16s ease;}
+.bgen-btns button:hover:not(:disabled){border-color:rgba(57,30,26,.4);}
+.bgen-btns button.is-on{background:var(--deep-brown);color:var(--cream);border-color:transparent;}
+.bgen-btns button:disabled{opacity:.32;cursor:not-allowed;}
+
+.bgen-range{width:100%;accent-color:var(--orange);cursor:pointer;}
+
+/* 3x3 preset grid — a small map of the frame rather than nine text labels */
+.bgen-pos{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:82px;}
+.bgen-pos button{aspect-ratio:16/9;border-radius:3px;border:1px solid rgba(57,30,26,.18);
+  background:var(--cream);cursor:pointer;padding:0;
+  transition:background .14s ease,border-color .14s ease;}
+.bgen-pos button:hover{border-color:rgba(57,30,26,.45);}
+.bgen-pos button.is-on{background:var(--orange);border-color:transparent;}
+
+.bgen .gen-bar button[data-bg-save]{background:var(--orange);color:var(--cream);border-color:transparent;}
+.bgen .gen-bar button[data-bg-save]:hover{background:var(--deep-brown);}
+.bgen .gen-bar button.is-on{background:var(--deep-brown);color:var(--cream);border-color:transparent;}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
@@ -3300,6 +3349,16 @@ window.MATERIAL_ICONS = [
     });
   }
 
+  /* Exposed so other modules composite on the same wash instead of
+     reimplementing it. The meeting-background generator draws this and then
+     lays a logo over it; if the recipes change, both move together. */
+  window.NMGradient = {
+    paint: paint,
+    makeBlobs: makeBlobs,
+    RECIPES: RECIPES,
+    PALETTE: PALETTE
+  };
+
   function boot() {
     Array.prototype.slice.call(document.querySelectorAll('[data-gradient]')).forEach(initModule);
   }
@@ -3311,6 +3370,408 @@ window.MATERIAL_ICONS = [
       var r = c.getBoundingClientRect();
       if (r.width > 2 && c.width < 3) window.dispatchEvent(new Event('resize'));
     });
+  });
+})();
+
+</script>
+<script>
+/* NewMed Skills — meeting background generator.
+
+   The brand gradient at 1920x1080 with a logo placed on top. Staff pick a
+   wash, pick a lockup, drag it where they want it, and save a JPG they can
+   load straight into Teams or Zoom.
+
+   Three decisions worth knowing about:
+
+   - The gradient is NOT reimplemented here. `gradient.js` exposes its engine
+     as window.NMGradient and this module composites on top of it, so the two
+     can never drift apart. If a recipe changes there, it changes here.
+
+   - The preview is two stacked canvases. The gradient layer renders at a
+     fraction of display size and is scaled up by CSS (that is where the soft
+     organic blend comes from — same trick as the gradient module); the logo
+     layer renders at device resolution so it stays crisp. Drawing the logo
+     into the low-res layer would visibly mush it.
+
+   - Position is stored normalised (0..1 of the frame), never in pixels, so
+     the 1920px export lands the logo exactly where the preview showed it
+     regardless of how wide the preview happens to be on screen. */
+(function () {
+  'use strict';
+
+  var root = document.getElementById('bggen');
+  if (!root) return;
+
+  var q = function (s) { return root.querySelector(s); };
+
+  var OUT_W = 1920, OUT_H = 1080;        // what Teams and Zoom expect
+  var AR = OUT_W / OUT_H;
+  var MARGIN = 0.055;                    // preset inset, normalised to width
+
+  /* Lockups that ship in both cream and ink read on any ground. The symbol
+     only exists in colour, so it carries its own variant list and the colour
+     switch is disabled while it is selected. */
+  var LOCKUPS = {
+    horizontal: { label: 'Horizontal', variants: ['cream', 'ink'], size: 0.30 },
+    stack:      { label: 'Stack',      variants: ['cream', 'ink'], size: 0.24 },
+    vertical:   { label: 'Vertical',   variants: ['cream', 'ink'], size: 0.16 },
+    badge:      { label: 'Badge',      variants: ['cream', 'ink'], size: 0.11 },
+    symbol:     { label: 'Symbol',     variants: ['colour'],       size: 0.10 }
+  };
+
+  var state = {
+    recipe: 'organic',
+    seed: Math.floor(Math.random() * 1e9),
+    blobs: null,
+    lockup: 'horizontal',
+    variant: 'ink',
+    size: LOCKUPS.horizontal.size,
+    // Resolved to the bottom-right anchor on first paint, once the artwork's
+    // aspect is known. Deliberately not centred: dead centre is behind the
+    // caller's head, which is the one place a logo must not go.
+    pos: null,
+    guide: true
+  };
+
+  var bg = q('[data-bg="bg"]');
+  var fg = q('[data-bg="fg"]');
+  var stage = q('[data-bg="stage"]');
+  if (!bg || !fg || !stage) return;
+
+  var bgx = bg.getContext('2d');
+  var fgx = fg.getContext('2d');
+
+  /* ---- logo loading -------------------------------------------------- */
+  // The SVGs carry a viewBox but no width/height. Firefox will not rasterise
+  // such an image into a canvas at a chosen size, so width/height are injected
+  // from the viewBox before the blob URL is built.
+  var cache = {};
+  function loadLogo(key, variant) {
+    var id = key + '-' + variant;
+    if (cache[id]) return cache[id];
+    cache[id] = fetch('assets/logos/svg/' + id + '.svg')
+      .then(function (r) {
+        if (!r.ok) throw new Error(id + ' ' + r.status);
+        return r.text();
+      })
+      .then(function (txt) {
+        var vb = /viewBox\s*=\s*"([-\d.\s]+)"/.exec(txt);
+        if (vb && !/<svg[^>]*\swidth\s*=/.test(txt)) {
+          var p = vb[1].trim().split(/[\s,]+/).map(Number);
+          txt = txt.replace(/<svg/, '<svg width="' + p[2] + '" height="' + p[3] + '"');
+        }
+        var url = URL.createObjectURL(new Blob([txt], { type: 'image/svg+xml' }));
+        return new Promise(function (res, rej) {
+          var im = new Image();
+          im.onload = function () { res(im); };
+          im.onerror = function () { rej(new Error('decode ' + id)); };
+          im.src = url;
+        });
+      })
+      .catch(function (e) { cache[id] = null; throw e; });
+    return cache[id];
+  }
+
+  function currentLogo() {
+    var spec = LOCKUPS[state.lockup];
+    var v = spec.variants.indexOf(state.variant) >= 0 ? state.variant : spec.variants[0];
+    return loadLogo(state.lockup, v);
+  }
+
+  /* ---- geometry ------------------------------------------------------ */
+  // Logo box in normalised units. Width is the control; height follows from
+  // the artwork's own aspect and the frame's, so nothing is ever stretched.
+  function logoBox(img) {
+    var w = state.size;
+    var h = (state.size * (img.naturalHeight / img.naturalWidth)) * AR;
+    return { w: w, h: h };
+  }
+
+  function clampPos(p, box) {
+    if (!p) return anchorPos(1, 1, box);   // not placed yet — fall to the default
+    return {
+      x: Math.max(box.w / 2, Math.min(1 - box.w / 2, p.x)),
+      y: Math.max(box.h / 2, Math.min(1 - box.h / 2, p.y))
+    };
+  }
+
+  // ax/ay: 0 = start edge, 0.5 = centred, 1 = end edge.
+  function anchorPos(ax, ay, box) {
+    var mx = MARGIN, my = MARGIN * AR;   // equal visual inset on both axes
+    return {
+      x: ax === 0.5 ? 0.5 : (ax === 0 ? mx + box.w / 2 : 1 - mx - box.w / 2),
+      y: ay === 0.5 ? 0.5 : (ay === 0 ? my + box.h / 2 : 1 - my - box.h / 2)
+    };
+  }
+
+  /* ---- painting ------------------------------------------------------ */
+  function paintBg(ctx, W, H, t) {
+    if (!window.NMGradient) return;
+    ctx.clearRect(0, 0, W, H);
+    window.NMGradient.paint(ctx, W, H, state.blobs, t || 0);
+  }
+
+  function paintLogo(ctx, W, H, img) {
+    ctx.clearRect(0, 0, W, H);
+    if (!img) return;
+    var box = logoBox(img);
+    var p = clampPos(state.pos, box);
+    ctx.drawImage(img, (p.x - box.w / 2) * W, (p.y - box.h / 2) * H, box.w * W, box.h * H);
+  }
+
+  var BG_SCALE = 0.2;      // low-res gradient layer, upscaled by CSS
+  function sizeCanvases() {
+    var r = stage.getBoundingClientRect();
+    if (r.width < 4) return false;
+    bg.width  = Math.max(2, Math.round(r.width * BG_SCALE));
+    bg.height = Math.max(2, Math.round(r.width / AR * BG_SCALE));
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    fg.width  = Math.round(r.width * dpr);
+    fg.height = Math.round(r.width / AR * dpr);
+    return true;
+  }
+
+  function render() {
+    if (!sizeCanvases()) return;
+    paintBg(bgx, bg.width, bg.height, 0);
+    currentLogo().then(function (img) {
+      if (!state.pos) {
+        state.pos = anchorPos(1, 1, logoBox(img));       // bottom-right default
+        markPresetActive(root.querySelector('[data-pos="1,1"]'));
+      }
+      paintLogo(fgx, fg.width, fg.height, img);
+    }).catch(function () {
+      fgx.clearRect(0, 0, fg.width, fg.height);
+    });
+  }
+
+  // Redraw only the logo layer — used while dragging, so a drag never
+  // repaints the gradient.
+  function renderLogoOnly() {
+    currentLogo().then(function (img) {
+      paintLogo(fgx, fg.width, fg.height, img);
+    }).catch(function () {});
+  }
+
+  /* ---- drag ---------------------------------------------------------- */
+  var dragging = false, grab = null;
+
+  function ptNorm(e) {
+    var r = stage.getBoundingClientRect();
+    return { x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height };
+  }
+
+  stage.addEventListener('pointerdown', function (e) {
+    currentLogo().then(function (img) {
+      var box = logoBox(img);
+      var p = ptNorm(e);
+      var c = clampPos(state.pos, box);
+      // only start a drag on the logo itself, so clicks elsewhere stay free
+      if (Math.abs(p.x - c.x) > box.w / 2 || Math.abs(p.y - c.y) > box.h / 2) return;
+      dragging = true;
+      grab = { dx: c.x - p.x, dy: c.y - p.y };
+      stage.setPointerCapture(e.pointerId);
+      stage.classList.add('is-drag');
+      setHint('Drop it anywhere — the export matches the preview exactly.');
+    });
+  });
+
+  stage.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    e.preventDefault();
+    var p = ptNorm(e);
+    currentLogo().then(function (img) {
+      state.pos = clampPos({ x: p.x + grab.dx, y: p.y + grab.dy }, logoBox(img));
+      renderLogoOnly();
+      markPresetActive(null);
+    });
+  });
+
+  function endDrag(e) {
+    if (!dragging) return;
+    dragging = false;
+    stage.classList.remove('is-drag');
+    if (e && e.pointerId != null && stage.hasPointerCapture(e.pointerId)) {
+      stage.releasePointerCapture(e.pointerId);
+    }
+    setHint();
+  }
+  stage.addEventListener('pointerup', endDrag);
+  stage.addEventListener('pointercancel', endDrag);
+
+  /* ---- controls ------------------------------------------------------ */
+  function setHint(msg) {
+    var h = q('[data-bg="hint"]');
+    if (!h) return;
+    h.textContent = msg || 'Drag the logo to place it, or use a preset. ' +
+      'Whoever is on the call sits in the middle — keep the logo off centre.';
+  }
+
+  function markPresetActive(btn) {
+    Array.prototype.slice.call(root.querySelectorAll('[data-pos]')).forEach(function (b) {
+      b.classList.toggle('is-on', b === btn);
+    });
+  }
+
+  // style buttons
+  Array.prototype.slice.call(root.querySelectorAll('[data-recipe-pick]')).forEach(function (b) {
+    b.addEventListener('click', function () {
+      state.recipe = b.getAttribute('data-recipe-pick');
+      state.blobs = window.NMGradient.makeBlobs(state.recipe, state.seed);
+      Array.prototype.slice.call(root.querySelectorAll('[data-recipe-pick]'))
+        .forEach(function (o) { o.classList.toggle('is-on', o === b); });
+      autoVariant();
+      render();
+    });
+  });
+
+  // A cream logo disappears on cream. Follow the ground unless the user has
+  // deliberately overridden it.
+  var variantTouched = false;
+  function autoVariant() {
+    if (variantTouched) return;
+    var spec = window.NMGradient.RECIPES[state.recipe] || {};
+    var dark = spec.ground === 'ink' || spec.ground === 'clay' || spec.ground === 'orange';
+    state.variant = dark ? 'cream' : 'ink';
+    syncVariantButtons();
+  }
+  function syncVariantButtons() {
+    Array.prototype.slice.call(root.querySelectorAll('[data-variant]')).forEach(function (b) {
+      b.classList.toggle('is-on', b.getAttribute('data-variant') === state.variant);
+      b.disabled = LOCKUPS[state.lockup].variants.indexOf(b.getAttribute('data-variant')) < 0;
+    });
+  }
+
+  Array.prototype.slice.call(root.querySelectorAll('[data-variant]')).forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (b.disabled) return;
+      variantTouched = true;
+      state.variant = b.getAttribute('data-variant');
+      syncVariantButtons();
+      render();
+    });
+  });
+
+  Array.prototype.slice.call(root.querySelectorAll('[data-lockup]')).forEach(function (b) {
+    b.addEventListener('click', function () {
+      state.lockup = b.getAttribute('data-lockup');
+      state.size = LOCKUPS[state.lockup].size;
+      var sl = q('[data-bg="size"]');
+      if (sl) sl.value = Math.round(state.size * 100);
+      Array.prototype.slice.call(root.querySelectorAll('[data-lockup]'))
+        .forEach(function (o) { o.classList.toggle('is-on', o === b); });
+      syncVariantButtons();
+      // re-clamp: a bigger lockup may no longer fit where the old one sat
+      currentLogo().then(function (img) {
+        state.pos = clampPos(state.pos, logoBox(img));
+        render();
+      });
+    });
+  });
+
+  Array.prototype.slice.call(root.querySelectorAll('[data-pos]')).forEach(function (b) {
+    b.addEventListener('click', function () {
+      var a = b.getAttribute('data-pos').split(',').map(Number);
+      currentLogo().then(function (img) {
+        state.pos = anchorPos(a[0], a[1], logoBox(img));
+        markPresetActive(b);
+        renderLogoOnly();
+      });
+    });
+  });
+
+  var sizeSlider = q('[data-bg="size"]');
+  if (sizeSlider) {
+    sizeSlider.addEventListener('input', function () {
+      state.size = parseInt(sizeSlider.value, 10) / 100;
+      currentLogo().then(function (img) {
+        state.pos = clampPos(state.pos, logoBox(img));
+        renderLogoOnly();
+      });
+    });
+  }
+
+  var shuffle = q('[data-bg="shuffle"]');
+  if (shuffle) {
+    shuffle.addEventListener('click', function () {
+      state.seed = Math.floor(Math.random() * 1e9);
+      state.blobs = window.NMGradient.makeBlobs(state.recipe, state.seed);
+      render();
+    });
+  }
+
+  var guideBtn = q('[data-bg="guide"]');
+  if (guideBtn) {
+    guideBtn.addEventListener('click', function () {
+      state.guide = !state.guide;
+      stage.classList.toggle('show-guide', state.guide);
+      guideBtn.classList.toggle('is-on', state.guide);
+      guideBtn.textContent = state.guide ? 'Hide guide' : 'Show guide';
+    });
+  }
+
+  /* ---- export -------------------------------------------------------- */
+  // Rendered fresh at 1920x1080, never upscaled from the preview. Positions
+  // and radii are normalised, so this is the same composition at full size.
+  Array.prototype.slice.call(root.querySelectorAll('[data-bg-save]')).forEach(function (b) {
+    b.addEventListener('click', function () {
+      var type = b.getAttribute('data-bg-save');            // 'jpg' | 'png'
+      var label = b.textContent;
+      b.disabled = true; b.textContent = 'Rendering...';
+
+      var out = document.createElement('canvas');
+      out.width = OUT_W; out.height = OUT_H;
+      var ox = out.getContext('2d');
+      paintBg(ox, OUT_W, OUT_H, 0);
+
+      currentLogo().then(function (img) {
+        var box = logoBox(img);
+        var p = clampPos(state.pos, box);
+        ox.drawImage(img, (p.x - box.w / 2) * OUT_W, (p.y - box.h / 2) * OUT_H,
+                     box.w * OUT_W, box.h * OUT_H);
+      }).catch(function () { /* gradient-only export is still valid */ })
+        .then(function () {
+          var mime = type === 'jpg' ? 'image/jpeg' : 'image/png';
+          out.toBlob(function (blob) {
+            if (!blob) { b.disabled = false; b.textContent = label; return; }
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'newmed-meeting-background-' + state.recipe + '.' + type;
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+            b.disabled = false; b.textContent = 'Saved';
+            setTimeout(function () { b.textContent = label; }, 1800);
+          }, mime, type === 'jpg' ? 0.92 : undefined);
+        });
+    });
+  });
+
+  /* ---- boot ---------------------------------------------------------- */
+  function boot() {
+    if (!window.NMGradient) return;                // gradient.js must load first
+    if (!state.blobs) state.blobs = window.NMGradient.makeBlobs(state.recipe, state.seed);
+    autoVariant();
+    syncVariantButtons();
+    stage.classList.toggle('show-guide', state.guide);
+    setHint();
+    render();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+
+  // The section is display:none until navigated to, so the stage measures 0
+  // on first paint. Re-render once it is actually visible.
+  document.addEventListener('nm:repaint', function () {
+    if (stage.getBoundingClientRect().width > 4) boot();
+  });
+
+  window.addEventListener('resize', function () {
+    clearTimeout(root.__rt);
+    root.__rt = setTimeout(function () {
+      if (stage.getBoundingClientRect().width > 4) render();
+    }, 150);
   });
 })();
 
