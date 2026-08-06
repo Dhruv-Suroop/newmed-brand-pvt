@@ -1776,6 +1776,12 @@ body.nav-open .hamb span::after{top:0;transform:rotate(-45deg);}
 #l-lockups .vtile{padding:24px;min-height:clamp(170px,19vw,220px);}
 #l-lockups .vtile img{height:var(--imh,46px);width:auto;max-width:100%;max-height:none;}
 #l-lockups .vtile img[src*="vertical-"]{--imh:106px;}   /* 46 / 0.4354 */
+/* Badge, Short and Symbol are compact lockups, so a matched symbol height
+   leaves them looking lighter than the wordmark ones. Scaled 40% for
+   optical balance — deliberately trading exact parity for how it reads. */
+#l-lockups .vtile img[src*="badge-"],
+#l-lockups .vtile img[src*="short-"],
+#l-lockups .vtile img[src*="symbol-"]{--imh:64px;}   /* 46 x 1.4 */
 
 /* Arrow section: everything after "Using the arrow" is a child of it,
    so those headings drop one level — h3, and a step down in size. */
