@@ -1829,6 +1829,33 @@ body.soon-open{overflow:hidden;}
   .lockup-grid > div:nth-child(n+4){grid-column:span 12;}
 }
 
+/* ==================================================================
+   SMALL SCREENS — the manual is a desktop tool
+   Pure CSS: no script involved, so it cannot fail open. Covers phones
+   by width, and phones held landscape by height (those can exceed the
+   width threshold while still being far too short to use).
+   ================================================================== */
+.deskonly{display:none;}
+
+@media (max-width: 767px), (orientation: landscape) and (max-height: 460px) {
+  /* hide the manual itself rather than layer over it, so nothing behind
+     the message can be scrolled or tabbed into */
+  .topbar, .app, .scrim, .navscreen, .soon-pop { display: none !important; }
+  html, body { overflow: hidden !important; height: 100%; }
+
+  .deskonly{
+    display:grid;place-items:center;position:fixed;inset:0;z-index:300;
+    background:var(--orange);padding:28px;overflow-y:auto;}
+  .deskonly-card{max-width:440px;text-align:left;}
+  .deskonly-mark{display:block;width:52px;height:52px;color:var(--cream);margin-bottom:26px;}
+  .deskonly-mark svg{width:100%;height:100%;}
+  .deskonly h2{color:var(--cream);font-size:clamp(30px,8.5vw,42px);
+    line-height:1.02;letter-spacing:-.035em;margin:0 0 18px;}
+  .deskonly p{color:var(--deep-brown);font-size:16px;line-height:1.55;margin:0 0 14px;font-weight:500;}
+  .deskonly .deskonly-note{color:rgba(57,30,26,.72);font-size:14.5px;}
+  .deskonly .deskonly-note b{color:var(--deep-brown);font-weight:600;word-break:break-all;}
+}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
@@ -3814,6 +3841,17 @@ window.MATERIAL_ICONS = [
 })();
 
 </script>
+
+<!-- Small screens: the manual is a desktop tool. CSS-only so it cannot fail
+     open if a script errors. -->
+<div class="deskonly" id="deskonly" aria-hidden="true">
+  <div class="deskonly-card">
+    <span class="deskonly-mark"><svg class="mark"><use href="#nm-mark"/></svg></span>
+    <h2>Best opened on a desktop</h2>
+    <p>This manual is a working tool, not just a document. The arrow, pattern, icon and data generators need a keyboard, a cursor and room to drag &mdash; none of which a phone gives them.</p>
+    <p class="deskonly-note">Open <b>newmed-brand-pvt.dhruvsuroop.workers.dev</b> on a laptop or desktop and everything will be here.</p>
+  </div>
+</div>
 
 <div class="soon-pop" id="soon-pop" hidden>
   <div class="soon-card" role="dialog" aria-modal="true" aria-labelledby="soon-t">
