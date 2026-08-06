@@ -1844,12 +1844,23 @@ body.soon-open{overflow:hidden;}
 .bgen-l-bg{z-index:1;}
 .bgen-l-fg{z-index:2;}
 
+/* Live camera, ghosted, so the logo can be placed around where the caller
+   actually sits. DOM element, never composited into the canvas. */
+.bgen-cam{position:absolute;inset:0;z-index:3;width:100%;height:100%;
+  object-fit:cover;transform:scaleX(-1);   /* mirrored, the way Teams and Zoom show you */
+  opacity:.55;display:none;pointer-events:none;}
+.bgen-stage.cam-on .bgen-cam{display:block;}
+
 /* Where the caller's head and shoulders land. Preview only — it lives in the
-   DOM, not on the canvas, so it can never reach the exported file. */
-.bgen-guide{position:absolute;z-index:3;left:50%;top:52%;transform:translate(-50%,-50%);
-  width:34%;aspect-ratio:3/4;border:2px dashed rgba(57,30,26,.28);border-radius:50% 50% 44% 44%;
-  display:none;pointer-events:none;}
+   DOM, not on the canvas, so it can never reach the exported file.
+   `currentColor` on the stroke lets the ground darkness flip it. */
+.bgen-guide{position:absolute;z-index:4;left:50%;bottom:0;transform:translateX(-50%);
+  height:88%;width:auto;display:none;pointer-events:none;
+  color:rgba(57,30,26,.42);}
 .bgen-stage.show-guide .bgen-guide{display:block;}
+.bgen-stage.on-dark .bgen-guide{color:rgba(244,241,234,.62);}
+
+.bgen-cam-note{margin-top:9px;font-size:12.5px;color:rgba(57,30,26,.55);max-width:70ch;}
 
 .bgen-hint{margin-top:10px;font-size:12.5px;color:rgba(57,30,26,.55);max-width:70ch;}
 

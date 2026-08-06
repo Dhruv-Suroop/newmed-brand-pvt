@@ -39,8 +39,20 @@
     stack:      { label: 'Stack',      variants: ['cream', 'ink'], size: 0.24 },
     vertical:   { label: 'Vertical',   variants: ['cream', 'ink'], size: 0.16 },
     badge:      { label: 'Badge',      variants: ['cream', 'ink'], size: 0.11 },
-    symbol:     { label: 'Symbol',     variants: ['colour'],       size: 0.10 }
+    symbol:     { label: 'Symbol',     variants: ['cream', 'ink'], size: 0.10 }
   };
+
+  var HEX = { cream: '#f4f1ea', ink: '#391e1a' };
+
+  /* The symbol ships only in colour, so there is no symbol-cream.svg to load.
+     Its `-colour-alt` file declares no fill at all — which is precisely how
+     the cream and ink variants of every other lockup are built (a fill on the
+     <svg> root, see badge-cream.svg) — so the same mechanism recolours it
+     rather than needing new artwork. */
+  function resolve(key, variant) {
+    if (key === 'symbol') return { file: 'symbol-colour-alt', fill: HEX[variant] || HEX.ink };
+    return { file: key + '-' + variant, fill: null };
+  }
 
   var state = {
     recipe: 'organic',
@@ -70,11 +82,12 @@
   // from the viewBox before the blob URL is built.
   var cache = {};
   function loadLogo(key, variant) {
-    var id = key + '-' + variant;
+    var spec = resolve(key, variant);
+    var id = spec.file + (spec.fill ? '@' + spec.fill : '');
     if (cache[id]) return cache[id];
-    cache[id] = fetch('assets/logos/svg/' + id + '.svg')
+    cache[id] = fetch('assets/logos/svg/' + spec.file + '.svg')
       .then(function (r) {
-        if (!r.ok) throw new Error(id + ' ' + r.status);
+        if (!r.ok) throw new Error(spec.file + ' ' + r.status);
         return r.text();
       })
       .then(function (txt) {
@@ -82,6 +95,11 @@
         if (vb && !/<svg[^>]*\swidth\s*=/.test(txt)) {
           var p = vb[1].trim().split(/[\s,]+/).map(Number);
           txt = txt.replace(/<svg/, '<svg width="' + p[2] + '" height="' + p[3] + '"');
+        }
+        if (spec.fill) {
+          // replace any root fill rather than adding a second one
+          txt = txt.replace(/(<svg\b[^>]*?)\s+fill\s*=\s*"[^"]*"/, '$1');
+          txt = txt.replace(/<svg/, '<svg fill="' + spec.fill + '"');
         }
         var url = URL.createObjectURL(new Blob([txt], { type: 'image/svg+xml' }));
         return new Promise(function (res, rej) {
@@ -251,11 +269,18 @@
   // A cream logo disappears on cream. Follow the ground unless the user has
   // deliberately overridden it.
   var variantTouched = false;
-  function autoVariant() {
-    if (variantTouched) return;
+  function groundIsDark() {
     var spec = window.NMGradient.RECIPES[state.recipe] || {};
-    var dark = spec.ground === 'ink' || spec.ground === 'clay' || spec.ground === 'orange';
-    state.variant = dark ? 'cream' : 'ink';
+    return spec.ground === 'ink' || spec.ground === 'clay' || spec.ground === 'orange';
+  }
+  // The guide is a thin stroke; at ink-ground contrast a dark one vanishes.
+  // Same test drives the logo variant, so the two never disagree.
+  function syncGround() { stage.classList.toggle('on-dark', groundIsDark()); }
+
+  function autoVariant() {
+    syncGround();
+    if (variantTouched) return;
+    state.variant = groundIsDark() ? 'cream' : 'ink';
     syncVariantButtons();
   }
   function syncVariantButtons() {
@@ -333,6 +358,74 @@
     });
   }
 
+  /* ---- camera ghost --------------------------------------------------- */
+  /* A ghosted, mirrored camera feed laid over the preview so the logo can be
+     placed around where the caller actually sits. This is NOT background
+     removal — that needs a segmentation model (a megabyte-plus download from
+     a CDN), and this site ships no external dependencies. Seeing yourself at
+     half opacity answers the same question: is the logo behind my head?
+     The stream is a DOM <video>, never drawn to canvas, so it cannot reach an
+     export; it is never recorded and never leaves the browser. */
+  var camStream = null;
+  var camEl = q('[data-bg="cam"]');
+  var camBtn = q('[data-bg="cam-btn"]');
+  var camNote = q('[data-bg="cam-note"]');
+
+  function setCamNote(msg) {
+    if (!camNote) return;
+    camNote.textContent = msg || '';
+    camNote.hidden = !msg;
+  }
+
+  function stopCam() {
+    if (camStream) {
+      camStream.getTracks().forEach(function (t) { t.stop(); });
+      camStream = null;
+    }
+    if (camEl) camEl.srcObject = null;
+    stage.classList.remove('cam-on');
+    if (camBtn) { camBtn.textContent = 'Turn on camera'; camBtn.classList.remove('is-on'); }
+  }
+
+  function startCam() {
+    if (!window.isSecureContext || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      setCamNote('Camera preview needs a secure connection (https). It will not work over plain http.');
+      return;
+    }
+    camBtn.disabled = true;
+    camBtn.textContent = 'Starting...';
+    navigator.mediaDevices.getUserMedia({
+      video: { width: { ideal: 1280 }, height: { ideal: 720 } }, audio: false
+    }).then(function (s) {
+      camStream = s;
+      camEl.srcObject = s;
+      var p = camEl.play();
+      if (p && p.catch) p.catch(function () {});
+      stage.classList.add('cam-on');
+      camBtn.textContent = 'Turn off camera';
+      camBtn.classList.add('is-on');
+      setCamNote('Preview only — the feed stays in this browser, is never recorded, ' +
+                 'and is never part of the saved image. Mirrored, the way Teams and Zoom show you.');
+    }).catch(function (e) {
+      var n = e && e.name;
+      setCamNote(n === 'NotAllowedError'
+        ? 'Camera permission was declined. Allow it from the icon in the address bar, then try again.'
+        : (n === 'NotFoundError' ? 'No camera found on this machine.'
+                                 : 'Could not start the camera (' + (n || 'unknown error') + ').'));
+    }).then(function () {
+      camBtn.disabled = false;
+      if (!camStream) camBtn.textContent = 'Turn on camera';
+    });
+  }
+
+  if (camBtn) {
+    camBtn.addEventListener('click', function () {
+      if (camStream) { stopCam(); setCamNote(''); } else { startCam(); }
+    });
+  }
+  // Never leave the camera light on behind a closed tab.
+  window.addEventListener('pagehide', stopCam);
+
   /* ---- export -------------------------------------------------------- */
   // Rendered fresh at 1920x1080, never upscaled from the preview. Positions
   // and radii are normalised, so this is the same composition at full size.
@@ -376,6 +469,7 @@
     if (!state.blobs) state.blobs = window.NMGradient.makeBlobs(state.recipe, state.seed);
     autoVariant();
     syncVariantButtons();
+    syncGround();
     stage.classList.toggle('show-guide', state.guide);
     setHint();
     render();

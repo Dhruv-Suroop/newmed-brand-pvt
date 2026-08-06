@@ -6,7 +6,7 @@
 <title>NewMed Skills — Brand Guidelines</title>
 <meta name="description" content="The brand standards manual for NewMed Skills: logo, colour, typography and applications.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="styles.css?v=82">
+<link rel="stylesheet" href="styles.css?v=83">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
 </head>
@@ -1216,7 +1216,14 @@ North America 10</textarea>
             <div class="bgen-stage" data-bg="stage">
               <canvas class="bgen-l-bg" data-bg="bg" aria-hidden="true"></canvas>
               <canvas class="bgen-l-fg" data-bg="fg" aria-label="Meeting background preview"></canvas>
-              <div class="bgen-guide" aria-hidden="true"></div>
+              <!-- Camera ghost and guide are DOM, never canvas, so neither can
+                   reach the exported file. -->
+              <video class="bgen-cam" data-bg="cam" playsinline muted aria-hidden="true"></video>
+              <svg class="bgen-guide" viewBox="0 0 250.89 267.1" fill="none"
+                   preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+                <path d="M.13,266.62c88.54-24.53,170.3-56.68,239.67-119.6,16.79-47.23,11.13-98.13.16-146.91"
+                      stroke="currentColor" stroke-miterlimit="10" vector-effect="non-scaling-stroke"/>
+              </svg>
             </div>
             <p class="bgen-hint" data-bg="hint"></p>
 
@@ -1276,9 +1283,11 @@ North America 10</textarea>
             <div class="gen-bar">
               <button type="button" data-bg="shuffle">Shuffle wash</button>
               <button type="button" data-bg="guide" class="is-on">Hide guide</button>
+              <button type="button" data-bg="cam-btn">Turn on camera</button>
               <button type="button" data-bg-save="jpg">Save JPG</button>
               <button type="button" data-bg-save="png">Save PNG</button>
             </div>
+            <p class="bgen-cam-note" data-bg="cam-note" hidden></p>
           </div>
 
           <p class="tcap" style="max-width:64ch"><b>Loading it in</b>Teams: Settings &rarr; Backgrounds &rarr; Add new. Zoom: Settings &rarr; Background &amp; effects &rarr; <b>+</b>. JPG is the safer choice &mdash; both apps accept it and the file is smaller. The dashed oval marks roughly where the caller sits; it is a guide only and is never exported.</p>
@@ -1320,7 +1329,7 @@ North America 10</textarea>
 <script src="v3_eyebrow.js?v=1"></script>
 <script src="v3_motion.js?v=7"></script>
 <script src="gradient.js?v=7"></script>
-<script src="bggen.js?v=2"></script>
+<script src="bggen.js?v=3"></script>
 <script src="typegen.js?v=10"></script>
 <script src="appsig.js?v=6"></script>
 <script src="appcard.js?v=3"></script>
