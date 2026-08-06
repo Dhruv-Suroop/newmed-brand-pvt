@@ -30,3 +30,19 @@ styles_backup.css
 feedback.txt
 Newmed_brandguidelines_inputs.docx
 docx_images/
+
+# --- Final handover cleanup (Aug 2026) ---
+# These stay on Dhruv's machine but are no longer part of the repo:
+# unlinked download files, superseded templates, one-off migration scripts.
+# Nothing here is referenced by index.html.
+assets/downloads/Finals/AI Instructions/
+assets/downloads/Finals/Presentation/
+assets/downloads/Finals/Card/
+assets/downloads/Finals/Letterhead/
+assets/downloads/Finals/newmed-framer-website_v2/
+assets/downloads/Finals/Newmed logo_V2/Editable Files/
+assets/downloads/NewMed_Logos.zip
+assets/downloads/MonaSans_Fonts.zip
+v2.html
+styles_v2.css
+build_artifact.py
