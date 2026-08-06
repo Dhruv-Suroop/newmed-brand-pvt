@@ -1,0 +1,12 @@
+# Files Cloudflare should not upload.
+#
+# Superseded presentation templates. 103 MB, nothing on the site links to
+# them, and two are 42.7 MB — past the 25 MiB per-asset limit, which is
+# what failed the first deploy. Kept in the repo, just not served.
+assets/downloads/Finals/Presentation/Old/
+
+# Build and handover tooling — source, not site.
+*.py
+feedback.txt
+Newmed_brandguidelines_inputs.docx
+docx_images/
