@@ -290,9 +290,11 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
 .feature-colour:hover .copyhint{opacity:.55;}
 
 /* Horizontal in-use mockup scroller (grey placeholders) */
-.scroller{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:12px;
-  margin-left:calc(-1 * clamp(20px,3.4vw,52px));margin-right:calc(-1 * clamp(20px,3.4vw,52px));
-  padding-left:clamp(20px,3.4vw,52px);padding-right:clamp(20px,3.4vw,52px);}
+/* Sits in the content column like everything else. It used to full-bleed via
+   negative margins plus matching padding, but `scroll-snap-align:start` snaps
+   the first tile to the PADDING box, so the browser scrolled that padding
+   straight back off and the slider ran to the viewport edge with no margin. */
+.scroller{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:12px;}
 .scroller::-webkit-scrollbar{height:8px;}
 .scroller::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px;}
 .scroller::-webkit-scrollbar-track{background:transparent;}
@@ -1027,7 +1029,6 @@ p.body{color:rgba(57,30,26,0.8);max-width:66ch;}
   .scale-row{grid-template-columns:70px 1fr;}
   .a11y-grid{grid-template-columns:1fr;}
   .sw-grid,.sw-grid.two,.sw-grid.hier{grid-template-columns:1fr 1fr;}
-  .scroller{margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px;}
   .cash-sec{grid-template-columns:1fr;}
   .cash-h,.cash-lead{grid-column:auto;}
   .variants,.tone-grid,.tactics{grid-template-columns:1fr;}
