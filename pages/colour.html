@@ -1811,6 +1811,24 @@ body.soon-open{overflow:hidden;}
 /* the triggers are anchors with no href — keep them feeling clickable */
 [data-soon]{cursor:pointer;}
 
+/* --- Lockup grid: three across, then four ------------------------
+   A 12-column track lets one grid hold a row of 3 and a row of 4
+   without splitting it into two grids that could drift apart. */
+.lockup-grid{grid-template-columns:repeat(12,1fr);}
+.lockup-grid > div:nth-child(-n+3){grid-column:span 4;}
+.lockup-grid > div:nth-child(n+4){grid-column:span 3;}
+/* the bare mark has no container, so it needs a touch more height to
+   carry the same visual weight as the contained lockups */
+#l-lockups .vtile img[src*="logo-mark-big"]{--imh:70px;}
+@media(max-width:900px){
+  .lockup-grid > div:nth-child(-n+3),
+  .lockup-grid > div:nth-child(n+4){grid-column:span 6;}
+}
+@media(max-width:560px){
+  .lockup-grid > div:nth-child(-n+3),
+  .lockup-grid > div:nth-child(n+4){grid-column:span 12;}
+}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />

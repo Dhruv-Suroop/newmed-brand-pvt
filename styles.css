@@ -1801,3 +1801,21 @@ body.soon-open{overflow:hidden;}
 .soon-card p{margin:0 0 22px;color:rgba(57,30,26,.7);font-size:15px;line-height:1.55;}
 /* the triggers are anchors with no href — keep them feeling clickable */
 [data-soon]{cursor:pointer;}
+
+/* --- Lockup grid: three across, then four ------------------------
+   A 12-column track lets one grid hold a row of 3 and a row of 4
+   without splitting it into two grids that could drift apart. */
+.lockup-grid{grid-template-columns:repeat(12,1fr);}
+.lockup-grid > div:nth-child(-n+3){grid-column:span 4;}
+.lockup-grid > div:nth-child(n+4){grid-column:span 3;}
+/* the bare mark has no container, so it needs a touch more height to
+   carry the same visual weight as the contained lockups */
+#l-lockups .vtile img[src*="logo-mark-big"]{--imh:70px;}
+@media(max-width:900px){
+  .lockup-grid > div:nth-child(-n+3),
+  .lockup-grid > div:nth-child(n+4){grid-column:span 6;}
+}
+@media(max-width:560px){
+  .lockup-grid > div:nth-child(-n+3),
+  .lockup-grid > div:nth-child(n+4){grid-column:span 12;}
+}
