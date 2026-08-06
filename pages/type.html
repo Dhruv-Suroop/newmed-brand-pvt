@@ -3348,9 +3348,8 @@ window.MATERIAL_ICONS = [
   var AR = OUT_W / OUT_H;
   var MARGIN = 0.055;                    // preset inset, normalised to width
 
-  /* Lockups that ship in both cream and ink read on any ground. The symbol
-     only exists in colour, so it carries its own variant list and the colour
-     switch is disabled while it is selected. */
+  /* Every lockup offers cream and ink so it reads on any ground. The symbol
+     has no cream/ink file on disk; `resolve` below recolours it instead. */
   var LOCKUPS = {
     horizontal: { label: 'Horizontal', variants: ['cream', 'ink'], size: 0.30 },
     stack:      { label: 'Stack',      variants: ['cream', 'ink'], size: 0.24 },
@@ -3375,10 +3374,10 @@ window.MATERIAL_ICONS = [
     recipe: 'organic',
     seed: Math.floor(Math.random() * 1e9),
     blobs: null,
-    lockup: 'horizontal',
+    lockup: 'stack',
     variant: 'ink',
-    size: LOCKUPS.horizontal.size,
-    // Resolved to the bottom-right anchor on first paint, once the artwork's
+    size: LOCKUPS.stack.size,
+    // Resolved to the centre-right anchor on first paint, once the artwork's
     // aspect is known. Deliberately not centred: dead centre is behind the
     // caller's head, which is the one place a logo must not go.
     pos: null,
@@ -3446,7 +3445,7 @@ window.MATERIAL_ICONS = [
   }
 
   function clampPos(p, box) {
-    if (!p) return anchorPos(1, 1, box);   // not placed yet — fall to the default
+    if (!p) return anchorPos(1, 0.5, box); // not placed yet — fall to the default
     return {
       x: Math.max(box.w / 2, Math.min(1 - box.w / 2, p.x)),
       y: Math.max(box.h / 2, Math.min(1 - box.h / 2, p.y))
@@ -3494,8 +3493,8 @@ window.MATERIAL_ICONS = [
     paintBg(bgx, bg.width, bg.height, 0);
     currentLogo().then(function (img) {
       if (!state.pos) {
-        state.pos = anchorPos(1, 1, logoBox(img));       // bottom-right default
-        markPresetActive(root.querySelector('[data-pos="1,1"]'));
+        state.pos = anchorPos(1, 0.5, logoBox(img));     // centre-right default
+        markPresetActive(root.querySelector('[data-pos="1,0.5"]'));
       }
       paintLogo(fgx, fg.width, fg.height, img);
     }).catch(function () {
