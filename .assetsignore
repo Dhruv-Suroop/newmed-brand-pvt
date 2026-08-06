@@ -1,12 +1,26 @@
-# Files Cloudflare should not upload.
+# Files Cloudflare must not upload.
 #
-# Superseded presentation templates. 103 MB, nothing on the site links to
-# them, and two are 42.7 MB — past the 25 MiB per-asset limit, which is
-# what failed the first deploy. Kept in the repo, just not served.
+# The deploy serves the repo ROOT, so anything here is publicly fetchable
+# unless excluded. Most important: .git — serving it would expose the
+# entire history, every deleted file and every old secret.
+.git/
+.github/
+node_modules/
+.wrangler/
+wrangler.jsonc
+wrangler.toml
+
+# Superseded presentation templates. Nothing links to them and two were
+# past the 25 MiB per-asset limit.
 assets/downloads/Finals/Presentation/Old/
 
 # Build and handover tooling — source, not site.
 *.py
+*.md
 feedback.txt
 Newmed_brandguidelines_inputs.docx
 docx_images/
+index_backup.html
+styles_backup.css
+styles_v2.css
+v2.html
