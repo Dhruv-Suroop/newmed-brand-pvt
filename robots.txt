@@ -1,0 +1,3 @@
+# Private brand manual — not for indexing.
+User-agent: *
+Disallow: /

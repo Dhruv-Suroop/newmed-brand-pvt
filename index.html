@@ -1159,18 +1159,7 @@ North America 10</textarea>
           <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">Business card</span></h2>
           <p class="cash-lead">Type your details, check the front and back, then save a print-ready PDF (3.5 × 2 in, one face per page) to send straight to a printer.</p>
           
-          <div class="gate-overlay" id="gate-card">
-            <div class="gate-box">
-              <span class="material-symbols-outlined" style="font-size: 32px; margin-bottom: 12px; color: var(--orange)">lock</span>
-              <h3>Password Required</h3>
-              <p>Please enter the password to unlock this generator.</p>
-              <input type="password" id="pw-card" class="tg-input" style="margin-bottom: 12px;">
-              <button class="btn sm" id="btn-pw-card">Unlock</button>
-              <p class="tg-hint" id="hint-pw-card" style="color: #ff5122;"></p>
-            </div>
-          </div>
-          
-          <div class="cardgen gated-content" id="cardgen" style="display: none;">
+          <div class="cardgen" id="cardgen">
             <div class="sig-form">
               <div><label for="cf-name">First name</label><input id="cf-name" class="tg-input" data-f="name" value="Priya Nair" autocomplete="off"></div>
               <div><label for="cf-desig">Designation</label><input id="cf-desig" class="tg-input" data-f="designation" value="Clinical Readiness Lead" autocomplete="off"></div>
@@ -1224,18 +1213,7 @@ North America 10</textarea>
           <h2 class="cash-h"><span class="ch-arw" data-arw="offwhite">Presentation template</span></h2>
           <p class="cash-lead">PowerPoint template for external presentations, pitch decks, and internal updates.</p>
           
-          <div class="gate-overlay" id="gate-presentation">
-            <div class="gate-box">
-              <span class="material-symbols-outlined" style="font-size: 32px; margin-bottom: 12px; color: var(--orange)">lock</span>
-              <h3>Password Required</h3>
-              <p>Please enter the password to download this template.</p>
-              <input type="password" id="pw-presentation" class="tg-input" style="margin-bottom: 12px;">
-              <button class="btn sm" id="btn-pw-presentation">Unlock</button>
-              <p class="tg-hint" id="hint-pw-presentation" style="color: #ff5122;"></p>
-            </div>
-          </div>
-          
-          <div class="gated-content" id="presentation-dl" style="display: none; margin-top: 16px;">
+          <div id="presentation-dl" style="margin-top: 16px;">
             <a href="assets/downloads/NewMed_Presentation.pptx" download class="dl-card" style="margin-top:0">
               <div class="dl-icon"><span class="material-symbols-outlined">slideshow</span></div>
               <div class="dl-info">

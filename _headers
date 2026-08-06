@@ -1,0 +1,7 @@
+# Cloudflare Pages. Access sits in front of the whole site, but these stop
+# the manual being embedded or sniffed if the URL ever leaks.
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Robots-Tag: noindex, nofollow

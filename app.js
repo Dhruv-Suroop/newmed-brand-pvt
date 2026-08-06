@@ -181,38 +181,7 @@
   });
 })();
 
-// Password Gate
-(function() {
-  const correctPassword = 'NewMed2026';
-  
-  function setupGate(id) {
-    const btn = document.getElementById('btn-pw-' + id);
-    const input = document.getElementById('pw-' + id);
-    const hint = document.getElementById('hint-pw-' + id);
-    const gate = document.getElementById('gate-' + id);
-    let content = document.getElementById(id + 'gen');
-    if (!content) content = document.getElementById(id + '-dl');
-    
-    if (!btn || !input || !gate || !content) return;
-    
-    function unlock() {
-      if (input.value === correctPassword) {
-        gate.style.display = 'none';
-        content.style.display = 'block';
-        if (id === 'card' && window.appcard_rebuild) window.appcard_rebuild(); // Trigger resize/render for cardgen if needed
-      } else {
-        hint.textContent = 'Incorrect password.';
-      }
-    }
-    
-    btn.addEventListener('click', unlock);
-    input.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') unlock();
-    });
-  }
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    setupGate('card');
-    setupGate('presentation');
-  });
-})();
+/* The client-side password gate was removed: the password was readable
+   in this file and the gated content was only display:none, so it never
+   restricted anything. Access control belongs in front of the site. */
+
