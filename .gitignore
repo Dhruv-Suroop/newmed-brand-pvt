@@ -49,3 +49,6 @@ build_artifact.py
 
 # All downloadables removed pending final files (Aug 2026)
 assets/downloads/
+
+# local preview config, not part of the handover
+.claude/

@@ -8,7 +8,12 @@
   var root = document.getElementById('siggen');
   if (!root) return;
 
-  var LOGO = 'https://dhruv-suroop.github.io/newmed-brand/assets/logos/png/stack-colour.png';
+  // Absolute, and deliberately on a PUBLIC path. Mail clients fetch this with
+  // no session and no cookie, so it must never sit behind an auth gate — if
+  // the manual is ever put behind Cloudflare Access, this asset has to stay
+  // outside it or every staff signature renders as a broken image.
+  // 400px wide for a 200px display box, i.e. 2x for retina.
+  var LOGO = 'https://newmed-brand-pvt.dhruvsuroop.workers.dev/assets/logos/png/email-signature.png';
   var fields = ['name', 'title', 'creds', 'email', 'phone', 'location', 'tagline'];
   var inputs = {};
   fields.forEach(function (f) { inputs[f] = root.querySelector('[data-f="' + f + '"]'); });
