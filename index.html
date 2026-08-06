@@ -6,7 +6,7 @@
 <title>NewMed Skills — Brand Guidelines</title>
 <meta name="description" content="The brand standards manual for NewMed Skills: logo, colour, typography and applications.">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="styles.css?v=83">
+<link rel="stylesheet" href="styles.css?v=84">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,500,0,0" rel="stylesheet" />
 </head>
@@ -1219,9 +1219,13 @@ North America 10</textarea>
               <!-- Camera ghost and guide are DOM, never canvas, so neither can
                    reach the exported file. -->
               <video class="bgen-cam" data-bg="cam" playsinline muted aria-hidden="true"></video>
-              <svg class="bgen-guide" viewBox="0 0 250.89 267.1" fill="none"
-                   preserveAspectRatio="xMidYMax meet" aria-hidden="true">
-                <path d="M.13,266.62c88.54-24.53,170.3-56.68,239.67-119.6,16.79-47.23,11.13-98.13.16-146.91"
+              <!-- Drawn in frame coordinates: the source file's rect is the
+                   full 1920x1080 frame, so the viewBox is set to that rect and
+                   the outline lands exactly where it was drawn. The rect
+                   itself is dropped — the stage edge already is the frame. -->
+              <svg class="bgen-guide" viewBox="0.5 0.5 1920 1080" fill="none"
+                   preserveAspectRatio="none" aria-hidden="true">
+                <path d="M473.33,1080.5c19.69-44.38,53.54-87.05,100.73-100.12,88.54-24.53,170.3-56.68,239.67-119.6,16.79-47.23,11.13-98.13.16-146.91l-12.29-54.69c-48.39-25.02-60.62-105.97-44.28-126.01,3.87-4.75,14.6-7.76,23.9-10.83-6.37-96.49,5.49-196.1,101.39-230.53,58.67-21.07,127.43-21.6,184.31,7.6,76.98,39.51,86.29,137.96,78.53,223.82h0c15.42,5.02,26.15,19.13,26.64,35.34.89,29.7-5.97,61.72-28.1,80.51-17.79,15.11-24.3,24.28-29.05,47.83-10.45,51.74-22.84,101.4-11.41,155.06,4.07,19.11,23.17,34.01,39.21,44.95,60.12,41.02,122.1,71.11,192.85,88.65,52.52,13.02,89.62,54.02,112.08,104.93"
                       stroke="currentColor" stroke-miterlimit="10" vector-effect="non-scaling-stroke"/>
               </svg>
             </div>
