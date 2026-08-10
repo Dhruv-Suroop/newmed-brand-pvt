@@ -14,7 +14,12 @@
   // outside it or every staff signature renders as a broken image.
   // 400px wide for a 200px display box, i.e. 2x for retina.
   var LOGO = 'https://newmed-brand-pvt.dhruvsuroop.workers.dev/assets/logos/png/email-signature.png';
-  var fields = ['name', 'title', 'creds', 'email', 'phone', 'location', 'tagline'];
+  // The tagline is brand copy, not a personal detail, so it is a constant and
+  // has no input. Staff cannot reword it, drop it, or leave a stale version in
+  // circulation — changing it here changes every signature generated after.
+  var TAGLINE = 'Training Talent. Deploying Care.';
+
+  var fields = ['name', 'title', 'creds', 'email', 'phone', 'location'];
   var inputs = {};
   fields.forEach(function (f) { inputs[f] = root.querySelector('[data-f="' + f + '"]'); });
   var preview = root.querySelector('.sig-preview');
@@ -50,7 +55,7 @@
     '</td>' +
   '</tr>' +
   '<tr><td colspan="2" style="padding-top:12px;">' +
-    (v.tagline ? '<div style="font-size:11px;color:#391E1A;opacity:.6;">' + esc(v.tagline) + '</div>' : '') +
+    '<div style="font-size:11px;color:#391E1A;opacity:.6;">' + esc(TAGLINE) + '</div>' +
   '</td></tr>' +
 '</table>';
   }

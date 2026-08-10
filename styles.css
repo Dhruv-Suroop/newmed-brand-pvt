@@ -1897,3 +1897,11 @@ body.soon-open{overflow:hidden;}
 .bgen .gen-bar button[data-bg-save]{background:var(--orange);color:var(--cream);border-color:transparent;}
 .bgen .gen-bar button[data-bg-save]:hover{background:var(--deep-brown);}
 .bgen .gen-bar button.is-on{background:var(--deep-brown);color:var(--cream);border-color:transparent;}
+
+/* Signature: the tagline is brand copy, not a field. Shown so staff can see
+   what will be in their signature, but with no input to edit it. */
+.sf-fixed{display:flex;flex-direction:column;gap:3px;}
+.sf-fixed-lbl{font-size:12.5px;font-weight:600;color:var(--deep-brown);}
+.sf-fixed-val{font-size:14px;color:var(--deep-brown);padding:11px 12px;border-radius:8px;
+  background:var(--bone);border:1px solid rgba(57,30,26,.10);}
+.sf-fixed-note{font-size:11.5px;color:rgba(57,30,26,.5);}
