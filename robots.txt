@@ -1,3 +1,13 @@
-# Private brand manual — not for indexing.
+# NewMed Skills brand manual.
+#
+# The manual itself stays out of search indexes and out of AI crawls. The AI
+# skill page and the downloadable packs are deliberately open, so an assistant
+# pointed at them is not refused.
+#
+# Longest-match wins, so the Allow rules below override the blanket Disallow.
+
 User-agent: *
 Disallow: /
+Allow: /ai
+Allow: /ai.html
+Allow: /assets/dl/
