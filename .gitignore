@@ -123,3 +123,6 @@ assets/photos/nurse-tablet-teal.png
 # Corpus is assembled into the zip by build_skill.py from pages/.
 # Storing it here too would duplicate ~10MB of identical bytes.
 skill/corpus/*.html
+
+# skill-design/corpus is regenerated from pages/ by build_skill_design.py
+skill-design/corpus/*.html

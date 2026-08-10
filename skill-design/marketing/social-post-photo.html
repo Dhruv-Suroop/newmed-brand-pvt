@@ -1,0 +1,35 @@
+<!-- @dsCard group="Marketing" viewport="1080x1080" name="Social post — photo on arrow" subtitle="Cutout professional breaking out of the giant orange arrow" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><link rel="stylesheet" href="../styles.css" />
+<style>
+  html,body{margin:0}
+  .post{position:relative;width:1080px;height:1080px;background:var(--nm-cream);overflow:hidden;font-family:var(--font-sans)}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="./image-slot.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<script type="text/babel">
+const { ArrowPortrait, Symbol } = window.NewMedSkillsDesignSystem_cd1078;
+function Post(){
+  return (
+    <div className="post">
+      <div style={{position:"absolute",right:56,top:56}}><Symbol size={72} /></div>
+      <h2 style={{position:"absolute",right:72,top:200,margin:0,textAlign:"right",fontFamily:"var(--font-display)",fontWeight:600,fontSize:84,lineHeight:1.02,letterSpacing:"-0.02em",color:"var(--heading-color)",zIndex:3}}>Across<br/>borders.</h2>
+      <div style={{position:"absolute",left:64,bottom:110,zIndex:2}}>
+        <ArrowPortrait src="../assets/photos/nurse-newmed-hijab.png" width={840} height={540} jut={0.45} imgScale={1} imgShift={0} alt="NewMed Skills nurse" />
+      </div>
+      <div style={{position:"absolute",right:64,bottom:64,textAlign:"right",fontSize:26,fontWeight:600,color:"var(--nm-maroon)"}}>newmedskills.com</div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Post/>);
+</script>
+</body>
+</html>

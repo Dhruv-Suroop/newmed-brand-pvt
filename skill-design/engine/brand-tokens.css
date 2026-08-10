@@ -1,0 +1,19 @@
+/* NewMed Skills — brand tokens.
+   Lifted verbatim from the manual's styles.css. If these ever disagree with
+   the live site, the live site wins and this file is stale. */
+:root{
+  --cream:#f4f1ea;          /* page background */
+  --bone:#efe9e0;           /* sunken surfaces, cards, panels */
+  --linen:#efe9e0;          /* alias of bone; kept so older rules stay valid */
+  --orange:#ff5122;         /* Signal Orange */
+  --deep-brown:#391e1a;     /* Deep Brown (formerly Clinical Ink) */
+  --yellow:#ff9d00;         /* Amber */
+  --teal:#93cccd;
+  --deep-brown-80:rgba(57,30,26,.82);
+  --deep-brown-60:rgba(57,30,26,.6);
+  --deep-brown-45:rgba(57,30,26,.45);
+  --deep-brown-30:rgba(57,30,26,.3);
+  --line:rgba(57,30,26,.14);
+  --line-soft:rgba(57,30,26,.09);
+  --gradient-arrow:linear-gradient(90deg,#ff9d00,#ff5122);
+}

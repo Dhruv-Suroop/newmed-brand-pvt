@@ -1,0 +1,78 @@
+/* NewMed Skills — colour tokens.
+   Corrected Aug 2026 against the live brand manual.
+
+   THREE TIERS. Only the first is the brand.
+
+   1. BRAND (locked, exactly 7). Orange #FF5122 · Yellow #FF9D00 ·
+      Maroon #7C3134 · Deep Brown #391E1A · Teal #93CCCD · Cream #F4F1EA ·
+      Off white #EFE9E0. No tints, no shades, no invented colours.
+
+   2. DERIVED. Deep Brown at opacity steps for text hierarchy; orange
+      hover/press; the gradient ramps, whose intermediate stops are
+      interpolation between two brand colours, not new colours.
+
+   3. UI-ONLY. --status-success and --status-info have no brand equivalent.
+      Use them for interface state and NEVER on a brand surface — no
+      headline, arrow, background or logo. Same rule as the data-viz
+      extension.
+
+   Previously this file declared --nm-coral #ff5122 alongside --nm-orange
+   #ff7822. After the coral -> orange rename that made "orange" resolve to a
+   colour outside the palette. Fixed. */
+:root {
+  /* ---- Brand palette (base values) ---- */
+  --nm-orange: #ff5122;      /* primary brand — the symbol / CTA */
+  --nm-gradient-mid: #FF9D00;     /* mid orange, gradient top */
+  --nm-yellow: #ff9d00;      /* warm yellow accent */
+  --nm-maroon: #7c3134;     /* wine / secondary depth */
+  --nm-teal: #93cccd;       /* cool counterpoint accent */
+  --nm-ink: #391e1a;        /* near-black warm brown — primary text */
+  --nm-cream: #F4F1EA;      /* page background */
+  --nm-cream-2: #efe9e0;    /* raised surface / secondary bg */
+  --nm-white: #ffffff;
+
+  /* ---- Neutral ramp (warm brown-greys derived from ink) ---- */
+  --nm-ink-900: #391e1a;
+  --nm-ink-700: #5a423e;
+  --nm-ink-500: #7c6763;
+  --nm-ink-300: #a99e99;
+  --nm-ink-100: #d9d2ca;
+
+  /* ---- Semantic aliases ---- */
+  --color-bg: var(--nm-cream);
+  --color-bg-raised: var(--nm-white);
+  --color-bg-sunken: var(--nm-cream-2);
+  --color-bg-inverse: var(--nm-ink);
+
+  --text-primary: var(--nm-ink);
+  --heading-color: var(--nm-maroon);  /* all display/heading text */
+  --text-secondary: var(--nm-ink-500);
+  --text-muted: var(--nm-ink-300);
+  --text-inverse: var(--nm-cream);
+  --text-on-brand: var(--nm-white);
+  --text-link: var(--nm-orange);
+  --text-link-hover: var(--nm-maroon);
+
+  --brand-primary: var(--nm-orange);
+  --brand-primary-hover: #ec4114; /* darker orange for hover */
+  --brand-primary-press: #d3380f;
+  --brand-secondary: var(--nm-maroon);
+  --brand-accent: var(--nm-yellow);
+  --brand-cool: var(--nm-teal);
+
+  --border-subtle: rgba(57, 30, 26, 0.10);
+  --border-default: rgba(57, 30, 26, 0.16);
+  --border-strong: rgba(57, 30, 26, 0.28);
+
+  /* ---- Status (kept warm, unexaggerated) ---- */
+  --status-success: #4b8f6e;
+  --status-warning: var(--nm-yellow);
+  --status-error: var(--nm-orange);
+  --status-info: #4a7a8c;
+
+  /* ---- Signature gradients (the "orb" motif) ---- */
+  --gradient-orange: radial-gradient(120% 120% at 50% 100%, #ff5122 0%, #fc9576 36%, #f9c7b4 67%, #f8e7db 89%, #F4F1EA 100%); /* @kind color */
+  --gradient-yellow: radial-gradient(120% 120% at 50% 100%, #ff9d00 0%, #fdb33e 20%, #fbca7a 41%, #f9dbaa 60%, #f8e8cd 77%, #F4F1EA 100%); /* @kind color */
+  --gradient-sunrise: linear-gradient(180deg, #FF9D00 0%, #ff5122 100%); /* @kind color */
+  --gradient-arrow: linear-gradient(90deg, #ff9d00 0%, #ff5122 100%); /* @kind color */ /* the arrow-highlight fill */
+}

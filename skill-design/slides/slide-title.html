@@ -1,0 +1,47 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="Title slide" subtitle="Executive briefing cover" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><link rel="stylesheet" href="../styles.css" />
+<style>
+  html,body{margin:0}
+  .slide{position:relative;width:1280px;height:720px;background:var(--nm-cream);overflow:hidden;font-family:var(--font-sans);color:var(--text-primary)}
+  .content{position:relative;z-index:2;padding:88px 96px;height:100%;box-sizing:border-box;display:flex;flex-direction:column}
+  .eye{font-size:15px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--brand-primary)}
+  h1{font-family:var(--font-display);font-weight:600;font-size:72px;line-height:1.06;letter-spacing:-0.025em;margin:auto 0 0;max-width:1000px;color:var(--heading-color)}
+  p{font-size:21px;line-height:1.5;color:var(--text-secondary);max-width:600px;margin:28px 0 0}
+  .foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:40px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Logo, Orb, ArrowHighlight } = window.NewMedSkillsDesignSystem_cd1078;
+function Slide(){
+  return (
+    <div className="slide">
+      <Orb tone="orange" size={760} style={{position:"absolute",right:-260,bottom:-320}} />
+      <Orb tone="yellow" size={380} style={{position:"absolute",right:280,top:-160,opacity:0.7}} />
+      <div className="content">
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+          <Logo variant="horizontal" size={26} />
+          <span className="eye">Executive briefing — 2026</span>
+        </div>
+        <h1>Building <ArrowHighlight>Workforce-Ready</ArrowHighlight><br/>Healthcare Talent.</h1>
+        <p>Helping healthcare organisations source, develop, deploy and retain qualified professionals across GCC and international markets.</p>
+        <div className="foot">
+          <span style={{fontSize:15,color:"var(--text-muted)"}}>newmedskills.com</span>
+          <span style={{fontSize:15,color:"var(--text-muted)"}}>Confidential</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Slide/>);
+</script>
+</body>
+</html>
