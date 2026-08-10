@@ -4419,7 +4419,10 @@ window.MATERIAL_ICONS = [
     '</td>' +
   '</tr>' +
   '<tr><td colspan="2" style="padding-top:12px;">' +
-    '<div style="font-size:11px;color:#391E1A;opacity:.6;">' + esc(TAGLINE) + '</div>' +
+    // Signal Orange at full strength. The old muted brown ran at .6 opacity;
+    // orange at .6 goes chalky in Outlook, which flattens alpha on some
+    // backgrounds, so the weight comes from the colour, not transparency.
+    '<div style="font-size:11px;color:#FF5122;">' + esc(TAGLINE) + '</div>' +
   '</td></tr>' +
 '</table>';
   }
