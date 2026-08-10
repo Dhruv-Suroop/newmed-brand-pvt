@@ -1,15 +1,20 @@
-# Cloudflare. These stop the manual being embedded or sniffed if the URL leaks.
+# Cloudflare. Security headers apply everywhere.
 /*
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  X-Robots-Tag: noindex, nofollow
 
-# The AI skill page and the packs are meant to be reachable by assistants.
-# noarchive still keeps them out of cached search results.
-/ai
-  X-Robots-Tag: noarchive
-/ai.html
-  X-Robots-Tag: noarchive
-/assets/dl/*
-  X-Robots-Tag: noarchive
+# X-Robots-Tag is set per-path rather than on /*, because a /* rule wins over
+# a more specific one here — scoping the exception did not work, so the manual
+# is named explicitly instead. /ai and /assets/dl/ deliberately get no
+# noindex, so an assistant pointed at them is not refused.
+/
+  X-Robots-Tag: noindex, nofollow
+/index.html
+  X-Robots-Tag: noindex, nofollow
+/pages/*
+  X-Robots-Tag: noindex, nofollow
+/assets/mockups/*
+  X-Robots-Tag: noindex, nofollow
+/assets/photos/*
+  X-Robots-Tag: noindex, nofollow
