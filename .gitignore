@@ -52,3 +52,70 @@ assets/downloads/
 
 # local preview config, not part of the handover
 .claude/
+
+# --- Deep clean (Aug 2026) -------------------------------------------
+# Untracked from git, still on Dhruv's machine. Nothing here is loaded by
+# index.html, styles.css or any served JS. Downloads now come from
+# assets/dl/; these are the superseded originals and unused sources.
+.nojekyll
+CLAUDE-DESIGN.md
+CLAUDE.md
+v2_interactions.js
+assets/arrow/
+assets/backgrounds/
+assets/fonts/mona-sans-400.woff2
+assets/fonts/mona-sans-500.woff2
+assets/fonts/mona-sans-600.woff2
+assets/fonts/mona-sans-700.woff2
+assets/fonts/mona-sans-800.woff2
+assets/graphics/NewMed_Letterhead.docx
+assets/graphics/card-ref.svg
+assets/graphics/letterhead-bg.png
+assets/graphics/letterhead-bg.svg
+assets/graphics/letterhead.svg
+assets/graphics/the-promise.svg
+assets/icons/
+assets/logos/Favicon.png
+assets/logos/pdf/badge-black.pdf
+assets/logos/pdf/badge-colour.pdf
+assets/logos/pdf/horizontal-black.pdf
+assets/logos/pdf/horizontal-colour.pdf
+assets/logos/pdf/short-black.pdf
+assets/logos/pdf/short-colour.pdf
+assets/logos/pdf/stack-black.pdf
+assets/logos/pdf/stack-colour.pdf
+assets/logos/pdf/symbol-colour.pdf
+assets/logos/pdf/vertical-black.pdf
+assets/logos/pdf/vertical-colour.pdf
+assets/logos/png/badge-black.png
+assets/logos/png/badge-colour.png
+assets/logos/png/horizontal-black.png
+assets/logos/png/horizontal-colour.png
+assets/logos/png/short-black.png
+assets/logos/png/short-colour.png
+assets/logos/png/social.png
+assets/logos/png/stack-black.png
+assets/logos/png/stack-colour.png
+assets/logos/png/symbol-colour.png
+assets/logos/png/vertical-black.png
+assets/logos/png/vertical-colour.png
+assets/logos/svg/badge-black.svg
+assets/logos/svg/colours.svg
+assets/logos/svg/horizontal-black.svg
+assets/logos/svg/short-black.svg
+assets/logos/svg/short-cream.svg
+assets/logos/svg/short-ink.svg
+assets/logos/svg/stack-black.svg
+assets/logos/svg/vertical-black.svg
+assets/mockups/app-icon-square.png
+assets/mockups/app-iphone-gradient.jpg
+assets/mockups/binding.jpg
+assets/mockups/dawn-front.jpg
+assets/mockups/doctor-iphone.jpg
+assets/mockups/medical-uniform.jpg
+assets/mockups/meiji-template.jpg
+assets/mockups/screens.jpg
+assets/photos/doctor-iv-pole-1.png
+assets/photos/doctor-iv-pole-2.png
+assets/photos/nurse-paperwork-orange.png
+assets/photos/nurse-tablet-teal.png
