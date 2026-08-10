@@ -119,3 +119,7 @@ assets/photos/doctor-iv-pole-1.png
 assets/photos/doctor-iv-pole-2.png
 assets/photos/nurse-paperwork-orange.png
 assets/photos/nurse-tablet-teal.png
+
+# Corpus is assembled into the zip by build_skill.py from pages/.
+# Storing it here too would duplicate ~10MB of identical bytes.
+skill/corpus/*.html

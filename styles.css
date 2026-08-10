@@ -1905,3 +1905,8 @@ body.soon-open{overflow:hidden;}
 .sf-fixed-val{font-size:14px;color:var(--deep-brown);padding:11px 12px;border-radius:8px;
   background:var(--bone);border:1px solid rgba(57,30,26,.10);}
 .sf-fixed-note{font-size:11.5px;color:rgba(57,30,26,.5);}
+
+/* Link out to the AI skill page from the sidebar footer */
+.sb-ai{display:block;margin-top:12px;font-size:12.5px;font-weight:600;color:var(--orange);
+  text-decoration:none;transition:color .16s ease;}
+.sb-ai:hover{color:var(--deep-brown);}

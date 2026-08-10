@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NewMed Skills — AI design skill</title>
+<meta name="description" content="The NewMed Skills brand system packaged for AI tools: locked palette, arrow geometry as working code, composition rules and the full manual as an offline corpus.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="styles.css?v=91">
+<style>
+  .ai-wrap{max-width:1080px;margin:0 auto;padding:clamp(28px,5vw,72px) clamp(20px,3.4vw,52px) 120px;}
+  .ai-hero{padding:clamp(40px,7vw,96px) 0 clamp(28px,4vw,56px);}
+  .ai-hero h1{font-size:clamp(48px,9vw,132px);font-weight:600;letter-spacing:-.035em;line-height:.94;
+    color:var(--deep-brown);margin:0 0 22px;}
+  .ai-hero p{font-size:clamp(17px,2vw,22px);line-height:1.5;max-width:62ch;color:var(--deep-brown-80);margin:0;}
+  .ai-band{background:var(--deep-brown);color:var(--cream);border-radius:20px;
+    padding:clamp(30px,4vw,54px);margin:44px 0;}
+  .ai-band h2{color:var(--cream);font-size:clamp(24px,3.4vw,38px);font-weight:600;letter-spacing:-.02em;margin:0 0 14px;}
+  .ai-band p{color:rgba(244,241,234,.78);max-width:64ch;line-height:1.55;margin:0 0 18px;}
+  .ai-band code{background:rgba(244,241,234,.12);color:var(--cream);padding:2px 7px;border-radius:5px;font-size:.9em;}
+  .ai-h2{font-size:clamp(26px,3.6vw,44px);font-weight:600;letter-spacing:-.025em;color:var(--deep-brown);
+    margin:56px 0 10px;}
+  .ai-lead{font-size:17px;line-height:1.55;color:var(--deep-brown-60);max-width:64ch;margin:0 0 24px;}
+  .ai-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;}
+  .ai-card{background:var(--bone);border-radius:14px;padding:22px 24px;}
+  .ai-card h3{font-size:15px;font-weight:600;color:var(--deep-brown);margin:0 0 7px;letter-spacing:-.01em;}
+  .ai-card p{font-size:14px;line-height:1.55;color:var(--deep-brown-60);margin:0;}
+  .ai-card code{font-size:12.5px;background:rgba(57,30,26,.07);padding:1px 5px;border-radius:4px;}
+  .ai-steps{counter-reset:s;list-style:none;padding:0;margin:0;max-width:70ch;}
+  .ai-steps li{counter-increment:s;position:relative;padding:0 0 22px 52px;line-height:1.55;color:var(--deep-brown-80);}
+  .ai-steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:34px;height:34px;
+    display:grid;place-items:center;background:var(--orange);color:var(--cream);
+    border-radius:50%;font-weight:600;font-size:14px;}
+  .ai-steps b{color:var(--deep-brown);}
+  .ai-dl{display:inline-flex;align-items:center;gap:12px;background:var(--orange);color:var(--cream);
+    text-decoration:none;font-weight:600;font-size:16px;padding:16px 26px;border-radius:999px;
+    transition:background .18s ease;}
+  .ai-dl:hover{background:var(--deep-brown);}
+  .ai-note{font-size:13.5px;color:var(--deep-brown-45);margin-top:14px;max-width:60ch;line-height:1.5;}
+  .ai-back{display:inline-block;margin-bottom:30px;font-size:14px;font-weight:600;color:var(--orange);text-decoration:none;}
+  .ai-back:hover{color:var(--deep-brown);}
+  table.ai-t{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:8px;}
+  table.ai-t th,table.ai-t td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+  table.ai-t th{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--deep-brown-45);font-weight:600;}
+  table.ai-t td:first-child{font-weight:600;color:var(--deep-brown);white-space:nowrap;}
+  table.ai-t td{color:var(--deep-brown-60);}
+</style>
+</head>
+<body>
+
+<div class="ai-wrap">
+  <a class="ai-back" href="index.html">&larr; Brand guidelines</a>
+
+  <div class="ai-hero">
+    <h1>Hand the brand<br>to an AI.</h1>
+    <p>Everything in this manual, packaged so an AI tool can design for NewMed Skills
+       accurately — the locked palette, the arrow geometry as working code, the
+       composition rules, and the whole manual as an offline corpus.</p>
+  </div>
+
+  <a class="ai-dl" href="assets/dl/newmed-ai-design-skill.zip" download>
+    Download the skill &middot; 6.6 MB
+  </a>
+  <p class="ai-note">A folder of Markdown, brand assets and JavaScript. No install, no dependencies.</p>
+
+  <div class="ai-band">
+    <h2>Why this works better than a PDF</h2>
+    <p>The arrow's geometry is a ratio that is easy to describe and easy to get wrong:
+       corner radius 10% of height, point 42.6% of height. Written in prose, it gets
+       approximated. So this ships <code>arrow.js</code> &mdash; the same file that draws every
+       arrow in this manual.</p>
+    <p>An AI told to <b>call</b> the function cannot get the shape wrong. One told to
+       <b>read about</b> the shape can, and does. The same goes for the gradient wash,
+       the optical centring of icons, and the size floor below which an arrow stops
+       reading as an arrow.</p>
+  </div>
+
+  <h2 class="ai-h2">How to use it</h2>
+  <p class="ai-lead">Works with Claude, and with any assistant that can read a folder of files.</p>
+  <ol class="ai-steps">
+    <li><b>Download and unzip.</b> You get a folder called <code>newmed-skills-design</code>.</li>
+    <li><b>Give it to your assistant.</b> In Claude, add it as a skill or drop the folder
+        into the conversation. Anywhere else, upload the folder and say
+        &ldquo;follow the brand rules in SKILL.md&rdquo;.</li>
+    <li><b>Ask for what you need</b> &mdash; a deck, a social post, a poster, a landing page.
+        It will use the right colours, draw correct arrows, and write in the brand voice.</li>
+    <li><b>Check it against this manual.</b> The skill contains the full manual offline,
+        so it can cite its own source &mdash; ask it why it made a choice.</li>
+  </ol>
+
+  <h2 class="ai-h2">What's inside</h2>
+  <table class="ai-t">
+    <thead><tr><th>Folder</th><th>What it holds</th></tr></thead>
+    <tbody>
+      <tr><td>SKILL.md</td><td>The entry point &mdash; palette, arrow, type, voice, and the pre-flight checklist.</td></tr>
+      <tr><td>engine/</td><td>The production <code>arrow.js</code> and <code>gradient.js</code>, plus the seven colours as CSS variables lifted straight from the live stylesheet.</td></tr>
+      <tr><td>reference/</td><td>Colour, arrow, composition, applications &mdash; and a file of traps.</td></tr>
+      <tr><td>assets/</td><td>Logo lockups in colour and cream, the symbol, favicon, and Mona Sans.</td></tr>
+      <tr><td>corpus/</td><td>All eight sections of this manual as self-contained HTML. Opens offline, generators included.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="ai-h2">The rules it enforces</h2>
+  <p class="ai-lead">The ones most often broken, and the reason each exists.</p>
+  <div class="ai-grid">
+    <div class="ai-card"><h3>Seven colours, no more</h3>
+      <p>No tints, no shades, no white. The four data-visualisation colours are charts only and never touch a brand surface.</p></div>
+    <div class="ai-card"><h3>70 / 20 / 10</h3>
+      <p>Roughly 70% neutral, 20% orange, 10% maroon. The calm comes from how little of the palette you spend.</p></div>
+    <div class="ai-card"><h3>One highlight per headline</h3>
+      <p>Two words minimum, on the phrase carrying the promise &mdash; never the negative half &mdash; and always the last line, so nothing orphans.</p></div>
+    <div class="ai-card"><h3>The 0.85&times; floor</h3>
+      <p>Below 0.85&times; the arrow's height the point and radii stop resolving and it reads as a lozenge.</p></div>
+    <div class="ai-card"><h3>Cutouts break out</h3>
+      <p>A portrait is clipped by the arrow's bottom half only. Head and shoulders break out of the top. Never boxed inside.</p></div>
+    <div class="ai-card"><h3>Bigger, one weight down</h3>
+      <p>Display at 600, never heavier, at poster scale. Weight 600 at 150px has presence; 800 at 60px is just heavy.</p></div>
+    <div class="ai-card"><h3>One dominant move</h3>
+      <p>A full-bleed band, or a poster-scale arrow, or a giant photograph. One. Two competing moves read as noise.</p></div>
+    <div class="ai-card"><h3>Nothing bounces</h3>
+      <p>Calm opacity and settle on a decelerating curve. Reduced motion must fail open, never leave a page blank.</p></div>
+  </div>
+
+  <h2 class="ai-h2">Keeping it current</h2>
+  <p class="ai-lead">The skill is generated from this manual. When the manual changes, regenerate
+     and re-download &mdash; the corpus and the engine come straight from the live files, so they
+     cannot quietly drift. If the skill and this site ever disagree, this site wins.</p>
+</div>
+
+</body>
+</html>
