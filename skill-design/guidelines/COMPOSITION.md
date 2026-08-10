@@ -53,6 +53,89 @@ The palette is warm and loud. The calm comes from **how little** of it you use.
 
 ---
 
+## The concrete moves
+
+The specific patterns the manual is built from, with the real values from its
+stylesheet. These are what "poster scale" and "full banners" mean here.
+
+### Full-bleed hero
+
+Every section opens with one: an **Orange** band running edge to edge.
+
+```css
+background: var(--orange);
+padding-top:    clamp(60px, 10vw, 140px);
+padding-bottom: clamp(60px, 10vw, 140px);
+margin-bottom:  clamp(56px, 8vw, 120px);
+```
+
+Inside it: an eyebrow badge, then the section title, then one short lead. The
+title is `clamp(36px, 5.4vw, 68px)`. Left-aligned, hard against the content edge.
+
+### Full-bleed dark band
+
+The one dominant move inside a section. Deep Brown, cream type.
+
+```css
+background: var(--deep-brown);
+color: var(--cream);
+/* full-bleed by cancelling the page gutter, then re-adding it as padding */
+margin:  clamp(60px,8vw,104px) calc(-1 * clamp(20px,3.4vw,52px)) 0;
+padding: clamp(46px,6vw,88px) clamp(20px,3.4vw,52px);
+```
+
+The negative margin equals the page gutter exactly — that is what makes it break
+the column without the content inside shifting.
+
+- **One per page.** A second band halves the effect of both
+- The standard gradient orb goes milky on this ground — use a warm-glow-only
+  variant
+- Never full-bleed a pattern behind body copy
+
+### Poster-scale type
+
+Reserved for moments that carry weight — the type specimen, a standalone
+statement — not for every heading.
+
+```css
+font-size: clamp(64px, 13vw, 150px);
+font-weight: 600;          /* never heavier */
+letter-spacing: -.03em;
+line-height: .9;
+```
+
+Two or three words per line at most. Let it wrap early and hard.
+
+The hierarchy that actually ships:
+
+| Role | Size | Weight | Tracking |
+|---|---|---|---|
+| Poster / specimen | `clamp(64px, 13vw, 150px)` | 600 | −.03em |
+| Section title | `clamp(36px, 5.4vw, 68px)` | 600 | — |
+| Sub-heading | `clamp(26px, 3.4vw, 40px)` | 600 | −.025em |
+| Lead | 17–22px | 400 | — |
+| Body | 15–17px, 1.5 | 400 | — |
+
+Tracking tightens as size grows. That is the whole trick — large type set at
+default tracking looks loose and amateur.
+
+### Editorial rows
+
+For lists of substance — attributes, principles, stages — do **not** use a card
+grid. Use full-width rows: a number or short label left, a heading and one
+paragraph right, a hairline rule between, nothing else.
+
+A four-up card grid makes four things look small and interchangeable. Four
+editorial rows make them look considered.
+
+### Sunken panels
+
+Content that sits *on* the page rather than *in* it: **Off white** `#EFE9E0` on
+the Cream page, `border-radius: 14px`, no border, no drop shadow. The tonal step
+alone does the work.
+
+---
+
 ## Type
 
 - **Mona Sans only.** Variable weight.
